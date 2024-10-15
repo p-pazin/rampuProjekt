@@ -1,43 +1,39 @@
-# Inicijalne upute za prijavu projekta iz Razvoja aplikacija za mobilne i pametne uređaje
-
-Poštovane kolegice i kolege, 
-
-čestitamo vam jer ste uspješno prijavili svoj projektni tim na kolegiju Razvoj aplikacija za mobilne i pametne uređaje, te je za vas automatski kreiran repozitorij koji ćete koristiti za verzioniranje vašega koda i za jednostavno dokumentiranje istoga.
-
-Ovaj dokument (README.md) predstavlja **osobnu iskaznicu vašeg projekta**. Vaš prvi zadatak je **prijaviti vlastiti projektni prijedlog** na način da ćete prijavu vašeg projekta, sukladno uputama danim u ovom tekstu, napisati upravo u ovaj dokument, umjesto ovoga teksta.
-
-Za upute o sintaksi koju možete koristiti u ovom dokumentu i kod pisanje vaše projektne dokumentacije pogledajte [ovaj link](https://guides.github.com/features/mastering-markdown/).
-Sav programski kod potrebno je verzionirati u glavnoj **master** grani i **obvezno** smjestiti u mapu Software. Sve artefakte (npr. slike) koje ćete koristiti u vašoj dokumentaciju obvezno verzionirati u posebnoj grani koja je već kreirana i koja se naziva **master-docs** i smjestiti u mapu Documentation.
-
-Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra raditi na ovom projektu. Mentor će vam slati povratne informacije kroz sekciju Discussions također dostupnu na GitHubu vašeg projekta. A sada, vrijeme je da prijavite vaš projekt. Za prijavu vašeg projektnog prijedloga molimo vas koristite **predložak** koji je naveden u nastavku, a započnite tako da kliknete na *olovku* u desnom gornjem kutu ovoga dokumenta :) 
-
-# Naziv projekta
-(u redak iznad navedite kratki proizvoljni naziv projekta prikladan akademskoj zajednici, a ovaj tekst kao i uvodni tekst iznad obrišite)
-
+# Carchive
 ## Projektni tim
-(svi članovi tima moraju biti iz iste seminarske grupe)
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
 ------------  | ------------------- | ----- | --------------------- | ----------------
-Ime i prezime | mojaadresa@foi.hr | 000000000 | githubuser | G01
-Ime i prezime | ... | ... | ... | ...
+Dario Vučina | dvucina22@foi.hr | 0016161255 | dvucina22 | G02
+Antonio Vinković | avinkovic22@foi.hr | 0016161208 | Avinkovic22 | G02
+Paula Pažin | ppazin22@foi.hr | 0016158520 | ppazin | G02
 
 ## Opis domene
-Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
+Aplikacija Carchive je namijenjena vođenju evidencije kod prodaje te iznajmljivanje automobila pojedine auto-kuće. Primarni cilj ove aplikacije je pružanje cjelovitog sustava za praćenje i upravljanje većim brojem vozila, optimizacija resursa te smanjenju operativnih troškova. Sustav će omogućiti potporu auto-kućama u poboljšanju njihove učinkovitosti i održavanju vozila.
+
 
 ## Specifikacija projekta
-Umjesto ovih uputa opišite zahtjeve za funkcionalnošću mobilne aplikacije ili aplikacije za pametne uređaje. Pobrojite osnovne funkcionalnosti i za svaku naznačite ime odgovornog člana tima. Opišite osnovnu buduću arhitekturu programskog proizvoda. Obratite pozornost da mobilne aplikacije često zahtijevaju pozadinske servise. Također uzmite u obzir da bi svaki član tima trebao biti odgovoran za otprilike 3 funkcionalnosti, te da bi opterećenje članova tima trebalo biti ujednačeno. Priložite odgovarajuće dijagrame i skice gdje je to prikladno. Funkcionalnosti sustava bobrojite u tablici ispod koristeći predložak koji slijedi:
+Aplikacija će se temeljiti na client-server arhitekturi. Aplikacija će sadržavati sučelje za interakciju s korisnikom, dok će backend(server) pružati pozadinske servise kao što su autentifikacija, upravljanje podatcima i korisnicima.
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Login | Za pristup dnevniku potrebnba je autentikacija korisnika pomoću login funkcionalnosti. Korisnik se logira s podacima koji su mu dodijeljeni prilikom ... | Zlatko Stapić
-F02 | Pregled dnevnika | .... | ...
+F01 | Prijava korisnika (Login) | Sustav će omogućiti prijavu korisnika pomoću korisničkog imena i lozinke uz uvjet da podatci verificiraju i omoguće pristup aplikaciji. | Dario Vučina
+F02 | Pregled aktivnih vozila | Sustav će omogućiti korisniku pregled svih vozila koja su trenutno dostupna, uključujući osnovne informacije poput marke, modela i trenutnog statusa. | Paula Pažin
+F03 | Unos novih vozila | Sustav će omogućiti korisniku unos novih vozila u sustav uz potrebne detalje, kao što su marka, model, godina proizvodnje, registarski broj i cijena. | Paula Pažin
+F04 | Izmjena podataka vozila | Sustav će omogućiti korisniku izmjenu podataka o postojećim vozilima, uključujući promjenu cijene, statusa ili drugih informacija. | Paula Pažin
+F05 | Brisanje vozila | Sustav će omogućiti korisniku brisanje podataka o vozilima koja više nisu u ponudi. | Paula Pažin
+F06 | Pregled kontakata | Sustav će omogućiti korisniku pregled svih unesenih kontakata, uključujući osnovne informacije kao što su ime, prezime, kontakt broj i e-mail adresa. | Antonio Vinković
+F07 | Unos novih kontakata | Sustav će omogućiti korisniku unos novih kontakata u bazu podataka uz potrebne detalje o klijentima. | Antonio Vinković
+F08 | Izmjena podataka kontakata | Sustav će omogućiti korisniku izmjenu podataka o postojećim kontaktima, uključujući promjene broja telefona ili e-mail adrese. | Antonio Vinković
+F09 | Brisanje kontakata | Sustav će omogućiti korisniku brisanje podataka o kontaktima koji više nisu potrebni. | Antonio Vinković
+F10 | Pregled aktivnosti | Sustav će omogućiti korisniku pregled povijesti aktivnosti vozila, uključujući transakcije prodaje, iznajmljivanja i servisiranja. | Dario Vučina
+F11 | Unos novih aktivnosti | Sustav će omogućiti korisniku unos novih aktivnosti, kao što su nove transakcije (najam, prodaja, servis). | Dario Vučina
+F12 | Generiranje izvještaja | Sustav će omogućiti korisniku generiranje izvještaja o poslovanju, uključujući statistike vezane za prodaju i najam vozila. | Dario Vučina
+
 
 ## Tehnologije i oprema
-Umjesto ovih uputa jasno popišite sve tehnologije, alate i opremu koju ćete koristiti pri implementaciji vašeg rješenja. Vaše rješenje može biti implementirano u bilo kojoj tehnologiji za razvoj mobilnih aplikacija ili aplikacija za pametne uređaje osim u hibridnim web tehnologijama kao što su React Native ili HTML+CSS+JS. Tehnologije koje ćete koristiti bi trebale biti javno dostupne, a ako ih ne budemo obrađivali na vježbama u vašoj dokumentaciji ćete morati navesti način preuzimanja, instaliranja i korištenja onih tehnologija koje su neopbodne kako bi se vaš programski proizvod preveo i pokrenuo. Pazite da svi alati koje ćete koristiti moraju imati odgovarajuću licencu. Što se tiče zahtjeva nastavnika, obvezno je koristiti git i GitHub za verzioniranje programskog koda, GitHub Wiki za pisanje jednostavne dokumentacije sukladno uputama mentora, a projektne zadatke je potrebno planirati i pratiti u alatu GitHub projects.
+Za razvoj aplikacije Carchive koristit ćemo Kotlin kao programski jezik za izradu nativne Android aplikacije. Razvojno okruženje bit će Android Studio za kodiranje, testiranje i debugging.
+Za verzioniranje koda koristit ćemo Git, a platforma GitHub bit će korištena za hosting repozitorija, kolaboraciju među članovima tima, te praćenje zadataka pomoću GitHub Projects. Dokumentaciju ćemo voditi kroz GitHub Wiki.
+Dizajn korisničkog sučelja izradit ćemo u alatu Figma, koji omogućava jednostavnu izradu i pregled dizajna te suradnju.
 
 ## Baza podataka i web server
-Nastavnici vam mogu pripremiti MySQL bazu podataka i web server na kojem možete postaviti jednostavne web servise. Ako želite da vam pripremimo ove sustave obavezno to navedite umjesto ovog teksta s napomenom "Tražimo pristup serveru na kojemu ćemo moći imati bazu podataka". Alternativno, možete koristiti bilo koji online dostupan sustav kao i studentske licence na pojedinim platformama kao što su Heroku ili Azure. Međutim, budite spremni da vas nastavnici navedu na to da lokalno stvorite okruženje na kojemu se server pokreće i da se aplikacija na istoj mreži spaja na server.
-
-## .gitignore
-Uzmite u obzir da je u mapi Software .gitignore konfiguriran za nekoliko tehnologija, ali samo ako će projekti biti smješteni direktno u mapu Software ali ne i u neku pod mapu. Nakon odabira konačne tehnologije i projekta obavezno dopunite/premjestite gitignore kako bi vaš projekt zadovoljavao kriterije koji su opisani u ReadMe.md dokumentu dostupnom u mapi Software.
+Tražimo pristup serveru na kojemu ćemo moći imati bazu podataka.
