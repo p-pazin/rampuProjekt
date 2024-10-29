@@ -16,18 +16,15 @@ Aplikacija će se temeljiti na client-server arhitekturi. Aplikacija će sadrža
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Prijava i registracija | Sustav će omogućiti prijavu korisnika pomoću korisničkog imena i lozinke uz uvjet da podatci verificiraju i omoguće pristup aplikaciji. Registracija se koristi kao forma za slanje upita koji se mora odobriti od admina. | Dario Vučina
-F02 | Upravljanje vozilima | Sustav će omogućiti korisniku unos, izmjenu, pregled i brisanje podataka o vozilima. | Paula Pažin
-F03 | Upravljanje kontaktima | Sustav će omogućiti unos, izmjenu, pregled i brisanje podataka o kontaktima klijenata i partnera. | Paula Pažin
-F04 | Pregled mape lokacija | Sustav će omogućiti prikaz trenutnih lokacija vozila i kontakata na interaktivnoj karti. | Dario Vučina
-F05 | Upravljanje aktivnostima | Sustav će omogućiti unos i praćenje aktivnosti vezanih za vozila i kontakte, uključujući transakcije i servise. | Dario Vučina
-F06 | Upravljanje mailovima | Sustav će omogućiti slanje, primanje i praćenje e-mail komunikacije s klijentima i partnerima. | Dario Vučina
-F07 | Statistika | Sustav će omogućiti generiranje statističkih izvještaja o poslovanju, uključujući analize prodaje, najma i korištenja vozila. | Antonio Vinković
-F08 | Pretraga vozila i kontakata | Sustav će omogućiti naprednu pretragu vozila i kontakata putem različitih filtara. | Antonio Vinković
-F09 | Objavljivanje na oglasnik| Sustav će omogućiti objavu vozila na vanjske oglasnike s pripadajućim podacima o vozilu. | Antonio Vinković
-F10 | Obavijesti i podsjetnici | Sustav će korisnicima slati obavijesti i podsjetnike vezane uz važne događaje (servisi, ugovori). | Paula Pažin
-F11 | Vizualno prepoznavanje vozila | Sustav će omogućiti korisnicima prikaz podataka određenog vozila putem slikanja tog vozila i prepoznavanja registracije. | Antonio Vinković 
-F12 | Postavke | Sustav će omogućiti korisnicima izmjenu postavki aplikacije, uključujući jezik i notifikacije. | Paula Pažin
+F01 | Prijava i registracija | Sustav će omogućiti prijavu korisnika pomoću korisničkog imena i lozinke uz uvjet da podatci verificiraju i omoguće pristup aplikaciji. Registracija se koristi kao forma za slanje upita koji se mora odobriti od admina. | Dario Vučina 
+F02 | Upravljanje katalogom vozila | Sustav će omogućiti korisniku unos, izmjenu, pregled i brisanje podataka o vozilima. | Paula Pažin
+F03 | Upravljanje katalogom kontakata | Sustav će omogućiti unos, izmjenu, pregled i brisanje podataka o kontaktima klijenata i partnera. | Antonio Vinković
+F04 | Objavljivanje na oglasnik |Sustav će omogućiti objavu vozila na vanjske oglasnike s pripadajućim podacima o vozilu. | Dario Vučina
+F05 | Statistika | Sustav će omogućiti generiranje statističkih izvještaja o poslovanju, uključujući analize prodaje, najma i korištenja vozila. | Antonio Vinković
+F06 | Prodaja automobila | Sustav će omogućiti unos i obradu podataka potrebnih za provođenje procesa prodaje automobila. | Antonio Vinković
+F07 | Iznajmljivanje vozila | Sustav će omogućiti unos i obradu podataka potrebnih za iznajmljivanje vozila. | Dario Vučina
+F08 | Pregled mape lokacija | Sustav će omogućiti prikaz trenutnih lokacija vozila i kontakata na interaktivnoj karti. | Paula Pažin
+F09 | Upravljanje aktivnostima | Sustav će omogućiti unos i praćenje aktivnosti vezanih za vozila i kontakte, uključujući transakcije i servise. | Paula Pažin
 
 
 ## Tehnologije i oprema
@@ -36,4 +33,4 @@ Za verzioniranje koda koristit ćemo Git, a platforma GitHub bit će korištena 
 Dizajn korisničkog sučelja izradit ćemo u alatu Figma, koji omogućava jednostavnu izradu i pregled dizajna te suradnju.
 
 ## Baza podataka i web server
-Tražimo pristup serveru na kojemu ćemo moći imati bazu podataka.
+Napraviti ćemo zajedničku bazu podataka s RPP-om i backend u .net tehnologiji.
