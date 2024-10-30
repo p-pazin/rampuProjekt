@@ -24,7 +24,7 @@ F05 | Statistika | Sustav će omogućiti generiranje statističkih izvještaja o
 F06 | Prodaja automobila | Sustav će omogućiti unos i obradu podataka potrebnih za provođenje procesa prodaje automobila. | Antonio Vinković
 F07 | Iznajmljivanje vozila | Sustav će omogućiti unos i obradu podataka potrebnih za iznajmljivanje vozila. | Dario Vučina
 F08 | Pregled mape lokacija | Sustav će omogućiti prikaz trenutnih lokacija vozila i kontakata na interaktivnoj karti. | Paula Pažin
-F09 | Upravljanje aktivnostima | Sustav će omogućiti unos i praćenje aktivnosti vezanih za vozila i kontakte, uključujući transakcije i servise. | Paula Pažin
+F09 | Upravljanje ponudama | Sustav će omogućiti kreiranje, prilagodbu i slanje ponuda za vozila klijentima. | Paula Pažin
 
 
 ## Tehnologije i oprema
