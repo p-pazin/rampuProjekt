@@ -48,4 +48,5 @@
     <string name="cijena">Cijena</string>
     <string name="dodatno">Dodatno</string>
     <string name="racunPoPonudi">Račun po ponudi</string>
+    <string name="auto">Auto</string>
 </resources>
