@@ -8,6 +8,7 @@
         android:id="@+id/ll_contact_list_options"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:padding="10dp"
         android:orientation="horizontal">
 
         <TextView

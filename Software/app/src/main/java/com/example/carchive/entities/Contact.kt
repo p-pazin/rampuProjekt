@@ -1,6 +1,7 @@
 package com.example.carchive.entities
 
 data class Contact(
+    val id : Int,
     val firstName : String,
     val lastName : String,
     val pin : String,
@@ -11,6 +12,7 @@ data class Contact(
     val mobilePhoneNumber : String,
     val emailAddress : String,
     val description : String,
+    val state : String,
     val activity : ContactActivity,
     val offerState : ContactOfferState
 )
