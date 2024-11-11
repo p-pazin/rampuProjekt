@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -16,9 +17,22 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="276dp"
+        android:layout_height="183dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_car_login" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="167dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +43,12 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"
             android:minHeight="48dp" />
 
         <EditText
@@ -38,20 +56,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Password"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/prompt_password"
             android:inputType="textPassword"
-            android:minHeight="48dp" />
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"
+            android:minHeight="48dp"
+             />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/accentColorDark"
+            android:fontFamily=""
             android:rotation="0"
             android:rotationX="0"
             android:rotationY="0"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/accentColorDark"
             android:text="@string/prijaviSe"
             tools:visibility="visible" />
     </LinearLayout>
