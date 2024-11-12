@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_nadzorna_ploca"
+        android:title="@string/nadzornaPloca" />
+
+    <item
+        android:id="@+id/nav_vehicle_catalog"
+        android:icon="@drawable/ic_katalog_vozila"
+        android:title="@string/katalogVozila" />
+
+    <item
+        android:id="@+id/nav_contact_catalog"
+        android:icon="@drawable/ic_katalog_kontakata"
+        android:title="@string/popisKontakata" />
+
+    <item
+        android:id="@+id/nav_map"
+        android:icon="@drawable/ic_mapa_vozila"
+        android:title="@string/mapaVozila" />
+
+    <item
+        android:id="@+id/nav_documents"
+        android:icon="@drawable/ic_dokumenti"
+        android:title="@string/dokumenti" />
+
+    <item
+        android:id="@+id/nav_statistics"
+        android:icon="@drawable/ic_statistika"
+        android:title="@string/statistika" />
+
+    <item
+        android:id="@+id/nav_help"
+        android:icon="@drawable/ic_pomoc"
+        android:title="@string/pomoc" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_postavke"
+        android:title="@string/postavke" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_odjava"
+        android:title="@string/odjava" />
+
+    <item
+        android:id="@+id/nav_version"
+        android:title="@string/verzijaApp"
+        android:enabled="false" />
+</menu>
