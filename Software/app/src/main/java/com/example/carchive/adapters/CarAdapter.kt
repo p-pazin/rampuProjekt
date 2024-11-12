@@ -30,7 +30,7 @@ class CarAdapter(private val cars: List<Car>) :
             textModel.text = "${car.marka} ${car.model}"
             textRegistration.text = car.registration
             textLocation.text = car.location
-            textKilometers.text = car.kilometers
+            textKilometers.text = car.kilometers.toString() + " km"
             textSellsRents.text = if (car.rentSell) "U prodaji" else "U najmu"
             textPrice.text = "$${car.price}"
         }
