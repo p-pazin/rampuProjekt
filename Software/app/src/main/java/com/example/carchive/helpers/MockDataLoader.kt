@@ -28,5 +28,6 @@ object MockDataLoader {
             ContactActivity("Aktivni kontakt", R.drawable.ic_aktivan_kontakt),
             ContactOfferState("Ponuda nije poslana", R.drawable.ic_x)
         ),
+
     )
 }
