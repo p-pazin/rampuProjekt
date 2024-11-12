@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.carchive.R
 import com.example.carchive.databinding.FragmentRegisterBinding
 import com.example.carchive.entities.User
 import com.example.carchive.helpers.MockDataLoader
@@ -28,7 +27,6 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Access views via binding
         binding.btnRegister.setOnClickListener {
             val name = binding.etName.text.toString()
             val lastName = binding.etSurname.text.toString()

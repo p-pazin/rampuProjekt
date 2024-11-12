@@ -21,7 +21,6 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using ViewBinding
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val binding = _binding!!
 
@@ -35,13 +34,11 @@ class LoginFragment : Fragment() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            // Find user in mock data with matching email and password
             val user = MockDataLoader.getUsers().find {
                 it.emailAddress == email && it.password == password
             }
 
             if (user != null) {
-                // Navigate to main activity if login is successful
                 Toast.makeText(requireContext(), "Prijava uspješna!", Toast.LENGTH_SHORT).show()
                 (activity as MainActivity).navigateToCarchive()
             } else {
@@ -50,7 +47,6 @@ class LoginFragment : Fragment() {
         }
 
         registerButton.setOnClickListener {
-            // Navigate to RegisterFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, RegisterFragment())
                 .addToBackStack(null)
@@ -62,7 +58,6 @@ class LoginFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Set binding to null to prevent memory leaks
         _binding = null
     }
 

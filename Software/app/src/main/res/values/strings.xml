@@ -52,8 +52,11 @@
     <string name="lozinka">Lozinka</string>
     <string name="lozinkaPonovi">Ponovite lozinku</string>
     <string name="noviCarchive">Novi na Carchive?</string>
-    <!-- Strings related to login -->
+    <string name="verzijaApp">Verzija aplikacije 1.0</string>
     <string name="prompt_email">Email</string>
+    <string name="drawerZatvori">Zatvori nav</string>
+    <string name="drawerOtvori">Otvori nav</string>
+    
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
