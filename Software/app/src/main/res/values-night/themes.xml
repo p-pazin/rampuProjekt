@@ -6,4 +6,6 @@
         <item name="android:textColor">@color/textColorDark</item>
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
+
+    <style name="Theme.Carchive" parent="Base.Theme.Carchive" />
 </resources>
