@@ -49,6 +49,9 @@
     <string name="dodatno">Dodatno</string>
     <string name="racunPoPonudi">Račun po ponudi</string>
     <string name="auto">Auto</string>
+    <string name="lozinka">Lozinka</string>
+    <string name="lozinkaPonovi">Ponovite lozinku</string>
+    <string name="noviCarchive">Novi na Carchive?</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
