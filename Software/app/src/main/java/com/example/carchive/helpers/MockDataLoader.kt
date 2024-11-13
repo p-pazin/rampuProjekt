@@ -5,9 +5,9 @@ import com.example.carchive.entities.Contact
 import com.example.carchive.entities.ContactActivity
 import com.example.carchive.R
 import com.example.carchive.entities.ContactOfferState
+import com.example.carchive.entities.User
 
 object MockDataLoader {
-
     fun getMockCarList(): MutableList<Car> {
         return mutableListOf(
             Car(
@@ -172,7 +172,6 @@ object MockDataLoader {
             )
         )
     }
-}
 
     fun getMockContacts() : List<Contact> = listOf(
         Contact(1, "Ivo", "Ivić", "97626517542", "Hrvatska", "Daruvar",
@@ -198,4 +197,21 @@ object MockDataLoader {
         ),
 
     )
+
+    private val users = mutableListOf(
+        User(1, "Ivo", "Ivić", "97626517542", "iivic@mail.hr", "Marko123"),
+        User(2, "Pero", "Kos", "0911234123", "pkos@mail.hr", "Marko123"),
+        User(3, "Stefan", "Ludbreg", "0956767678", "sludbreg@mail.hr", "Marko123"),
+        User(4, "Stefan", "Ludbreg", "0956767678", "a", "1")
+    )
+
+    fun getUsers(): List<User> = users
+
+    fun addUser(user: User) {
+        users.add(user)
+    }
+
+    fun getLastID(): Int {
+        return users.maxByOrNull { it.id }?.id ?: 0
+    }
 }
