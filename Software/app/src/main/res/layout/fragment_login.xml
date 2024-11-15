@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/primaryColorLight"
     >
 
 
@@ -50,6 +49,8 @@
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/email"
+            android:textColorHint="@color/hintTextColor"
+            android:textColor="@color/textColorLight"
             android:outlineAmbientShadowColor="@color/accentColorLight"
             android:outlineSpotShadowColor="@color/accentColorLight"
             android:translationZ="6dp"
@@ -69,6 +70,7 @@
             android:outlineAmbientShadowColor="@color/accentColorLight"
             android:outlineSpotShadowColor="@color/accentColorLight"
             android:translationZ="6dp"
+            android:textColor="@color/textColorLight"
             android:inputType="textPassword"
             android:paddingStart="15dp"
             tools:ignore="RtlSymmetry,UnusedAttribute"
@@ -82,6 +84,7 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/accentColorDark"
+            android:textColor="@color/textColorDark"
             android:fontFamily="@font/inter_bold"
             android:rotation="0"
             android:rotationX="0"
@@ -107,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="?attr/colorOnBackground"
             android:text="@string/noviCarchive"
             tools:ignore="InefficientWeight" />
 
@@ -114,7 +118,7 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryColorLight"
+            android:backgroundTint="#00FFFFFF"
             android:text="@string/registrirajSe"
             android:textColor="@color/accentColorLight" />
     </LinearLayout>

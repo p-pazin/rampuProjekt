@@ -66,4 +66,389 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <string-array name="Marke">
+        <item>BMW</item>
+        <item>Audi</item>
+        <item>Mercedes</item>
+        <item>Škoda</item>
+        <item>Renault</item>
+        <item>Volkswagen</item>
+        <item>Opel</item>
+        <item>Ford</item>
+        <item>Peugeot</item>
+        <item>Honda</item>
+        <item>Toyota</item>
+        <item>Fiat</item>
+        <item>Citroën</item>
+        <item>Ferrari</item>
+        <item>Lamborghini</item>
+        <item>Porsche</item>
+        <item>Aston Martin</item>
+        <item>Jaguar</item>
+        <item>Land Rover</item>
+        <item>Chrysler</item>
+        <item>Dodge</item>
+        <item>Buick</item>
+        <item>Chevrolet</item>
+        <item>Nissan</item>
+        <item>Mitsubishi</item>
+        <item>Kia</item>
+        <item>Hyundai</item>
+        <item>Subaru</item>
+        <item>Alfa Romeo</item>
+        <item>Seat</item>
+        <item>Mazda</item>
+        <item>Saab</item>
+        <item>Tesla</item>
+        <item>Lincoln</item>
+        <item>Cadillac</item>
+        <item>Genesis</item>
+        <item>Mini</item>
+        <item>Smart</item>
+        <item>Rivian</item>
+    </string-array>
+
+    <string-array name="model_BMW">
+        <item>X5</item>
+        <item>3 Series</item>
+        <item>5 Series</item>
+        <item>7 Series</item>
+        <item>i8</item>
+        <item>M3</item>
+        <item>M4</item>
+        <item>iX</item>
+    </string-array>
+
+    <string-array name="model_Audi">
+        <item>A3</item>
+        <item>A4</item>
+        <item>A6</item>
+        <item>A8</item>
+        <item>Q5</item>
+        <item>Q7</item>
+        <item>Q8</item>
+        <item>R8</item>
+    </string-array>
+
+    <string-array name="model_Mercedes">
+        <item>C-Class</item>
+        <item>E-Class</item>
+        <item>S-Class</item>
+        <item>A-Class</item>
+        <item>GLC</item>
+        <item>GLE</item>
+        <item>GLS</item>
+        <item>EQC</item>
+    </string-array>
+
+    <string-array name="model_Škoda">
+        <item>Octavia</item>
+        <item>Superb</item>
+        <item>Fabia</item>
+        <item>Kodiaq</item>
+        <item>Karoq</item>
+    </string-array>
+
+    <string-array name="model_Renault">
+        <item>Clio</item>
+        <item>Captur</item>
+        <item>Megane</item>
+        <item>Scenic</item>
+        <item>Twingo</item>
+    </string-array>
+
+    <string-array name="model_Volkswagen">
+        <item>Golf</item>
+        <item>Passat</item>
+        <item>Jetta</item>
+        <item>Tiguan</item>
+        <item>Touran</item>
+        <item>Arteon</item>
+    </string-array>
+
+    <string-array name="model_Opel">
+        <item>Astra</item>
+        <item>Corsa</item>
+        <item>Insignia</item>
+        <item>Grandland</item>
+        <item>Mokka</item>
+    </string-array>
+
+    <string-array name="model_Ford">
+        <item>Fiesta</item>
+        <item>Focus</item>
+        <item>Mondeo</item>
+        <item>Kuga</item>
+        <item>Puma</item>
+    </string-array>
+
+    <string-array name="model_Peugeot">
+        <item>208</item>
+        <item>3008</item>
+        <item>5008</item>
+        <item>508</item>
+        <item>Partner</item>
+    </string-array>
+
+    <string-array name="model_Honda">
+        <item>Civic</item>
+        <item>Accord</item>
+        <item>CR-V</item>
+        <item>HR-V</item>
+        <item>Jazz</item>
+    </string-array>
+
+    <string-array name="model_Toyota">
+        <item>Corolla</item>
+        <item>Yaris</item>
+        <item>Camry</item>
+        <item>RAV4</item>
+        <item>Hilux</item>
+    </string-array>
+
+    <string-array name="model_Fiat">
+        <item>500</item>
+        <item>Panda</item>
+        <item>Tipo</item>
+        <item>Doblo</item>
+        <item>500L</item>
+    </string-array>
+
+    <string-array name="model_Citroën">
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5 Aircross</item>
+        <item>Berlingo</item>
+    </string-array>
+
+    <string-array name="model_Ferrari">
+        <item>Portofino</item>
+        <item>Roma</item>
+        <item>812 Superfast</item>
+        <item>SF90 Stradale</item>
+    </string-array>
+
+    <string-array name="model_Lamborghini">
+        <item>Huracán</item>
+        <item>Aventador</item>
+        <item>Urus</item>
+    </string-array>
+
+    <string-array name="model_Porsche">
+        <item>911</item>
+        <item>Cayenne</item>
+        <item>Macan</item>
+        <item>Taycan</item>
+    </string-array>
+
+    <string-array name="model_Aston_Martin">
+        <item>Vantage</item>
+        <item>DB11</item>
+        <item>DBS Superleggera</item>
+        <item>Valhalla</item>
+    </string-array>
+
+    <string-array name="model_Jaguar">
+        <item>XE</item>
+        <item>XJ</item>
+        <item>F-Type</item>
+        <item>F-Pace</item>
+    </string-array>
+
+    <string-array name="model_Land_Rover">
+        <item>Defender</item>
+        <item>Discovery</item>
+        <item>Range Rover</item>
+        <item>Range Rover Sport</item>
+    </string-array>
+
+    <string-array name="model_Chrysler">
+        <item>Pacifica</item>
+        <item>Voyager</item>
+    </string-array>
+
+    <string-array name="model_Dodge">
+        <item>Charger</item>
+        <item>Challenger</item>
+        <item>Durango</item>
+    </string-array>
+
+    <string-array name="model_Buick">
+        <item>Encore</item>
+        <item>Envision</item>
+        <item>LaCrosse</item>
+    </string-array>
+
+    <string-array name="model_Chevrolet">
+        <item>Cruze</item>
+        <item>Malibu</item>
+        <item>Equinox</item>
+        <item>Camaro</item>
+    </string-array>
+
+    <string-array name="model_Nissan">
+        <item>Micra</item>
+        <item>Altima</item>
+        <item>370Z</item>
+        <item>Juke</item>
+        <item>Qashqai</item>
+    </string-array>
+
+    <string-array name="model_Mitsubishi">
+        <item>Lancer</item>
+        <item>Outlander</item>
+        <item>Pajero</item>
+    </string-array>
+
+    <string-array name="model_Kia">
+        <item>Soul</item>
+        <item>Ceed</item>
+        <item>Sportage</item>
+        <item>Stinger</item>
+    </string-array>
+
+    <string-array name="model_Hyundai">
+        <item>i10</item>
+        <item>i30</item>
+        <item>Tucson</item>
+        <item>Santa Fe</item>
+    </string-array>
+
+    <string-array name="model_Subaru">
+        <item>Impreza</item>
+        <item>Outback</item>
+        <item>Forester</item>
+    </string-array>
+
+    <string-array name="model_Alfa_Romeo">
+        <item>Giulia</item>
+        <item>Stelvio</item>
+        <item>Tonale</item>
+    </string-array>
+
+    <string-array name="model_Seat">
+        <item>Leon</item>
+        <item>Ateca</item>
+        <item>Ibiza</item>
+    </string-array>
+
+    <string-array name="model_Mazda">
+        <item>3</item>
+        <item>6</item>
+        <item>CX-5</item>
+        <item>MX-5</item>
+    </string-array>
+
+    <string-array name="model_Saab">
+        <item>9-3</item>
+        <item>9-5</item>
+    </string-array>
+
+    <string-array name="model_Tesla">
+        <item>Model S</item>
+        <item>Model 3</item>
+        <item>Model X</item>
+        <item>Model Y</item>
+    </string-array>
+
+    <string-array name="model_Lincoln">
+        <item>Navigator</item>
+        <item>Aviator</item>
+    </string-array>
+
+    <string-array name="model_Cadillac">
+        <item>Escalade</item>
+        <item>XT5</item>
+    </string-array>
+
+    <string-array name="model_Genesis">
+        <item>G70</item>
+        <item>G80</item>
+        <item>GV80</item>
+    </string-array>
+
+    <string-array name="model_Mini">
+        <item>Cooper</item>
+        <item>Clubman</item>
+    </string-array>
+
+    <string-array name="model_Smart">
+        <item>Fortwo</item>
+        <item>Forfour</item>
+    </string-array>
+
+    <string-array name="model_Rivian">
+        <item>R1T</item>
+        <item>R1S</item>
+    </string-array>
+
+    <string-array name="lokacije">
+        <item>Barban</item>
+        <item>Biograd na Moru</item>
+        <item>Benkovac</item>
+        <item>Bjelovar</item>
+        <item>Brtonigla</item>
+        <item>Čakovec</item>
+        <item>Crikvenica</item>
+        <item>Crni Lug</item>
+        <item>Cres</item>
+        <item>Dubrovnik</item>
+        <item>Đakovo</item>
+        <item>Delnice</item>
+        <item>Gospić</item>
+        <item>Hvar</item>
+        <item>Imotski</item>
+        <item>Jastrebarsko</item>
+        <item>Jelsa</item>
+        <item>Knin</item>
+        <item>Kamenjak</item>
+        <item>Karlovac</item>
+        <item>Korčula</item>
+        <item>Koprivnica</item>
+        <item>Korčula</item>
+        <item>Krapina</item>
+        <item>Kutina</item>
+        <item>Labin</item>
+        <item>Lastovo</item>
+        <item>Lošinj</item>
+        <item>Makarska</item>
+        <item>Marina</item>
+        <item>Medulin</item>
+        <item>Metković</item>
+        <item>Minu</item>
+        <item>Našice</item>
+        <item>Novalja</item>
+        <item>Omiš</item>
+        <item>Opatija</item>
+        <item>Osijek</item>
+        <item>Pazin</item>
+        <item>Petrinja</item>
+        <item>Ploče</item>
+        <item>Požega</item>
+        <item>Poreč</item>
+        <item>Pag</item>
+        <item>Rijeka</item>
+        <item>Rovinj</item>
+        <item>Rab</item>
+        <item>Šibenik</item>
+        <item>Senj</item>
+        <item>Sinj</item>
+        <item>Stari Grad</item>
+        <item>Ston</item>
+        <item>Trilj</item>
+        <item>Varaždin</item>
+        <item>Vinkovci</item>
+        <item>Vrbnik</item>
+        <item>Vrbovsko</item>
+        <item>Vis</item>
+        <item>Vodice</item>
+        <item>Velika Gorica</item>
+        <item>Zabok</item>
+        <item>Zadar</item>
+        <item>Zaprešić</item>
+        <item>Župa Dubrovačka</item>
+        <item>Županja</item>
+    </string-array>
+
 </resources>

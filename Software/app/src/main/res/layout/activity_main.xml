@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primaryColorLight">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -17,13 +16,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="@color/primaryColorLight"
             android:clickable="true"
             android:contentDescription="ToggleButton"
             android:focusable="true"
             app:srcCompat="@drawable/ic_menu"
-            app:tint="@color/primaryColorDark"
-            app:itemBackground="@color/primaryColorDark"
             tools:ignore="HardcodedText,MissingConstraints,TouchTargetSizeCheck" />
     </FrameLayout>
 
@@ -32,7 +28,6 @@
         android:layout_width="261dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFF8E1"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
