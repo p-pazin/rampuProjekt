@@ -23,6 +23,7 @@ class KatalogVozilaFragment : Fragment() {
     private val mockCars = MockDataLoader.getMockCarList()
     private var _binding: KatalogVozilaBinding? = null
     private val binding get() = _binding!!
+    private val katalog = MockDataLoader.getMockCarList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
