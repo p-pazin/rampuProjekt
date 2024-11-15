@@ -1,7 +1,6 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,11 +40,11 @@ class ContactDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_contact_details, container, false)
 
         tvName = view.findViewById(R.id.tv_contact_details_name)
-        ivActivity = view.findViewById(R.id.img_contact_details_activity)
+        ivActivity = view.findViewById(R.id.iv_contact_details_activity)
         tvActivity = view.findViewById(R.id.tv_contact_details_activity)
-        ivState = view.findViewById(R.id.img_contact_details_state)
+        ivState = view.findViewById(R.id.iv_contact_details_state)
         tvState = view.findViewById(R.id.tv_contact_details_state)
-        ivOfferSent = view.findViewById(R.id.img_contact_details_offer_sent)
+        ivOfferSent = view.findViewById(R.id.iv_contact_details_offer_sent)
         tvOfferSent = view.findViewById(R.id.tv_contact_details_offer_sent)
         tvCountry = view.findViewById(R.id.tv_contact_details_country)
         tvCity = view.findViewById(R.id.tv_contact_details_city)

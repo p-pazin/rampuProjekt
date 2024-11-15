@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/img_contact_details_activity"
+                android:id="@+id/iv_contact_details_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="68dp"
@@ -133,7 +133,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/img_contact_details_state"
+                android:id="@+id/iv_contact_details_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="148dp"
@@ -157,7 +157,7 @@
                 app:layout_constraintVertical_bias="0.251" />
 
             <ImageView
-                android:id="@+id/img_contact_details_offer_sent"
+                android:id="@+id/iv_contact_details_offer_sent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="108dp"

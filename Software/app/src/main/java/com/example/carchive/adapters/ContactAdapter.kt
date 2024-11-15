@@ -23,16 +23,16 @@ class ContactsAdapter(val contactsData : MutableList<Contact>) : RecyclerView.Ad
         private val contactOfferSentIcon : ImageView
 
         init {
-            contactName = view.findViewById(R.id.txt_contact_name)
-            ID = view.findViewById(R.id.txt_contact_id)
-            contactEmail = view.findViewById(R.id.txt_contact_email)
-            contactPhone = view.findViewById(R.id.txt_contact_phone)
-            contactPin = view.findViewById(R.id.txt_contact_pin)
-            contactActivity = view.findViewById(R.id.txt_contact_activity)
-            contactState = view.findViewById(R.id.txt_contact_state)
-            contactStateIcon = view.findViewById(R.id.img_contact_state)
-            contactOfferSent = view.findViewById(R.id.txt_contact_offer_sent)
-            contactOfferSentIcon = view.findViewById(R.id.img_contact_offer_sent)
+            contactName = view.findViewById(R.id.tv_contact_name)
+            ID = view.findViewById(R.id.tv_contact_id)
+            contactEmail = view.findViewById(R.id.tv_contact_email)
+            contactPhone = view.findViewById(R.id.tv_contact_phone)
+            contactPin = view.findViewById(R.id.tv_contact_pin)
+            contactActivity = view.findViewById(R.id.tv_contact_activity)
+            contactState = view.findViewById(R.id.tv_contact_state)
+            contactStateIcon = view.findViewById(R.id.iv_contact_state)
+            contactOfferSent = view.findViewById(R.id.tv_contact_offer_sent)
+            contactOfferSentIcon = view.findViewById(R.id.iv_contact_offer_sent)
         }
         fun bind(contact : Contact) {
             contactName.text = contact.firstName + " " + contact.lastName
