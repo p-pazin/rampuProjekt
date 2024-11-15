@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_marka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Marka"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/sp_marka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_marka" />
+
+                <TextView
+                    android:id="@+id/tv_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Model"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sp_marka" />
+
+                <Spinner
+                    android:id="@+id/sp_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_model" />
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Tip"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sp_model" />
+
+                <Spinner
+                    android:id="@+id/sp_lokacija"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lokacija" />
+
+                <EditText
+                    android:id="@+id/et_tip"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="2.0"
+                    android:inputType="date"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/textColorLight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+
+                <TextView
+                    android:id="@+id/tv_godina_proizvodnje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Godina proizvodnje"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_tip" />
+
+                <EditText
+                    android:id="@+id/et_god_proizv"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="2024"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/textColorLight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_godina_proizvodnje" />
+
+                <TextView
+                    android:id="@+id/tv_registracija"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Registracija"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_god_proizv" />
+
+                <EditText
+                    android:id="@+id/et_registracija"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="ZG123AB"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/textColorLight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_registracija" />
+
+                <TextView
+                    android:id="@+id/tv_kilometri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:text="Prijeđeni kilometri"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_registracija" />
+
+                <TextView
+                    android:id="@+id/tv_motor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Motor"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sp_lokacija" />
+
+                <EditText
+                    android:id="@+id/et_motor"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="1.4"
+                    android:inputType="numberDecimal"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/textColorLight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_motor" />
+
+                <EditText
+                    android:id="@+id/et_enginePower"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="135"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    android:textColor="@color/textColorLight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_engine_power" />
+
+                <TextView
+                    android:id="@+id/tv_engine_power"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Snaga motora"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_motor" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_enginePower">
+
+                    <!-- First option -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <RadioButton
+                            android:id="@+id/rb_sells"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusedSearchResultHighlightColor="@color/accentColorLight"
+                            android:outlineAmbientShadowColor="@color/accentColorLight"
+                            android:text="Prodaja"
+                            android:textColor="?attr/colorOnBackground"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/space"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Space
+                            android:id="@+id/space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <RadioButton
+                            android:id="@+id/rb_rents"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusedSearchResultHighlightColor="@color/accentColorLight"
+                            android:outlineAmbientShadowColor="@color/accentColorLight"
+                            android:text="Najam"
+                            android:textColor="?attr/colorOnBackground"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/space"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tv_cijena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Cijena"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroupOptions" />
+
+                <EditText
+                    android:id="@+id/et_cijena"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="999999"
+                    android:textColor="@color/textColorLight"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cijena" />
+
+                <EditText
+                    android:id="@+id/et_kilometri"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_textbox"
+                    android:ems="10"
+                    android:hint="99999"
+                    android:inputType="number"
+                    android:textColor="@color/textColorLight"
+                    android:minHeight="48dp"
+                    android:paddingLeft="7dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kilometri" />
+
+                <TextView
+                    android:id="@+id/tv_lokacija"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:text="Lokacija"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_kilometri" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnSpremi"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:backgroundTint="@color/accentColorLight"
+                    android:text="@string/spremi"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

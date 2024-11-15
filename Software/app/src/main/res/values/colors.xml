@@ -7,4 +7,6 @@
     <color name="primaryColorDark">#140A08</color>
     <color name="accentColorDark">#F65B43</color>
     <color name="textColorDark">#FFFFF2</color>
+
+    <color name="hintTextColor">#AAAAAA</color>
 </resources>
