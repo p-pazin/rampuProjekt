@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColorLight">
+    android:paddingTop="50dp">
 
-    <!-- Toolbar with Logo and Icons -->
     <LinearLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/layoutKatalog"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="0dp"
-        android:background="@color/primaryColorLight"
-        android:gravity="center_vertical">
+        android:paddingTop="50dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0">
 
             <TextView
@@ -27,11 +25,10 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="0"
-                android:fontFamily="@font/inter_regular"
-                android:gravity="left"
+                android:textColor="?attr/colorOnBackground"
+                android:gravity="center"
                 android:text="@string/popisVozila"
-                android:textColor="@color/textColorLight"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,8 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:backgroundTint="@color/primaryColorLight"
+                android:backgroundTint="#00FFFFFF"
                 android:contentDescription="Dodaj"
+                android:minHeight="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnFilter"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,8 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:backgroundTint="@color/primaryColorLight"
+                android:backgroundTint="#00FFFFFF"
                 android:contentDescription="Filter"
+                android:minHeight="50dp"
                 android:src="@drawable/ic_filter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btTrazi"
@@ -65,8 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:backgroundTint="@color/primaryColorLight"
+                android:backgroundTint="#00FFFFFF"
                 android:contentDescription="Traži"
+                android:minHeight="50dp"
                 android:src="@drawable/ic_pretrazi"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,13 +75,42 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <ImageButton
+                android:id="@+id/drawer_toggle_buttonn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="354dp"
+                android:clickable="true"
+                android:contentDescription="ToggleButton"
+                android:focusable="true"
+                app:itemBackground="@color/primaryColorDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_menu"
+                app:tint="@color/primaryColorDark"
+                tools:ignore="HardcodedText,MissingConstraints,TouchTargetSizeCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCars"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutKatalog"
         android:layout_marginTop="0dp"
-        android:background="@color/primaryColorLight"
         android:clipToPadding="false"
         android:padding="10dp"
         tools:listitem="@layout/item_car" />
