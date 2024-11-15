@@ -9,6 +9,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.carchive.fragments.ContactAddFragment
+import com.example.carchive.fragments.ContactDetailsFragment
+import com.example.carchive.fragments.ContactsFragment
 import com.example.carchive.fragments.LoginFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -24,6 +27,7 @@ class CarchiveActivity : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+
 
         toggleButton = findViewById(R.id.drawer_toggle_buttonn)
         toggleButton.setOnClickListener {
@@ -42,11 +46,10 @@ class CarchiveActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
 
             when(menuItem.itemId){
-                R.id.nav_dashboard -> {
+                R.id.nav_contact_catalog -> {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, LoginFragment())
+                    transaction.replace(R.id.fragment_container, ContactsFragment())
                     transaction.commit()
-
                 }
             }
             true
