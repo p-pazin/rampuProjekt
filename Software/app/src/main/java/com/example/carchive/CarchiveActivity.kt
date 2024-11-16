@@ -50,7 +50,7 @@ class CarchiveActivity : AppCompatActivity() {
             when(menuItem.itemId){
                 R.id.nav_contact_catalog -> {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, ContactUpdateFragment())
+                    transaction.replace(R.id.fragment_container, ContactsFragment())
                     transaction.commit()
                 }
 
