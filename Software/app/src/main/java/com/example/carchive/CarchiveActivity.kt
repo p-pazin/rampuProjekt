@@ -1,14 +1,21 @@
 package com.example.carchive
 
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.carchive.entities.Car
 import com.example.carchive.fragments.LoginFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -17,24 +24,40 @@ class CarchiveActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggleButton: ImageButton
 
+    companion object {
+        fun newInstance(context: Context): Intent {
+            return Intent(context, CarchiveActivity::class.java)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_carchive)
+
+        setSupportActionBar(Toolbar(this))
+        supportActionBar?.hide()
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
         toggleButton = findViewById(R.id.drawer_toggle_buttonn)
         toggleButton.setOnClickListener {
-            // Toggle the drawer when the button is clicked
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START)  // Close the drawer
+                drawerLayout.closeDrawer(GravityCompat.START)
             } else {
-                drawerLayout.openDrawer(GravityCompat.START)  // Open the drawer
+                drawerLayout.openDrawer(GravityCompat.START)
             }
         }
+
+
+        val navController = findNavController(R.id.nav_host_fragment)
+        navController.setGraph(
+            R.navigation.navigation_carchive
+        )
+        val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
@@ -47,7 +70,6 @@ class CarchiveActivity : AppCompatActivity() {
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, LoginFragment())
                     transaction.commit()
-
                 }
 
                 R.id.nav_vehicle_catalog -> {

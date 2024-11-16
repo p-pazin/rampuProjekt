@@ -86,21 +86,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp">
 
-            <ImageButton
-                android:id="@+id/drawer_toggle_buttonn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="354dp"
-                android:clickable="true"
-                android:contentDescription="ToggleButton"
-                android:focusable="true"
-                app:itemBackground="@color/primaryColorDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_menu"
-                app:tint="@color/primaryColorDark"
-                tools:ignore="HardcodedText,MissingConstraints,TouchTargetSizeCheck" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

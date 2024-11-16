@@ -5,30 +5,32 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.carchive.fragments.LoginFragment
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.carchive.helpers.MockDataLoader
+import com.example.carchive.helpers.MockDataLoader.cars
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_main)
         enableEdgeToEdge()
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LoginFragment::class.java, null, null)
-                .commit()
-        }
-    }
+        setSupportActionBar(Toolbar(this))
+        supportActionBar?.hide()
 
-    fun navigateToCarchive() {
-        startActivity(Intent(this, CarchiveActivity::class.java))
-        finish()
-    }
+        val navController = findNavController(R.id.nav_host_fragment)
+        navController.setGraph(
+            R.navigation.navigation_main
+        )
+        val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-    fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+
+
     }
 }

@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carchive.databinding.KatalogVozilaBinding
 import com.example.carchive.entities.Car
@@ -44,11 +45,7 @@ class KatalogVozilaFragment : Fragment() {
         }
 
         binding.btnDodaj.setOnClickListener {
-            // Navigate to DodajVoziloFragment
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DodajVoziloFragment())
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_katalogVozilaFragment_to_dodajVoziloFragment)
         }
     }
 

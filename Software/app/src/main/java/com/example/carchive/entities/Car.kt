@@ -1,5 +1,7 @@
 package com.example.carchive.entities
 
+import java.io.Serializable
+
 data class Car(
     val id: Int,
     val marka: String,
@@ -15,4 +17,4 @@ data class Car(
     val rentSell: Boolean,
     val price: Double,
     val imageCar: String
-)
+): Serializable

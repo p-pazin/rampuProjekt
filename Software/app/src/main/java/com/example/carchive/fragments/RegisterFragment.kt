@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.databinding.FragmentRegisterBinding
 import com.example.carchive.entities.User
 import com.example.carchive.helpers.MockDataLoader
@@ -54,7 +55,7 @@ class RegisterFragment : Fragment() {
 
                     MockDataLoader.addUser(newUser)
                     Toast.makeText(requireContext(), "Uspjesno registirani!", Toast.LENGTH_SHORT).show()
-                    parentFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                 } else{
                     Toast.makeText(requireContext(), "Lozinke trebaju biti jednake", Toast.LENGTH_SHORT).show()
                 }

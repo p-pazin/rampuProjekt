@@ -9,7 +9,7 @@ import com.example.carchive.entities.User
 
 object MockDataLoader {
 
-    val cars = mutableListOf(
+    val cars: MutableList<Car> = mutableListOf(
         Car(
             id = 1,
             marka = "BMW",
@@ -176,7 +176,6 @@ object MockDataLoader {
     fun getMockCarList(): MutableList<Car> {
         return cars;
     }
-
     fun addCar(car: Car){
         cars.add(car)
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_carchive"
+    app:startDestination="@id/katalogVozilaFragment">
+
+    <fragment
+        android:id="@+id/katalogVozilaFragment"
+        android:name="com.example.carchive.KatalogVozilaFragment"
+        android:label="KatalogVozilaFragment"
+        tools:layout="@layout/katalog_vozila">
+        <action
+            android:id="@+id/action_katalogVozilaFragment_to_dodajVoziloFragment"
+            app:destination="@id/dodajVoziloFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/dodajVoziloFragment"
+        android:name="com.example.carchive.fragments.DodajVoziloFragment"
+        android:label="DodajVoziloFragment"
+        tools:layout="@layout/dodaj_vozilo"/>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.carchive.fragments.ContactsFragment"
+        android:label="ContactsFragment"
+        tools:layout="@layout/fragment_contacts">
+        <action
+            android:id="@+id/action_contactsFragment_to_contactsDetailsFragment"
+            app:destination="@id/contactsDetailsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/contactsDetailsFragment"
+        android:name="com.example.carchive.fragments.ContactDetailsFragment"
+        android:label="ContactsDetailFragment"
+        tools:layout="@layout/fragment_contact_details"/>
+
+</navigation>
