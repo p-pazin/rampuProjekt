@@ -1,7 +1,6 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -131,8 +130,6 @@ class OpceInformacijeFragment : Fragment() {
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
 
-            Log.d("FormData", "Marka: $marka, Model: $model, Lokacija: $lokacija, Tip: $tip, Godina: $godProizv, Reg: $reg, KM: $km, Motor: $motor, Snaga: $snaga, Cijena: $cijena, Prodaja/Najam ID: $rbProdaja")
-
             if (marka.isNotBlank() &&
                 model.isNotBlank() &&
                 lokacija.isNotBlank() &&
@@ -145,9 +142,7 @@ class OpceInformacijeFragment : Fragment() {
                 cijena.isNotBlank() &&
                 (prodaja || najam)
             ) {
-                val rentSell = prodaja // true ako je "Prodaja", false ako je "Najam"
-
-                Log.d("Selection", "rentSell je postavljen na: ${if (rentSell) "Prodaja" else "Najam"}")
+                val rentSell = prodaja
 
                 val car = Car(
                     id = Random.nextInt(1000, 9999),
