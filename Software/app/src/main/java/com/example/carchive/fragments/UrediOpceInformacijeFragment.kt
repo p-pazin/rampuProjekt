@@ -194,7 +194,7 @@ class UrediOpceInformacijeFragment : Fragment() {
             else -> emptyArray()
         }
 
-        val modelAdapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, modelsArray)
+        val modelAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, modelsArray)
         binding.spModel.adapter = modelAdapter
         binding.spModel.setSelection(getIndex(binding.spModel, selectedModel))
     }
