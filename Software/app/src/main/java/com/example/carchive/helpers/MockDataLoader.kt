@@ -181,6 +181,12 @@ object MockDataLoader {
         cars.add(car)
     }
 
+    fun editCar(car: Car){
+        val registracija = car.registration
+        val carIndex = cars.indexOfFirst { it.registration == registracija }
+        cars[carIndex] = car
+    }
+
     fun deleteCar(carId: Int) {
         cars.removeAll { it.id == carId }
     }

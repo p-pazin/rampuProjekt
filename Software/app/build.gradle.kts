@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -36,6 +38,16 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    dataBinding{
+        enable = true
+    }
+    
+    viewBinding {
+        enable = true
+    }
+
+
 }
 
 dependencies {
@@ -52,4 +64,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    kapt(libs.databinding.compiler)
 }
