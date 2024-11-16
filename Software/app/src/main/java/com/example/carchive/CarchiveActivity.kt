@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.carchive.fragments.ContactAddFragment
 import com.example.carchive.fragments.ContactDetailsFragment
+import com.example.carchive.fragments.ContactUpdateFragment
 import com.example.carchive.fragments.ContactsFragment
 import com.example.carchive.fragments.LoginFragment
 import com.google.android.material.navigation.NavigationView
@@ -49,7 +50,7 @@ class CarchiveActivity : AppCompatActivity() {
             when(menuItem.itemId){
                 R.id.nav_contact_catalog -> {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, ContactsFragment())
+                    transaction.replace(R.id.fragment_container, ContactUpdateFragment())
                     transaction.commit()
                 }
 

@@ -733,4 +733,8 @@
     <string name="status">Status</string>
     <string name="urediKontakt">Uredi kontakt</string>
     <string name="izbrisiKontakt">Izbriši kontakt</string>
+    <string name="azurirajKontakt">Ažurirajte kontakt</string>
+    <string name="kontaktAzuriran">Kontakt je uspješno ažuriran!</string>
+    <string name="potrebnoIspunitiPolja">Potrebno je ispuniti sva tražena polja!</string>
+    <string name="kontaktDodan">Kontakt je uspješno dodan!</string>
 </resources>

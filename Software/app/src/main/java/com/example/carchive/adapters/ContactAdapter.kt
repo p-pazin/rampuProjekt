@@ -80,4 +80,10 @@ class ContactsAdapter(val contactsData : MutableList<Contact>) : RecyclerView.Ad
         contactsData.add(newContact)
         notifyItemInserted(position)
     }
+    fun updateContact(updatedContact: Contact, position: Int) {
+        if (position >= 0 && position < contactsData.size) {
+            contactsData[position] = updatedContact
+            notifyItemChanged(position)
+        }
+    }
 }

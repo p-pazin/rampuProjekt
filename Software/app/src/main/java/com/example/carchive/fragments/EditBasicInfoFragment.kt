@@ -128,7 +128,7 @@ class EditBasicInfoFragment : Fragment() {
 
     private fun populateSpinners(marka: String, model: String, location: String) {
         // Populate "Lokacija" spinner
-        val lokacije = resources.getStringArray(R.array.lokacije)
+        val lokacije = resources.getStringArray(R.array.gradovi)
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
         binding.spLokacija.adapter = lokacijeAdapter
         binding.spLokacija.setSelection(getIndex(binding.spLokacija, location))

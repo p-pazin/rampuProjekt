@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="92dp"
+    android:layout_marginBottom="20dp"
+    tools:context=".fragments.ContactUpdateFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="28dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_contacts_update_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Ažuriranje kontakta"
+                    android:textSize="24sp"
+                    android:layout_gravity="start" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/ime"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/prezime"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/oib"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:labelFor="@id/spn_contact_update_countries"
+                    android:text="@string/drzava" />
+
+                <Spinner
+                    android:id="@+id/spn_contact_update_countries"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:labelFor="@id/spn_contact_update_cities"
+                    android:text="@string/grad" />
+
+                <Spinner
+                    android:id="@+id/spn_contact_update_cities"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:id="@+id/et_contact_update_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/adresa"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/brojTelefona"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/brojMobitela"
+                    android:paddingStart="15dp"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/email"
+                    android:paddingStart="15dp"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/et_contact_update_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_textbox"
+                    android:hint="@string/Opis"
+                    android:padding="15dp"
+                    android:inputType="textMultiLine"
+                    android:minHeight="150dp"
+                    android:gravity="top|left"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:labelFor="@id/spn_contact_update_activities"
+                    android:text="@string/aktivnost" />
+
+                <Spinner
+                    android:id="@+id/spn_contact_update_activities"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:labelFor="@id/spn_contact_update_states"
+                    android:text="@string/status" />
+
+                <Spinner
+                    android:id="@+id/spn_contact_update_states"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:labelFor="@id/swt_contact_update_offer_state"
+                    android:text="@string/ponudaPoslana" />
+
+                <Switch
+                    android:id="@+id/swt_contact_update_offer_state"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:trackTint="@color/accentColorLight"/>
+
+                <Button
+                    android:id="@+id/btn_contact_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:fontFamily="@font/inter_bold"
+                    android:maxWidth="10dp"
+                    android:rotation="0"
+                    android:rotationX="0"
+                    android:rotationY="0"
+                    android:text="@string/azurirajKontakt" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

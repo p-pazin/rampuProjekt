@@ -26,7 +26,7 @@ class BasicInfoFragment : Fragment() {
         _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
 
         val spinnerLokacija = binding.spLokacija
-        val lokacije = resources.getStringArray(R.array.lokacije)
+        val lokacije = resources.getStringArray(R.array.gradovi)
 
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
         lokacijeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
