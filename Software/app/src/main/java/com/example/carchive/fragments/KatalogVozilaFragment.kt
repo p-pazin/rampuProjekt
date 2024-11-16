@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carchive.databinding.KatalogVozilaBinding
 import com.example.carchive.entities.Car
 import com.example.carchive.fragments.DodajVoziloFragment
+import com.example.carchive.fragments.UrediVoziloFragment
 import com.example.carchive.helpers.MockDataLoader
 
 class KatalogVozilaFragment : Fragment() {
@@ -90,13 +91,34 @@ class KatalogVozilaFragment : Fragment() {
         }
 
         popupView.findViewById<View>(R.id.btnUredi).setOnClickListener {
-            Toast.makeText(requireContext(), "Uredi vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
+
+            val fragment = UrediVoziloFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("id", car.id)
+            bundle.putString("marka", car.marka)
+            bundle.putString("model", car.model)
+            bundle.putDouble("type", car.type)
+            bundle.putString("productionYear", car.productionYear)
+            bundle.putString("registration", car.registration)
+            bundle.putInt("kilometers", car.kilometers)
+            bundle.putString("location", car.location)
+            bundle.putString("motor", car.motor)
+            bundle.putInt("enginePower", car.enginePower)
+            bundle.putString("gearbox", car.gearbox)
+            bundle.putBoolean("rentSell", car.rentSell)
+            bundle.putDouble("price", car.price)
+            bundle.putString("imageCar", car.imageCar)
+
+            fragment.arguments = bundle
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DodajVoziloFragment())
+                .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
+
 
         // Listener za gumb "Obriši" koji otvara dijalog za potvrdu brisanja
         popupView.findViewById<View>(R.id.btnObrisi).setOnClickListener {
