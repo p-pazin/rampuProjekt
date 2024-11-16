@@ -10,22 +10,22 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.carchive.databinding.OpceInformacijeBinding
+import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.entities.Car
 import com.example.carchive.helpers.MockDataLoader
 import kotlin.random.Random
 
 
-class UrediOpceInformacijeFragment : Fragment() {
+class EditBasicInfoFragment : Fragment() {
 
-    private var _binding: OpceInformacijeBinding? = null
+    private var _binding: FragmentBasicInfoBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = OpceInformacijeBinding.inflate(inflater, container, false)
+        _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
 
         val args = arguments
         val marka = args?.getString("marka") ?: ""
@@ -116,10 +116,11 @@ class UrediOpceInformacijeFragment : Fragment() {
                 )
 
                 MockDataLoader.editCar(car)
-                Toast.makeText(requireContext(), "Informacije o automobilu promjenjene.", Toast.LENGTH_SHORT).show()
+                val message = getString(R.string.car_edited)
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Sva polja su obavezna!", Toast.LENGTH_SHORT).show()
-            }
+                val message = getString(R.string.info_missing)
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            }
         }
 
         return binding.root

@@ -2,8 +2,8 @@ package com.example.carchive.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.carchive.fragments.DodajSlikeFragment
-import com.example.carchive.fragments.OpceInformacijeFragment
+import com.example.carchive.fragments.AddPicturesFragment
+import com.example.carchive.fragments.BasicInfoFragment
 
 class InfoPhotosPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -11,8 +11,8 @@ class InfoPhotosPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> OpceInformacijeFragment()
-            else -> DodajSlikeFragment()
+            0 -> BasicInfoFragment()
+            else -> AddPicturesFragment()
         }
     }
 }

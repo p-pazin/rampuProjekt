@@ -52,7 +52,7 @@ class CarchiveActivity : AppCompatActivity() {
 
                 R.id.nav_vehicle_catalog -> {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, KatalogVozilaFragment())
+                    transaction.replace(R.id.fragment_container, CarCatalogFragment())
                     transaction.commit()
                 }
             }

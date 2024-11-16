@@ -14,7 +14,7 @@ class PicturesAdapter(private val pictures: List<Int>) : RecyclerView.Adapter<Pi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.slika_auta, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.car_picture, parent, false)
         return PictureViewHolder(view)
     }
 

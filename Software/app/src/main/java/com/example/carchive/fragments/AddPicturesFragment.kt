@@ -10,13 +10,13 @@ import com.example.carchive.R
 import com.example.carchive.adapters.PicturesAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 
-class DodajSlikeFragment : Fragment() {
+class AddPicturesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.dodaj_slike, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_pictures, container, false)
 
         // List of drawable resources to display in the RecyclerView
         val pictures = listOf(
