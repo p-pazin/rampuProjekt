@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_sidebar"
     android:contentInsetStart="4dp"
-    android:contentInsetEnd="4dp"
-    android:background="@color/primaryColorLight">
+    android:contentInsetEnd="4dp">
 
     <ImageButton
         android:layout_width="48dp"

@@ -10,6 +10,7 @@
         <item name="buttonTint">@color/primaryColorLight</item>
         <item name="itemBackground">@color/textColorLight</item>
         <item name="tabTextColor">@color/textColorLight</item>
+        <item name="android:statusBarColor">@color/accentColorLight</item>
     </style>
 
     <style name="Theme.Carchive" parent="Base.Theme.Carchive" />

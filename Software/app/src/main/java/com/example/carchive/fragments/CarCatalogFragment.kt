@@ -1,9 +1,8 @@
-package com.example.carchive
+package com.example.carchive.fragments
 
 import CarAdapter
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +10,15 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.Toast
-import android.widget.ToggleButton
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carchive.CarchiveActivity
+import com.example.carchive.R
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Car
-import com.example.carchive.fragments.AddCarFragment
-import com.example.carchive.fragments.EditCarFragment
 import com.example.carchive.helpers.MockDataLoader
-import com.google.android.material.navigation.NavigationView
 
 class CarCatalogFragment : Fragment() {
 
@@ -69,7 +65,6 @@ class CarCatalogFragment : Fragment() {
         (activity as? CarchiveActivity)?.setDrawerEnabled(false)
     }
 
-    // Function to show custom PopupWindow with car options
     private fun showCarOptionsPopup(anchorView: View, car: Car) {
         val popupView = layoutInflater.inflate(R.layout.detail_actions_car, null)
 
@@ -80,7 +75,6 @@ class CarCatalogFragment : Fragment() {
             true
         )
 
-        // Postavljanje listenera za razne opcije
         popupView.findViewById<View>(R.id.btnPrikazi).setOnClickListener {
             popupWindow.dismiss()
         }
@@ -132,17 +126,15 @@ class CarCatalogFragment : Fragment() {
         }
 
 
-        // Listener za gumb "Obriši" koji otvara dijalog za potvrdu brisanja
         popupView.findViewById<View>(R.id.btnObrisi).setOnClickListener {
             popupWindow.dismiss()
-            showDeleteWarningDialog(car.id) // Poziva funkciju za prikazivanje dijaloga za potvrdu brisanja
+            showDeleteWarningDialog(car.id)
         }
 
         popupWindow.elevation = 10f
         popupWindow.showAsDropDown(anchorView, -50, 0)
     }
 
-    // Funkcija za prikazivanje dijaloga za potvrdu brisanja automobila
     private fun showDeleteWarningDialog(carId: Int) {
         val deletionWarning = LayoutInflater.from(context).inflate(R.layout.deleting_warning, null)
         val alertDialog = AlertDialog.Builder(requireContext())

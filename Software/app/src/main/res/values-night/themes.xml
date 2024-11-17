@@ -9,6 +9,7 @@
         <item name="itemBackground">@color/textColorDark</item>
         <item name="backgroundTint">@color/primaryColorDark</item>
         <item name="tabTextColor">@color/textColorDark</item>
+        <item name="android:statusBarColor">@color/accentColorLight</item>
     </style>
 
     <style name="Theme.Carchive" parent="Base.Theme.Carchive" />
