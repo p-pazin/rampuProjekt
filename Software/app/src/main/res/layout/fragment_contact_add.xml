@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="92dp"
-    android:layout_marginBottom="20dp"
     tools:context=".fragments.ContactAddFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/navBackButton"
+            layout="@layout/toolbar_back_button" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="28dp">
+        android:paddingBottom="28dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,10 +39,10 @@
                     android:id="@+id/tv_contacts_add_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
                     android:text="Dodavanje kontakta"
-                    android:textSize="24sp"
-                    android:layout_gravity="start" />
+                    android:textSize="24sp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_name"
@@ -41,9 +51,9 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/ime"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_surname"
@@ -52,9 +62,9 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/prezime"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_pin"
@@ -63,39 +73,39 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/oib"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
                     android:labelFor="@id/spn_contact_add_countries"
                     android:text="@string/drzava" />
 
                 <Spinner
                     android:id="@+id/spn_contact_add_countries"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/spinner_item"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
                     android:labelFor="@id/spn_contact_add_cities"
                     android:text="@string/grad" />
 
                 <Spinner
                     android:id="@+id/spn_contact_add_cities"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/spinner_item"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
 
                 <EditText
                     android:id="@+id/et_contact_add_address"
@@ -104,9 +114,9 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/adresa"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_phone_number"
@@ -115,9 +125,9 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/brojTelefona"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_mobile_number"
@@ -126,9 +136,9 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/brojMobitela"
-                    android:paddingStart="15dp"
                     android:inputType="text"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_email"
@@ -137,9 +147,9 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:hint="@string/email"
-                    android:paddingStart="15dp"
                     android:inputType="textEmailAddress"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp" />
 
                 <EditText
                     android:id="@+id/et_contact_add_description"
@@ -147,56 +157,56 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
+                    android:gravity="top|left"
                     android:hint="@string/Opis"
-                    android:padding="15dp"
                     android:inputType="textMultiLine"
                     android:minHeight="150dp"
-                    android:gravity="top|left"/>
+                    android:padding="15dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
                     android:labelFor="@id/spn_contact_add_activities"
                     android:text="@string/aktivnost" />
 
                 <Spinner
                     android:id="@+id/spn_contact_add_activities"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/spinner_item"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
                     android:labelFor="@id/spn_contact_add_states"
                     android:text="@string/status" />
 
                 <Spinner
                     android:id="@+id/spn_contact_add_states"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/spinner_item"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
                     android:labelFor="@id/swt_contact_add_offer_state"
                     android:text="@string/ponudaPoslana" />
 
                 <Switch
                     android:id="@+id/swt_contact_add_offer_state"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:trackTint="@color/accentColorLight"/>
+                    android:layout_marginTop="10dp"
+                    android:trackTint="@color/accentColorLight" />
 
                 <Button
                     android:id="@+id/btn_contact_add"
@@ -216,4 +226,4 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

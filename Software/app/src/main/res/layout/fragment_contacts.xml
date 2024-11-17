@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/contact_list_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

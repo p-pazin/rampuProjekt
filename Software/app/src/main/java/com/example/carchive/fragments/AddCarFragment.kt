@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.carchive.CarchiveActivity
 import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.adapters.InfoPhotosPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,12 +23,14 @@ class AddCarFragment : Fragment() {
     ): View {
         _binding = FragmentAddCarBinding.inflate(inflater, container, false)
 
-        // Initialize ViewPager2 with the FragmentPagerAdapter
+        binding.navBackButton.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
         viewPager.adapter = InfoPhotosPagerAdapter(this)
 
-        // Set up TabLayout with ViewPager2 using TabLayoutMediator
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Opće Informacije"

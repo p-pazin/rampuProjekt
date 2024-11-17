@@ -5,11 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.entities.Contact
 
-class ContactsAdapter(val contactsData : MutableList<Contact>) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
+class ContactsAdapter(
+    val contactsData : MutableList<Contact>,
+    private val onContactClick:(Contact) -> Unit) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
+
     inner class ContactViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         private val contactName: TextView
         private val ID: TextView
@@ -56,6 +60,9 @@ class ContactsAdapter(val contactsData : MutableList<Contact>) : RecyclerView.Ad
                 contactOfferSent.text = "Ponuda nije poslana"
                 contactOfferSentIcon.setImageResource(R.drawable.ic_x)
             }
+            itemView.setOnClickListener(){
+                onContactClick(contact)
+            }
         }
 
     }
@@ -70,6 +77,7 @@ class ContactsAdapter(val contactsData : MutableList<Contact>) : RecyclerView.Ad
     override fun getItemCount(): Int {
         return contactsData.size
     }
+
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bind(contactsData[position])

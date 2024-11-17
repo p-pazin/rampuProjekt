@@ -16,7 +16,7 @@
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment
         android:id="@+id/dodajVoziloFragment"
@@ -29,17 +29,33 @@
         android:label="ContactsFragment"
         tools:layout="@layout/fragment_contacts">
         <action
+            android:id="@+id/action_contactsFragment_to_contactAddFragment"
+            app:destination="@id/contactAddFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_contactAddFragment2"
+            app:destination="@id/contactAddFragment" />
+        <action
             android:id="@+id/action_contactsFragment_to_contactsDetailsFragment"
-            app:destination="@id/contactsDetailsFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:destination="@id/contactsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactsDetailsFragment"
         android:name="com.example.carchive.fragments.ContactDetailsFragment"
         android:label="ContactsDetailFragment"
-        tools:layout="@layout/fragment_contact_details"/>
+        tools:layout="@layout/fragment_contact_details">
+        <action
+            android:id="@+id/action_contactsDetailsFragment_to_contactUpdateFragment"
+            app:destination="@id/contactUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactAddFragment"
+        android:name="com.example.carchive.fragments.ContactAddFragment"
+        android:label="fragment_contact_add"
+        tools:layout="@layout/fragment_contact_add" />
+    <fragment
+        android:id="@+id/contactUpdateFragment"
+        android:name="com.example.carchive.fragments.ContactUpdateFragment"
+        android:label="fragment_contact_update"
+        tools:layout="@layout/fragment_contact_update" />
 
 </navigation>

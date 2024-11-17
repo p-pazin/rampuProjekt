@@ -11,9 +11,12 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.adapters.ContactsAdapter
+import com.example.carchive.databinding.FragmentContactDetailsBinding
+import com.example.carchive.databinding.FragmentContactUpdateBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.entities.User
 import com.example.carchive.helpers.MockDataLoader
@@ -34,6 +37,8 @@ class ContactUpdateFragment : Fragment() {
     private lateinit var spnStates : Spinner
     private lateinit var btnUpdateContact : Button
     private lateinit var swtOfferState : Switch
+    private var _binding: FragmentContactUpdateBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var contact: Contact
 
@@ -47,22 +52,25 @@ class ContactUpdateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_contact_update, container, false)
+        _binding = FragmentContactUpdateBinding.inflate(inflater, container, false)
+        binding.navBackButton.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
 
-        etName = view.findViewById(R.id.et_contact_update_name)
-        etSurname = view.findViewById(R.id.et_contact_update_surname)
-        etPin = view.findViewById(R.id.et_contact_update_pin)
-        etAddress = view.findViewById(R.id.et_contact_update_address)
-        etPhoneNumber = view.findViewById(R.id.et_contact_update_phone_number)
-        etMobileNumber = view.findViewById(R.id.et_contact_update_mobile_number)
-        etEmail = view.findViewById(R.id.et_contact_update_email)
-        etDescription = view.findViewById(R.id.et_contact_update_description)
-        spnCountries = view.findViewById(R.id.spn_contact_update_countries)
-        spnCities = view.findViewById(R.id.spn_contact_update_cities)
-        spnActivities = view.findViewById(R.id.spn_contact_update_activities)
-        spnStates = view.findViewById(R.id.spn_contact_update_states)
-        btnUpdateContact = view.findViewById(R.id.btn_contact_update)
-        swtOfferState = view.findViewById(R.id.swt_contact_update_offer_state)
+        etName = binding.etContactUpdateName
+        etSurname = binding.etContactUpdateSurname
+        etPin = binding.etContactUpdatePin
+        etAddress = binding.etContactUpdateAddress
+        etPhoneNumber = binding.etContactUpdatePhoneNumber
+        etMobileNumber = binding.etContactUpdateMobileNumber
+        etEmail = binding.etContactUpdateEmail
+        etDescription = binding.etContactUpdateDescription
+        spnCountries = binding.spnContactUpdateCountries
+        spnCities = binding.spnContactUpdateCities
+        spnActivities = binding.spnContactUpdateActivities
+        spnStates = binding.spnContactUpdateStates
+        btnUpdateContact = binding.btnContactUpdate
+        swtOfferState = binding.swtContactUpdateOfferState
 
         val countryList = resources.getStringArray(R.array.drzave).toList()
         val cityList = resources.getStringArray(R.array.gradovi).toList()
@@ -103,7 +111,7 @@ class ContactUpdateFragment : Fragment() {
             }
         }
 
-        return view
+        return binding.root
     }
 
 

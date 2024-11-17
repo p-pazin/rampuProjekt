@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.CarchiveActivity
@@ -38,14 +39,25 @@ class ContactsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val btnDodaj = binding.sidebarLogo.btnDodaj
+
+        btnDodaj.setOnClickListener(){
+            findNavController().navigate(R.id.action_contactsFragment_to_contactAddFragment)
+        }
+
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.rv_contact_list)
-        recyclerView.adapter = ContactsAdapter(MockDataLoader.getMockContacts())
+        recyclerView.adapter = ContactsAdapter(MockDataLoader.getMockContacts()){ contact ->
+            findNavController().navigate(R.id.action_contactsFragment_to_contactsDetailsFragment)
+        }
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
         binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
+
+
     }
 
     override fun onResume() {

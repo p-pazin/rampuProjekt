@@ -6,6 +6,7 @@
     android:layout_margin="10dp"
     android:elevation="10dp"
     app:cardCornerRadius="10dp"
+    android:id="@+id/contactCardItem"
     >
 
     <LinearLayout

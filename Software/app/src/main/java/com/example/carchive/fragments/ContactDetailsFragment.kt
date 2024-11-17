@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
+import com.example.carchive.databinding.FragmentContactAddBinding
+import com.example.carchive.databinding.FragmentContactDetailsBinding
+import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.helpers.MockDataLoader
 
 class ContactDetailsFragment : Fragment() {
@@ -27,6 +31,8 @@ class ContactDetailsFragment : Fragment() {
     private lateinit var tvMobileNumber : TextView
     private lateinit var tvDescription : TextView
     private lateinit var tvPin : TextView
+    private var _binding: FragmentContactDetailsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,23 +43,30 @@ class ContactDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_contact_details, container, false)
+        _binding = FragmentContactDetailsBinding.inflate(inflater, container, false)
+        binding.navBackButton.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
 
-        tvName = view.findViewById(R.id.tv_contact_details_name)
-        ivActivity = view.findViewById(R.id.iv_contact_details_activity)
-        tvActivity = view.findViewById(R.id.tv_contact_details_activity)
-        ivState = view.findViewById(R.id.iv_contact_details_state)
-        tvState = view.findViewById(R.id.tv_contact_details_state)
-        ivOfferSent = view.findViewById(R.id.iv_contact_details_offer_sent)
-        tvOfferSent = view.findViewById(R.id.tv_contact_details_offer_sent)
-        tvCountry = view.findViewById(R.id.tv_contact_details_country)
-        tvCity = view.findViewById(R.id.tv_contact_details_city)
-        tvAddress = view.findViewById(R.id.tv_contact_details_address)
-        tvEmail = view.findViewById(R.id.tv_contact_details_email)
-        tvPin = view.findViewById(R.id.tv_contact_details_pin)
-        tvPhoneNumber = view.findViewById(R.id.tv_contact_details_phone)
-        tvMobileNumber = view.findViewById(R.id.tv_contact_details_mobile)
-        tvDescription = view.findViewById(R.id.tv_contact_details_description)
+        binding.btnContactDetailsEdit.setOnClickListener(){
+            findNavController().navigate(R.id.action_contactsDetailsFragment_to_contactUpdateFragment)
+        }
+
+        tvName = binding.tvContactDetailsName
+        ivActivity = binding.ivContactDetailsActivity
+        tvActivity = binding.tvContactDetailsActivity
+        ivState = binding.ivContactDetailsState
+        tvState = binding.tvContactDetailsState
+        ivOfferSent = binding.ivContactDetailsOfferSent
+        tvOfferSent = binding.tvContactDetailsOfferSent
+        tvCountry = binding.tvContactDetailsCountry
+        tvCity = binding.tvContactDetailsCity
+        tvAddress =binding.tvContactDetailsAddress
+        tvEmail = binding.tvContactDetailsEmail
+        tvPin = binding.tvContactDetailsPin
+        tvPhoneNumber = binding.tvContactDetailsPhone
+        tvMobileNumber = binding.tvContactDetailsMobile
+        tvDescription = binding.tvContactDetailsDescription
 
         val mockUser = MockDataLoader.getMockContacts()[0]
 
@@ -86,6 +99,6 @@ class ContactDetailsFragment : Fragment() {
         tvMobileNumber.text = "Mobilni telefon: " + mockUser.mobilePhoneNumber
         tvDescription.text = mockUser.description
 
-        return view
+        return binding.root
     }
 }

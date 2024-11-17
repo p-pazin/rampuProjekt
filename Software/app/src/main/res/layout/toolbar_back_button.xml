@@ -11,7 +11,7 @@
     <ImageButton
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:id="@+id/drawer_toggle_buttonn"
+        android:id="@+id/back_button"
         android:background="@color/primaryColorLight"
         android:clickable="true"
         android:contentDescription="@string/toggleGumb"

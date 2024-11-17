@@ -49,15 +49,12 @@ class CarCatalogFragment : Fragment() {
         binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
-
-        // Initialize the RecyclerView and set the adapter
         binding.recyclerViewCars.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewCars.adapter = CarAdapter(mockCars) { anchorView, car ->
-            // Show PopupWindow when options button is clicked
             showCarOptionsPopup(anchorView, car)
         }
 
-            btnDodaj.setOnClickListener {
+        btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_katalogVozilaFragment_to_dodajVoziloFragment)
         }
     }

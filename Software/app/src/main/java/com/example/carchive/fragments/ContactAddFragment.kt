@@ -1,5 +1,6 @@
 package com.example.carchive.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +12,13 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.adapters.ContactsAdapter
+import com.example.carchive.databinding.FragmentAddCarBinding
+import com.example.carchive.databinding.FragmentContactAddBinding
+import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.helpers.MockDataLoader
 
@@ -34,6 +39,9 @@ class ContactAddFragment : Fragment() {
     private lateinit var btnAddContact : Button
     private lateinit var swtOfferState : Switch
 
+    private var _binding: FragmentContactAddBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,21 +53,25 @@ class ContactAddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_contact_add, container, false)
 
-        etName = view.findViewById(R.id.et_contact_add_name)
-        etSurname = view.findViewById(R.id.et_contact_add_surname)
-        etPin = view.findViewById(R.id.et_contact_add_pin)
-        etAddress = view.findViewById(R.id.et_contact_add_address)
-        etPhoneNumber = view.findViewById(R.id.et_contact_add_phone_number)
-        etMobileNumber = view.findViewById(R.id.et_contact_add_mobile_number)
-        etEmail = view.findViewById(R.id.et_contact_add_email)
-        etDescription = view.findViewById(R.id.et_contact_add_description)
-        spnCountries = view.findViewById(R.id.spn_contact_add_countries)
-        spnCities = view.findViewById(R.id.spn_contact_add_cities)
-        spnActivities = view.findViewById(R.id.spn_contact_add_activities)
-        spnStates = view.findViewById(R.id.spn_contact_add_states)
-        btnAddContact = view.findViewById(R.id.btn_contact_add)
+        _binding = FragmentContactAddBinding.inflate(inflater, container, false)
+        binding.navBackButton.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
+        etName = binding.etContactAddName
+        etSurname = binding.etContactAddSurname
+        etPin = binding.etContactAddPin
+        etAddress = binding.etContactAddAddress
+        etPhoneNumber = binding.etContactAddPhoneNumber
+        etMobileNumber = binding.etContactAddMobileNumber
+        etEmail = binding.etContactAddEmail
+        etDescription = binding.etContactAddDescription
+        spnCountries = binding.spnContactAddCountries
+        spnCities = binding.spnContactAddCities
+        spnActivities = binding.spnContactAddActivities
+        spnStates = binding.spnContactAddStates
+        btnAddContact = binding.btnContactAdd
 
         val countryList = resources.getStringArray(R.array.drzave).toList()
         val cityList = resources.getStringArray(R.array.gradovi).toList()
@@ -97,7 +109,7 @@ class ContactAddFragment : Fragment() {
             }
         }
 
-        return view
+        return binding.root
     }
 
     private fun populateSpinner(spinner: Spinner, dataList: List<String>) {

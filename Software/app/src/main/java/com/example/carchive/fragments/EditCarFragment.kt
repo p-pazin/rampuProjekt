@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.adapters.EditInfoPagerAdapter
 import com.example.carchive.databinding.FragmentAddCarBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -19,6 +20,10 @@ class EditCarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddCarBinding.inflate(inflater, container, false)
+
+        binding.navBackButton.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
 
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
