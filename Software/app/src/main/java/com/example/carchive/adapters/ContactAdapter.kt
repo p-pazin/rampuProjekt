@@ -94,4 +94,11 @@ class ContactsAdapter(
             notifyItemChanged(position)
         }
     }
+    fun removeContact(contact: Contact) {
+        val position = contactsData.indexOf(contact)
+        if(position >= 0) {
+            contactsData.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
 }

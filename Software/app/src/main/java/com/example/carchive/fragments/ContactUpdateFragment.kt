@@ -52,6 +52,7 @@ class ContactUpdateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentContactUpdateBinding.inflate(inflater, container, false)
         binding.navBackButton.backButton.setOnClickListener(){
             findNavController().popBackStack()

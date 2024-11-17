@@ -16,6 +16,7 @@ import com.example.carchive.adapters.ContactsAdapter
 import com.example.carchive.databinding.ActivityCarchiveBinding
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.databinding.FragmentContactsBinding
+import com.example.carchive.entities.Contact
 import com.example.carchive.helpers.MockDataLoader
 
 class ContactsFragment : Fragment() {
@@ -48,8 +49,11 @@ class ContactsFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.rv_contact_list)
-        recyclerView.adapter = ContactsAdapter(MockDataLoader.getMockContacts()){ contact ->
-            findNavController().navigate(R.id.action_contactsFragment_to_contactsDetailsFragment)
+        recyclerView.adapter = ContactsAdapter(MockDataLoader.getMockContacts()) { contact: Contact ->
+            val bundle = Bundle().apply {
+                putSerializable("contact_key", contact)
+            }
+            findNavController().navigate(R.id.action_contactsFragment_to_contactsDetailsFragment, bundle)
         }
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 

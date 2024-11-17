@@ -1,5 +1,8 @@
 package com.example.carchive.entities
 
+import java.io.Serializable
+
+
 data class Contact(
     val id : Int,
     val firstName : String,
@@ -15,4 +18,4 @@ data class Contact(
     val activity : String,
     val state : String,
     val offerSent : Boolean
-)
+) : Serializable

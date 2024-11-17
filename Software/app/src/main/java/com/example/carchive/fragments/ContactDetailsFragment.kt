@@ -1,6 +1,7 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.carchive.R
 import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.databinding.FragmentContactDetailsBinding
 import com.example.carchive.databinding.FragmentContactsBinding
+import com.example.carchive.entities.Contact
 import com.example.carchive.helpers.MockDataLoader
 
 class ContactDetailsFragment : Fragment() {
@@ -43,13 +45,23 @@ class ContactDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val contact = arguments?.getSerializable("contact_key") as? Contact
+
         _binding = FragmentContactDetailsBinding.inflate(inflater, container, false)
         binding.navBackButton.backButton.setOnClickListener(){
             findNavController().popBackStack()
         }
 
         binding.btnContactDetailsEdit.setOnClickListener(){
-            findNavController().navigate(R.id.action_contactsDetailsFragment_to_contactUpdateFragment)
+            val bundle = Bundle().apply {
+                putSerializable("contact_key", contact)
+            }
+            findNavController().navigate(R.id.action_contactsDetailsFragment_to_contactUpdateFragment, bundle)
+        }
+
+
+        binding.btnContactDetailsDelete.setOnClickListener() {
+            findNavController().popBackStack()
         }
 
         tvName = binding.tvContactDetailsName
@@ -68,36 +80,58 @@ class ContactDetailsFragment : Fragment() {
         tvMobileNumber = binding.tvContactDetailsMobile
         tvDescription = binding.tvContactDetailsDescription
 
-        val mockUser = MockDataLoader.getMockContacts()[0]
-
-        if(mockUser.offerSent) {
-            ivOfferSent.setImageResource(R.drawable.ic_check)
-            tvOfferSent.text = "Ponuda poslana"
-        }
-        else {
-            ivOfferSent.setImageResource(R.drawable.ic_x)
-            tvOfferSent.text = "Ponuda nije poslana"
-        }
-
-        if(mockUser.state == "Aktivni kontakt") {
-            ivState.setImageResource(R.drawable.ic_aktivan_kontakt)
-            tvState.text = "Aktivni kontakt"
-        }
-        else {
-            ivState.setImageResource(R.drawable.ic_neaktivan_kontakt)
-            tvState.text = "Neaktivni kontakt"
+        if (contact != null) {
+            if(contact.offerSent) {
+                ivOfferSent.setImageResource(R.drawable.ic_check)
+                tvOfferSent.text = "Ponuda poslana"
+            }
+            else {
+                ivOfferSent.setImageResource(R.drawable.ic_x)
+                tvOfferSent.text = "Ponuda nije poslana"
+            }
         }
 
-        tvActivity.text = mockUser.activity
-        tvName.text = mockUser.firstName + " " + mockUser.lastName
-        tvCountry.text = mockUser.country
-        tvCity.text = mockUser.city
-        tvAddress.text = mockUser.address
-        tvEmail.text = "E-adresa: " + mockUser.emailAddress
-        tvPin.text = "OIB: " + mockUser.pin
-        tvPhoneNumber.text = "Telefon: " + mockUser.phoneNumber
-        tvMobileNumber.text = "Mobilni telefon: " + mockUser.mobilePhoneNumber
-        tvDescription.text = mockUser.description
+        if (contact != null) {
+            if(contact.state == "Aktivni kontakt") {
+                ivState.setImageResource(R.drawable.ic_aktivan_kontakt)
+                tvState.text = "Aktivni kontakt"
+            }
+            else {
+                ivState.setImageResource(R.drawable.ic_neaktivan_kontakt)
+                tvState.text = "Neaktivni kontakt"
+            }
+        }
+
+        if (contact != null) {
+            tvActivity.text = contact.activity
+        }
+        if (contact != null) {
+            tvName.text = contact.firstName + " " + contact.lastName
+        }
+        if (contact != null) {
+            tvCountry.text = contact.country
+        }
+        if (contact != null) {
+            tvCity.text = contact.city
+        }
+        if (contact != null) {
+            tvAddress.text = contact.address
+        }
+        if (contact != null) {
+            tvEmail.text = "E-adresa: " + contact.emailAddress
+        }
+        if (contact != null) {
+            tvPin.text = "OIB: " + contact.pin
+        }
+        if (contact != null) {
+            tvPhoneNumber.text = "Telefon: " + contact.phoneNumber
+        }
+        if (contact != null) {
+            tvMobileNumber.text = "Mobilni telefon: " + contact.mobilePhoneNumber
+        }
+        if (contact != null) {
+            tvDescription.text = contact.description
+        }
 
         return binding.root
     }
