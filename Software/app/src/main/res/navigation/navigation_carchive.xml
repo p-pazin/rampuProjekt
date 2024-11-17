@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/katalogVozilaFragment"
-        android:name="com.example.carchive.KatalogVozilaFragment"
+        android:name="com.example.carchive.CarCatalogFragment"
         android:label="KatalogVozilaFragment"
-        tools:layout="@layout/katalog_vozila">
+        tools:layout="@layout/fragment_car_catalog">
         <action
             android:id="@+id/action_katalogVozilaFragment_to_dodajVoziloFragment"
             app:destination="@id/dodajVoziloFragment"
@@ -20,9 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/dodajVoziloFragment"
-        android:name="com.example.carchive.fragments.DodajVoziloFragment"
+        android:name="com.example.carchive.fragments.AddCarFragment"
         android:label="DodajVoziloFragment"
-        tools:layout="@layout/dodaj_vozilo"/>
+        tools:layout="@layout/fragment_add_car"/>
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.example.carchive.fragments.ContactsFragment"

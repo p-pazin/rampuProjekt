@@ -58,6 +58,8 @@
     <string name="prompt_email">Email</string>
     <string name="drawerZatvori">Zatvori nav</string>
     <string name="drawerOtvori">Otvori nav</string>
+    <string name="toggleGumb">Nav gumb</string>
+    <string name="logo">Logo</string>
 
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>

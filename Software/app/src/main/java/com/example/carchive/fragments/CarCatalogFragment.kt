@@ -11,6 +11,9 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.Toast
+import android.widget.ToggleButton
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +22,17 @@ import com.example.carchive.entities.Car
 import com.example.carchive.fragments.AddCarFragment
 import com.example.carchive.fragments.EditCarFragment
 import com.example.carchive.helpers.MockDataLoader
+import com.google.android.material.navigation.NavigationView
 
 class CarCatalogFragment : Fragment() {
 
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var toggleButton: ImageButton
     private val mockCars = MockDataLoader.getMockCarList()
     private var _binding: FragmentCarCatalogBinding? = null
     private val binding get() = _binding!!
     private val katalog = MockDataLoader.getMockCarList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +44,11 @@ class CarCatalogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val btnDodaj = binding.sidebarLogo.btnDodaj
+
+        binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
+            (activity as? CarchiveActivity)?.toggleDrawer()
+        }
 
         // Initialize the RecyclerView and set the adapter
         binding.recyclerViewCars.layoutManager = LinearLayoutManager(requireContext())
@@ -45,9 +57,19 @@ class CarCatalogFragment : Fragment() {
             showCarOptionsPopup(anchorView, car)
         }
 
-        binding.btnDodaj.setOnClickListener {
+            btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_katalogVozilaFragment_to_dodajVoziloFragment)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? CarchiveActivity)?.setDrawerEnabled(true)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as? CarchiveActivity)?.setDrawerEnabled(false)
     }
 
     // Function to show custom PopupWindow with car options

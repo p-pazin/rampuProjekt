@@ -19,6 +19,8 @@ import com.example.carchive.fragments.ContactsFragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.carchive.databinding.ActivityCarchiveBinding
+import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Car
 import com.example.carchive.fragments.LoginFragment
 import com.google.android.material.navigation.NavigationView
@@ -27,6 +29,8 @@ class CarchiveActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggleButton: ImageButton
+    private var _binding: ActivityCarchiveBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance(context: Context): Intent {
@@ -36,7 +40,6 @@ class CarchiveActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         setContentView(R.layout.activity_carchive)
 
@@ -47,23 +50,12 @@ class CarchiveActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
 
-        toggleButton = findViewById(R.id.drawer_toggle_buttonn)
-        toggleButton.setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
-        }
-
-
         val navController = findNavController(R.id.nav_host_fragment)
         navController.setGraph(
             R.navigation.navigation_carchive
         )
         val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
-
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             navigationView.menu.setGroupCheckable(0, true, true)
@@ -72,21 +64,29 @@ class CarchiveActivity : AppCompatActivity() {
 
             when(menuItem.itemId){
                 R.id.nav_contact_catalog -> {
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, ContactsFragment())
-                    transaction.commit()
+                    navController.navigate(R.id.contactsFragment)
                 }
 
                 R.id.nav_vehicle_catalog -> {
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, CarCatalogFragment())
-                    transaction.commit()
+                    navController.navigate(R.id.katalogVozilaFragment)
                 }
             }
             true
         }
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+    fun setDrawerEnabled(enabled: Boolean) {
+        if (enabled) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        } else {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
     }
+    fun toggleDrawer(){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+    }
+
 }
