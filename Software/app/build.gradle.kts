@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -36,6 +38,16 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    dataBinding{
+        enable = true
+    }
+
+    viewBinding {
+        enable = true
+    }
+
+
 }
 
 dependencies {
@@ -51,7 +63,11 @@ dependencies {
     implementation(libs.androidx.drawerlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+    kapt(libs.databinding.compiler)
 }

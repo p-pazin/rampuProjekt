@@ -14,15 +14,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.carchive.databinding.KatalogVozilaBinding
+import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Car
-import com.example.carchive.fragments.DodajVoziloFragment
+import com.example.carchive.fragments.AddCarFragment
+import com.example.carchive.fragments.EditCarFragment
 import com.example.carchive.helpers.MockDataLoader
 
-class KatalogVozilaFragment : Fragment() {
+class CarCatalogFragment : Fragment() {
 
     private val mockCars = MockDataLoader.getMockCarList()
-    private var _binding: KatalogVozilaBinding? = null
+    private var _binding: FragmentCarCatalogBinding? = null
     private val binding get() = _binding!!
     private val katalog = MockDataLoader.getMockCarList()
 
@@ -30,7 +31,7 @@ class KatalogVozilaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = KatalogVozilaBinding.inflate(inflater, container, false)
+        _binding = FragmentCarCatalogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,43 +63,59 @@ class KatalogVozilaFragment : Fragment() {
 
         // Postavljanje listenera za razne opcije
         popupView.findViewById<View>(R.id.btnPrikazi).setOnClickListener {
-            Toast.makeText(requireContext(), "Prikaži vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
         }
 
         popupView.findViewById<View>(R.id.btnObjavi).setOnClickListener {
-            Toast.makeText(requireContext(), "Objavi vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
         }
 
         popupView.findViewById<View>(R.id.btnStvoriPonudu).setOnClickListener {
-            Toast.makeText(requireContext(), "Stvori ponudu clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
         }
 
         popupView.findViewById<View>(R.id.btnProdaj).setOnClickListener {
-            Toast.makeText(requireContext(), "Prodaj auto clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
         }
 
         popupView.findViewById<View>(R.id.btnIznajmi).setOnClickListener {
-            Toast.makeText(requireContext(), "Iznajmi vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
         }
 
         popupView.findViewById<View>(R.id.btnUredi).setOnClickListener {
             Toast.makeText(requireContext(), "Uredi vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
+
+            val fragment = EditCarFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("id", car.id)
+            bundle.putString("marka", car.marka)
+            bundle.putString("model", car.model)
+            bundle.putDouble("type", car.type)
+            bundle.putString("productionYear", car.productionYear)
+            bundle.putString("registration", car.registration)
+            bundle.putInt("kilometers", car.kilometers)
+            bundle.putString("location", car.location)
+            bundle.putString("motor", car.motor)
+            bundle.putInt("enginePower", car.enginePower)
+            bundle.putString("gearbox", car.gearbox)
+            bundle.putBoolean("rentSell", car.rentSell)
+            bundle.putDouble("price", car.price)
+            bundle.putString("imageCar", car.imageCar)
+
+            fragment.arguments = bundle
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DodajVoziloFragment())
+                .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
 
+
         // Listener za gumb "Obriši" koji otvara dijalog za potvrdu brisanja
         popupView.findViewById<View>(R.id.btnObrisi).setOnClickListener {
             popupWindow.dismiss()
-            Log.d("Debug", "btnObrisi clicked")
             showDeleteWarningDialog(car.id) // Poziva funkciju za prikazivanje dijaloga za potvrdu brisanja
         }
 
@@ -108,7 +125,6 @@ class KatalogVozilaFragment : Fragment() {
 
     // Funkcija za prikazivanje dijaloga za potvrdu brisanja automobila
     private fun showDeleteWarningDialog(carId: Int) {
-        Log.d("Debug", "Opening delete dialog for carId: $carId")
         val deletionWarning = LayoutInflater.from(context).inflate(R.layout.deleting_warning, null)
         val alertDialog = AlertDialog.Builder(requireContext())
             .setView(deletionWarning)
@@ -121,7 +137,8 @@ class KatalogVozilaFragment : Fragment() {
         // Potvrda brisanja
         btnPotvrdi.setOnClickListener {
             MockDataLoader.deleteCar(carId) // Poziv funkcije za brisanje automobila
-            Toast.makeText(context, "Automobil je obrisan.", Toast.LENGTH_SHORT).show()
+            val message = getString(R.string.car_deleted)
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             alertDialog.dismiss()
 
             // Osvježava RecyclerView nakon brisanja

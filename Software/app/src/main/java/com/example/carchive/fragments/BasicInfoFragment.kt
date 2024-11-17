@@ -1,7 +1,6 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,24 +9,24 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.carchive.R
-import com.example.carchive.databinding.OpceInformacijeBinding
+import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.entities.Car
 import com.example.carchive.helpers.MockDataLoader
 import kotlin.random.Random
 
-class OpceInformacijeFragment : Fragment() {
+class BasicInfoFragment : Fragment() {
 
-    private var _binding: OpceInformacijeBinding? = null
+    private var _binding: FragmentBasicInfoBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = OpceInformacijeBinding.inflate(inflater, container, false)
+        _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
 
         val spinnerLokacija = binding.spLokacija
-        val lokacije = resources.getStringArray(R.array.lokacije)
+        val lokacije = resources.getStringArray(R.array.gradovi)
 
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
         lokacijeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -131,8 +130,6 @@ class OpceInformacijeFragment : Fragment() {
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
 
-            Log.d("FormData", "Marka: $marka, Model: $model, Lokacija: $lokacija, Tip: $tip, Godina: $godProizv, Reg: $reg, KM: $km, Motor: $motor, Snaga: $snaga, Cijena: $cijena, Prodaja/Najam ID: $rbProdaja")
-
             if (marka.isNotBlank() &&
                 model.isNotBlank() &&
                 lokacija.isNotBlank() &&
@@ -145,9 +142,7 @@ class OpceInformacijeFragment : Fragment() {
                 cijena.isNotBlank() &&
                 (prodaja || najam)
             ) {
-                val rentSell = prodaja // true ako je "Prodaja", false ako je "Najam"
-
-                Log.d("Selection", "rentSell je postavljen na: ${if (rentSell) "Prodaja" else "Najam"}")
+                val rentSell = prodaja
 
                 val car = Car(
                     id = Random.nextInt(1000, 9999),
@@ -167,10 +162,10 @@ class OpceInformacijeFragment : Fragment() {
                 )
 
                 MockDataLoader.addCar(car)
-                Toast.makeText(requireContext(), "Automobil dodan u katalog.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Sva polja su obavezna!", Toast.LENGTH_SHORT).show()
-            }
+                val message = getString(R.string.car_added)
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            } else {
+                val message = getString(R.string.info_missing)
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            }
         }
 
 

@@ -9,9 +9,9 @@
     android:backgroundTint="#E5E4E2">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
+        android:paddingLeft="15dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,24 +21,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/imgPrikazi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnPrikazi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#00FFFFFF"
                 app:srcCompat="@drawable/ic_view" />
 
             <Button
                 android:id="@+id/btnPrikazi"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Prikaži vozilo"
@@ -53,29 +53,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             tools:layout_editor_absoluteY="731dp">
 
             <ImageView
                 android:id="@+id/imgObjavi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnObjavi"
                 app:layout_constraintStart_toStartOf="parent"
-                android:backgroundTint="#00FFFFFF"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_objavi" />
 
             <Button
                 android:id="@+id/btnObjavi"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Objavi vozilo"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgObjavi"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,29 +83,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/imgPonuda"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnStvoriPonudu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#00FFFFFF"
                 app:srcCompat="@drawable/ic_stvori_ponudu" />
 
             <Button
                 android:id="@+id/btnStvoriPonudu"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Stvori ponudu"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgPonuda"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,29 +113,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/imgProdajAuto"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:layout_constraintEnd_toStartOf="@+id/btnProdaj"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnProdaj"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_prodaj_auto" />
 
             <Button
                 android:id="@+id/btnProdaj"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Prodaj auto"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgProdajAuto"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,28 +144,28 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/imgIznajmi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_iznajmi" />
 
             <Button
                 android:id="@+id/btnIznajmi"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Iznajmi auto"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgIznajmi"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -173,29 +173,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/imgUredi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnUredi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#00FFFFFF"
                 app:srcCompat="@drawable/ic_uredi" />
 
             <Button
                 android:id="@+id/btnUredi"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Uredi vozilo"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgUredi"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -208,24 +208,25 @@
 
             <ImageView
                 android:id="@+id/imgObrisi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnObrisi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#00FFFFFF"
                 app:srcCompat="@drawable/ic_obrisi" />
 
             <Button
                 android:id="@+id/btnObrisi"
-                android:layout_width="150dp"
+                android:layout_width="115dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_regular"
                 android:text="Obriši vozilo"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorLight"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgObrisi"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

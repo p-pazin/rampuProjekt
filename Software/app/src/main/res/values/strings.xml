@@ -62,10 +62,14 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="welcome">Welcome!</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">Login failed</string>
+    <string name="car_added">Automobil je dodan u katalog.</string>
+    <string name="car_deleted">Automobil je obrisan iz kataloga.</string>
+    <string name="car_edited">Informacije o automobilu su ažurirane.</string>
+    <string name="info_missing">Sva polja su obavezna!</string>
 
     <string-array name="Marke">
         <item>BMW</item>
@@ -383,72 +387,354 @@
         <item>R1S</item>
     </string-array>
 
-    <string-array name="lokacije">
-        <item>Barban</item>
-        <item>Biograd na Moru</item>
+    <string-array name="aktivnosti">
+        <item>Kupnja</item>
+        <item>Najam</item>
+    </string-array>
+
+    <string-array name="statusi">
+        <item>Aktivni kontakt</item>
+        <item>Neaktivni kontakt</item>
+    </string-array>
+
+    <string-array name="drzave">
+        <item>Hrvatska</item>
+        <item>Afganistan</item>
+        <item>Albanija</item>
+        <item>Alžir</item>
+        <item>Andora</item>
+        <item>Angola</item>
+        <item>Antigva i Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenija</item>
+        <item>Australija</item>
+        <item>Austrija</item>
+        <item>Azerbajdžan</item>
+        <item>Bahami</item>
+        <item>Bahrein</item>
+        <item>Bangladeš</item>
+        <item>Barbados</item>
+        <item>Belgija</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bjelorusija</item>
+        <item>Bocvana</item>
+        <item>Bolivija</item>
+        <item>Bosna i Hercegovina</item>
+        <item>Brazil</item>
+        <item>Brunej</item>
+        <item>Bugarska</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+        <item>Butan</item>
+        <item>Cipar</item>
+        <item>Crna Gora</item>
+        <item>Čad</item>
+        <item>Češka</item>
+        <item>Čile</item>
+        <item>Danska</item>
+        <item>Dominika</item>
+        <item>Dominikanska Republika</item>
+        <item>Džibuti</item>
+        <item>Egipat</item>
+        <item>Ekvador</item>
+        <item>Ekvatorska Gvineja</item>
+        <item>Eritreja</item>
+        <item>Estonija</item>
+        <item>Eswatini</item>
+        <item>Etiopija</item>
+        <item>Fidži</item>
+        <item>Filipini</item>
+        <item>Finska</item>
+        <item>Francuska</item>
+        <item>Gabon</item>
+        <item>Gambija</item>
+        <item>Gana</item>
+        <item>Grčka</item>
+        <item>Grenada</item>
+        <item>Gruzija</item>
+        <item>Gvajana</item>
+        <item>Gvatemala</item>
+        <item>Gvineja</item>
+        <item>Gvineja Bisau</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Indija</item>
+        <item>Indonezija</item>
+        <item>Irak</item>
+        <item>Iran</item>
+        <item>Irska</item>
+        <item>Island</item>
+        <item>Istočni Timor</item>
+        <item>Italija</item>
+        <item>Izrael</item>
+        <item>Jamajka</item>
+        <item>Japan</item>
+        <item>Jemen</item>
+        <item>Jordan</item>
+        <item>Južna Afrika</item>
+        <item>Južni Sudan</item>
+        <item>Kambodža</item>
+        <item>Kamerun</item>
+        <item>Kanada</item>
+        <item>Katar</item>
+        <item>Kazahstan</item>
+        <item>Kenija</item>
+        <item>Kina</item>
+        <item>Kirgistan</item>
+        <item>Kiribati</item>
+        <item>Kolumbija</item>
+        <item>Komori</item>
+        <item>Kongo</item>
+        <item>Kongo (DR)</item>
+        <item>Kosovo</item>
+        <item>Kostarika</item>
+        <item>Kuba</item>
+        <item>Kuvajt</item>
+        <item>Laos</item>
+        <item>Latvija</item>
+        <item>Lesoto</item>
+        <item>Liban</item>
+        <item>Liberija</item>
+        <item>Libija</item>
+        <item>Lihtenštajn</item>
+        <item>Litva</item>
+        <item>Luksemburg</item>
+        <item>Madagaskar</item>
+        <item>Mađarska</item>
+        <item>Malavi</item>
+        <item>Maldivi</item>
+        <item>Malezija</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Maroko</item>
+        <item>Maršalovi Otoci</item>
+        <item>Mauricijus</item>
+        <item>Mauritanija</item>
+        <item>Meksiko</item>
+        <item>Mikronezija</item>
+        <item>Mjanmar</item>
+        <item>Moldavija</item>
+        <item>Monako</item>
+        <item>Mongolija</item>
+        <item>Mozambik</item>
+        <item>Namibija</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+        <item>Niger</item>
+        <item>Nigerija</item>
+        <item>Nikaragva</item>
+        <item>Nizozemska</item>
+        <item>Norveška</item>
+        <item>Novi Zeland</item>
+        <item>Njemačka</item>
+        <item>Obala Bjelokosti</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Panama</item>
+        <item>Papua Nova Gvineja</item>
+        <item>Paragvaj</item>
+        <item>Peru</item>
+        <item>Poljska</item>
+        <item>Portugal</item>
+        <item>Ruanda</item>
+        <item>Rumunjska</item>
+        <item>Rusija</item>
+        <item>Salvador</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+        <item>Saudijska Arabija</item>
+        <item>Sjeverna Koreja</item>
+        <item>Sjeverna Makedonija</item>
+        <item>Sjedinjene Američke Države</item>
+        <item>Singapur</item>
+        <item>Sirija</item>
+        <item>Sierra Leone</item>
+        <item>Slovačka</item>
+        <item>Slovenija</item>
+        <item>Solomonski Otoci</item>
+        <item>Somalija</item>
+        <item>Srbija</item>
+        <item>Srednjoafrička Republika</item>
+        <item>Sudan</item>
+        <item>Surinam</item>
+        <item>Sveta Lucija</item>
+        <item>Sveti Kristofor i Nevis</item>
+        <item>Sveti Vincent i Grenadini</item>
+        <item>Španjolska</item>
+        <item>Šri Lanka</item>
+        <item>Švedska</item>
+        <item>Švicarska</item>
+        <item>Tadžikistan</item>
+        <item>Tajland</item>
+        <item>Tanzanija</item>
+        <item>Togo</item>
+        <item>Tonga</item>
+        <item>Trinidad i Tobago</item>
+        <item>Tunis</item>
+        <item>Turska</item>
+        <item>Turkmenistan</item>
+        <item>Tuvalu</item>
+        <item>Uganda</item>
+        <item>Ukrajina</item>
+        <item>Ujedinjeni Arapski Emirati</item>
+        <item>Ujedinjeno Kraljevstvo</item>
+        <item>Urugvaj</item>
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatikan</item>
+        <item>Venezuela</item>
+        <item>Vijetnam</item>
+        <item>Zambija</item>
+        <item>Zelenortska Republika</item>
+        <item>Zimbabve</item>
+    </string-array>
+
+    <string-array name="gradovi">
+        <item>Bakar</item>
+        <item>Beli Manastir</item>
+        <item>Belišće</item>
         <item>Benkovac</item>
+        <item>Biograd na Moru</item>
         <item>Bjelovar</item>
-        <item>Brtonigla</item>
-        <item>Čakovec</item>
-        <item>Crikvenica</item>
-        <item>Crni Lug</item>
+        <item>Buje</item>
+        <item>Buzet</item>
         <item>Cres</item>
-        <item>Dubrovnik</item>
-        <item>Đakovo</item>
+        <item>Crikvenica</item>
+        <item>Čabar</item>
+        <item>Čakovec</item>
+        <item>Čazma</item>
+        <item>Daruvar</item>
         <item>Delnice</item>
+        <item>Donja Stubica</item>
+        <item>Donji Miholjac</item>
+        <item>Drniš</item>
+        <item>Dubrovnik</item>
+        <item>Duga Resa</item>
+        <item>Dugo Selo</item>
+        <item>Đakovo</item>
+        <item>Đurđevac</item>
+        <item>Garešnica</item>
+        <item>Glina</item>
         <item>Gospić</item>
+        <item>Grubišno Polje</item>
+        <item>Hrvatska Kostajnica</item>
         <item>Hvar</item>
+        <item>Ilok</item>
         <item>Imotski</item>
+        <item>Ivanec</item>
+        <item>Ivanić-Grad</item>
         <item>Jastrebarsko</item>
-        <item>Jelsa</item>
-        <item>Knin</item>
-        <item>Kamenjak</item>
         <item>Karlovac</item>
-        <item>Korčula</item>
+        <item>Kastav</item>
+        <item>Kaštela</item>
+        <item>Klanjec</item>
+        <item>Knin</item>
+        <item>Komiža</item>
         <item>Koprivnica</item>
         <item>Korčula</item>
+        <item>Kraljevica</item>
         <item>Krapina</item>
+        <item>Križevci</item>
+        <item>Krk</item>
         <item>Kutina</item>
+        <item>Kutjevo</item>
         <item>Labin</item>
-        <item>Lastovo</item>
-        <item>Lošinj</item>
+        <item>Lepoglava</item>
+        <item>Lipik</item>
+        <item>Ludbreg</item>
         <item>Makarska</item>
-        <item>Marina</item>
-        <item>Medulin</item>
+        <item>Mali Lošinj</item>
         <item>Metković</item>
-        <item>Minu</item>
+        <item>Mursko Središće</item>
         <item>Našice</item>
+        <item>Nin</item>
+        <item>Nova Gradiška</item>
         <item>Novalja</item>
+        <item>Novi Marof</item>
+        <item>Novi Vinodolski</item>
+        <item>Novigrad</item>
+        <item>Novska</item>
+        <item>Obrovac</item>
+        <item>Ogulin</item>
         <item>Omiš</item>
         <item>Opatija</item>
+        <item>Opuzen</item>
+        <item>Orahovica</item>
+        <item>Oroslavje</item>
         <item>Osijek</item>
+        <item>Otočac</item>
+        <item>Otok</item>
+        <item>Ozalj</item>
+        <item>Pag</item>
+        <item>Pakrac</item>
         <item>Pazin</item>
         <item>Petrinja</item>
+        <item>Pleternica</item>
         <item>Ploče</item>
-        <item>Požega</item>
+        <item>Popovača</item>
         <item>Poreč</item>
-        <item>Pag</item>
+        <item>Požega</item>
+        <item>Pregrada</item>
+        <item>Prelog</item>
+        <item>Pula</item>
+        <item>Rab</item>
         <item>Rijeka</item>
         <item>Rovinj</item>
-        <item>Rab</item>
-        <item>Šibenik</item>
+        <item>Samobor</item>
         <item>Senj</item>
         <item>Sinj</item>
+        <item>Sisak</item>
+        <item>Skradin</item>
+        <item>Slatina</item>
+        <item>Slavonski Brod</item>
+        <item>Slunj</item>
+        <item>Solin</item>
+        <item>Split</item>
         <item>Stari Grad</item>
-        <item>Ston</item>
+        <item>Supetar</item>
+        <item>Sveta Nedelja</item>
+        <item>Sveti Ivan Zelina</item>
+        <item>Šibenik</item>
         <item>Trilj</item>
+        <item>Trogir</item>
+        <item>Umag</item>
+        <item>Valpovo</item>
         <item>Varaždin</item>
+        <item>Varaždinske Toplice</item>
+        <item>Velika Gorica</item>
         <item>Vinkovci</item>
-        <item>Vrbnik</item>
-        <item>Vrbovsko</item>
+        <item>Virovitica</item>
         <item>Vis</item>
         <item>Vodice</item>
-        <item>Velika Gorica</item>
+        <item>Vodnjan</item>
+        <item>Vrbovec</item>
+        <item>Vrbovsko</item>
+        <item>Vrgorac</item>
+        <item>Vrlika</item>
+        <item>Vukovar</item>
         <item>Zabok</item>
         <item>Zadar</item>
+        <item>Zagreb</item>
         <item>Zaprešić</item>
-        <item>Župa Dubrovačka</item>
+        <item>Zlatar</item>
         <item>Županja</item>
     </string-array>
 
+    <string name="oib">OIB</string>
+    <string name="drzava">Drzava</string>
+    <string name="grad">Grad</string>
+    <string name="adresa">Adresa</string>
+    <string name="brojMobitela">Broj mobitela</string>
+    <string name="Opis">Opis</string>
+    <string name="stanjePonude">Stanje ponude</string>
+    <string name="aktivnost">Aktivnost</string>
+    <string name="status">Status</string>
+    <string name="urediKontakt">Uredi kontakt</string>
+    <string name="izbrisiKontakt">Izbriši kontakt</string>
+    <string name="azurirajKontakt">Ažurirajte kontakt</string>
+    <string name="kontaktAzuriran">Kontakt je uspješno ažuriran!</string>
+    <string name="potrebnoIspunitiPolja">Potrebno je ispuniti sva tražena polja!</string>
+    <string name="kontaktDodan">Kontakt je uspješno dodan!</string>
 </resources>
