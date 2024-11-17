@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.entities.Car
 import com.example.carchive.helpers.MockDataLoader
@@ -24,8 +25,9 @@ class EditBasicInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
+
 
         val args = arguments
         val marka = args?.getString("marka") ?: ""

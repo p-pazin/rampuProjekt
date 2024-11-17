@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/rounded_car_items"
+    android:id="@+id/carCard"
     android:padding="1dp"
     android:elevation="4dp"
     android:layout_marginBottom="16dp">

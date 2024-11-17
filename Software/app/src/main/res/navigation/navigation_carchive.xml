@@ -17,6 +17,9 @@
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_katalogVozilaFragment_to_basicInfoFragment"
+            app:destination="@id/basicInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/dodajVoziloFragment"
@@ -57,5 +60,10 @@
         android:name="com.example.carchive.fragments.ContactUpdateFragment"
         android:label="fragment_contact_update"
         tools:layout="@layout/fragment_contact_update" />
+    <fragment
+        android:id="@+id/basicInfoFragment"
+        android:name="com.example.carchive.fragments.BasicInfoFragment"
+        android:label="BasicInfoFragment"
+        tools:layout="@layout/fragment_basic_info"/>
 
 </navigation>

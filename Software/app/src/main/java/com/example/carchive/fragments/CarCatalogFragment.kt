@@ -18,6 +18,7 @@ import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Car
+import com.example.carchive.fragments.EditCarFragment
 import com.example.carchive.helpers.MockDataLoader
 
 class CarCatalogFragment : Fragment() {
@@ -46,9 +47,15 @@ class CarCatalogFragment : Fragment() {
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
         binding.recyclerViewCars.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerViewCars.adapter = CarAdapter(mockCars) { anchorView, car ->
-            showCarOptionsPopup(anchorView, car)
-        }
+        binding.recyclerViewCars.adapter = CarAdapter(
+            mockCars,
+            { anchorView, car ->
+                showCarOptionsPopup(anchorView, car)
+            },
+            { anchorView, car ->
+                findNavController().navigate(R.id.action_katalogVozilaFragment_to_basicInfoFragment)
+            }
+        )
 
         btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_katalogVozilaFragment_to_dodajVoziloFragment)
