@@ -21,7 +21,7 @@ F02 | Upravljanje katalogom vozila | Sustav će omogućiti korisniku unos, izmje
 F03 | Upravljanje katalogom kontakata | Sustav će omogućiti unos, izmjenu, pregled i brisanje podataka o kontaktima klijenata i partnera. | Antonio Vinković
 F04 | Objavljivanje na oglasnik |Sustav će omogućiti objavu vozila na vanjske oglasnike s pripadajućim podacima o vozilu. | Dario Vučina
 F05 | Statistika | Sustav će omogućiti generiranje statističkih izvještaja o poslovanju, uključujući analize prodaje, najma i korištenja vozila. | Antonio Vinković
-F06 | Prodaja automobila | Sustav će omogućiti unos i obradu podataka potrebnih za provođenje procesa prodaje automobila. | Antonio Vinković
+F06 | Prodaja vozila | Sustav će omogućiti unos i obradu podataka potrebnih za provođenje procesa prodaje vozila. | Antonio Vinković
 F07 | Iznajmljivanje vozila | Sustav će omogućiti unos i obradu podataka potrebnih za iznajmljivanje vozila. | Dario Vučina
 F08 | Pregled mape lokacija | Sustav će omogućiti prikaz trenutnih lokacija vozila i kontakata na interaktivnoj karti. | Paula Pažin
 F09 | Upravljanje ponudama | Sustav će omogućiti kreiranje, prilagodbu i slanje ponuda za vozila klijentima. | Paula Pažin
