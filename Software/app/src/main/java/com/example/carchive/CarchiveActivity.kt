@@ -1,30 +1,22 @@
 package com.example.carchive
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.carchive.fragments.ContactAddFragment
-import com.example.carchive.fragments.ContactDetailsFragment
-import com.example.carchive.fragments.ContactUpdateFragment
-import com.example.carchive.fragments.ContactsFragment
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.carchive.databinding.ActivityCarchiveBinding
-import com.example.carchive.databinding.FragmentCarCatalogBinding
-import com.example.carchive.entities.Car
-import com.example.carchive.fragments.LoginFragment
+import com.example.carchive.services.TokenManager
 import com.google.android.material.navigation.NavigationView
 
 class CarchiveActivity : AppCompatActivity() {
@@ -53,20 +45,23 @@ class CarchiveActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
+        // Set up the Carchive navigation controller
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navController.setGraph(R.navigation.navigation_carchive)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        navController.setGraph(
-            R.navigation.navigation_carchive
-        )
         val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val tokenManager = TokenManager()
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             navigationView.menu.setGroupCheckable(0, true, true)
             menuItem.isChecked = true
             drawerLayout.closeDrawers()
 
-            when(menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.nav_contact_catalog -> {
                     navController.navigate(R.id.contactsFragment)
                 }
@@ -74,10 +69,35 @@ class CarchiveActivity : AppCompatActivity() {
                 R.id.nav_vehicle_catalog -> {
                     navController.navigate(R.id.katalogVozilaFragment)
                 }
+
+                R.id.nav_logout -> {
+                    // Clear the token
+                    tokenManager.clearToken()
+
+                    // Switch to the main navigation graph to navigate to loadingFragment
+                    switchToMainNavigationGraph()
+                }
             }
             true
         }
     }
+
+    /**
+     * Switch to the `navigation_main.xml` navigation graph and navigate to `loadingFragment`.
+     */
+    private fun switchToMainNavigationGraph() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        // Set the main navigation graph
+        val navGraph: NavGraph = navController.navInflater.inflate(R.navigation.navigation_main)
+        navController.graph = navGraph
+
+        // Navigate to the loadingFragment
+        navController.navigate(R.id.loadingFragment)
+    }
+
     fun setDrawerEnabled(enabled: Boolean) {
         if (enabled) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -85,13 +105,12 @@ class CarchiveActivity : AppCompatActivity() {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
     }
-    fun toggleDrawer(){
+
+    fun toggleDrawer() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             drawerLayout.openDrawer(GravityCompat.START)
         }
     }
-
-
 }

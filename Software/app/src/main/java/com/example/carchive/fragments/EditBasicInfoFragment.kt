@@ -10,9 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.carchive.databinding.FragmentBasicInfoBinding
-import com.example.carchive.entities.Car
+import com.example.carchive.entities.Vehicle
 import com.example.carchive.helpers.MockDataLoader
 import kotlin.random.Random
 
@@ -100,9 +99,9 @@ class EditBasicInfoFragment : Fragment() {
             ) {
                 val rentSell = prodaja
 
-                val car = Car(
+                val vehicle = Vehicle(
                     id = Random.nextInt(1000, 9999),
-                    marka = marka,
+                    brand = marka,
                     model = model,
                     type = tip.toDoubleOrNull() ?: 0.0,
                     productionYear = godProizv,
@@ -111,13 +110,13 @@ class EditBasicInfoFragment : Fragment() {
                     location = lokacija,
                     motor = motor,
                     enginePower = snaga.toIntOrNull() ?: 0,
-                    gearbox = "manual",
+                    gearbox = Vehicle.GearboxType.MANUAL,
                     rentSell = rentSell,
                     price = cijena.toDoubleOrNull() ?: 0.0,
                     imageCar = ""
                 )
 
-                MockDataLoader.editCar(car)
+                MockDataLoader.editCar(vehicle)
                 val message = getString(R.string.car_edited)
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             } else {

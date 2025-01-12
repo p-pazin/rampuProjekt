@@ -7,12 +7,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
-import com.example.carchive.entities.Car
+import com.example.carchive.entities.Vehicle
 
 class CarAdapter(
-    private val cars: List<Car>,
-    private val onDetailsClick: (View, Car) -> Unit,
-    private val onCarCardClick: (View, Car) -> Unit
+    private var vehicles: List<Vehicle>,
+    private val onDetailsClick: (View, Vehicle) -> Unit,
+    private val onCarCardClick: (View, Vehicle) -> Unit
 ) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
     inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,21 +28,21 @@ class CarAdapter(
         private val imgBtnDetails: ImageView = itemView.findViewById(R.id.imgBtnDetails)
 
         @SuppressLint("SetTextI18n")
-        fun bind(car: Car) {
+        fun bind(vehicle: Vehicle) {
             // Set text fields
-            textModel.text = "${car.marka} ${car.model}"
-            textRegistration.text = car.registration
-            textLocation.text = car.location
-            textKilometers.text = "${car.kilometers} km"
-            textSellsRents.text = if (car.rentSell) "U prodaji" else "U najmu"
-            textPrice.text = "$${car.price}"
+            textModel.text = "${vehicle.brand} ${vehicle.model}"
+            textRegistration.text = vehicle.registration
+            textLocation.text = vehicle.location
+            textKilometers.text = "${vehicle.kilometers} km"
+            textSellsRents.text = if (vehicle.rentSell) "U prodaji" else "U najmu"
+            textPrice.text = "$${vehicle.price}"
 
             // Set up listener for imgBtnDetails to pass both view and car to the callback
             imgBtnDetails.setOnClickListener { view ->
-                onDetailsClick(view, car) // Pass both anchor view and car to the callback
+                onDetailsClick(view, vehicle) // Pass both anchor view and car to the callback
             }
             carCard.setOnClickListener { view ->
-                onCarCardClick(view, car) // Pass both anchor view and car to the callback
+                onCarCardClick(view, vehicle) // Pass both anchor view and car to the callback
             }
         }
     }
@@ -52,9 +52,13 @@ class CarAdapter(
         return CarViewHolder(view)
     }
 
-    override fun getItemCount(): Int = cars.size
+    override fun getItemCount(): Int = vehicles.size
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
-        holder.bind(cars[position])
+        holder.bind(vehicles[position])
+    }
+
+    fun updateItems(list: List<Vehicle>){
+        vehicles = list
     }
 }

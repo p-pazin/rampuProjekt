@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main.xml"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/loadingFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -23,4 +23,13 @@
         android:name="com.example.carchive.fragments.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register"/>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.carchive.fragments.LoadingFragment"
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_loadingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.carchive.R
 import com.example.carchive.databinding.FragmentBasicInfoBinding
-import com.example.carchive.entities.Car
+import com.example.carchive.entities.Vehicle
 import com.example.carchive.helpers.MockDataLoader
 import kotlin.random.Random
 
@@ -144,9 +144,9 @@ class BasicInfoFragment : Fragment() {
             ) {
                 val rentSell = prodaja
 
-                val car = Car(
+                val vehicle = Vehicle(
                     id = Random.nextInt(1000, 9999),
-                    marka = marka,
+                    brand = marka,
                     model = model,
                     type = tip.toDoubleOrNull() ?: 0.0,
                     productionYear = godProizv,
@@ -155,13 +155,13 @@ class BasicInfoFragment : Fragment() {
                     location = lokacija,
                     motor = motor,
                     enginePower = snaga.toIntOrNull() ?: 0,
-                    gearbox = "manual",
+                    gearbox = Vehicle.GearboxType.MANUAL,
                     rentSell = rentSell,
                     price = cijena.toDoubleOrNull() ?: 0.0,
                     imageCar = ""
                 )
 
-                MockDataLoader.addCar(car)
+                MockDataLoader.addCar(vehicle)
                 val message = getString(R.string.car_added)
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            } else {
                 val message = getString(R.string.info_missing)

@@ -12,17 +12,24 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
+import com.example.carchive.data.network.Network
+import com.example.carchive.data.repositories.VehicleRepository
 import com.example.carchive.databinding.FragmentCarCatalogBinding
-import com.example.carchive.entities.Car
-import com.example.carchive.fragments.EditCarFragment
+import com.example.carchive.entities.Vehicle
 import com.example.carchive.helpers.MockDataLoader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class CarCatalogFragment : Fragment() {
 
+    private  val viewModel : CarCatalogViewModel by viewModels()
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggleButton: ImageButton
     private val mockCars = MockDataLoader.getMockCarList()
@@ -43,11 +50,13 @@ class CarCatalogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val btnDodaj = binding.sidebarLogo.btnDodaj
 
+
+
         binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
         binding.recyclerViewCars.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerViewCars.adapter = CarAdapter(
+        val adapter = CarAdapter(
             mockCars,
             { anchorView, car ->
                 showCarOptionsPopup(anchorView, car)
@@ -56,6 +65,16 @@ class CarCatalogFragment : Fragment() {
                 findNavController().navigate(R.id.action_katalogVozilaFragment_to_basicInfoFragment)
             }
         )
+        binding.recyclerViewCars.adapter = adapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.vehicles.collect { data ->
+                adapter.updateItems(data)
+            }
+        }
+
+        viewModel.fetchVehicles()
+
 
         btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_katalogVozilaFragment_to_dodajVoziloFragment)
@@ -72,7 +91,7 @@ class CarCatalogFragment : Fragment() {
         (activity as? CarchiveActivity)?.setDrawerEnabled(false)
     }
 
-    private fun showCarOptionsPopup(anchorView: View, car: Car) {
+    private fun showCarOptionsPopup(anchorView: View, vehicle: Vehicle) {
         val popupView = layoutInflater.inflate(R.layout.detail_actions_car, null)
 
         val popupWindow = PopupWindow(
@@ -109,20 +128,20 @@ class CarCatalogFragment : Fragment() {
             val fragment = EditCarFragment()
             val bundle = Bundle()
 
-            bundle.putInt("id", car.id)
-            bundle.putString("marka", car.marka)
-            bundle.putString("model", car.model)
-            bundle.putDouble("type", car.type)
-            bundle.putString("productionYear", car.productionYear)
-            bundle.putString("registration", car.registration)
-            bundle.putInt("kilometers", car.kilometers)
-            bundle.putString("location", car.location)
-            bundle.putString("motor", car.motor)
-            bundle.putInt("enginePower", car.enginePower)
-            bundle.putString("gearbox", car.gearbox)
-            bundle.putBoolean("rentSell", car.rentSell)
-            bundle.putDouble("price", car.price)
-            bundle.putString("imageCar", car.imageCar)
+            bundle.putInt("id", vehicle.id)
+            bundle.putString("marka", vehicle.brand)
+            bundle.putString("model", vehicle.model)
+            bundle.putDouble("type", vehicle.type)
+            bundle.putString("productionYear", vehicle.productionYear)
+            bundle.putString("registration", vehicle.registration)
+            bundle.putInt("kilometers", vehicle.kilometers)
+            bundle.putString("location", vehicle.location)
+            bundle.putString("motor", vehicle.motor)
+            bundle.putInt("enginePower", vehicle.enginePower)
+            bundle.putString("gearbox", vehicle.gearbox.externalName)
+            bundle.putBoolean("rentSell", vehicle.rentSell)
+            bundle.putDouble("price", vehicle.price)
+            bundle.putString("imageCar", vehicle.imageCar)
 
             fragment.arguments = bundle
 
@@ -135,7 +154,7 @@ class CarCatalogFragment : Fragment() {
 
         popupView.findViewById<View>(R.id.btnObrisi).setOnClickListener {
             popupWindow.dismiss()
-            showDeleteWarningDialog(car.id)
+            showDeleteWarningDialog(vehicle.id)
         }
 
         popupWindow.elevation = 10f

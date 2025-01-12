@@ -1,5 +1,7 @@
 package com.example.carchive
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Window
 import androidx.appcompat.app.ActionBar
@@ -12,9 +14,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private lateinit var prefs: SharedPreferences
+        fun getPrefs(): SharedPreferences = prefs
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+        prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         setContentView(R.layout.activity_main)

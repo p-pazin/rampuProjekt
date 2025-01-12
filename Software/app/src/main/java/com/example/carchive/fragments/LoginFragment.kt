@@ -1,24 +1,23 @@
 package com.example.carchive.fragments
 
-import CarAdapter
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.CarchiveActivity
-import com.example.carchive.MainActivity
 import com.example.carchive.R
+import com.example.carchive.data.dto.LoginRequestDto
+import com.example.carchive.data.network.Network
 import com.example.carchive.databinding.FragmentLoginBinding
-import com.example.carchive.entities.Car
-import com.example.carchive.helpers.MockDataLoader
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-
+import com.example.carchive.services.TokenManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
 
@@ -41,20 +40,30 @@ class LoginFragment : Fragment() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            val user = MockDataLoader.getUsers().find {
-                it.emailAddress == email && it.password == password
-            }
-            val intent = Intent(requireContext(), CarchiveActivity::class.java)
-            if (user != null) {
-                Toast.makeText(requireContext(), "Prijava uspješna!", Toast.LENGTH_SHORT).show()
-                startActivity(CarchiveActivity.newInstance(requireContext()))
-                requireActivity().finish()
 
-            } else {
-                Toast.makeText(requireContext(), "Neispravan email ili lozinka", Toast.LENGTH_SHORT).show()
+            val networkClient = Network().getInstance()
+            val tokenManager = TokenManager()
+
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    val token = async {
+                        networkClient.login(LoginRequestDto(email, password))
+                    }.await().token
+                    tokenManager.saveToken(token)
+
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(requireContext(), "Prijava uspješna!", Toast.LENGTH_SHORT).show()
+                        startActivity(CarchiveActivity.newInstance(requireContext()))
+                        requireActivity().finish()
+                    }
+                }
+                catch (exception: Exception){
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(requireContext(), "Doslo je do pogreske, probajte ponovno!", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
-
 
         registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)

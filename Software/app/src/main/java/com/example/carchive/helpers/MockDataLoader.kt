@@ -1,16 +1,15 @@
 package com.example.carchive.helpers
 
-import com.example.carchive.entities.Car
+import com.example.carchive.entities.Vehicle
 import com.example.carchive.entities.Contact
-import com.example.carchive.R
 import com.example.carchive.entities.User
 
 object MockDataLoader {
 
-    val cars: MutableList<Car> = mutableListOf(
-        Car(
+    val vehicles: MutableList<Vehicle> = mutableListOf(
+        Vehicle(
             id = 1,
-            marka = "BMW",
+            brand = "BMW",
             model = "320d",
             type = 2.0,
             productionYear = "2018",
@@ -19,14 +18,14 @@ object MockDataLoader {
             location = "Varaždin",
             motor = "Dizel",
             enginePower = 190,
-            gearbox = "Automatski",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = false,
             price = 20000.0,
             imageCar = "https://example.com/images/bmw_320d.jpg"
         ),
-        Car(
+        Vehicle(
             id = 2,
-            marka = "Audi",
+            brand = "Audi",
             model = "A4",
             type = 1.8,
             productionYear = "2017",
@@ -35,14 +34,14 @@ object MockDataLoader {
             location = "Ludbreg",
             motor = "Benzin",
             enginePower = 150,
-            gearbox = "Manualni",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = true,
             price = 300.0,
             imageCar = "https://example.com/images/audi_a4.jpg"
         ),
-        Car(
+        Vehicle(
             id = 3,
-            marka = "Mercedes",
+            brand = "Mercedes",
             model = "C200",
             type = 2.0,
             productionYear = "2019",
@@ -51,14 +50,14 @@ object MockDataLoader {
             location = "Zagreb",
             motor = "Dizel",
             enginePower = 160,
-            gearbox = "Automatski",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = false,
             price = 25000.0,
             imageCar = "https://example.com/images/mercedes_c200.jpg"
         ),
-        Car(
+        Vehicle(
             id = 4,
-            marka = "Volkswagen",
+            brand = "Volkswagen",
             model = "Golf 7",
             type = 1.6,
             productionYear = "2016",
@@ -67,14 +66,14 @@ object MockDataLoader {
             location = "Dubrovnik",
             motor = "Dizel",
             enginePower = 115,
-            gearbox = "Manualni",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = true,
             price = 280.0,
             imageCar = "https://example.com/images/vw_golf7.jpg"
         ),
-        Car(
+        Vehicle(
             id = 5,
-            marka = "Toyota",
+            brand = "Toyota",
             model = "Corolla",
             type = 1.8,
             productionYear = "2020",
@@ -83,14 +82,14 @@ object MockDataLoader {
             location = "Split",
             motor = "Hibrid",
             enginePower = 122,
-            gearbox = "Automatski",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = false,
             price = 22000.0,
             imageCar = "https://example.com/images/toyota_corolla.jpg"
         ),
-        Car(
+        Vehicle(
             id = 6,
-            marka = "Renault",
+            brand = "Renault",
             model = "Clio",
             type = 1.2,
             productionYear = "2015",
@@ -99,14 +98,14 @@ object MockDataLoader {
             location = "Osijek",
             motor = "Benzin",
             enginePower = 90,
-            gearbox = "Manualni",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = true,
             price = 250.0,
             imageCar = "https://example.com/images/renault_clio.jpg"
         ),
-        Car(
+        Vehicle(
             id = 7,
-            marka = "Ford",
+            brand = "Ford",
             model = "Focus",
             type = 1.5,
             productionYear = "2018",
@@ -115,14 +114,14 @@ object MockDataLoader {
             location = "Karlovac",
             motor = "Dizel",
             enginePower = 120,
-            gearbox = "Manualni",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = false,
             price = 18000.0,
             imageCar = "https://example.com/images/ford_focus.jpg"
         ),
-        Car(
+        Vehicle(
             id = 8,
-            marka = "Opel",
+            brand = "Opel",
             model = "Astra",
             type = 1.4,
             productionYear = "2017",
@@ -131,14 +130,14 @@ object MockDataLoader {
             location = "Rijeka",
             motor = "Benzin",
             enginePower = 140,
-            gearbox = "Manualni",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = true,
             price = 260.0,
             imageCar = "https://example.com/images/opel_astra.jpg"
         ),
-        Car(
+        Vehicle(
             id = 9,
-            marka = "Honda",
+            brand = "Honda",
             model = "Civic",
             type = 1.6,
             productionYear = "2019",
@@ -147,14 +146,14 @@ object MockDataLoader {
             location = "Zadar",
             motor = "Benzin",
             enginePower = 182,
-            gearbox = "Automatski",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = false,
             price = 21000.0,
             imageCar = "https://example.com/images/honda_civic.jpg"
         ),
-        Car(
+        Vehicle(
             id = 10,
-            marka = "Skoda",
+            brand = "Skoda",
             model = "Octavia",
             type = 2.0,
             productionYear = "2021",
@@ -163,7 +162,7 @@ object MockDataLoader {
             location = "Slavonski Brod",
             motor = "Dizel",
             enginePower = 150,
-            gearbox = "Automatski",
+            gearbox = Vehicle.GearboxType.AUTOMATIC,
             rentSell = true,
             price = 320.0,
             imageCar = "https://example.com/images/skoda_octavia.jpg"
@@ -171,21 +170,21 @@ object MockDataLoader {
     )
 
 
-    fun getMockCarList(): MutableList<Car> {
-        return cars;
+    fun getMockCarList(): MutableList<Vehicle> {
+        return vehicles;
     }
-    fun addCar(car: Car){
-        cars.add(car)
+    fun addCar(vehicle: Vehicle){
+        vehicles.add(vehicle)
     }
 
-    fun editCar(car: Car){
-        val registracija = car.registration
-        val carIndex = cars.indexOfFirst { it.registration == registracija }
-        cars[carIndex] = car
+    fun editCar(vehicle: Vehicle){
+        val registracija = vehicle.registration
+        val carIndex = vehicles.indexOfFirst { it.registration == registracija }
+        vehicles[carIndex] = vehicle
     }
 
     fun deleteCar(carId: Int) {
-        cars.removeAll { it.id == carId }
+        vehicles.removeAll { it.id == carId }
     }
 
     fun getMockContacts() : MutableList<Contact> = mutableListOf(
