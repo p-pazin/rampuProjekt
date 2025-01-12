@@ -41,8 +41,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
-                    android:text="Dodavanje kontakta"
+                    android:text="Ažuriranje kontakta"
                     android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/tv_contacts_add_title"
+                    android:text="@string/ime" />
 
                 <EditText
                     android:id="@+id/et_contact_add_name"
@@ -50,10 +58,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/ime"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_surname"
+                    android:text="@string/prezime" />
 
                 <EditText
                     android:id="@+id/et_contact_add_surname"
@@ -61,10 +76,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/prezime"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_pin"
+                    android:text="@string/oib" />
 
                 <EditText
                     android:id="@+id/et_contact_add_pin"
@@ -72,7 +94,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/oib"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -107,16 +128,31 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/spinner_item" />
 
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_address"
+                    android:text="@string/adresa" />
+
                 <EditText
                     android:id="@+id/et_contact_add_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/adresa"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_phone_number"
+                    android:text="@string/brojTelefona" />
 
                 <EditText
                     android:id="@+id/et_contact_add_phone_number"
@@ -124,10 +160,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/brojTelefona"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_mobile_number"
+                    android:text="@string/brojMobitela" />
 
                 <EditText
                     android:id="@+id/et_contact_add_mobile_number"
@@ -135,10 +178,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/brojMobitela"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_email"
+                    android:text="@string/email" />
 
                 <EditText
                     android:id="@+id/et_contact_add_email"
@@ -146,10 +196,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
-                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contact_add_description"
+                    android:text="@string/Opis" />
 
                 <EditText
                     android:id="@+id/et_contact_add_description"
@@ -158,25 +215,9 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
                     android:gravity="top|left"
-                    android:hint="@string/Opis"
                     android:inputType="textMultiLine"
                     android:minHeight="150dp"
                     android:padding="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="15dp"
-                    android:labelFor="@id/spn_contact_add_activities"
-                    android:text="@string/aktivnost" />
-
-                <Spinner
-                    android:id="@+id/spn_contact_add_activities"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/spinner_item" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -192,21 +233,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/spinner_item" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="15dp"
-                    android:labelFor="@id/swt_contact_add_offer_state"
-                    android:text="@string/ponudaPoslana" />
-
-                <Switch
-                    android:id="@+id/swt_contact_add_offer_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:trackTint="@color/accentColorLight" />
 
                 <Button
                     android:id="@+id/btn_contact_add"

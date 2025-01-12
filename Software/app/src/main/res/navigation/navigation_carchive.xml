@@ -49,17 +49,28 @@
         <action
             android:id="@+id/action_contactsDetailsFragment_to_contactUpdateFragment"
             app:destination="@id/contactUpdateFragment" />
+        <action
+            android:id="@+id/action_contactsDetailsFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactAddFragment"
         android:name="com.example.carchive.fragments.ContactAddFragment"
         android:label="fragment_contact_add"
-        tools:layout="@layout/fragment_contact_add" />
+        tools:layout="@layout/fragment_contact_add" >
+        <action
+            android:id="@+id/action_contactAddFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/contactUpdateFragment"
         android:name="com.example.carchive.fragments.ContactUpdateFragment"
         android:label="fragment_contact_update"
-        tools:layout="@layout/fragment_contact_update" />
+        tools:layout="@layout/fragment_contact_update" >
+        <action
+            android:id="@+id/action_contactUpdateFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/basicInfoFragment"
         android:name="com.example.carchive.fragments.BasicInfoFragment"

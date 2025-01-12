@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.entities.Contact
+import com.example.carchive.entities.Vehicle
 
 class ContactsAdapter(
-    val contactsData : MutableList<Contact>,
+    var contactsData : List<Contact>,
     private val onContactClick:(Contact) -> Unit) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
     inner class ContactViewHolder(view : View) : RecyclerView.ViewHolder(view) {
@@ -41,18 +42,18 @@ class ContactsAdapter(
         fun bind(contact : Contact) {
             contactName.text = contact.firstName + " " + contact.lastName
             ID.text = "ID: " + contact.id
-            contactEmail.text = contact.emailAddress
-            contactPhone.text = contact.mobilePhoneNumber
+            contactEmail.text = contact.email
+            contactPhone.text = contact.mobileNumber
             contactPin.text = contact.pin
-            contactState.text = contact.state
-            contactActivity.text = contact.activity
-            if(contact.state == "Aktivni kontakt") {
+            contactState.text = contact.state.toString()
+            contactActivity.text = "Activity"
+            if(contact.state == 1) {
                 contactStateIcon.setImageResource(R.drawable.ic_aktivan_kontakt)
             }
             else {
                 contactStateIcon.setImageResource(R.drawable.ic_neaktivan_kontakt)
             }
-            if(contact.offerSent) {
+            if(true) {
                 contactOfferSent.text = "Ponuda poslana"
                 contactOfferSentIcon.setImageResource(R.drawable.ic_check)
             }
@@ -85,20 +86,25 @@ class ContactsAdapter(
 
     fun addContact(newContact: Contact) {
         val position = contactsData.size
-        contactsData.add(newContact)
+        //contactsData.add(newContact)
         notifyItemInserted(position)
     }
     fun updateContact(updatedContact: Contact, position: Int) {
         if (position >= 0 && position < contactsData.size) {
-            contactsData[position] = updatedContact
+            //contactsData[position] = updatedContact
             notifyItemChanged(position)
         }
     }
     fun removeContact(contact: Contact) {
         val position = contactsData.indexOf(contact)
         if(position >= 0) {
-            contactsData.removeAt(position)
+            //contactsData.removeAt(position)
             notifyItemRemoved(position)
         }
+    }
+
+    fun updateItems(list: List<Contact>){
+        contactsData = list
+        notifyDataSetChanged()
     }
 }

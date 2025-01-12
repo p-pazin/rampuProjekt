@@ -739,4 +739,9 @@
     <string name="kontaktAzuriran">Kontakt je uspješno ažuriran!</string>
     <string name="potrebnoIspunitiPolja">Potrebno je ispuniti sva tražena polja!</string>
     <string name="kontaktDodan">Kontakt je uspješno dodan!</string>
+    <string name="dogodilaSeGreska">Dogodila se greška!</string>
+    <string name="greskaKodDodavanjaKontakta">Dogodila se greška kod dodavanja kontakta!</string>
+    <string name="greskaKodAzuriranja">Dogodila se greška kod ažuriranja kontakta!</string>
+    <string name="kontaktObrisan">Kontakt uspješno obrisan!</string>
+    <string name="greskaKodBrisanjaKontakta">Dogodila se greška kod brisanja kontakta!</string>
 </resources>
