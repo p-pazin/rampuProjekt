@@ -76,5 +76,9 @@
         android:name="com.example.carchive.fragments.BasicInfoFragment"
         android:label="BasicInfoFragment"
         tools:layout="@layout/fragment_basic_info"/>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.carchive.fragments.StatsFragment"
+        android:label="StatsFragment" />
 
 </navigation>

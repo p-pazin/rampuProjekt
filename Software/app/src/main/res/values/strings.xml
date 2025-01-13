@@ -744,4 +744,22 @@
     <string name="greskaKodAzuriranja">Dogodila se greška kod ažuriranja kontakta!</string>
     <string name="kontaktObrisan">Kontakt uspješno obrisan!</string>
     <string name="greskaKodBrisanjaKontakta">Dogodila se greška kod brisanja kontakta!</string>
+    <string name="dosloJeDoGreske">Došlo je do greške prilikom dohvaćanja podataka!</string>
+    <string name="GodisnjiPodaciKontakti">Broj stvorenih kontakata po mjesecima</string>
+    <string name="GodisnjiPodaciRacuni">Broj stvorenih računa po mjesecima</string>
+    <string name="OmjerAktivnostiKontakta">Omjer aktivnosti kontakata</string>
+    <string name="Sijecanj">Siječanj</string>
+    <string name="Veljaca">Veljača</string>
+    <string name="Ozujak">Ožujak</string>
+    <string name="Travanj">Travanj</string>
+    <string name="Svibanj">Svibanj</string>
+    <string name="Lipanj">Lipanj</string>
+    <string name="Srpanj">Srpanj</string>
+    <string name="Kolovoz">Kolovoz</string>
+    <string name="Rujan">Rujan</string>
+    <string name="Listopad">Listopad</string>
+    <string name="Studeni">Studeni</string>
+    <string name="Prosinac">Prosinac</string>
+    <string name="Mjesec">Mjesec</string>
+    <string name="Vrijednost">Vrijednost</string>
 </resources>

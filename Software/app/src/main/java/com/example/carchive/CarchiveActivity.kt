@@ -70,6 +70,10 @@ class CarchiveActivity : AppCompatActivity() {
                     navController.navigate(R.id.katalogVozilaFragment)
                 }
 
+                R.id.nav_statistics -> {
+                    navController.navigate(R.id.statsFragment)
+                }
+
                 R.id.nav_logout -> {
                     // Clear the token
                     tokenManager.clearToken()
