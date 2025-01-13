@@ -17,25 +17,25 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
-    @POST("api/User/login")
+    @POST("User/login")
     suspend fun login(@Body body: LoginRequestDto): LoginDto
 
-    @GET("api/Vehicle")
+    @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>
 
-    @GET("api/User")
+    @GET("User")
     suspend fun getUser(): UserDto
 
-    @GET("api/Contact")
+    @GET("Contact")
     suspend fun getContacts(): List<ContactDto>
 
-    @POST("api/Contact")
+    @POST("Contact")
     suspend fun postContact(@Body body: ContactDto): Response<Unit>
 
-    @PUT("api/Contact/{id}")
+    @PUT("Contact/{id}")
     suspend fun putContact(@Path("id") id: Int, @Body body: ContactDto): Response<Unit>
 
-    @DELETE("api/Contact/{id}")
+    @DELETE("Contact/{id}")
     suspend fun deleteContact(@Path("id") id: Int): Response<Unit>
 
     @GET("ContactStatus")

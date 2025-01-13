@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.toJavaDuration
 
-private const val  BASE_URL = "https://carchive.online/"
+private const val  BASE_URL = "https://carchive.online/api/"
 class Network {
 
     private val okHttpClient = OkHttpClient().newBuilder()
