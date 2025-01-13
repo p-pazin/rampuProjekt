@@ -38,12 +38,12 @@ interface ApiService {
     @DELETE("Contact/{id}")
     suspend fun deleteContact(@Path("id") id: Int): Response<Unit>
 
-    @GET("ContactStatus")
+    @GET("Stats/ContactStatus")
     suspend fun getContactStatusStats(): ContactStatusStatsDto
 
-    @GET("ContactCreation")
+    @GET("Stats/ContactCreation")
     suspend fun getContactCreationStats(): YearlyInfoDto
 
-    @GET("InvoiceCreation")
+    @GET("Stats/InvoiceCreation")
     suspend fun getInvoiceCreationStats(): YearlyInfoDto
 }
