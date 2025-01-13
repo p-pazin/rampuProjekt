@@ -70,11 +70,12 @@ class CarchiveActivity : AppCompatActivity() {
                     navController.navigate(R.id.katalogVozilaFragment)
                 }
 
-                R.id.nav_logout -> {
-                    // Clear the token
-                    tokenManager.clearToken()
+                R.id.nav_documents -> {
+                    navController.navigate(R.id.offersFragment)
+                }
 
-                    // Switch to the main navigation graph to navigate to loadingFragment
+                R.id.nav_logout -> {
+                    tokenManager.clearToken()
                     switchToMainNavigationGraph()
                 }
             }

@@ -8,25 +8,26 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.adapters.EditInfoPagerAdapter
 import com.example.carchive.databinding.FragmentAddCarBinding
+import com.example.carchive.databinding.FragmentEditCarBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class EditCarFragment : Fragment() {
+class EditVehicleFragment : Fragment() {
 
-    private var _binding: FragmentAddCarBinding? = null
+    private var _binding: FragmentEditCarBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddCarBinding.inflate(inflater, container, false)
+        _binding = FragmentEditCarBinding.inflate(inflater, container, false)
 
         binding.navBackButton.backButton.setOnClickListener(){
             findNavController().popBackStack()
         }
 
-        val viewPager = binding.viewPager
-        val tabLayout = binding.tabLayout
+        val viewPager = binding.editViewPager
+        val tabLayout = binding.editTabLayout
         val adapter = EditInfoPagerAdapter(this, arguments ?: Bundle())
         viewPager.adapter = adapter
 

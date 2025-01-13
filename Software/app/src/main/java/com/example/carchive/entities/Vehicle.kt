@@ -3,18 +3,23 @@ package com.example.carchive.entities
 
 data class Vehicle(
     val id: Int,
-    val brand: String,
-    val model: String,
-    val type: Double,
-    val productionYear: String,
     val registration: String,
-    val kilometers: Int,
-    val location: String,
-    val motor: String,
-    val enginePower: Int,
-    val gearbox: GearboxType,
     val rentSell: Boolean,
+    val brand: String,
+    val kilometers: Int,
+    val productionYear: String,
+    val model: String,
+    val motor: String,
+    val cubicCapacity: Double,
+    val enginePower: Double,
+    val registeredTo: String,
+    val color: String,
+    val driveType: String,
     val price: Double,
+    val gearbox: GearboxType,
+    val type: String,
+    val condition: String,
+    val location: String,
     val imageCar: String
 ){
     enum class GearboxType(val externalName : String){

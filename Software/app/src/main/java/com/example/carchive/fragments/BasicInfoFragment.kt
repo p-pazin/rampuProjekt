@@ -7,17 +7,32 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
+import com.example.carchive.data.dto.VehicleDto
+import com.example.carchive.data.dto.VehicleDtoPost
+import com.example.carchive.data.network.Network
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.helpers.MockDataLoader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.util.Date
+import kotlin.concurrent.thread
 import kotlin.random.Random
 
 class BasicInfoFragment : Fragment() {
 
     private var _binding: FragmentBasicInfoBinding? = null
     private val binding get() = _binding!!
+    private val vmVehicle: VehicleCatalogViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,26 +47,28 @@ class BasicInfoFragment : Fragment() {
         lokacijeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerLokacija.adapter = lokacijeAdapter
 
-        // Spinner za marke
         val spinnerMarke = binding.spMarka
         val marke = resources.getStringArray(R.array.Marke)
 
-        // Adapter za Spinner marke
         val markaAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, marke)
         markaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerMarke.adapter = markaAdapter
 
-        // Spinner za modele (početno prazan)
+        val spinnerGearBox = binding.spGearbox
+        val gearboxOptions = resources.getStringArray(R.array.GearBox)
+
+        val gearBoxAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, gearboxOptions)
+        gearBoxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGearBox.adapter = gearBoxAdapter
+
         val spinnerModeli = binding.spModel
         var modelsArray = emptyArray<String>()
         val modelAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, modelsArray)
         modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerModeli.adapter = modelAdapter
 
-        // Dodavanje onItemSelectedListener za spinner marke
         spinnerMarke.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // Prema odabranoj marki, popuni modele
                 val selectedBrand = marke[position]
                 modelsArray = when (selectedBrand) {
                     "BMW" -> resources.getStringArray(R.array.model_BMW)
@@ -95,7 +112,6 @@ class BasicInfoFragment : Fragment() {
                     "Rivian" -> resources.getStringArray(R.array.model_Rivian)
                     else -> emptyArray()
                 }
-
                 val newModelAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, modelsArray)
                 newModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinnerModeli.adapter = newModelAdapter
@@ -115,8 +131,26 @@ class BasicInfoFragment : Fragment() {
         val etCijena = binding.etCijena
         val rbProdaja = binding.rbSells
         val rbNajam = binding.rbRents
+        val etCubCap = binding.etCubicCapacity
+        val etRegTo = binding.etRegisteredTo
+        val etColor = binding.etColor
+        val etDriveType = binding.etDriveType
+        val etEngPow = binding.etEnginePower
+        val etCond = binding.etCondition
 
-        btnSpremi.setOnClickListener {
+        val error: String = "Pogreška kod dodavanja vozila"
+        vmVehicle.postResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.car_added), Toast.LENGTH_SHORT).show()
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        btnSpremi.setOnClickListener{
             val marka = spinnerMarke.selectedItem.toString()
             val model = spinnerModeli.selectedItem.toString()
             val lokacija = spinnerLokacija.selectedItem.toString()
@@ -129,45 +163,55 @@ class BasicInfoFragment : Fragment() {
             val cijena = etCijena.text.toString()
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
+            val cubCapacity = etCubCap.text.toString()
+            val registeredTo = etRegTo.text.toString()
+            val color = etColor.text.toString()
+            val driveType = etDriveType.text.toString()
+            val engPower = etEngPow.text.toString()
+            val condition = etCond.text.toString()
 
-            if (marka.isNotBlank() &&
-                model.isNotBlank() &&
-                lokacija.isNotBlank() &&
-                tip.isNotBlank() &&
-                godProizv.isNotBlank() &&
-                reg.isNotBlank() &&
-                km.isNotBlank() &&
-                motor.isNotBlank() &&
-                snaga.isNotBlank() &&
-                cijena.isNotBlank() &&
-                (prodaja || najam)
-            ) {
-                val rentSell = prodaja
-
-                val vehicle = Vehicle(
-                    id = Random.nextInt(1000, 9999),
-                    brand = marka,
-                    model = model,
-                    type = tip.toDoubleOrNull() ?: 0.0,
-                    productionYear = godProizv,
+        if (marka.isNotBlank() &&
+            model.isNotBlank() &&
+            lokacija.isNotBlank() &&
+            tip.isNotBlank() &&
+            godProizv.isNotBlank() &&
+            reg.isNotBlank() &&
+            km.isNotBlank() &&
+            motor.isNotBlank() &&
+            snaga.isNotBlank() &&
+            cijena.isNotBlank() &&
+            cubCapacity.isNotBlank() &&
+            registeredTo.isNotBlank() &&
+            color.isNotBlank() &&
+            driveType.isNotBlank() &&
+            engPower.isNotBlank() &&
+            condition.isNotBlank() &&
+            (prodaja || najam)
+        ) {
+                val vehicle = VehicleDtoPost(
+                    brand = spinnerMarke.selectedItem.toString(),
+                    model = spinnerModeli.selectedItem.toString(),
+                    type = tip,
+                    productionYear = godProizv.toInt(),
                     registration = reg,
-                    kilometers = km.toIntOrNull() ?: 0,
-                    location = lokacija,
-                    motor = motor,
-                    enginePower = snaga.toIntOrNull() ?: 0,
-                    gearbox = Vehicle.GearboxType.MANUAL,
-                    rentSell = rentSell,
-                    price = cijena.toDoubleOrNull() ?: 0.0,
-                    imageCar = ""
+                    mileage = km.toInt(),
+                    engine = etMotor.text.toString(),
+                    enginePower = engPower.toDouble(),
+                    transmissionType = spinnerGearBox.selectedItem.toString(),
+                    state = rbProdaja.isChecked.toString().toIntOrNull() ?: 0,
+                    price = cijena.toDouble(),
+                    color = color,
+                    cubicCapacity = cubCapacity.toDouble(),
+                    registeredTo = registeredTo,
+                    driveType = driveType,
+                    condition = condition
                 )
 
-                MockDataLoader.addCar(vehicle)
-                val message = getString(R.string.car_added)
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            } else {
-                val message = getString(R.string.info_missing)
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            }
+                vmVehicle.postVehicle(vehicle)
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.info_missing), Toast.LENGTH_SHORT).show()
+            }
         }
-
 
         return binding.root
     }

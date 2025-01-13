@@ -11,11 +11,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:id="@+id/drawer_toggle_button"
-        android:background="@color/primaryColorLight"
         android:clickable="true"
         android:contentDescription="@string/toggleGumb"
         android:focusable="true"
-        app:srcCompat="@drawable/ic_menu" />
+        app:srcCompat="@drawable/ic_menu"
+        style="@style/CustomBackground"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

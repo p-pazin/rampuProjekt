@@ -1,6 +1,7 @@
 package com.example.carchive.data.dto
 
 import com.example.carchive.entities.Vehicle
+import kotlin.random.Random
 
 
 data class VehicleDto(
@@ -12,8 +13,27 @@ data class VehicleDto(
     val productionYear: Int,
     val model: String,
     val engine: String,
-    val cubicCapacity: Int,
-    val enginePower: Int,
+    val cubicCapacity: Double,
+    val enginePower: Double,
+    val color: String,
+    val driveType: String,
+    val price: Double,
+    val transmissionType: String,
+    val type: String,
+    val condition: String,
+    val registeredTo: String
+)
+
+data class VehicleDtoPost(
+    val registration: String,
+    val state: Int,
+    val brand: String,
+    val mileage: Int,
+    val productionYear: Int,
+    val model: String,
+    val engine: String,
+    val cubicCapacity: Double,
+    val enginePower: Double,
     val registeredTo: String,
     val color: String,
     val driveType: String,
@@ -28,15 +48,42 @@ fun VehicleDto.toEntity() =
         id = id,
         brand = brand,
         model = model,
-        type = 0.0,
-        productionYear = "",
+        type = type,
+        productionYear = productionYear.toString(),
         registration = registration,
         kilometers = mileage,
-        location = "",
-        motor = "",
+        color = color,
+        motor = engine,
         enginePower = enginePower,
         gearbox = Vehicle.GearboxType.getByExternalName(transmissionType),
-        rentSell = true,
+        rentSell = state == 1,
         price = price,
-        imageCar = ""
+        imageCar = "",
+        cubicCapacity = cubicCapacity,
+        registeredTo = registeredTo,
+        driveType = driveType,
+        condition = condition,
+        location = ""
     )
+
+fun Vehicle.toDto() =
+    VehicleDto(
+        id = id,
+        registration = registration,
+        state = if (rentSell) 1 else 0,
+        brand = brand,
+        mileage = kilometers,
+        productionYear = productionYear.toIntOrNull() ?: 0,
+        model = model,
+        engine = motor,
+        cubicCapacity = cubicCapacity,
+        enginePower = enginePower,
+        color = color,
+        driveType = driveType,
+        price = price,
+        transmissionType = gearbox.externalName,
+        type = type.toString(),
+        condition = condition,
+        registeredTo = registeredTo
+    )
+

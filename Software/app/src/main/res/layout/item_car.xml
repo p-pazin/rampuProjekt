@@ -33,12 +33,22 @@
 
             <TextView
                 android:id="@+id/textModel"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textColor="?attr/colorOnBackground"
                 android:fontFamily="@font/inter_regular"
                 android:text="Model" />
+
+            <TextView
+                android:id="@+id/vehicleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="0dp"
+                android:text="TextView"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

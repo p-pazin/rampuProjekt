@@ -12,5 +12,9 @@
         <item name="android:statusBarColor">@color/accentColorLight</item>
     </style>
 
+    <style name="CustomBackground">
+        <item name="android:background">@color/accentColorLight</item>
+    </style>
+
     <style name="Theme.Carchive" parent="Base.Theme.Carchive" />
 </resources>

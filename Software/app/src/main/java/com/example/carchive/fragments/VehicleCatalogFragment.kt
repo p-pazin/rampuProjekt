@@ -1,6 +1,5 @@
 package com.example.carchive.fragments
 
-import CarAdapter
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,30 +11,25 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
-import com.example.carchive.data.network.Network
-import com.example.carchive.data.repositories.VehicleRepository
+import com.example.carchive.adapters.CarAdapter
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Vehicle
-import com.example.carchive.helpers.MockDataLoader
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class CarCatalogFragment : Fragment() {
+class VehicleCatalogFragment : Fragment() {
 
-    private  val viewModel : CarCatalogViewModel by viewModels()
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var toggleButton: ImageButton
-    private val mockCars = MockDataLoader.getMockCarList()
+    private  val viewModel : VehicleCatalogViewModel by viewModels()
     private var _binding: FragmentCarCatalogBinding? = null
     private val binding get() = _binding!!
-    private val katalog = MockDataLoader.getMockCarList()
+    private val vmVehicle: VehicleCatalogViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -43,6 +37,7 @@ class CarCatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCarCatalogBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -51,18 +46,38 @@ class CarCatalogFragment : Fragment() {
         val btnDodaj = binding.sidebarLogo.btnDodaj
 
 
-
         binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
         binding.recyclerViewCars.layoutManager = LinearLayoutManager(requireContext())
         val adapter = CarAdapter(
-            mockCars,
+            emptyList(),
             { anchorView, car ->
                 showCarOptionsPopup(anchorView, car)
             },
-            { anchorView, car ->
-                findNavController().navigate(R.id.action_katalogVozilaFragment_to_basicInfoFragment)
+            { _, vehicle ->
+                val bundle = Bundle()
+
+                bundle.putInt("id", vehicle.id)
+                bundle.putString("marka", vehicle.brand)
+                bundle.putString("model", vehicle.model)
+                bundle.putString("type", vehicle.type)
+                bundle.putString("productionYear", vehicle.productionYear)
+                bundle.putString("registration", vehicle.registration)
+                bundle.putInt("kilometers", vehicle.kilometers)
+                bundle.putString("location", vehicle.location)
+                bundle.putString("motor", vehicle.motor)
+                bundle.putDouble("enginePower", vehicle.enginePower)
+                bundle.putString("gearbox", vehicle.gearbox.externalName)
+                bundle.putBoolean("rentSell", vehicle.rentSell)
+                bundle.putDouble("price", vehicle.price)
+                bundle.putString("imageCar", vehicle.imageCar)
+                bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)
+                bundle.putString("color", vehicle.color)
+                bundle.putString("driveType", vehicle.driveType)
+                bundle.putString("condition", vehicle.condition)
+                bundle.putString("registeredTo", vehicle.registeredTo)
+                findNavController().navigate(R.id.action_katalogVozilaFragment_to_vehicleDetailsFragment, bundle)
             }
         )
         binding.recyclerViewCars.adapter = adapter
@@ -102,6 +117,29 @@ class CarCatalogFragment : Fragment() {
         )
 
         popupView.findViewById<View>(R.id.btnPrikazi).setOnClickListener {
+            val bundle = Bundle()
+
+            bundle.putInt("id", vehicle.id)
+            bundle.putString("marka", vehicle.brand)
+            bundle.putString("model", vehicle.model)
+            bundle.putString("type", vehicle.type)
+            bundle.putString("productionYear", vehicle.productionYear)
+            bundle.putString("registration", vehicle.registration)
+            bundle.putInt("kilometers", vehicle.kilometers)
+            bundle.putString("location", vehicle.location)
+            bundle.putString("motor", vehicle.motor)
+            bundle.putDouble("enginePower", vehicle.enginePower)
+            bundle.putString("gearbox", vehicle.gearbox.externalName)
+            bundle.putBoolean("rentSell", vehicle.rentSell)
+            bundle.putDouble("price", vehicle.price)
+            bundle.putString("imageCar", vehicle.imageCar)
+            bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)
+            bundle.putString("color", vehicle.color)
+            bundle.putString("driveType", vehicle.driveType)
+            bundle.putString("condition", vehicle.condition)
+            bundle.putString("registeredTo", vehicle.registeredTo)
+
+            findNavController().navigate(R.id.action_katalogVozilaFragment_to_vehicleDetailsFragment, bundle)
             popupWindow.dismiss()
         }
 
@@ -122,33 +160,34 @@ class CarCatalogFragment : Fragment() {
         }
 
         popupView.findViewById<View>(R.id.btnUredi).setOnClickListener {
-            Toast.makeText(requireContext(), "Uredi vozilo clicked", Toast.LENGTH_SHORT).show()
             popupWindow.dismiss()
 
-            val fragment = EditCarFragment()
+            val fragment = EditVehicleFragment()
             val bundle = Bundle()
 
             bundle.putInt("id", vehicle.id)
             bundle.putString("marka", vehicle.brand)
             bundle.putString("model", vehicle.model)
-            bundle.putDouble("type", vehicle.type)
+            bundle.putString("type", vehicle.type)
             bundle.putString("productionYear", vehicle.productionYear)
             bundle.putString("registration", vehicle.registration)
             bundle.putInt("kilometers", vehicle.kilometers)
             bundle.putString("location", vehicle.location)
             bundle.putString("motor", vehicle.motor)
-            bundle.putInt("enginePower", vehicle.enginePower)
+            bundle.putDouble("enginePower", vehicle.enginePower)
             bundle.putString("gearbox", vehicle.gearbox.externalName)
             bundle.putBoolean("rentSell", vehicle.rentSell)
             bundle.putDouble("price", vehicle.price)
             bundle.putString("imageCar", vehicle.imageCar)
+            bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)
+            bundle.putString("color", vehicle.color)
+            bundle.putString("driveType", vehicle.driveType)
+            bundle.putString("condition", vehicle.condition)
+            bundle.putString("registeredTo", vehicle.registeredTo)
 
             fragment.arguments = bundle
 
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_katalogVozilaFragment_to_editVehicleFragment, bundle)
         }
 
 
@@ -171,23 +210,27 @@ class CarCatalogFragment : Fragment() {
         val btnOtkazi = deletionWarning.findViewById<ImageButton>(R.id.btnOtkazi)
         val btnOdustani = deletionWarning.findViewById<Button>(R.id.btnOdustani)
 
-        // Potvrda brisanja
-        btnPotvrdi.setOnClickListener {
-            MockDataLoader.deleteCar(carId) // Poziv funkcije za brisanje automobila
-            val message = getString(R.string.car_deleted)
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-            alertDialog.dismiss()
-
-            // Osvježava RecyclerView nakon brisanja
-            binding.recyclerViewCars.adapter?.notifyDataSetChanged()
+        val error: String = "Pogreška kod brisanja vozila"
+        vmVehicle.deleteResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.car_deleted), Toast.LENGTH_SHORT).show()
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
-        // Otkazivanje dijaloga
+        btnPotvrdi.setOnClickListener {
+            vmVehicle.deleteVehicle(carId)
+            alertDialog.dismiss()
+        }
+
         btnOtkazi.setOnClickListener {
             alertDialog.dismiss()
         }
 
-        // Otkazivanje dijaloga preko "Odustani" gumba
         btnOdustani.setOnClickListener {
             alertDialog.dismiss()
         }

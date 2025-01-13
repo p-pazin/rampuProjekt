@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/katalogVozilaFragment"
-        android:name="com.example.carchive.fragments.CarCatalogFragment"
+        android:name="com.example.carchive.fragments.VehicleCatalogFragment"
         android:label="KatalogVozilaFragment"
         tools:layout="@layout/fragment_car_catalog">
         <action
@@ -18,12 +18,26 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
-            android:id="@+id/action_katalogVozilaFragment_to_basicInfoFragment"
-            app:destination="@id/basicInfoFragment" />
+            android:id="@+id/action_katalogVozilaFragment_to_editVehicleFragment"
+            app:destination="@id/editVehicleFragment" />
+        <action
+            android:id="@+id/action_katalogVozilaFragment_to_urediVoziloFragment"
+            app:destination="@+id/editBasicInfoFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_katalogVozilaFragment_to_vehicleDetailsFragment"
+            app:destination="@+id/vehicleDetailsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>/>
     </fragment>
     <fragment
         android:id="@+id/dodajVoziloFragment"
-        android:name="com.example.carchive.fragments.AddCarFragment"
+        android:name="com.example.carchive.fragments.AddVehicleFragment"
         android:label="DodajVoziloFragment"
         tools:layout="@layout/fragment_add_car"/>
     <fragment
@@ -64,6 +78,52 @@
         android:id="@+id/basicInfoFragment"
         android:name="com.example.carchive.fragments.BasicInfoFragment"
         android:label="BasicInfoFragment"
-        tools:layout="@layout/fragment_basic_info"/>
-
+        tools:layout="@layout/fragment_basic_info">
+        <action
+            android:id="@+id/action_basicInfoFragment_to_vehicleCatalogFragment"
+            app:destination="@+id/katalogVozilaFragment"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/editBasicInfoFragment"
+        android:name="com.example.carchive.fragments.EditBasicInfoFragment"
+        android:label="EditBasicInfoFragment"
+        tools:layout="@layout/fragment_edit_basic_info"/>
+    <fragment
+        android:id="@+id/editVehicleFragment"
+        android:name="com.example.carchive.fragments.EditVehicleFragment"
+        android:label="EditVehicleFragment"
+        tools:layout="@layout/fragment_add_car"/>
+    <fragment
+        android:id="@+id/vehicleDetailsFragment"
+        android:name="com.example.carchive.fragments.VehicleDetailsFragment"
+        android:label="VehicleDetailsFragment"
+        tools:layout="@layout/fragment_vehicle_details">
+        <action
+            android:id="@+id/action_vehicleDetailsFragment_to_editVehicleFragment"
+            app:destination="@+id/editVehicleFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offersFragment"
+        android:name="com.example.carchive.fragments.OffersFragment"
+        android:label="OffersFragment"
+        tools:layout="fragment_offers">
+        <action
+            android:id="@+id/action_offersFragment_to_offerDetailsFragment"
+            app:destination="@id/offersDetailsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offersDetailsFragment"
+        android:name="com.example.carchive.fragments.OfferDetailsFragment"
+        android:label="OfferDetailsFragment"
+        tools:layout="fragment_offer_details">
+    </fragment>
 </navigation>

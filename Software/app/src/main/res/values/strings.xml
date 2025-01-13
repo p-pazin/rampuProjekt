@@ -72,6 +72,14 @@
     <string name="car_deleted">Automobil je obrisan iz kataloga.</string>
     <string name="car_edited">Informacije o automobilu su ažurirane.</string>
     <string name="info_missing">Sva polja su obavezna!</string>
+    <string name="edit_car">Uredi vozilo</string>
+    <string name="delete_car">Obriši vozilo</string>
+    <string name="create_offer">Stvori ponudu</string>
+
+    <string-array name="GearBox">
+        <item>Manual</item>
+        <item>Automatic</item>
+    </string-array>
 
     <string-array name="Marke">
         <item>BMW</item>

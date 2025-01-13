@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_marka"
+                    android:id="@+id/edit_tv_marka"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -31,16 +31,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/sp_marka"
+                    android:id="@+id/edit_sp_marka"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_marka" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_marka" />
 
                 <TextView
-                    android:id="@+id/tv_model"
+                    android:id="@+id/edit_tv_model"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -48,19 +48,19 @@
                     android:text="Model"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_marka" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_sp_marka" />
 
                 <Spinner
-                    android:id="@+id/sp_model"
+                    android:id="@+id/edit_sp_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_model" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_model" />
 
                 <TextView
-                    android:id="@+id/tv_tip"
+                    android:id="@+id/edit_tv_tip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -69,18 +69,18 @@
                     android:text="Tip"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_model" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_sp_model" />
 
                 <Spinner
-                    android:id="@+id/sp_lokacija"
+                    android:id="@+id/edit_sp_lokacija"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_lokacija" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_lokacija" />
 
                 <EditText
-                    android:id="@+id/et_tip"
+                    android:id="@+id/edit_et_tip"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -91,10 +91,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_tip" />
 
                 <TextView
-                    android:id="@+id/tv_godina_proizvodnje"
+                    android:id="@+id/edit_tv_godina_proizvodnje"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -103,10 +103,10 @@
                     android:text="Godina proizvodnje"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_tip" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_tip" />
 
                 <EditText
-                    android:id="@+id/et_god_proizv"
+                    android:id="@+id/edit_et_god_proizv"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -117,10 +117,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_godina_proizvodnje" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_godina_proizvodnje" />
 
                 <TextView
-                    android:id="@+id/tv_registracija"
+                    android:id="@+id/edit_tv_registracija"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -129,10 +129,10 @@
                     android:text="Registracija"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_god_proizv" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_god_proizv" />
 
                 <EditText
-                    android:id="@+id/et_registracija"
+                    android:id="@+id/edit_et_registracija"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -143,10 +143,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_registracija" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_registracija" />
 
                 <TextView
-                    android:id="@+id/tv_kilometri"
+                    android:id="@+id/edit_tv_kilometri"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -155,10 +155,10 @@
                     android:textColor="?attr/colorOnBackground"
                     android:text="Prijeđeni kilometri"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_registracija" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_registracija" />
 
                 <TextView
-                    android:id="@+id/tv_motor"
+                    android:id="@+id/edit_tv_motor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -167,10 +167,10 @@
                     android:text="Motor"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_gearbox" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_sp_gearbox" />
 
                 <EditText
-                    android:id="@+id/et_motor"
+                    android:id="@+id/edit_et_motor"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -181,10 +181,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_motor" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_motor" />
 
                 <EditText
-                    android:id="@+id/et_enginePower"
+                    android:id="@+id/edit_et_enginePower"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -195,10 +195,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_engine_power" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_engine_power" />
 
                 <TextView
-                    android:id="@+id/tv_engine_power"
+                    android:id="@+id/edit_tv_engine_power"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -207,15 +207,15 @@
                     android:text="Snaga motora"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_motor" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_motor" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroupOptions"
+                    android:id="@+id/edit_radioGroupOptions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_lokacija">
+                    app:layout_constraintTop_toBottomOf="@+id/edit_sp_lokacija">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -224,7 +224,7 @@
                         android:layout_marginBottom="10dp">
 
                         <RadioButton
-                            android:id="@+id/rb_sells"
+                            android:id="@+id/edit_rb_sells"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:focusedSearchResultHighlightColor="@color/accentColorLight"
@@ -246,7 +246,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <RadioButton
-                            android:id="@+id/rb_rents"
+                            android:id="@+id/edit_rb_rents"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:focusedSearchResultHighlightColor="@color/accentColorLight"
@@ -261,7 +261,7 @@
                 </RadioGroup>
 
                 <TextView
-                    android:id="@+id/tv_cijena"
+                    android:id="@+id/edit_tv_cijena"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -270,10 +270,10 @@
                     android:text="Cijena"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroupOptions" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_radioGroupOptions" />
 
                 <EditText
-                    android:id="@+id/et_cijena"
+                    android:id="@+id/edit_et_cijena"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -284,10 +284,10 @@
                     android:minHeight="48dp"
                     android:paddingLeft="7dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cijena" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_cijena" />
 
                 <EditText
-                    android:id="@+id/et_kilometri"
+                    android:id="@+id/edit_et_kilometri"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -298,10 +298,10 @@
                     android:minHeight="48dp"
                     android:paddingLeft="7dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_kilometri" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_kilometri" />
 
                 <TextView
-                    android:id="@+id/tv_cubic_capacity"
+                    android:id="@+id/edit_tv_cubic_capacity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -309,10 +309,10 @@
                     android:text="Kubikaža"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_kilometri" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_kilometri" />
 
                 <EditText
-                    android:id="@+id/et_cubic_capacity"
+                    android:id="@+id/edit_et_cubic_capacity"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -323,10 +323,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cubic_capacity" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_cubic_capacity" />
 
                 <TextView
-                    android:id="@+id/tv_registered_to"
+                    android:id="@+id/edit_tv_registered_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -334,10 +334,10 @@
                     android:text="Registrirano do"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_cubic_capacity" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_cubic_capacity" />
 
                 <EditText
-                    android:id="@+id/et_registered_to"
+                    android:id="@+id/edit_et_registered_to"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -348,10 +348,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_registered_to" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_registered_to" />
 
                 <TextView
-                    android:id="@+id/tv_color"
+                    android:id="@+id/edit_tv_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -359,10 +359,10 @@
                     android:text="Boja"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_registered_to" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_registered_to" />
 
                 <EditText
-                    android:id="@+id/et_color"
+                    android:id="@+id/edit_et_color"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -373,10 +373,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_color" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_color" />
 
                 <TextView
-                    android:id="@+id/tv_drive_type"
+                    android:id="@+id/edit_tv_drive_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -384,10 +384,10 @@
                     android:text="Pogon"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_color" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_color" />
 
                 <EditText
-                    android:id="@+id/et_drive_type"
+                    android:id="@+id/edit_et_drive_type"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -398,10 +398,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_drive_type" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_drive_type" />
 
                 <TextView
-                    android:id="@+id/tv_gearbox"
+                    android:id="@+id/edit_tv_gearbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -409,19 +409,19 @@
                     android:text="Mjenjač"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_drive_type" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_drive_type" />
 
                 <Spinner
-                    android:id="@+id/sp_gearbox"
+                    android:id="@+id/edit_sp_gearbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_gearbox" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_gearbox" />
 
                 <TextView
-                    android:id="@+id/tv_condition"
+                    android:id="@+id/edit_tv_condition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -429,10 +429,10 @@
                     android:text="Stanje"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_enginePower" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_enginePower" />
 
                 <EditText
-                    android:id="@+id/et_condition"
+                    android:id="@+id/edit_et_condition"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
@@ -443,10 +443,10 @@
                     android:paddingLeft="7dp"
                     android:textColor="@color/textColorLight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_tv_condition" />
 
                 <TextView
-                    android:id="@+id/tv_lokacija"
+                    android:id="@+id/edit_tv_lokacija"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -455,7 +455,7 @@
                     android:textColor="?attr/colorOnBackground"
                     android:text="Lokacija"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_condition" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_et_condition" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -464,7 +464,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/btnSpremi"
+                    android:id="@+id/editBtnSpremi"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

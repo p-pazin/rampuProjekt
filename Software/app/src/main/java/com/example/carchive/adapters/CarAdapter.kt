@@ -1,3 +1,5 @@
+package com.example.carchive.adapters
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -5,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.entities.Vehicle
@@ -26,23 +29,23 @@ class CarAdapter(
         private val textSellsRents: TextView = itemView.findViewById(R.id.textSellsRents)
         private val textPrice: TextView = itemView.findViewById(R.id.textPrice)
         private val imgBtnDetails: ImageView = itemView.findViewById(R.id.imgBtnDetails)
+        private val vehicleId: TextView = itemView.findViewById(R.id.vehicleId)
 
         @SuppressLint("SetTextI18n")
         fun bind(vehicle: Vehicle) {
-            // Set text fields
             textModel.text = "${vehicle.brand} ${vehicle.model}"
             textRegistration.text = vehicle.registration
             textLocation.text = vehicle.location
             textKilometers.text = "${vehicle.kilometers} km"
             textSellsRents.text = if (vehicle.rentSell) "U prodaji" else "U najmu"
             textPrice.text = "$${vehicle.price}"
+            vehicleId.text = "${vehicle.id}"
 
-            // Set up listener for imgBtnDetails to pass both view and car to the callback
             imgBtnDetails.setOnClickListener { view ->
-                onDetailsClick(view, vehicle) // Pass both anchor view and car to the callback
+                onDetailsClick(view, vehicle)
             }
             carCard.setOnClickListener { view ->
-                onCarCardClick(view, vehicle) // Pass both anchor view and car to the callback
+                onCarCardClick(view, vehicle)
             }
         }
     }
@@ -58,7 +61,22 @@ class CarAdapter(
         holder.bind(vehicles[position])
     }
 
-    fun updateItems(list: List<Vehicle>){
-        vehicles = list
+    fun updateItems(newVehicles: List<Vehicle>) {
+        val diffCallback = object : DiffUtil.Callback() {
+            override fun getOldListSize() = vehicles.size
+            override fun getNewListSize() = newVehicles.size
+
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return vehicles[oldItemPosition].id == newVehicles[newItemPosition].id
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return vehicles[oldItemPosition] == newVehicles[newItemPosition]
+            }
+        }
+
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        vehicles = newVehicles
+        diffResult.dispatchUpdatesTo(this)
     }
 }

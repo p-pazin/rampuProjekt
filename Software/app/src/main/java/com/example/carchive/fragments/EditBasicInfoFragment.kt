@@ -10,7 +10,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.carchive.data.dto.VehicleDto
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
+import com.example.carchive.databinding.FragmentEditBasicInfoBinding
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.helpers.MockDataLoader
 import kotlin.random.Random
@@ -18,58 +22,76 @@ import kotlin.random.Random
 
 class EditBasicInfoFragment : Fragment() {
 
-    private var _binding: FragmentBasicInfoBinding? = null
+    private var _binding: FragmentEditBasicInfoBinding? = null
     private val binding get() = _binding!!
+    private val vmVehicle: VehicleCatalogViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
+        _binding = FragmentEditBasicInfoBinding.inflate(inflater, container, false)
 
 
         val args = arguments
+        val vehicleId = args!!.getInt("id")
         val marka = args?.getString("marka") ?: ""
         val model = args?.getString("model") ?: ""
-        val tip = args?.getDouble("type") ?: 0.0
+        val tip = args?.getString("type") ?: 0.0
         val productionYear = args?.getString("productionYear") ?: ""
         val registration = args?.getString("registration") ?: ""
         val kilometers = args?.getInt("kilometers") ?: 0
         val location = args?.getString("location") ?: ""
         val motor = args?.getString("motor") ?: ""
-        val enginePower = args?.getInt("enginePower") ?: 0
+        val enginePower = args?.getDouble("enginePower") ?: 0
         val gearbox = args?.getString("gearbox") ?: ""
         val rentSell = args?.getBoolean("rentSell") ?: false
         val price = args?.getDouble("price") ?: 0.0
+        val cubCapacity = args?.getDouble("cubicCapacity") ?: 0
+        val registeredTo = args?.getString("registeredTo") ?: ""
+        val color = args?.getString("color") ?: ""
+        val driveType = args?.getString("driveType") ?: ""
+        val condition = args?.getString("condition") ?: ""
 
-        populateSpinners(marka, model, location)
+        populateSpinners(marka, model, location, gearbox)
 
-        binding.spMarka.setSelection(getIndex(binding.spMarka, marka))
-        binding.spModel.setSelection(getIndex(binding.spModel, model))
-        binding.etTip.setText(tip.toString())
-        binding.etGodProizv.setText(productionYear)
-        binding.etRegistracija.setText(registration)
-        binding.etKilometri.setText(kilometers.toString())
-        binding.spLokacija.setSelection(getIndex(binding.spLokacija, location))
-        binding.etMotor.setText(motor)
-        binding.etEnginePower.setText(enginePower.toString())
-        binding.rbSells.isChecked = rentSell
-        binding.rbRents.isChecked = !rentSell
-        binding.etCijena.setText(price.toString())
+        binding.editSpMarka.setSelection(getIndex(binding.editSpMarka, marka))
+        binding.editSpModel.setSelection(getIndex(binding.editSpModel, model))
+        binding.editEtTip.setText(tip.toString())
+        binding.editEtGodProizv.setText(productionYear)
+        binding.editEtRegistracija.setText(registration)
+        binding.editEtKilometri.setText(kilometers.toString())
+        binding.editSpLokacija.setSelection(getIndex(binding.editSpLokacija, location))
+        binding.editEtMotor.setText(motor)
+        binding.editEtEnginePower.setText(enginePower.toString())
+        binding.editRbSells.isChecked = rentSell
+        binding.editRbRents.isChecked = !rentSell
+        binding.editEtCijena.setText(price.toString())
+        binding.editEtRegisteredTo.setText(registeredTo)
+        binding.editEtColor.setText(color)
+        binding.editEtDriveType.setText(driveType)
+        binding.editEtCubicCapacity.setText(cubCapacity.toString())
+        binding.editEtCondition.setText(condition)
 
-        val btnSpremi = binding.btnSpremi
-        val spinnerModeli = binding.spModel
-        val spinnerMarke = binding.spMarka
-        val spinnerLokacija = binding.spLokacija
-        val etTip = binding.etTip
-        val etGodProizv = binding.etGodProizv
-        val etReg = binding.etRegistracija
-        val etKm = binding.etKilometri
-        val etMotor = binding.etMotor
-        val etSnaga = binding.etEnginePower
-        val etCijena = binding.etCijena
-        val rbProdaja = binding.rbSells
-        val rbNajam = binding.rbRents
+        val btnSpremi = binding.editBtnSpremi
+        val spinnerModeli = binding.editSpModel
+        val spinnerMarke = binding.editSpMarka
+        val spinnerLokacija = binding.editSpLokacija
+        val etTip = binding.editEtTip
+        val etGodProizv = binding.editEtGodProizv
+        val etReg = binding.editEtRegistracija
+        val etKm = binding.editEtKilometri
+        val etMotor = binding.editEtMotor
+        val etSnaga = binding.editEtEnginePower
+        val etCijena = binding.editEtCijena
+        val rbProdaja = binding.editRbSells
+        val rbNajam = binding.editRbRents
+        val etRegTo = binding.editEtRegisteredTo
+        val etColor = binding.editEtColor
+        val etDriveType = binding.editEtDriveType
+        val etCubCap = binding.editEtCubicCapacity
+        val etCondition = binding.editEtCondition
+
 
         btnSpremi.setOnClickListener {
             val marka = spinnerMarke.selectedItem.toString()
@@ -84,6 +106,11 @@ class EditBasicInfoFragment : Fragment() {
             val cijena = etCijena.text.toString()
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
+            val regTo = etRegTo.text.toString()
+            val color = etColor.text.toString()
+            val driveType = etDriveType.text.toString()
+            val cubicCapacity = etCubCap.text.toString()
+            val condition = etCondition.text.toString()
 
             if (marka.isNotBlank() &&
                 model.isNotBlank() &&
@@ -97,52 +124,66 @@ class EditBasicInfoFragment : Fragment() {
                 cijena.isNotBlank() &&
                 (prodaja || najam)
             ) {
-                val rentSell = prodaja
-
-                val vehicle = Vehicle(
-                    id = Random.nextInt(1000, 9999),
+                val vehicle = VehicleDto(
+                    id = vehicleId,
                     brand = marka,
                     model = model,
-                    type = tip.toDoubleOrNull() ?: 0.0,
-                    productionYear = godProizv,
+                    type = etTip.text.toString(),
+                    productionYear = etGodProizv.text.toString().toIntOrNull() ?: 0,
                     registration = reg,
-                    kilometers = km.toIntOrNull() ?: 0,
-                    location = lokacija,
-                    motor = motor,
-                    enginePower = snaga.toIntOrNull() ?: 0,
-                    gearbox = Vehicle.GearboxType.MANUAL,
-                    rentSell = rentSell,
-                    price = cijena.toDoubleOrNull() ?: 0.0,
-                    imageCar = ""
+                    mileage = etKm.text.toString().toIntOrNull() ?: 0,
+                    engine = etMotor.text.toString(),
+                    enginePower = enginePower.toDouble(),
+                    transmissionType = Vehicle.GearboxType.MANUAL.toString(),
+                    state = rbProdaja.isChecked.toString().toIntOrNull() ?: 0,
+                    price = etCijena.text.toString().toDoubleOrNull() ?: 0.0,
+                    color = color,
+                    cubicCapacity = cubicCapacity.toDouble(),
+                    driveType = driveType,
+                    condition = condition,
+                    registeredTo = regTo
                 )
 
-                MockDataLoader.editCar(vehicle)
-                val message = getString(R.string.car_edited)
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                vmVehicle.putVehicle(vehicleId, vehicle)
             } else {
                 val message = getString(R.string.info_missing)
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()            }
         }
 
+        val error: String = "Pogreška kod uređivanja vozila"
+        vmVehicle.putResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.car_edited), Toast.LENGTH_SHORT).show()
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         return binding.root
     }
 
-    private fun populateSpinners(marka: String, model: String, location: String) {
-        // Populate "Lokacija" spinner
+    private fun populateSpinners(marka: String, model: String, location: String, gearBox: String) {
         val lokacije = resources.getStringArray(R.array.gradovi)
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
-        binding.spLokacija.adapter = lokacijeAdapter
-        binding.spLokacija.setSelection(getIndex(binding.spLokacija, location))
+        binding.editSpLokacija.adapter = lokacijeAdapter
+        binding.editSpLokacija.setSelection(getIndex(binding.editSpLokacija, location))
 
-        // Populate "Marka" spinner
         val marke = resources.getStringArray(R.array.Marke)
         val markaAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, marke)
-        binding.spMarka.adapter = markaAdapter
-        binding.spMarka.setSelection(getIndex(binding.spMarka, marka))
+        binding.editSpMarka.adapter = markaAdapter
+        binding.editSpMarka.setSelection(getIndex(binding.editSpMarka, marka))
+
+        val gearboxOptions = resources.getStringArray(R.array.GearBox)
+        val gearBoxAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, gearboxOptions)
+        binding.editSpGearbox.adapter = gearBoxAdapter
+        binding.editSpGearbox.setSelection(getIndex(binding.editSpGearbox, gearBox))
 
         updateModelSpinner(marka, model)
 
-        binding.spMarka.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.editSpMarka.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedMarka = marke[position]
                 updateModelSpinner(selectedMarka, model)
@@ -197,8 +238,8 @@ class EditBasicInfoFragment : Fragment() {
         }
 
         val modelAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, modelsArray)
-        binding.spModel.adapter = modelAdapter
-        binding.spModel.setSelection(getIndex(binding.spModel, selectedModel))
+        binding.editSpModel.adapter = modelAdapter
+        binding.editSpModel.setSelection(getIndex(binding.editSpModel, selectedModel))
     }
 
     private fun getIndex(spinner: Spinner, value: String): Int {
