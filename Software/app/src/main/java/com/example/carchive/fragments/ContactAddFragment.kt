@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
@@ -21,9 +23,14 @@ import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.helpers.MockDataLoader
+import com.example.carchive.data.network.Result
+import com.example.carchive.data.network.Result.Success
+import com.example.carchive.data.network.Result.Error
+import kotlinx.coroutines.launch
 
 class ContactAddFragment : Fragment() {
 
+    private val viewModel : ContactsViewModel by viewModels()
     private lateinit var etName: EditText
     private lateinit var etSurname: EditText
     private lateinit var etPin: EditText
@@ -37,12 +44,10 @@ class ContactAddFragment : Fragment() {
     private lateinit var spnActivities : Spinner
     private lateinit var spnStates : Spinner
     private lateinit var btnAddContact : Button
-    private lateinit var swtOfferState : Switch
 
     private var _binding: FragmentContactAddBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,45 +74,54 @@ class ContactAddFragment : Fragment() {
         etDescription = binding.etContactAddDescription
         spnCountries = binding.spnContactAddCountries
         spnCities = binding.spnContactAddCities
-        spnActivities = binding.spnContactAddActivities
         spnStates = binding.spnContactAddStates
         btnAddContact = binding.btnContactAdd
 
         val countryList = resources.getStringArray(R.array.drzave).toList()
         val cityList = resources.getStringArray(R.array.gradovi).toList()
-        val activitiesList = resources.getStringArray(R.array.aktivnosti).toList()
         val statesList = resources.getStringArray(R.array.statusi).toList()
 
         populateSpinner(spnCountries, countryList)
         populateSpinner(spnCities, cityList)
-        populateSpinner(spnActivities, activitiesList)
         populateSpinner(spnStates, statesList)
 
         btnAddContact.setOnClickListener {
-            if (validateInputs()) {
-                val newContact = Contact(
-                    id = MockDataLoader.getMockContacts().size + 1,
-                    firstName = etName.text.toString(),
-                    lastName = etSurname.text.toString(),
-                    pin = etPin.text.toString(),
-                    address = etAddress.text.toString(),
-                    phoneNumber = etPhoneNumber.text.toString(),
-                    mobilePhoneNumber = etMobileNumber.text.toString(),
-                    emailAddress = etEmail.text.toString(),
-                    description = etDescription.text.toString(),
-                    country = spnCountries.selectedItem.toString(),
-                    city = spnCities.selectedItem.toString(),
-                    activity = spnActivities.selectedItem.toString(),
-                    state = spnStates.selectedItem.toString(),
-                    offerSent = swtOfferState.isChecked
-                )
-                val contactsAdapter = (recyclerView.adapter as ContactsAdapter)
-                contactsAdapter.addContact(newContact)
-                Toast.makeText(context, getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
-            } else {
+            val firstName = etName.text.toString()
+            val lastName = etSurname.text.toString()
+            val pin = etPin.text.toString()
+            val address = etAddress.text.toString()
+            val telephoneNumber = etPhoneNumber.text.toString()
+            val mobileNumber = etMobileNumber.text.toString()
+            val email = etEmail.text.toString()
+            val description = etDescription.text.toString()
+            val country = spnCountries.selectedItem.toString()
+            val city = spnCities.selectedItem.toString()
+            val state = 1
+
+            if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
+                mobileNumber, email, description)) {
                 Toast.makeText(context, getString(R.string.potrebnoIspunitiPolja), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-        }
+
+
+            viewModel.postContact(
+                firstName, lastName, pin, address, telephoneNumber,
+                mobileNumber, email, description, country, city, state)
+
+            }
+
+            viewModel.postResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
         return binding.root
     }
@@ -120,16 +134,5 @@ class ContactAddFragment : Fragment() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
-    }
-
-    private fun validateInputs(): Boolean {
-        return etName.text.isNotEmpty() &&
-                etSurname.text.isNotEmpty() &&
-                etPin.text.isNotEmpty() &&
-                etAddress.text.isNotEmpty() &&
-                etPhoneNumber.text.isNotEmpty() &&
-                etMobileNumber.text.isNotEmpty() &&
-                etEmail.text.isNotEmpty() &&
-                etDescription.text.isNotEmpty()
     }
 }

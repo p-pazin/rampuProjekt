@@ -1,6 +1,7 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,12 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.adapters.ContactsAdapter
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentContactDetailsBinding
 import com.example.carchive.databinding.FragmentContactUpdateBinding
 import com.example.carchive.entities.Contact
@@ -23,6 +26,7 @@ import com.example.carchive.helpers.MockDataLoader
 
 class ContactUpdateFragment : Fragment() {
 
+    private val viewModel : ContactsViewModel by viewModels()
     private lateinit var etName: EditText
     private lateinit var etSurname: EditText
     private lateinit var etPin: EditText
@@ -33,19 +37,15 @@ class ContactUpdateFragment : Fragment() {
     private lateinit var etDescription: EditText
     private lateinit var spnCountries: Spinner
     private lateinit var spnCities : Spinner
-    private lateinit var spnActivities : Spinner
     private lateinit var spnStates : Spinner
     private lateinit var btnUpdateContact : Button
-    private lateinit var swtOfferState : Switch
     private var _binding: FragmentContactUpdateBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var contact: Contact
-
-    private lateinit var recyclerView: RecyclerView
+    private var contact: Contact? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        contact = arguments?.getSerializable("contact_key") as? Contact
     }
 
     override fun onCreateView(
@@ -68,49 +68,57 @@ class ContactUpdateFragment : Fragment() {
         etDescription = binding.etContactUpdateDescription
         spnCountries = binding.spnContactUpdateCountries
         spnCities = binding.spnContactUpdateCities
-        spnActivities = binding.spnContactUpdateActivities
         spnStates = binding.spnContactUpdateStates
         btnUpdateContact = binding.btnContactUpdate
-        swtOfferState = binding.swtContactUpdateOfferState
 
         val countryList = resources.getStringArray(R.array.drzave).toList()
         val cityList = resources.getStringArray(R.array.gradovi).toList()
-        val activitiesList = resources.getStringArray(R.array.aktivnosti).toList()
         val statesList = resources.getStringArray(R.array.statusi).toList()
 
         populateSpinner(spnCountries, countryList)
         populateSpinner(spnCities, cityList)
-        populateSpinner(spnActivities, activitiesList)
         populateSpinner(spnStates, statesList)
 
-        contact = MockDataLoader.getMockContacts()[0]
         populateInputs()
 
         btnUpdateContact.setOnClickListener {
-            if (validateInputs()) {
-                val updatedContact = Contact(
-                    id = contact.id,
-                    firstName = etName.text.toString(),
-                    lastName = etSurname.text.toString(),
-                    pin = etPin.text.toString(),
-                    address = etAddress.text.toString(),
-                    phoneNumber = etPhoneNumber.text.toString(),
-                    mobilePhoneNumber = etMobileNumber.text.toString(),
-                    emailAddress = etEmail.text.toString(),
-                    description = etDescription.text.toString(),
-                    country = spnCountries.selectedItem.toString(),
-                    city = spnCities.selectedItem.toString(),
-                    activity = spnActivities.selectedItem.toString(),
-                    state = spnStates.selectedItem.toString(),
-                    offerSent = swtOfferState.isChecked
-                )
-                val contactsAdapter = (recyclerView.adapter as ContactsAdapter)
-                contactsAdapter.updateContact(updatedContact, updatedContact.id)
-                Toast.makeText(context, getString(R.string.kontaktAzuriran), Toast.LENGTH_SHORT).show()
-            } else {
+            val firstName = etName.text.toString()
+            val lastName = etSurname.text.toString()
+            val pin = etPin.text.toString()
+            val address = etAddress.text.toString()
+            val telephoneNumber = etPhoneNumber.text.toString()
+            val mobileNumber = etMobileNumber.text.toString()
+            val email = etEmail.text.toString()
+            val description = etDescription.text.toString()
+            val country = spnCountries.selectedItem.toString()
+            val city = spnCities.selectedItem.toString()
+            val state = spnStates.selectedItem.toString()
+
+            if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
+                    mobileNumber, email, description)) {
                 Toast.makeText(context, getString(R.string.potrebnoIspunitiPolja), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-        }
+
+
+            viewModel.putContact(
+                firstName, lastName, pin, address, telephoneNumber,
+                mobileNumber, email, description, country, city, state,
+                contact!!.dateOfCreation, contact!!.id)
+
+            }
+
+            viewModel.putResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        Toast.makeText(requireContext(), getString(R.string.kontaktAzuriran), Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_contactUpdateFragment_to_contactsFragment)
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(requireContext(), getString(R.string.greskaKodAzuriranja), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
         return binding.root
     }
@@ -126,30 +134,19 @@ class ContactUpdateFragment : Fragment() {
         spinner.adapter = adapter
     }
 
-    private fun validateInputs(): Boolean {
-        return etName.text.isNotEmpty() &&
-                etSurname.text.isNotEmpty() &&
-                etPin.text.isNotEmpty() &&
-                etAddress.text.isNotEmpty() &&
-                etPhoneNumber.text.isNotEmpty() &&
-                etMobileNumber.text.isNotEmpty() &&
-                etEmail.text.isNotEmpty() &&
-                etDescription.text.isNotEmpty()
-    }
-
     private fun populateInputs() {
-        etName.setText(contact.firstName)
-        etSurname.setText(contact.lastName)
-        etPin.setText(contact.pin)
-        spnCountries.setSelection(resources.getStringArray(R.array.drzave).toList().indexOfFirst { it == contact.country })
-        spnCities.setSelection(resources.getStringArray(R.array.gradovi).toList().indexOfFirst { it == contact.city })
-        etAddress.setText(contact.address)
-        etPhoneNumber.setText(contact.phoneNumber)
-        etMobileNumber.setText(contact.mobilePhoneNumber)
-        etEmail.setText(contact.emailAddress)
-        etDescription.setText(contact.description)
-        spnActivities.setSelection(resources.getStringArray(R.array.aktivnosti).toList().indexOfFirst { it == contact.activity })
-        spnStates.setSelection(resources.getStringArray(R.array.statusi).toList().indexOfFirst { it == contact.state })
-        swtOfferState.isChecked = contact.offerSent
+        var contactState = if (contact?.state == 1) "Aktivni kontakt" else "Neaktivni kontakt"
+
+        etName.setText(contact?.firstName)
+        etSurname.setText(contact?.lastName)
+        etPin.setText(contact?.pin)
+        spnCountries.setSelection(resources.getStringArray(R.array.drzave).toList().indexOfFirst { it == contact?.country })
+        spnCities.setSelection(resources.getStringArray(R.array.gradovi).toList().indexOfFirst { it == contact?.city })
+        spnStates.setSelection(resources.getStringArray(R.array.statusi).toList().indexOfFirst { it == contactState })
+        etAddress.setText(contact?.address)
+        etPhoneNumber.setText(contact?.telephoneNumber)
+        etMobileNumber.setText(contact?.mobileNumber)
+        etEmail.setText(contact?.email)
+        etDescription.setText(contact?.description)
     }
 }

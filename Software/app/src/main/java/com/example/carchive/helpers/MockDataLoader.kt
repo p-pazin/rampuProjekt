@@ -3,6 +3,7 @@ package com.example.carchive.helpers
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.entities.Contact
 import com.example.carchive.entities.User
+import java.time.LocalDate
 
 object MockDataLoader {
 
@@ -236,31 +237,6 @@ object MockDataLoader {
     fun deleteCar(carId: Int) {
         vehicles.removeAll { it.id == carId }
     }
-
-    fun getMockContacts() : MutableList<Contact> = mutableListOf(
-        Contact(1, "Ivo", "Ivić", "97626517542", "Hrvatska", "Daruvar",
-            "Gradska 21", "-", "0987863451", "iivic@mail.hr",
-            "Zainteresiran za obiteljski automobil.",
-            "Kupnja",
-            "Aktivni kontakt",
-            false
-        ),
-        Contact(2, "Ana", "Anić", "89722475418", "Hrvatska", "Rijeka",
-            "Kratka 12", "-", "0998796542", "aanic@mail.hr",
-            "-",
-            "Kupnja",
-            "Neaktivni kontakt",
-            true
-        ),
-        Contact(3, "Mirko", "Filipović", "88236556441", "Hrvatska", "Vinkovci",
-            "Augusta Šenoe 17", "-", "098786241", "mfilipovic@mail.hr",
-            "Treba mu automobil zbog putovanja na posao.",
-            "Najam",
-            "Aktivni kontakt",
-            false
-        ),
-
-    )
 
     private val users = mutableListOf(
         User(1, "Ivo", "Ivić", "97626517542", "iivic@mail.hr", "Marko123"),

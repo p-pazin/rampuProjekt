@@ -74,6 +74,10 @@ class CarchiveActivity : AppCompatActivity() {
                     navController.navigate(R.id.offersFragment)
                 }
 
+                R.id.nav_statistics -> {
+                    navController.navigate(R.id.statsFragment)
+                }
+
                 R.id.nav_logout -> {
                     tokenManager.clearToken()
                     switchToMainNavigationGraph()

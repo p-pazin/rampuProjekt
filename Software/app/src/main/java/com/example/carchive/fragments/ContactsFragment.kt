@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,10 +20,11 @@ import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.helpers.MockDataLoader
+import kotlinx.coroutines.launch
 
 class ContactsFragment : Fragment() {
 
-    private val contactsData = MockDataLoader.getMockContacts()
+    private val viewModel : ContactsViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
     private lateinit var toggleButton: ImageButton
     private var _binding: FragmentContactsBinding? = null
@@ -40,28 +43,34 @@ class ContactsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val btnDodaj = binding.sidebarLogo.btnDodaj
-
-        btnDodaj.setOnClickListener(){
+        btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_contactsFragment_to_contactAddFragment)
         }
 
-        super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.rv_contact_list)
-        recyclerView.adapter = ContactsAdapter(MockDataLoader.getMockContacts()) { contact: Contact ->
+        recyclerView = binding.rvContactList
+        val adapter = ContactsAdapter(emptyList()) { contact: Contact ->
             val bundle = Bundle().apply {
                 putSerializable("contact_key", contact)
             }
             findNavController().navigate(R.id.action_contactsFragment_to_contactsDetailsFragment, bundle)
         }
         recyclerView.layoutManager = LinearLayoutManager(view.context)
+        recyclerView.adapter = adapter
 
-        binding.sidebarLogo.drawerToggleButton.setOnClickListener(){
+        binding.sidebarLogo.drawerToggleButton.setOnClickListener {
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.contacts.collect { contacts ->
+                adapter.updateItems(contacts)
+            }
+        }
 
+        viewModel.fetchContacts()
     }
 
     override fun onResume() {
