@@ -54,75 +54,96 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_contact_details_city"
-                android:layout_width="55dp"
-                android:layout_height="20dp"
-                android:text="Daruvar"
+
+            <LinearLayout
+                android:layout_width="192dp"
+                android:layout_height="121dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.123" />
+                app:layout_constraintVertical_bias="0.143">
 
-            <TextView
-                android:id="@+id/tv_contact_details_address"
-                android:layout_width="71dp"
-                android:layout_height="20dp"
-                android:text="Kratka 23"
+                <TextView
+                    android:id="@+id/tv_contact_details_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Hrvatska" />
+
+                <TextView
+                    android:id="@+id/tv_contact_details_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="Daruvar" />
+
+                <TextView
+                    android:id="@+id/tv_contact_details_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="Kratka 23" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_contact_details_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_oib"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.776"
+                app:layout_constraintHorizontal_bias="0.129"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.125" />
+                app:layout_constraintVertical_bias="0.498"
+                app:tint="@color/accentColorLight" />
 
-            <TextView
-                android:id="@+id/tv_contact_details_pin"
+            <ImageView
+                android:id="@+id/iv_contact_details_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OIB: 12345678912"
+                android:src="@drawable/ic_telefon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_email"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.363" />
-
-            <TextView
-                android:id="@+id/tv_contact_details_country"
-                android:layout_width="60dp"
-                android:layout_height="21dp"
-                android:text="Hrvatska"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.245"
+                app:layout_constraintHorizontal_bias="0.129"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.123" />
+                app:layout_constraintVertical_bias="0.568"
+                app:tint="@color/accentColorLight" />
 
-            <TextView
-                android:id="@+id/tv_contact_details_email"
+            <ImageView
+                android:id="@+id/iv_contact_details_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="E-adresa: mailadresa@mail.hr"
+                android:src="@drawable/ic_mobitel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_state"
+                app:layout_constraintHorizontal_bias="0.129"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.295" />
+                app:layout_constraintVertical_bias="0.636"
+                app:tint="@color/accentColorLight" />
 
-            <TextView
-                android:id="@+id/tv_contact_details_mobile"
+            <ImageView
+                android:id="@+id/iv_contact_details_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobilni telefon: 098889762"
+                android:src="@drawable/ic_email"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_phone"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.129"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.433"
+                app:tint="@color/accentColorLight" />
 
             <TextView
                 android:id="@+id/tv_contact_details_description"
@@ -134,19 +155,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/iv_contact_details_state"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.667" />
-
-            <TextView
-                android:id="@+id/tv_contact_details_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Telefon: -"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_pin"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.432" />
+                app:layout_constraintVertical_bias="0.806" />
 
             <ImageView
                 android:id="@+id/iv_contact_details_state"
@@ -158,59 +167,7 @@
                 app:layout_constraintHorizontal_bias="0.129"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.217"
-                app:tint="@color/accentColorLight" />
-
-            <ImageView
-                android:id="@+id/iv_contact_details_state4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_aktivan_kontakt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.358"
-                app:tint="@color/accentColorLight" />
-
-            <ImageView
-                android:id="@+id/iv_contact_details_state5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_aktivan_kontakt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.428"
-                app:tint="@color/accentColorLight" />
-
-            <ImageView
-                android:id="@+id/iv_contact_details_state6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_aktivan_kontakt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.496"
-                app:tint="@color/accentColorLight" />
-
-            <ImageView
-                android:id="@+id/iv_contact_details_state2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_aktivan_kontakt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.295"
+                app:layout_constraintVertical_bias="0.365"
                 app:tint="@color/accentColorLight" />
 
             <TextView
@@ -220,28 +177,58 @@
                 android:text="Aktivan"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_country"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.219" />
-
-            <Button
-                android:id="@+id/btn_contact_details_delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="564dp"
-                android:backgroundTint="#E81717"
-                android:fontFamily="@font/inter_bold"
-                android:maxWidth="10dp"
-                android:rotation="0"
-                android:rotationX="0"
-                android:rotationY="0"
-                android:text="@string/izbrisiKontakt"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintHorizontal_bias="0.598"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.365" />
+
+            <TextView
+                android:id="@+id/tv_contact_details_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-adresa: mailadresa@mail.hr"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_state"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.432" />
+
+            <TextView
+                android:id="@+id/tv_contact_details_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OIB: 12345678912"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_email"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.501" />
+
+            <TextView
+                android:id="@+id/tv_contact_details_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefon: -"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_pin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.57" />
+
+            <TextView
+                android:id="@+id/tv_contact_details_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobilni telefon: 098889762"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_contact_details_phone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.637" />
 
             <Button
                 android:id="@+id/btn_contact_details_edit"
@@ -259,10 +246,28 @@
                 android:text="@string/urediKontakt"
                 app:layout_constraintBottom_toTopOf="@+id/btn_contact_details_delete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/btn_contact_details_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="596dp"
+                android:backgroundTint="#E81717"
+                android:fontFamily="@font/inter_bold"
+                android:maxWidth="10dp"
+                android:rotation="0"
+                android:rotationX="0"
+                android:rotationY="0"
+                android:text="@string/izbrisiKontakt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

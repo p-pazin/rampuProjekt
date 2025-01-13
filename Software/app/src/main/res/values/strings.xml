@@ -770,4 +770,6 @@
     <string name="Prosinac">Prosinac</string>
     <string name="Mjesec">Mjesec</string>
     <string name="Vrijednost">Vrijednost</string>
+    <string name="Aktivan">Aktivan</string>
+    <string name="Neaktivan">Neaktivan</string>
 </resources>

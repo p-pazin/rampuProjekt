@@ -55,45 +55,27 @@
                     android:textSize="13sp"
                     android:text="nekimail@mail.hr" />
                 <TextView
-                    android:id="@+id/tv_contact_phone"
+                    android:id="@+id/tv_contact_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textSize="13sp"
-                    android:text="0987852341" />
+                    android:text="Drzava" />
                 <TextView
-                    android:id="@+id/tv_contact_pin"
+                    android:id="@+id/tv_contact_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textSize="13sp"
-                    android:text="12345678923" />
+                    android:text="Grad" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="end">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <ImageView
-                        android:id="@+id/iv_contact_activity"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="10dp"
-                        app:tint="@color/accentColorLight"
-                        android:src="@drawable/ic_aktivnost"/>
-                    <TextView
-                        android:id="@+id/tv_contact_activity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:text="Stanje kontakta" />
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,28 +94,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
-                        android:text="Aktivnost kontakta" />
+                        android:text="Aktivnost" />
                 </LinearLayout>
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_contact_mobile_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="5dp"
-                    >
-                    <ImageView
-                        android:id="@+id/iv_contact_offer_sent"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="10dp"
-                        app:tint="@color/accentColorLight"
-                        android:src="@drawable/ic_check"/>
-                    <TextView
-                        android:id="@+id/tv_contact_offer_sent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:text="Stanje ponude" />
-                </LinearLayout>
+                    android:textSize="13sp"
+                    android:text="Mobilni tel." />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

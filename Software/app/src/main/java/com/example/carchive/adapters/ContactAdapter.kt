@@ -19,47 +19,36 @@ class ContactsAdapter(
         private val contactName: TextView
         private val ID: TextView
         private val contactEmail: TextView
-        private val contactPhone: TextView
-        private val contactPin: TextView
-        private val contactActivity: TextView
+        private val contactCity: TextView
+        private val contactCountry: TextView
+        private val contactMobile: TextView
         private val contactState: TextView
         private val contactStateIcon : ImageView
-        private val contactOfferSent: TextView
-        private val contactOfferSentIcon : ImageView
 
         init {
             contactName = view.findViewById(R.id.tv_contact_name)
             ID = view.findViewById(R.id.tv_contact_id)
             contactEmail = view.findViewById(R.id.tv_contact_email)
-            contactPhone = view.findViewById(R.id.tv_contact_phone)
-            contactPin = view.findViewById(R.id.tv_contact_pin)
-            contactActivity = view.findViewById(R.id.tv_contact_activity)
+            contactCity = view.findViewById(R.id.tv_contact_city)
+            contactCountry = view.findViewById(R.id.tv_contact_country)
+            contactMobile = view.findViewById(R.id.tv_contact_mobile_number)
             contactState = view.findViewById(R.id.tv_contact_state)
             contactStateIcon = view.findViewById(R.id.iv_contact_state)
-            contactOfferSent = view.findViewById(R.id.tv_contact_offer_sent)
-            contactOfferSentIcon = view.findViewById(R.id.iv_contact_offer_sent)
         }
         fun bind(contact : Contact) {
             contactName.text = contact.firstName + " " + contact.lastName
             ID.text = "ID: " + contact.id
             contactEmail.text = contact.email
-            contactPhone.text = contact.mobileNumber
-            contactPin.text = contact.pin
-            contactState.text = contact.state.toString()
-            contactActivity.text = "Activity"
+            contactCity.text = contact.city
+            contactCountry.text = contact.country
+            contactMobile.text = contact.mobileNumber
             if(contact.state == 1) {
                 contactStateIcon.setImageResource(R.drawable.ic_aktivan_kontakt)
+                contactState.text = "Aktivan"
             }
             else {
                 contactStateIcon.setImageResource(R.drawable.ic_neaktivan_kontakt)
-            }
-            if(true) {
-                contactOfferSent.text = "Ponuda poslana"
-                contactOfferSentIcon.setImageResource(R.drawable.ic_check)
-            }
-            else {
-                contactOfferSent.text = "Ponuda nije poslana"
-                contactOfferSentIcon.setImageResource(R.drawable.ic_x)
+                contactState.text = "Neaktivan"
             }
             itemView.setOnClickListener(){
                 onContactClick(contact)
@@ -68,7 +57,7 @@ class ContactsAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsAdapter.ContactViewHolder {
         val contactView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.contact_list_item, parent, false)
