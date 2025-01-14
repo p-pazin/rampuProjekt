@@ -15,7 +15,7 @@
         android:src="@drawable/ic_logo"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
@@ -28,34 +28,82 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <EditText
+            android:id="@+id/etCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/imeFirme"
+            android:paddingStart="15dp"
+            android:inputType="textCapSentences"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/etCompanyAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/adresaFirme"
+            android:paddingStart="15dp"
+            android:inputType="textCapSentences"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/etCompanyCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/gradFirme"
+            android:paddingStart="15dp"
+            android:inputType="textCapSentences"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/etCompanyPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_textbox"
+            android:hint="@string/oibFirm"
+            android:paddingStart="15dp"
+            android:inputType="number"
+            android:minHeight="48dp" />
+
+        <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/ime"
             android:paddingStart="15dp"
-            android:inputType="textEmailAddress"
+            android:inputType="textCapSentences"
             android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/etSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/prezime"
             android:paddingStart="15dp"
-            android:inputType="textEmailAddress"
+            android:inputType="textCapSentences"
             android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/etRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/email"
@@ -64,23 +112,10 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/etPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:background="@drawable/edit_textbox"
-            android:hint="@string/brojTelefona"
-            android:paddingStart="15dp"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            tools:ignore="TextFields" />
-
-        <EditText
             android:id="@+id/etRegisterPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/lozinka"
@@ -92,7 +127,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/edit_textbox"
             android:hint="@string/lozinkaPonovi"

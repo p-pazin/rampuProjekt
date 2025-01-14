@@ -22,7 +22,6 @@ import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
-import com.example.carchive.helpers.MockDataLoader
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.network.Result.Success
 import com.example.carchive.data.network.Result.Error

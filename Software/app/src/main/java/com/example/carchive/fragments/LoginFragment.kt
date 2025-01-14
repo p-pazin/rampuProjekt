@@ -12,6 +12,8 @@ import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.network.Network
+import com.example.carchive.data.network.Result
+import com.example.carchive.data.repositories.AuthRepository
 import com.example.carchive.databinding.FragmentLoginBinding
 import com.example.carchive.services.TokenManager
 import kotlinx.coroutines.Dispatchers
@@ -41,15 +43,24 @@ class LoginFragment : Fragment() {
             val password = passwordEditText.text.toString()
 
 
-            val networkClient = Network().getInstance()
+            val authRepository = AuthRepository()
             val tokenManager = TokenManager()
+
 
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                 try {
-                    val token = async {
-                        networkClient.login(LoginRequestDto(email, password))
-                    }.await().token
-                    tokenManager.saveToken(token)
+                    val result = async {
+                        authRepository.loginUser(LoginRequestDto(email, password))
+                    }.await()
+
+                    val token = when (result) {
+                        is Result.Success -> { result.data.token}
+                        is Result.Error -> {
+                            Toast.makeText(requireContext(), "Prijava nije uspješna!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    val t : String = token.toString();
+                    tokenManager.saveToken(t)
 
                     withContext(Dispatchers.Main){
                         Toast.makeText(requireContext(), "Prijava uspješna!", Toast.LENGTH_SHORT).show()

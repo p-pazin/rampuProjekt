@@ -17,7 +17,6 @@ import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.databinding.FragmentContactDetailsBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
-import com.example.carchive.helpers.MockDataLoader
 
 class ContactDetailsFragment : Fragment() {
 

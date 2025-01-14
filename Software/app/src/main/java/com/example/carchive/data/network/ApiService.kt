@@ -5,6 +5,7 @@ import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
+import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
@@ -22,6 +23,9 @@ import retrofit2.http.Path
 interface ApiService {
     @POST("User/login")
     suspend fun login(@Body body: LoginRequestDto): LoginDto
+
+    @POST("Company")
+    suspend fun register(@Body body: NewCompanyDto): Response<Unit>
 
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>

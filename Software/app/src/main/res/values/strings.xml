@@ -14,6 +14,10 @@
     <string name="popisKontakata">Popis kontakata</string>
     <string name="prijaviSe">Prijavi se</string>
     <string name="registrirajSe">Registriraj se</string>
+    <string name="imeFirme">Ime firme</string>
+    <string name="adresaFirme">Adresa firme</string>
+    <string name="gradFirme">Grad firme</string>
+    <string name="oibFirm">OIB firme</string>
     <string name="ime">Ime</string>
     <string name="prezime">Prezime</string>
     <string name="email">E-mail</string>

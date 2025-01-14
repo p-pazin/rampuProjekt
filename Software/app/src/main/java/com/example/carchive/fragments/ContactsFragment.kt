@@ -19,7 +19,6 @@ import com.example.carchive.databinding.ActivityCarchiveBinding
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
-import com.example.carchive.helpers.MockDataLoader
 import kotlinx.coroutines.launch
 
 class ContactsFragment : Fragment() {

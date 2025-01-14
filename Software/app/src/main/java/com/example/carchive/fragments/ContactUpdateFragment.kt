@@ -22,7 +22,6 @@ import com.example.carchive.databinding.FragmentContactDetailsBinding
 import com.example.carchive.databinding.FragmentContactUpdateBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.entities.User
-import com.example.carchive.helpers.MockDataLoader
 
 class ContactUpdateFragment : Fragment() {
 

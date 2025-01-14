@@ -7,10 +7,20 @@ import android.view.ViewGroup
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.carchive.CarchiveActivity
+import com.example.carchive.data.dto.LoginRequestDto
+import com.example.carchive.data.dto.NewCompanyDto
+import com.example.carchive.data.network.Result
+import com.example.carchive.data.repositories.AuthRepository
 import com.example.carchive.databinding.FragmentRegisterBinding
 import com.example.carchive.entities.User
-import com.example.carchive.helpers.MockDataLoader
+import com.example.carchive.services.TokenManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RegisterFragment : Fragment() {
 
@@ -29,33 +39,42 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnRegister.setOnClickListener {
-            val name = binding.etName.text.toString()
+            val name = binding.etCompanyName.text.toString()
+            val city = binding.etCompanyCity.text.toString()
+            val address = binding.etCompanyAddress.text.toString()
+            val pin = binding.etCompanyPin.text.toString()
+            val firstname = binding.etName.text.toString()
             val lastName = binding.etSurname.text.toString()
             val email = binding.etRegisterEmail.text.toString()
-            val phone = binding.etPhoneNumber.text.toString()
             val password = binding.etRegisterPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
 
-            if (name.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() &&
-                phone.isNotEmpty() && password.isNotEmpty()
+            if (name.isNotEmpty() && city.isNotEmpty() && address.isNotEmpty() && pin.isNotEmpty() && firstname.isNotEmpty()
+                && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()
             ) {
                 if(password == confirmPassword)
                 {
-                    val newUser = User(
-                        id = MockDataLoader.getLastID() + 1,
-                        firstName = name,
-                        lastName = lastName,
-                        phoneNumber = phone,
-                        emailAddress = email,
-                        password = password
-                    )
 
-                    print(newUser)
-                    Log.d("TAG", newUser.toString())
+                    val authRepository = AuthRepository()
 
-                    MockDataLoader.addUser(newUser)
-                    Toast.makeText(requireContext(), "Uspjesno registirani!", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                        try {
+                            async {
+                                authRepository.registerCompany(NewCompanyDto(name,city,address,pin,firstname, lastName, email, password))
+                            }.await()
+                            withContext(Dispatchers.Main){
+                                Toast.makeText(requireContext(), "Uspjesno registirani!", Toast.LENGTH_SHORT).show()
+                                findNavController().popBackStack()
+                            }
+
+                        }
+                        catch (exception: Exception){
+                            withContext(Dispatchers.Main){
+                                Toast.makeText(requireContext(), "Doslo je do pogreske, probajte ponovno!", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+
                 } else{
                     Toast.makeText(requireContext(), "Lozinke trebaju biti jednake", Toast.LENGTH_SHORT).show()
                 }
