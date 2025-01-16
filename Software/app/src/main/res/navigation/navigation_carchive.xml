@@ -104,7 +104,15 @@
         android:id="@+id/editVehicleFragment"
         android:name="com.example.carchive.fragments.EditVehicleFragment"
         android:label="EditVehicleFragment"
-        tools:layout="@layout/fragment_add_car"/>
+        tools:layout="@layout/fragment_add_car">
+        <action
+            android:id="@+id/action_editVehicleFragment_to_vehicleCatalogFragment"
+            app:destination="@id/katalogVozilaFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
     <fragment
         android:id="@+id/vehicleDetailsFragment"
         android:name="com.example.carchive.fragments.VehicleDetailsFragment"
@@ -125,19 +133,11 @@
         tools:layout="fragment_offers">
         <action
             android:id="@+id/action_offersFragment_to_offerDetailsFragment"
-            app:destination="@id/offersDetailsFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
-    <fragment
-        android:id="@+id/offersDetailsFragment"
-        android:name="com.example.carchive.fragments.OfferDetailsFragment"
-        android:label="OfferDetailsFragment"
-        tools:layout="fragment_offer_details">
-    </fragment>
-        tools:layout="@layout/fragment_basic_info"/>
     <fragment
         android:id="@+id/statsFragment"
         android:name="com.example.carchive.fragments.StatsFragment"

@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:text="Ažuriranje kontakta"
                     android:textSize="24sp" />
 
@@ -49,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/tv_contacts_update_title"
                     android:text="@string/ime" />
 
@@ -58,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -67,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_surname"
                     android:text="@string/prezime" />
 
@@ -76,6 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -85,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_pin"
                     android:text="@string/oib" />
 
@@ -95,6 +101,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
                     android:inputType="text"
+                    android:textColor="@color/textColorLight"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
 
@@ -103,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/spn_contact_update_countries"
                     android:text="@string/drzava" />
 
@@ -118,6 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/spn_contact_update_cities"
                     android:text="@string/grad" />
 
@@ -133,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_address"
                     android:text="@string/adresa" />
 
@@ -142,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -151,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_phone_number"
                     android:text="@string/brojTelefona" />
 
@@ -160,6 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -169,6 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_mobile_number"
                     android:text="@string/brojMobitela" />
 
@@ -178,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -187,6 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_email"
                     android:text="@string/email" />
 
@@ -196,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
@@ -205,6 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/et_contact_update_description"
                     android:text="@string/Opis" />
 
@@ -214,6 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:minHeight="150dp"
@@ -224,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground"
                     android:labelFor="@id/spn_contact_update_states"
                     android:text="@string/status" />
 
@@ -240,6 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="50dp"
+                    android:textColor="@color/textColorDark"
                     android:backgroundTint="@color/accentColorDark"
                     android:fontFamily="@font/inter_bold"
                     android:maxWidth="10dp"

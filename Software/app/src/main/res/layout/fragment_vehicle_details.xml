@@ -20,7 +20,6 @@
             layout="@layout/toolbar_back_button" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- ScrollView za sadržaj ispod AppBar-a -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -67,6 +66,7 @@
                         android:text="Marka - Model"
                         android:textAlignment="center"
                         android:textSize="20sp"
+                        android:textColor="@color/accentColorLight"
                         android:textStyle="bold" />
 
                     <View
@@ -81,6 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tip: 2.0"
+                        android:textColor="?attr/colorOnBackground"
                         android:textSize="16sp" />
 
                     <TextView
@@ -88,6 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textColor="?attr/colorOnBackground"
                         android:text="Godina proizvodnje: 2020"
                         android:textSize="16sp" />
 
@@ -96,6 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textColor="?attr/colorOnBackground"
                         android:text="Registracija: ZG123AB"
                         android:textSize="16sp" />
 
@@ -110,6 +113,7 @@
                         android:id="@+id/tv_kilometers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnBackground"
                         android:text="Kilometri: 123456"
                         android:textSize="16sp" />
 
@@ -119,6 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Lokacija: Zagreb"
+                        android:textColor="?attr/colorOnBackground"
                         android:textSize="16sp" />
 
                     <TextView
@@ -127,6 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Motor: 1.4"
+                        android:textColor="?attr/colorOnBackground"
                         android:textSize="16sp" />
 
                     <TextView
@@ -134,6 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textColor="?attr/colorOnBackground"
                         android:text="Snaga motora: 135 KS"
                         android:textSize="16sp" />
 
@@ -143,6 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Mjenjač: Ručni"
+                        android:textColor="?attr/colorOnBackground"
                         android:textSize="16sp" />
 
                     <TextView
@@ -151,6 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Status: Na prodaju"
+                        android:textColor="?attr/colorOnBackground"
                         android:textSize="16sp" />
 
                     <TextView
@@ -161,6 +170,7 @@
                         android:text="Cijena: €20,000"
                         android:textAlignment="center"
                         android:textSize="20sp"
+                        android:textColor="?attr/colorOnBackground"
                         android:textStyle="bold" />
 
                     <LinearLayout
