@@ -3,6 +3,7 @@ package com.example.carchive.data.network
 import com.example.carchive.adapters.OfferAdapter
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
+import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
@@ -71,4 +72,7 @@ interface ApiService {
 
     @GET("Stats/InvoiceCreation")
     suspend fun getInvoiceCreationStats(): YearlyInfoDto
+
+    @GET("Location")
+    suspend fun getLocations(): List<LocationDto>
 }
