@@ -1,4 +1,4 @@
-package com.example.carchive.fragments
+package com.example.carchive.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,13 +10,11 @@ import com.example.carchive.data.dto.VehicleDtoPost
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.VehicleRepository
 import com.example.carchive.entities.Vehicle
-import com.example.carchive.util.safeResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import retrofit2.http.HTTP
 
 class VehicleCatalogViewModel : ViewModel() {
     private val vehicleRepository = VehicleRepository()
@@ -24,7 +22,7 @@ class VehicleCatalogViewModel : ViewModel() {
     val vehicles = _vehicles.asStateFlow()
 
     private val _postResult = MutableLiveData<Result<Response<Unit>>>()
-    val postResult: LiveData<Result<Response<Unit>>> = _postResult
+    val postResult: MutableLiveData<Result<Response<Unit>>> = _postResult
 
     private val _putResult = MutableLiveData<Result<Response<Unit>>>()
     val putResult: LiveData<Result<Response<Unit>>> = _putResult
@@ -97,4 +95,5 @@ class VehicleCatalogViewModel : ViewModel() {
             }
         }
     }
+
 }

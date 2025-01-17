@@ -1,13 +1,11 @@
-package com.example.carchive.fragments
+package com.example.carchive.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.YearlyInfoDto
 import com.example.carchive.data.network.Result
-import com.example.carchive.data.repositories.ContactRepository
 import com.example.carchive.data.repositories.StatsRepository
-import com.example.carchive.entities.Contact
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

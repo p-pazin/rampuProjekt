@@ -8,17 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
 import com.example.carchive.adapters.ContactsAdapter
-import com.example.carchive.databinding.ActivityCarchiveBinding
-import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
+import com.example.carchive.viewmodels.ContactsViewModel
 import kotlinx.coroutines.launch
 
 class ContactsFragment : Fragment() {

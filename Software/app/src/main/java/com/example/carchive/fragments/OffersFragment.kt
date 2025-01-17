@@ -1,6 +1,6 @@
 package com.example.carchive.fragments
 
-import OfferViewModel
+import com.example.carchive.viewmodels.OfferViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.Toast
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -22,6 +21,7 @@ import com.example.carchive.adapters.CarAdapter
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Vehicle
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 import kotlinx.coroutines.launch
 
 class VehicleCatalogFragment : Fragment() {

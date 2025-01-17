@@ -1,11 +1,11 @@
+package com.example.carchive.viewmodels
+
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carchive.data.dto.OfferDto
-import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.OfferRepository
-import com.example.carchive.entities.Vehicle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -25,7 +25,7 @@ class OfferViewModel : ViewModel() {
                     listOf()
                 }
             }
-            Log.d("OfferViewModel", "Dohvaćene ponude: $offersFromRepository")
+            Log.d("com.example.carchive.viewmodels.OfferViewModel", "Dohvaćene ponude: $offersFromRepository")
             _offers.update { offersFromRepository }
         }
     }

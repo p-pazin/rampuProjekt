@@ -1,7 +1,6 @@
 package com.example.carchive.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
 import com.example.carchive.data.network.Result
-import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.databinding.FragmentContactDetailsBinding
-import com.example.carchive.databinding.FragmentContactsBinding
 import com.example.carchive.entities.Contact
+import com.example.carchive.viewmodels.ContactsViewModel
 
 class ContactDetailsFragment : Fragment() {
 

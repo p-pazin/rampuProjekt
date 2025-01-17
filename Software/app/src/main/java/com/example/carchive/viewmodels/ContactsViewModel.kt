@@ -1,24 +1,19 @@
-package com.example.carchive.fragments
+package com.example.carchive.viewmodels
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carchive.R
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.ContactRepository
 import com.example.carchive.entities.Contact
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import okhttp3.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Date
 
 class ContactsViewModel : ViewModel() {

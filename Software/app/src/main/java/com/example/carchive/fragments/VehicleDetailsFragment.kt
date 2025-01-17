@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentVehicleDetailsBinding
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 
 class VehicleDetailsFragment : Fragment() {
     private var _binding: FragmentVehicleDetailsBinding? = null

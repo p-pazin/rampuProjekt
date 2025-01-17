@@ -1,6 +1,5 @@
 package com.example.carchive.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,22 +9,13 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
-import com.example.carchive.adapters.ContactsAdapter
-import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.databinding.FragmentContactAddBinding
-import com.example.carchive.databinding.FragmentContactsBinding
-import com.example.carchive.entities.Contact
 import com.example.carchive.data.network.Result
-import com.example.carchive.data.network.Result.Success
-import com.example.carchive.data.network.Result.Error
-import kotlinx.coroutines.launch
+import com.example.carchive.viewmodels.ContactsViewModel
 
 class ContactAddFragment : Fragment() {
 

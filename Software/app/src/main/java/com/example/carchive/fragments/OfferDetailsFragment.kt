@@ -5,12 +5,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.lifecycle.lifecycleScope
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.adapters.CarAdapter
 import com.example.carchive.databinding.OfferDetailsBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.example.carchive.viewmodels.OfferViewModel
 
 class OfferDetailsFragment : Fragment() {
     private var _binding: OfferDetailsBinding? = null

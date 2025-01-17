@@ -1,7 +1,6 @@
 package com.example.carchive.fragments
 
 import android.graphics.Color
-import android.graphics.LinearGradient
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +16,7 @@ import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.YearlyInfoDto
 
 import com.example.carchive.databinding.FragmentStatsBinding
+import com.example.carchive.viewmodels.StatsViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
