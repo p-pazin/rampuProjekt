@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.carchive"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -101,6 +101,7 @@ dependencies {
     implementation(libs.arcgis.maps.kotlin)
     implementation(platform(libs.arcgis.maps.kotlin.toolkit.bom))
     implementation(libs.arcgis.maps.kotlin.toolkit.geoview.compose)
+    implementation(libs.play.services.maps)
 
     // Testing
     testImplementation(libs.junit)

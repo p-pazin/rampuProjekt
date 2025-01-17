@@ -142,5 +142,8 @@
         android:id="@+id/statsFragment"
         android:name="com.example.carchive.fragments.StatsFragment"
         android:label="StatsFragment" />
-
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.carchive.fragments.VehicleLocationFragment"
+        tools:label="LocationFragment"/>
 </navigation>
