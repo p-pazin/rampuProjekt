@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,6 +38,7 @@ class ContactUpdateFragment : Fragment() {
     private lateinit var etDescription: EditText
     private lateinit var spnCountries: Spinner
     private lateinit var spnCities : Spinner
+    private lateinit var tvCities : TextView
     private lateinit var spnStates : Spinner
     private lateinit var btnUpdateContact : Button
     private var _binding: FragmentContactUpdateBinding? = null
@@ -67,6 +70,7 @@ class ContactUpdateFragment : Fragment() {
         etDescription = binding.etContactUpdateDescription
         spnCountries = binding.spnContactUpdateCountries
         spnCities = binding.spnContactUpdateCities
+        tvCities = binding.tvContactUpdateCitiesLabel
         spnStates = binding.spnContactUpdateStates
         btnUpdateContact = binding.btnContactUpdate
 
@@ -80,6 +84,25 @@ class ContactUpdateFragment : Fragment() {
 
         populateInputs()
 
+        spnCountries.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCountry = spnCountries.selectedItem.toString()
+                if (selectedCountry == "Hrvatska") {
+                    spnCities.visibility = View.VISIBLE
+                    tvCities.visibility = View.VISIBLE
+                } else {
+                    spnCities.visibility = View.GONE
+                    tvCities.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                spnCities.visibility = View.GONE
+                tvCities.visibility = View.GONE
+
+            }
+        }
+
         btnUpdateContact.setOnClickListener {
             val firstName = etName.text.toString()
             val lastName = etSurname.text.toString()
@@ -90,7 +113,11 @@ class ContactUpdateFragment : Fragment() {
             val email = etEmail.text.toString()
             val description = etDescription.text.toString()
             val country = spnCountries.selectedItem.toString()
-            val city = spnCities.selectedItem.toString()
+            val city = if(spnCities.visibility == View.VISIBLE) {
+                spnCities.selectedItem.toString()
+            } else {
+                ""
+            }
             val state = spnStates.selectedItem.toString()
 
             if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
