@@ -27,6 +27,7 @@ import com.example.carchive.entities.Contact
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.network.Result.Success
 import com.example.carchive.data.network.Result.Error
+import com.example.carchive.viewmodels.ContactsViewModel
 import kotlinx.coroutines.launch
 
 class ContactAddFragment : Fragment() {
@@ -124,7 +125,7 @@ class ContactAddFragment : Fragment() {
             val state = 1
 
             if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
-                mobileNumber, email, description)) {
+                    mobileNumber, email, description)) {
                 Toast.makeText(context, getString(R.string.potrebnoIspunitiPolja), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -134,19 +135,19 @@ class ContactAddFragment : Fragment() {
                 firstName, lastName, pin, address, telephoneNumber,
                 mobileNumber, email, description, country, city, state)
 
-            }
+        }
 
-            viewModel.postResult.observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Success -> {
-                        Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
-                    }
+        viewModel.postResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
                 }
             }
+        }
 
         return binding.root
     }

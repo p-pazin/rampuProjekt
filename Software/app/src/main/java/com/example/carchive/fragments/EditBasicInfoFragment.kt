@@ -11,12 +11,12 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.network.Result
-import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.databinding.FragmentEditBasicInfoBinding
 import com.example.carchive.entities.Vehicle
-import kotlin.random.Random
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 
 
 class EditBasicInfoFragment : Fragment() {

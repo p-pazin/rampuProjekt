@@ -9,6 +9,7 @@ import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.ContactRepository
 import com.example.carchive.entities.Contact
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,6 +28,12 @@ class ContactsViewModel : ViewModel() {
     val putResult: LiveData<Result<Response<Unit>>> = _putResult
     private val _deleteResult = MutableLiveData<Result<Response<Unit>>>()
     val deleteResult: LiveData<Result<Response<Unit>>> = _deleteResult
+
+    private val _contact = MutableStateFlow<Contact?>(null)
+    val contact: StateFlow<Contact?> = _contact
+
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error
 
     fun fetchContacts() {
         viewModelScope.launch {
@@ -170,4 +177,22 @@ class ContactsViewModel : ViewModel() {
                 email.isNotEmpty() &&
                 description.isNotEmpty()
     }
+
+    fun fetchContactForOffer(offerId: Int) {
+        viewModelScope.launch {
+            try {
+                when (val result = contactRepository.getContactByOfferId(offerId)) {
+                    is Result.Success -> {
+                        _contact.emit(result.data)
+                    }
+                    is Result.Error -> {
+                        _error.emit("Failed to fetch contact: ${result.error}")
+                    }
+                }
+            } catch (e: Exception) {
+                _error.emit("An unexpected error occurred: ${e.localizedMessage}")
+            }
+        }
+    }
+
 }
