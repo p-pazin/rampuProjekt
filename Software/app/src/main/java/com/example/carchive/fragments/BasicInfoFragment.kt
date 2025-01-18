@@ -20,6 +20,7 @@ import com.example.carchive.data.network.Network
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.entities.Vehicle
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

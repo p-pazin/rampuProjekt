@@ -16,6 +16,7 @@ import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.databinding.FragmentEditBasicInfoBinding
 import com.example.carchive.entities.Vehicle
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 import kotlin.random.Random
 
 
