@@ -100,20 +100,24 @@ class VehicleDetailsFragment : Fragment() {
         val btnOtkazi = deletionWarning.findViewById<ImageButton>(R.id.btnOtkazi)
         val btnOdustani = deletionWarning.findViewById<Button>(R.id.btnOdustani)
 
-        val error: String = "Pogreška kod brisanja vozila"
-        vmVehicle.deleteResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Success -> {
-                    Toast.makeText(requireContext(), getString(R.string.car_deleted), Toast.LENGTH_SHORT).show()
-                }
-                is Result.Error -> {
-                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
 
         btnPotvrdi.setOnClickListener {
             vmVehicle.deleteVehicle(carId)
+
+
+            val error: String = "Pogreška kod brisanja vozila"
+            vmVehicle.deleteResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        Toast.makeText(requireContext(), getString(R.string.car_deleted), Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_vehicleDetailsFragment_to_vehicleCatalogFragment)
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(requireContext(), getString(R.string.car_deleted), Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_vehicleDetailsFragment_to_vehicleCatalogFragment)
+                    }
+                }
+            }
             alertDialog.dismiss()
         }
 

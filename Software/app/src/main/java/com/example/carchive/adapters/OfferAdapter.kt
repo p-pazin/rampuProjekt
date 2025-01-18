@@ -13,17 +13,23 @@ import com.example.carchive.data.dto.OfferDto
 
 class OfferAdapter(
     private var offers: List<OfferDto>,
+    private val onOfferClick: (OfferDto) -> Unit
 ) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
 
     inner class OfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         private val tvDateOfCreation: TextView = itemView.findViewById(R.id.tvDateOfCreation)
+        private val cardOffer: CardView = itemView.findViewById(R.id.cardOffer)
 
         fun bind(offer: OfferDto) {
             tvTitle.text = offer.title
-            tvPrice.text = "Price: ${offer.price} €"
-            tvDateOfCreation.text = "Created on: ${offer.dateOfCreation}"
+            tvPrice.text = "Cijena: ${offer.price} €"
+            tvDateOfCreation.text = "Stvoreno datuma: ${offer.dateOfCreation}"
+
+            cardOffer.setOnClickListener {
+                onOfferClick(offer)
+            }
         }
     }
 
@@ -43,3 +49,4 @@ class OfferAdapter(
         notifyDataSetChanged()
     }
 }
+

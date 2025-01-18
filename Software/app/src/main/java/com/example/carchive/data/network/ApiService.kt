@@ -47,14 +47,17 @@ interface ApiService {
     @GET("Offer")
     suspend fun getOffers(): List<OfferDto>
 
-    @GET("offer/{offerId}")
-    suspend fun getVehiclesForOffer(@Path("id") id: Int): List<VehicleDto>
+    @GET("Vehicle/offer/{offerId}")
+    suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
 
     @GET("User")
     suspend fun getUser(): UserDto
 
     @GET("Contact")
     suspend fun getContacts(): List<ContactDto>
+
+    @GET("Contact/contacts/{offerId}")
+    suspend fun getContactByOfferId(@Path("offerId") offerId: Int): ContactDto
 
     @POST("Contact")
     suspend fun postContact(@Body body: ContactDto): Response<Unit>

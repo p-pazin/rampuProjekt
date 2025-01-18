@@ -2,6 +2,7 @@ package com.example.carchive.data.repositories
 
 import android.util.Log
 import com.example.carchive.data.dto.OfferDto
+import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.toEntity
 import com.example.carchive.data.network.Network
 import com.example.carchive.data.network.Result

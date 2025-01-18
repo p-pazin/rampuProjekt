@@ -7,26 +7,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
-import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
-import com.example.carchive.data.network.Network
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
-import com.example.carchive.entities.Vehicle
 import com.example.carchive.viewmodels.VehicleCatalogViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import java.util.Date
-import kotlin.concurrent.thread
-import kotlin.random.Random
 
 class BasicInfoFragment : Fragment() {
 
@@ -138,17 +126,7 @@ class BasicInfoFragment : Fragment() {
         val etEngPow = binding.etEnginePower
         val etCond = binding.etCondition
 
-        val error: String = "Pogreška kod dodavanja vozila"
-        vmVehicle.postResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Success -> {
-                    Toast.makeText(requireContext(), getString(R.string.car_added), Toast.LENGTH_SHORT).show()
-                }
-                is Result.Error -> {
-                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+
 
         btnSpremi.setOnClickListener{
             val marka = spinnerMarke.selectedItem.toString()
@@ -210,6 +188,20 @@ class BasicInfoFragment : Fragment() {
                 vmVehicle.postVehicle(vehicle)
             } else {
                 Toast.makeText(requireContext(), getString(R.string.info_missing), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val error: String = "Pogreška kod dodavanja vozila"
+        vmVehicle.postResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.car_added), Toast.LENGTH_SHORT).show()
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+
+                null -> TODO()
             }
         }
 
