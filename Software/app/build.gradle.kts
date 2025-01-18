@@ -95,7 +95,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     // Charts
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation(libs.mpandroidchart)
 
     // ArcGIS Maps
     implementation(libs.arcgis.maps.kotlin)

@@ -777,4 +777,7 @@
     <string name="Aktivan">Aktivan</string>
     <string name="Neaktivan">Neaktivan</string>
     <string name="DodavanjeKontakta">Dodavanje kontakta</string>
+    <string name="skiniPdf">Skini PDF</string>
+    <string name="urediUgovor">Uredi ugovor</string>
+    <string name="izbrisiUgovor">Izbriši ugovor</string>
 </resources>

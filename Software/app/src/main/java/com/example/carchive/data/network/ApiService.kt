@@ -1,8 +1,10 @@
 package com.example.carchive.data.network
 
-import com.example.carchive.adapters.OfferAdapter
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
+import com.example.carchive.data.dto.ContractDetailedRentDto
+import com.example.carchive.data.dto.ContractDetailedSaleDto
+import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
@@ -16,7 +18,6 @@ import com.example.carchive.data.dto.YearlyInfoDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -75,4 +76,13 @@ interface ApiService {
 
     @GET("Location")
     suspend fun getLocations(): List<LocationDto>
+
+    @GET("Contract")
+    suspend fun getContracts(): List<ContractDto>
+
+    @GET("Contract/sell/{id}")
+    suspend fun getContractSaleById(@Path("id") id: Int): ContractDetailedSaleDto
+
+    @GET("Contract/rent/{id}")
+    suspend fun getContractRentById(@Path("id") id: Int): ContractDetailedRentDto
 }

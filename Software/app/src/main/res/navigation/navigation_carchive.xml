@@ -146,4 +146,16 @@
         android:id="@+id/locationFragment"
         android:name="com.example.carchive.fragments.VehicleLocationFragment"
         tools:label="LocationFragment"/>
+    <fragment
+        android:id="@+id/contractsFragment"
+        android:name="com.example.carchive.fragments.ContractsFragment"
+        tools:label="ContractsFragment">
+        <action
+            android:id="@+id/action_contractsFragment_to_contractDetailsFragment"
+            app:destination="@id/contractDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contractDetailsFragment"
+        android:name="com.example.carchive.fragments.ContractDetailsFragment"
+        tools:label="ContractDetailsFragment"/>
 </navigation>

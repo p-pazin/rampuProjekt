@@ -31,6 +31,11 @@
         android:title="@string/statistika" />
 
     <item
+        android:id="@+id/nav_contracts"
+        android:icon="@drawable/ic_ugovor"
+        android:title="@string/ugovori" />
+
+    <item
         android:id="@+id/nav_help"
         android:icon="@drawable/ic_pomoc"
         android:title="@string/pomoc" />
