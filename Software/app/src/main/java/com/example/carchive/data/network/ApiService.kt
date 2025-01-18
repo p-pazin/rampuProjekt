@@ -1,6 +1,7 @@
 package com.example.carchive.data.network
 
 import com.example.carchive.adapters.OfferAdapter
+import com.example.carchive.data.dto.AdDto
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.LocationDto
@@ -75,4 +76,7 @@ interface ApiService {
 
     @GET("Location")
     suspend fun getLocations(): List<LocationDto>
+
+    @GET("Ad")
+    suspend fun getAds(): List<AdDto>
 }

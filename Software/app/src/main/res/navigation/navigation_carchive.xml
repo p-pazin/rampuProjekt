@@ -146,4 +146,8 @@
         android:id="@+id/locationFragment"
         android:name="com.example.carchive.fragments.VehicleLocationFragment"
         tools:label="LocationFragment"/>
+    <fragment
+        android:id="@+id/adFragment"
+        android:name="com.example.carchive.fragments.AdFragment"
+        tools:label="AdFragment"/>
 </navigation>
