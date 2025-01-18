@@ -1,8 +1,5 @@
-package com.example.carchive.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,24 +8,16 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
-import com.example.carchive.adapters.ContactsAdapter
-import com.example.carchive.databinding.FragmentAddCarBinding
-import com.example.carchive.databinding.FragmentContactAddBinding
-import com.example.carchive.databinding.FragmentContactsBinding
-import com.example.carchive.entities.Contact
 import com.example.carchive.data.network.Result
-import com.example.carchive.data.network.Result.Success
-import com.example.carchive.data.network.Result.Error
+import com.example.carchive.data.network.Result.*
+import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.viewmodels.ContactsViewModel
-import kotlinx.coroutines.launch
 
 class ContactAddFragment : Fragment() {
 
@@ -59,7 +48,7 @@ class ContactAddFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentContactAddBinding.inflate(inflater, container, false)
         binding.navBackButton.backButton.setOnClickListener(){
@@ -139,11 +128,11 @@ class ContactAddFragment : Fragment() {
 
         viewModel.postResult.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Success -> {
+                is Success -> {
                     Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
                 }
-                is Result.Error -> {
+                is Error -> {
                     Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
                 }
             }
