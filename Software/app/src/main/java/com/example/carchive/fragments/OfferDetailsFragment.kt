@@ -117,7 +117,7 @@ class OfferDetailsFragment : Fragment() {
     private fun updateContactDetails(contact: Contact) {
         binding.contactName.text = "${contact.firstName} ${contact.lastName}"
         binding.contactPin.text = "OIB: ${contact.pin}"
-        binding.contactAddress.text = "Adresa: ${contact.address}, ${contact.city}, ${contact.state}, ${contact.country}"
+        binding.contactAddress.text = "Adresa: ${contact.address}, ${contact.city}, ${contact.country}"
         binding.contactTelephone.text = "Telefon: ${contact.telephoneNumber}"
         binding.contactMobile.text = "Mobitel: ${contact.mobileNumber}"
         binding.contactEmail.text = "Email: ${contact.email}"
