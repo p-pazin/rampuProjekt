@@ -1,21 +1,33 @@
 package com.example.carchive.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
+import com.example.carchive.adapters.ContactsAdapter
+import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.databinding.FragmentContactAddBinding
+import com.example.carchive.databinding.FragmentContactsBinding
+import com.example.carchive.entities.Contact
 import com.example.carchive.data.network.Result
-import com.example.carchive.viewmodels.ContactsViewModel
+import com.example.carchive.data.network.Result.Success
+import com.example.carchive.data.network.Result.Error
+import kotlinx.coroutines.launch
 
 class ContactAddFragment : Fragment() {
 
@@ -30,7 +42,7 @@ class ContactAddFragment : Fragment() {
     private lateinit var etDescription: EditText
     private lateinit var spnCountries: Spinner
     private lateinit var spnCities : Spinner
-    private lateinit var spnActivities : Spinner
+    private lateinit var tvCities : TextView
     private lateinit var spnStates : Spinner
     private lateinit var btnAddContact : Button
 
@@ -63,6 +75,7 @@ class ContactAddFragment : Fragment() {
         etDescription = binding.etContactAddDescription
         spnCountries = binding.spnContactAddCountries
         spnCities = binding.spnContactAddCities
+        tvCities = binding.tvContactAddCitiesLabel
         spnStates = binding.spnContactAddStates
         btnAddContact = binding.btnContactAdd
 
@@ -74,6 +87,25 @@ class ContactAddFragment : Fragment() {
         populateSpinner(spnCities, cityList)
         populateSpinner(spnStates, statesList)
 
+        spnCountries.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCountry = spnCountries.selectedItem.toString()
+                if (selectedCountry == "Hrvatska") {
+                    spnCities.visibility = View.VISIBLE
+                    tvCities.visibility = View.VISIBLE
+                } else {
+                    spnCities.visibility = View.GONE
+                    tvCities.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                spnCities.visibility = View.GONE
+                tvCities.visibility = View.GONE
+
+            }
+        }
+
         btnAddContact.setOnClickListener {
             val firstName = etName.text.toString()
             val lastName = etSurname.text.toString()
@@ -84,7 +116,11 @@ class ContactAddFragment : Fragment() {
             val email = etEmail.text.toString()
             val description = etDescription.text.toString()
             val country = spnCountries.selectedItem.toString()
-            val city = spnCities.selectedItem.toString()
+            val city = if(spnCities.visibility == View.VISIBLE) {
+                spnCities.selectedItem.toString()
+            } else {
+                ""
+            }
             val state = 1
 
             if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
