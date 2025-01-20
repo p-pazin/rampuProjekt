@@ -36,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/edit_textbox"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_marka" />
 
@@ -56,6 +57,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/edit_textbox"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_model" />
 
@@ -76,6 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
+                    android:background="@drawable/edit_textbox"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintTop_toBottomOf="@+id/tv_lokacija" />
 
@@ -416,6 +419,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
+                    android:background="@drawable/edit_textbox"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gearbox" />

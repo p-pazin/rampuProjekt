@@ -54,6 +54,26 @@ class AddOfferFragment : Fragment() {
         viewModelContact.fetchContacts()
         viewModelVehicle.fetchVehicles()
 
+        val args = arguments
+        if (args != null) {
+            val vehicleId = args.getInt("id", -1)
+            if (vehicleId != -1) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        viewModelVehicle.vehicles.collect { vehicles ->
+                            val selectedVehicle = vehicles.find { it.id == vehicleId }
+                            selectedVehicle?.let {
+                                if (!selectedVehicles.contains(it.registration)) {
+                                    selectedVehicles.add(it.registration)
+                                    addVehicleToLayout(it.registration)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModelContact.contacts.collect { contacts ->
@@ -112,6 +132,7 @@ class AddOfferFragment : Fragment() {
             }
         }
     }
+
 
 
     private fun addVehicleToLayout(vehicle: String) {
