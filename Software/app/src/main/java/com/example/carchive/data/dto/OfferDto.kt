@@ -7,3 +7,9 @@ data class OfferDto(
     val dateOfCreation: String
 )
 
+data class OfferPostDto(
+    val title: String,
+    val price: Double,
+    val dateOfCreation: String
+)
+

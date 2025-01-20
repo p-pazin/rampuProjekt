@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carchive.adapters.CarAdapter
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.OfferDetailsBinding
 import com.example.carchive.entities.Contact
 import com.example.carchive.entities.Vehicle
@@ -55,6 +57,10 @@ class OfferDetailsFragment : Fragment() {
         observeViewModel()
         contactViewModel.fetchContactForOffer(offerId)
         offerViewModel.fetchVehiclesForOffers(offerId)
+
+        binding.btnDeleteOffer.setOnClickListener {
+            offerViewModel.deleteOffer(offerId)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -108,7 +114,20 @@ class OfferDetailsFragment : Fragment() {
                 }
             }
         }
+
+        offerViewModel.deleteResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), "Ponuda uspješno obrisana!", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), "Greška prilikom brisanja ponude: ${offerId}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
+
 
     private fun updateRecyclerView(vehicles: List<Vehicle>) {
         carAdapter.updateItems(vehicles)
