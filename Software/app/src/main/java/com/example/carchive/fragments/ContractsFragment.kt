@@ -40,6 +40,9 @@ class ContractsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnDodaj = binding.sidebarLogo.btnDodaj
+        btnDodaj.setOnClickListener {
+            findNavController().navigate(R.id.action_contractsFragment_to_addContractFragment)
+        }
 
         recyclerView = binding.rvContractList
         val adapter = ContractsAdapter(emptyList()) { contract: ContractDto ->

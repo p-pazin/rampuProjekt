@@ -13,31 +13,143 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
+import com.example.carchive.data.dto.InsuranceDto
+import com.example.carchive.data.dto.OfferDto
+import com.example.carchive.data.dto.ReservationDto
+import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.network.Result
+import com.example.carchive.data.repositories.ContactRepository
 import com.example.carchive.data.repositories.ContractRepository
+import com.example.carchive.data.repositories.InsuranceRepository
+import com.example.carchive.data.repositories.OfferRepository
+import com.example.carchive.data.repositories.ReservationRepository
+import com.example.carchive.data.repositories.VehicleRepository
+import com.example.carchive.entities.Contact
+import com.example.carchive.entities.Vehicle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
+import java.util.Date
 
 class ContractsViewModel : ViewModel() {
+    private val offerRepository = OfferRepository()
+    private val vehicleRepository = VehicleRepository()
+    private val contactRepository = ContactRepository()
+    private val reservationRepository = ReservationRepository()
+    private val insuranceRepository = InsuranceRepository()
     private val contractRepository = ContractRepository()
     private val _contracts = MutableStateFlow<List<ContractDto>>(listOf())
     val contracts = _contracts.asStateFlow()
-
     private val _contractSale = MutableLiveData<ContractDetailedSaleDto?>()
     val contractSale: LiveData<ContractDetailedSaleDto?> get() = _contractSale
-
     private val _contractRent = MutableLiveData<ContractDetailedRentDto?>()
     val contractRent: LiveData<ContractDetailedRentDto?> get() = _contractRent
+
+    private val _offers = MutableStateFlow<List<OfferDto>>(listOf())
+    val offers = _offers.asStateFlow()
+    private val _vehicles = MutableStateFlow<List<Vehicle>>(listOf())
+    val vehicles = _vehicles.asStateFlow()
+    private val _contacts = MutableStateFlow<List<Contact>>(listOf())
+    val contacts = _contacts.asStateFlow()
+    private val _reservations = MutableStateFlow<List<ReservationDto>>(listOf())
+    val reservations = _reservations.asStateFlow()
+    private val _insurances = MutableStateFlow<List<InsuranceDto>>(listOf())
+    val insurances = _insurances.asStateFlow()
+
+    private val _validationResult = MutableLiveData<Boolean>()
+    val validationResult: LiveData<Boolean> get() = _validationResult
+    private val _postResult = MutableLiveData<Result<Response<Unit>>>()
+    val postResult: LiveData<Result<Response<Unit>>> = _postResult
+
+    fun validateContractInputs(contractType: Int, offerId: Int?, vehicleId: Int?, contactId: Int?,
+                               reservationId: Int?, insuranceId: Int?, title: String,
+                               content: String, place: String) {
+        if(title.isEmpty() || content.isEmpty() || place.isEmpty()) {
+            _validationResult.value = false
+        } else if (contractType == 1) {
+            if(offerId == null && (vehicleId == null || contactId == null)) {
+                _validationResult.value = false
+            } else {
+                _validationResult.value = true
+            }
+        } else if (contractType == 2) {
+            if(reservationId == null || insuranceId == null) {
+                _validationResult.value = false
+            } else {
+                _validationResult.value = true
+            }
+        }
+    }
+
+    suspend fun postContract(contractType: Int, offerId: Int?, vehicleId: Int?, contactId: Int?,
+                     reservationId: Int?, insuranceId: Int?, title: String,
+                     content: String, place: String) {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        if(contractType == 1) {
+            val contract = ContractDto(
+                id = -1,
+                title = title,
+                place = place,
+                content = content,
+                dateOfCreation = simpleDateFormat.format(Date()),
+                type = contractType,
+                signed = 0
+            )
+
+            try {
+                when (val result = contractRepository.postContractSale(contactId, vehicleId,
+                    offerId, contract)) {
+                    is Result.Success -> {
+                        _postResult.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _postResult.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _postResult.postValue(Result.Error(e))
+            }
+        }
+        else {
+            val contract = ContractDto(
+                id = -1,
+                title = title,
+                place = place,
+                content = content,
+                dateOfCreation = simpleDateFormat.format(Date()),
+                type = contractType,
+                signed = 0
+            )
+
+            viewModelScope.launch {
+                try {
+                    when (val result = contractRepository.postContractRent(contactId,
+                        vehicleId, reservationId, insuranceId, contract)) {
+                        is Result.Success -> {
+                            _postResult.postValue(Result.Success(result.data))
+                        }
+                        is Result.Error -> {
+                            _postResult.postValue(Result.Error(result.error))
+                        }
+                    }
+                } catch (e: Exception) {
+                    _postResult.postValue(Result.Error(e))
+                }
+            }
+        }
+    }
 
     fun fetchContracts() {
         viewModelScope.launch {
@@ -65,6 +177,64 @@ class ContractsViewModel : ViewModel() {
                 _contractRent.postValue(contractFromRepository)
             }
         }
+    }
+
+    fun fetchOffers() {
+        viewModelScope.launch {
+            val offersFromRepository = when (val result = offerRepository.getOffers()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _offers.update { offersFromRepository }
+        }
+    }
+
+    fun fetchVehicles() {
+        viewModelScope.launch {
+            val vehiclesFromRepository = when (val result = vehicleRepository.getVehicles()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _vehicles.update { vehiclesFromRepository }
+        }
+    }
+
+    fun fetchContacts() {
+        viewModelScope.launch {
+            val contactsFromRepository = when (val result = contactRepository.getContacts()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _contacts.update { contactsFromRepository }
+        }
+    }
+
+    fun fetchReservations() {
+        viewModelScope.launch {
+            val reservationsFromRepository = when (val result = reservationRepository.getReservations()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _reservations.update { reservationsFromRepository }
+        }
+    }
+
+    fun fetchInsurances() {
+        viewModelScope.launch {
+            val insurancesFromRepository = when (val result = insuranceRepository.getInsurances()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _insurances.update { insurancesFromRepository }
+        }
+    }
+
+    fun fetchAllData() {
+        fetchOffers()
+        fetchVehicles()
+        fetchContacts()
+        fetchReservations()
+        fetchInsurances()
     }
 
     fun createPdfAndOpen(context : Context, contract : ContractDetailedSaleDto) {

@@ -168,6 +168,9 @@
         <action
             android:id="@+id/action_contractsFragment_to_contractDetailsFragment"
             app:destination="@id/contractDetailsFragment" />
+        <action
+            android:id="@+id/action_contractsFragment_to_addContractFragment"
+            app:destination="@id/addContractFragment" />
     </fragment>
     <fragment
         android:id="@+id/contractDetailsFragment"
@@ -184,5 +187,14 @@
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addContractFragment"
+        android:name="com.example.carchive.fragments.AddContractFragment"
+        android:label="AddContractFragment"
+        tools:layout="fragment_offers">
+        <action
+            android:id="@+id/action_addContractFragment_to_contractsFragment"
+            app:destination="@id/contractsFragment" />
     </fragment>
 </navigation>

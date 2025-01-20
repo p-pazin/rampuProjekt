@@ -5,11 +5,13 @@ import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
+import com.example.carchive.data.dto.InsuranceDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
+import com.example.carchive.data.dto.ReservationDto
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
@@ -21,6 +23,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("User/login")
@@ -88,4 +91,23 @@ interface ApiService {
 
     @GET("Contract/rent/{id}")
     suspend fun getContractRentById(@Path("id") id: Int): ContractDetailedRentDto
+
+    @GET("Reservation")
+    suspend fun getReservations(): List<ReservationDto>
+
+    @GET("Insurance")
+    suspend fun getInsurances(): List<InsuranceDto>
+
+    @POST("Contract/sell")
+    suspend fun postContractSale(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("offerId") offerId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
+
+    @POST("Contract/rent")
+    suspend fun postContractRent(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("reservationId") reservationId: Int?,
+                                 @Query("insuranceId") insuranceId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
 }
