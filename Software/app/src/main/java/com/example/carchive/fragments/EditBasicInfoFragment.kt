@@ -24,6 +24,7 @@ class EditBasicInfoFragment : Fragment() {
     private var _binding: FragmentEditBasicInfoBinding? = null
     private val binding get() = _binding!!
     private val vmVehicle: VehicleCatalogViewModel by activityViewModels()
+    private var isSaved: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -154,6 +155,7 @@ class EditBasicInfoFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     Toast.makeText(requireContext(), getString(R.string.car_edited), Toast.LENGTH_SHORT).show()
+                    isSaved = 1
                 }
                 is Result.Error -> {
                     Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
@@ -181,6 +183,7 @@ class EditBasicInfoFragment : Fragment() {
         binding.editSpGearbox.setSelection(getIndex(binding.editSpGearbox, gearBox))
 
         updateModelSpinner(marka, model)
+        
 
         binding.editSpMarka.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

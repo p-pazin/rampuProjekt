@@ -41,6 +41,10 @@ class OffersFragment : Fragment() {
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
 
+        binding.sidebarLogo.btnDodaj.setOnClickListener {
+            findNavController().navigate(R.id.action_offersFragment_to_addOfferFragment)
+        }
+
         setupRecyclerView()
         observeOffers()
         offerViewModel.fetchOffers()

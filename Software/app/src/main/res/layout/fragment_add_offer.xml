@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/navBackButton"
+            layout="@layout/toolbar_back_button" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="28dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_offer_add_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Dodavanje ponude"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kontakt"
+                    android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <Spinner
+                    android:id="@+id/spinner_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Naziv ponude"
+                    android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <EditText
+                    android:id="@+id/et_offer_add_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="text"
+                    android:text=""
+                    android:paddingStart="15dp"
+                    android:minHeight="48dp"
+                    android:textColor="@color/textColorLight" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datum stvaranja ponude"
+                    android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <EditText
+                    android:id="@+id/et_offer_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="date"
+                    android:paddingStart="15dp"
+                    android:minHeight="48dp"
+                    android:textColor="@color/textColorLight" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cijena ponude"
+                    android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <EditText
+                    android:id="@+id/et_offer_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="15dp"
+                    android:minHeight="48dp"
+                    android:textColor="@color/textColorLight" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Povezana vozila"
+                    android:layout_marginTop="15dp"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <Spinner
+                    android:id="@+id/spinner_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
+
+                <Button
+                    android:id="@+id/btn_add_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Dodaj vozilo"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:textColor="@color/textColorDark" />
+
+                <TextView
+                    android:id="@+id/tv_selected_vehicles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Izabrana vozila"
+                    android:textColor="?attr/colorOnBackground" />
+
+                <LinearLayout
+                    android:id="@+id/ll_selected_vehicles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:id="@+id/btn_offer_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginHorizontal="50dp"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:text="Dodaj ponudu"
+                    android:textColor="@color/textColorDark" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

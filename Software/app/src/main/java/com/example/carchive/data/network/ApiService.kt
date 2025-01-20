@@ -1,5 +1,6 @@
 package com.example.carchive.data.network
 
+import com.example.carchive.adapters.OfferAdapter
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
@@ -11,6 +12,7 @@ import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
+import com.example.carchive.data.dto.OfferPostDto
 import com.example.carchive.data.dto.ReservationDto
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
@@ -20,6 +22,7 @@ import com.example.carchive.data.dto.YearlyInfoDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -47,11 +50,21 @@ interface ApiService {
     @DELETE("Vehicle/{id}")
     suspend fun deleteVehicle(@Path("id") id: Int): Response<Unit>
 
+    @GET("Vehicle/offer/{offerId}")
+    suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
+
     @GET("Offer")
     suspend fun getOffers(): List<OfferDto>
 
-    @GET("Vehicle/offer/{offerId}")
-    suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
+    @POST("Offer")
+    suspend fun postOffer(
+        @Query("contactId") contactId: Int,
+        @Query("vehiclesId") vehiclesId: List<Int>,
+        @Body body: OfferPostDto
+    ): Response<Unit>
+
+    @DELETE("Offer/{id}")
+    suspend fun deleteOffer(@Path("id") id: Int): Response<Unit>
 
     @GET("User")
     suspend fun getUser(): UserDto

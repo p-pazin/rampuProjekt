@@ -55,7 +55,7 @@
                         android:id="@+id/offerPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: $0.00"
+                        android:text=""
                         android:textSize="16sp"
                         android:textColor="@color/accentColorLight"
                         android:layout_marginTop="4dp" />
@@ -64,7 +64,7 @@
                         android:id="@+id/offerDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Created on: YYYY-MM-DD"
+                        android:text=""
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray"
                         android:layout_marginTop="4dp" />
@@ -83,7 +83,7 @@
                         android:id="@+id/contactName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FirstName LastName"
+                        android:text=""
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
@@ -93,7 +93,7 @@
                         android:id="@+id/contactPin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PIN: ####"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
@@ -102,7 +102,7 @@
                         android:id="@+id/contactAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address: Street, City, State, Country"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
@@ -111,7 +111,7 @@
                         android:id="@+id/contactTelephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Telephone: 123-456-7890"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
@@ -120,7 +120,7 @@
                         android:id="@+id/contactMobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mobile: 098-765-4321"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
@@ -129,7 +129,7 @@
                         android:id="@+id/contactEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email: example@example.com"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
@@ -138,10 +138,44 @@
                         android:id="@+id/contactDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Description: Additional contact information."
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="?attr/colorOnBackground"/>
+
+                    <Button
+                        android:id="@+id/btn_edit_offer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/textColorDark"
+                        android:backgroundTint="#A2A0A0"
+                        android:fontFamily="@font/inter_bold"
+                        android:maxWidth="10dp"
+                        android:text="Uredi ponudu"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_delete_offer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/textColorDark"
+                        android:backgroundTint="#E81717"
+                        android:fontFamily="@font/inter_bold"
+                        android:maxWidth="10dp"
+                        android:text="Obriši ponudu"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
