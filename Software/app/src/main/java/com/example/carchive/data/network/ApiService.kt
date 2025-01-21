@@ -1,7 +1,7 @@
 package com.example.carchive.data.network
 
-import com.example.carchive.adapters.OfferAdapter
 import com.example.carchive.data.dto.AdDto
+import com.example.carchive.data.dto.AdDtoPost
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.LocationDto
@@ -17,10 +17,10 @@ import com.example.carchive.data.dto.YearlyInfoDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("User/login")
@@ -79,4 +79,17 @@ interface ApiService {
 
     @GET("Ad")
     suspend fun getAds(): List<AdDto>
+
+    @GET("Ad/{adId}")
+    suspend fun getAd(@Path("adId") adId: Int): AdDto
+
+    @PUT("Ad")
+    suspend fun putAd(@Body body: AdDto): Response<Unit>
+
+    @DELETE("Ad")
+    suspend fun deleteAd(@Query("id") id: Int): Response<Unit>
+
+    @POST("Ad")
+    suspend fun postAd(@Body body: AdDto, @Query("id") id: Int): Response<Unit>
+
 }

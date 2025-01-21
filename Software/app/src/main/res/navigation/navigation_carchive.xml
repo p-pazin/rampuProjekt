@@ -149,5 +149,28 @@
     <fragment
         android:id="@+id/adFragment"
         android:name="com.example.carchive.fragments.AdFragment"
-        tools:label="AdFragment"/>
+        tools:label="AdFragment">
+        <action
+            android:id="@+id/action_adFragment_to_addAdFragment"
+            app:destination="@id/addAdFragment" />
+        <action
+            android:id="@+id/action_adFragment_to_adInfoFragment"
+            app:destination="@id/adInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAdFragment"
+        android:name="com.example.carchive.fragments.AddAdFragment"
+        tools:label="AddAdFragment"/>
+    <fragment
+        android:id="@+id/adInfoFragment"
+        android:name="com.example.carchive.fragments.AdInfoFragment"
+        tools:label="AdInfoFragment">
+        <action
+            android:id="@+id/action_adInfoFragment_to_adEditFragment"
+            app:destination="@id/adEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adEditFragment"
+        android:name="com.example.carchive.fragments.EditAdFragment"
+        tools:label="AdEditFragment"/>
 </navigation>

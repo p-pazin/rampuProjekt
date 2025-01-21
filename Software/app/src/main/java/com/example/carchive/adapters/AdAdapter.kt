@@ -46,13 +46,13 @@ class AdsAdapter(
             adPaymentMethod.text = ad.paymentMethod
             adDate.text = ad.dateOfPublishment
 
-            if (ad.link.isNullOrEmpty()) {
+            if (ad.links == null || ad.links.isEmpty()) {
                 Glide.with(itemView.context)
                     .load(R.drawable.ic_katalog_vozila)
                     .into(adPicture)
             } else {
                 Glide.with(itemView.context)
-                    .load(ad.link) // URL slike
+                    .load(ad.links[0])
                     .placeholder(R.drawable.ic_katalog_vozila)
                     .error(R.drawable.ic_katalog_vozila)
                     .into(adPicture)

@@ -2,25 +2,25 @@ package com.example.carchive.data.dto
 
 import com.example.carchive.entities.Ad
 
-data class AdDto(
-    val id: Int,
+data class AdDtoPost(
     val title: String,
     val description: String,
     val paymentMethod: String,
     val dateOfPublishment: String,
-    val brand: String,
-    val model: String,
-    val links: List<String>
+    val link: String? = ""
 )
 
-fun AdDto.toEntity() =
-    Ad(
-        id = id,
+fun AdDtoPost.toEntity() =
+    AdDto(
+        id = 0,
         title = title,
         description = description,
         paymentMethod = paymentMethod,
         dateOfPublishment = dateOfPublishment,
-        brand = brand,
-        model = model,
-        links = links.ifEmpty { listOf("") }
+        brand = "",
+        model = "",
+        links = listOf(link ?: "")
     )
+
+
+

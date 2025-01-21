@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 class AdFragment : Fragment() {
     private var _binding: FragmentAdsBinding? = null
     private val binding get() = _binding!!
-    private val adViewModel: AdViewModel by viewModels()
+    private val adViewModel: AdViewModel by activityViewModels()
     private lateinit var adsAdapter: AdsAdapter
 
     override fun onCreateView(
@@ -40,16 +41,20 @@ class AdFragment : Fragment() {
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
 
+        val btnDodaj = binding.sidebarLogo.btnDodaj
+        btnDodaj.setOnClickListener {
+            findNavController().navigate(R.id.action_adFragment_to_addAdFragment)
+        }
+
         setupRecyclerView()
         observeAds()
         adViewModel.fetchAds()
     }
 
     private fun setupRecyclerView() {
-        adsAdapter = AdsAdapter(listOf()) { ad : Ad ->
-            val bundle = Bundle().apply {
-                putSerializable("ad_key", ad)
-            }
+        adsAdapter = AdsAdapter(listOf()){
+            adViewModel.fetchAd(it.id)
+            findNavController().navigate(R.id.action_adFragment_to_adInfoFragment)
         }
 
         binding.recyclerViewAds.apply {

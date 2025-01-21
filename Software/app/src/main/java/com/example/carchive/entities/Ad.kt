@@ -10,5 +10,17 @@ data class Ad(
     val dateOfPublishment: String,
     val brand: String,
     val model: String,
-    val link: String
-): Serializable
+    val links: List<String>
+): Serializable{
+    companion object{
+        val EMPTY = Ad(
+            id = 0,
+            title = "",
+            description = "",
+            paymentMethod = "",
+            dateOfPublishment = "",
+            brand = "",
+            model = "",
+            links = listOf())
+    }
+}
