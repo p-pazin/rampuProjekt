@@ -792,4 +792,22 @@
     <string name="DodavanjeKontakta">Dodavanje kontakta</string>
     <string name="DodavanjeOglasa">Dodavanje oglasa</string>
     <string name="AzuriranjeOglasa">Ažuriranje oglasa</string>
+    <string name="skiniPdf">Skini PDF</string>
+    <string name="urediUgovor">Uredi ugovor</string>
+    <string name="izbrisiUgovor">Izbriši ugovor</string>
+    <string name="DodavanjeUgovora">Dodavanje ugovora</string>
+    <string name="ponuda">Ponuda</string>
+    <string name="rezervacija">Rezervacija</string>
+    <string name="osiguranje">Osiguranje</string>
+    <string name="naziv">Naziv</string>
+    <string name="mjesto">Mjesto</string>
+    <string name="prodaja">Prodaja</string>
+    <string name="dodajUgovor">Dodajte ugovor</string>
+    <string name="odaberitePonudu">Odaberite ponudu</string>
+    <string name="odaberiteVozilo">Odaberite vozilo</string>
+    <string name="odaberiteKontakt">Odaberite kontakt</string>
+    <string name="odaberiteRezervaciju">Odaberite rezervaciju</string>
+    <string name="odaberiteOsiguranje">Odaberite osiguranje</string>
+    <string name="ugovorDodan">Ugovor je uspješno dodan!</string>
+    <string name="greskaKodDodavanjaUgovora">Dogodila se greška kod dodavanja ugovora!</string>
 </resources>

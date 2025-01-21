@@ -6,7 +6,7 @@
     android:background="@drawable/rounded_car_items"
     android:outlineAmbientShadowColor="@color/primaryColorDark"
     android:layout_height="wrap_content"
-    android:backgroundTint="#E5E4E2">
+    style="@style/PopUpBackGround">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Prikaži vozilo"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/imgPrikazi"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +74,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Objavi vozilo"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgObjavi"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -104,7 +104,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Ponuda"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgPonuda"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Prodaj auto"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgProdajAuto"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -164,7 +164,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Iznajmi auto"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgIznajmi"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -194,7 +194,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Uredi vozilo"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgUredi"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -225,7 +225,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Obriši vozilo"
                 android:textAlignment="viewStart"
-                android:textColor="@color/textColorLight"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/imgObrisi"
                 app:layout_constraintTop_toTopOf="parent" />

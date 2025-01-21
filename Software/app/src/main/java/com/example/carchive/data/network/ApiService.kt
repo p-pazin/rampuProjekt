@@ -4,11 +4,17 @@ import com.example.carchive.data.dto.AdDto
 import com.example.carchive.data.dto.AdDtoPost
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
+import com.example.carchive.data.dto.ContractDetailedRentDto
+import com.example.carchive.data.dto.ContractDetailedSaleDto
+import com.example.carchive.data.dto.ContractDto
+import com.example.carchive.data.dto.InsuranceDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
+import com.example.carchive.data.dto.OfferPostDto
+import com.example.carchive.data.dto.ReservationDto
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
@@ -44,17 +50,30 @@ interface ApiService {
     @DELETE("Vehicle/{id}")
     suspend fun deleteVehicle(@Path("id") id: Int): Response<Unit>
 
+    @GET("Vehicle/offer/{offerId}")
+    suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
+
     @GET("Offer")
     suspend fun getOffers(): List<OfferDto>
 
-    @GET("offer/{offerId}")
-    suspend fun getVehiclesForOffer(@Path("id") id: Int): List<VehicleDto>
+    @POST("Offer")
+    suspend fun postOffer(
+        @Query("contactId") contactId: Int,
+        @Query("vehiclesId") vehiclesId: List<Int>,
+        @Body body: OfferPostDto
+    ): Response<Unit>
+
+    @DELETE("Offer/{id}")
+    suspend fun deleteOffer(@Path("id") id: Int): Response<Unit>
 
     @GET("User")
     suspend fun getUser(): UserDto
 
     @GET("Contact")
     suspend fun getContacts(): List<ContactDto>
+
+    @GET("Contact/contacts/{offerId}")
+    suspend fun getContactByOfferId(@Path("offerId") offerId: Int): ContactDto
 
     @POST("Contact")
     suspend fun postContact(@Body body: ContactDto): Response<Unit>
@@ -92,4 +111,32 @@ interface ApiService {
     @POST("Ad")
     suspend fun postAd(@Body body: AdDto, @Query("id") id: Int): Response<Unit>
 
+
+    @GET("Contract")
+    suspend fun getContracts(): List<ContractDto>
+
+    @GET("Contract/sell/{id}")
+    suspend fun getContractSaleById(@Path("id") id: Int): ContractDetailedSaleDto
+
+    @GET("Contract/rent/{id}")
+    suspend fun getContractRentById(@Path("id") id: Int): ContractDetailedRentDto
+
+    @GET("Reservation")
+    suspend fun getReservations(): List<ReservationDto>
+
+    @GET("Insurance")
+    suspend fun getInsurances(): List<InsuranceDto>
+
+    @POST("Contract/sell")
+    suspend fun postContractSale(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("offerId") offerId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
+
+    @POST("Contract/rent")
+    suspend fun postContractRent(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("reservationId") reservationId: Int?,
+                                 @Query("insuranceId") insuranceId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
 }

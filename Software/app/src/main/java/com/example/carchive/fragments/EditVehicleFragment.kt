@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.carchive.R
 import com.example.carchive.adapters.EditInfoPagerAdapter
 import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.databinding.FragmentEditCarBinding
@@ -23,7 +24,7 @@ class EditVehicleFragment : Fragment() {
         _binding = FragmentEditCarBinding.inflate(inflater, container, false)
 
         binding.navBackButton.backButton.setOnClickListener(){
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_editVehicleFragment_to_vehicleCatalogFragment)
         }
 
         val viewPager = binding.editViewPager

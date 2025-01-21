@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <attr name="iconColor" format="color" />
     <style name="Base.Theme.Carchive.Night" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:colorPrimary">@color/primaryColorDark</item>
         <item name="android:colorAccent">@color/accentColorDark</item>
@@ -10,11 +10,17 @@
         <item name="backgroundTint">@color/primaryColorDark</item>
         <item name="tabTextColor">@color/textColorDark</item>
         <item name="android:statusBarColor">@color/accentColorLight</item>
+        <item name="iconColor">@color/iconsColorDark</item>
     </style>
 
     <style name="CustomBackground">
         <item name="android:background">@color/accentColorLight</item>
     </style>
+
+    <style name="PopUpBackGround">
+        <item name="android:backgroundTint">@color/primaryColorDark</item>
+    </style>
+
 
     <style name="Theme.Carchive" parent="Base.Theme.Carchive" />
 </resources>

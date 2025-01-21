@@ -38,4 +38,10 @@ class ContactRepository {
             networkClient.deleteContact(contactId)
         }
     }
+
+    suspend fun getContactByOfferId(offerId: Int) : Result<Contact> {
+        return safeResponse {
+            networkClient.getContactByOfferId(offerId).toEntity()
+        }
+    }
 }

@@ -1,7 +1,5 @@
-package com.example.carchive.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +10,13 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
-import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.data.network.Result
+import com.example.carchive.data.network.Result.*
+import com.example.carchive.databinding.FragmentContactAddBinding
 import com.example.carchive.viewmodels.ContactsViewModel
 
 class ContactAddFragment : Fragment() {
@@ -48,7 +48,7 @@ class ContactAddFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentContactAddBinding.inflate(inflater, container, false)
         binding.navBackButton.backButton.setOnClickListener(){
@@ -114,7 +114,7 @@ class ContactAddFragment : Fragment() {
             val state = 1
 
             if(!viewModel.validateInputs(firstName, lastName, pin, address, telephoneNumber,
-                mobileNumber, email, description)) {
+                    mobileNumber, email, description)) {
                 Toast.makeText(context, getString(R.string.potrebnoIspunitiPolja), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -124,19 +124,19 @@ class ContactAddFragment : Fragment() {
                 firstName, lastName, pin, address, telephoneNumber,
                 mobileNumber, email, description, country, city, state)
 
-            }
+        }
 
-            viewModel.postResult.observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Success -> {
-                        Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
-                    }
+        viewModel.postResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Success -> {
+                    Toast.makeText(requireContext(), getString(R.string.kontaktDodan), Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_contactAddFragment_to_contactsFragment)
+                }
+                is Error -> {
+                    Toast.makeText(requireContext(), getString(R.string.greskaKodDodavanjaKontakta), Toast.LENGTH_SHORT).show()
                 }
             }
+        }
 
         return binding.root
     }
