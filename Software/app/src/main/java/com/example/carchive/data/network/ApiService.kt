@@ -1,14 +1,20 @@
 package com.example.carchive.data.network
 
-import com.example.carchive.adapters.OfferAdapter
+import com.example.carchive.data.dto.AdDto
+import com.example.carchive.data.dto.AdDtoPost
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
+import com.example.carchive.data.dto.ContractDetailedRentDto
+import com.example.carchive.data.dto.ContractDetailedSaleDto
+import com.example.carchive.data.dto.ContractDto
+import com.example.carchive.data.dto.InsuranceDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.OfferPostDto
+import com.example.carchive.data.dto.ReservationDto
 import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
@@ -113,4 +119,48 @@ interface ApiService {
 
     @GET("Location")
     suspend fun getLocations(): List<LocationDto>
+
+    @GET("Ad")
+    suspend fun getAds(): List<AdDto>
+
+    @GET("Ad/{adId}")
+    suspend fun getAd(@Path("adId") adId: Int): AdDto
+
+    @PUT("Ad")
+    suspend fun putAd(@Body body: AdDto): Response<Unit>
+
+    @DELETE("Ad")
+    suspend fun deleteAd(@Query("id") id: Int): Response<Unit>
+
+    @POST("Ad")
+    suspend fun postAd(@Body body: AdDto, @Query("id") id: Int): Response<Unit>
+
+
+    @GET("Contract")
+    suspend fun getContracts(): List<ContractDto>
+
+    @GET("Contract/sell/{id}")
+    suspend fun getContractSaleById(@Path("id") id: Int): ContractDetailedSaleDto
+
+    @GET("Contract/rent/{id}")
+    suspend fun getContractRentById(@Path("id") id: Int): ContractDetailedRentDto
+
+    @GET("Reservation")
+    suspend fun getReservations(): List<ReservationDto>
+
+    @GET("Insurance")
+    suspend fun getInsurances(): List<InsuranceDto>
+
+    @POST("Contract/sell")
+    suspend fun postContractSale(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("offerId") offerId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
+
+    @POST("Contract/rent")
+    suspend fun postContractRent(@Query("contactId") contactId: Int?,
+                                 @Query("vehicleId") vehicleId: Int?,
+                                 @Query("reservationId") reservationId: Int?,
+                                 @Query("insuranceId") insuranceId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
 }

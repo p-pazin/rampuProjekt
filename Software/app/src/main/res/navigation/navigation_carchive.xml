@@ -189,6 +189,48 @@
         android:name="com.example.carchive.fragments.VehicleLocationFragment"
         tools:label="LocationFragment"/>
     <fragment
+        android:id="@+id/adFragment"
+        android:name="com.example.carchive.fragments.AdFragment"
+        tools:label="AdFragment">
+        <action
+            android:id="@+id/action_adFragment_to_addAdFragment"
+            app:destination="@id/addAdFragment" />
+        <action
+            android:id="@+id/action_adFragment_to_adInfoFragment"
+            app:destination="@id/adInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAdFragment"
+        android:name="com.example.carchive.fragments.AddAdFragment"
+        tools:label="AddAdFragment"/>
+    <fragment
+        android:id="@+id/adInfoFragment"
+        android:name="com.example.carchive.fragments.AdInfoFragment"
+        tools:label="AdInfoFragment">
+        <action
+            android:id="@+id/action_adInfoFragment_to_adEditFragment"
+            app:destination="@id/adEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adEditFragment"
+        android:name="com.example.carchive.fragments.EditAdFragment"
+        tools:label="AdEditFragment"/>
+    <fragment
+        android:id="@+id/contractsFragment"
+        android:name="com.example.carchive.fragments.ContractsFragment"
+        tools:label="ContractsFragment">
+        <action
+            android:id="@+id/action_contractsFragment_to_contractDetailsFragment"
+            app:destination="@id/contractDetailsFragment" />
+        <action
+            android:id="@+id/action_contractsFragment_to_addContractFragment"
+            app:destination="@id/addContractFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contractDetailsFragment"
+        android:name="com.example.carchive.fragments.ContractDetailsFragment"
+        tools:label="ContractDetailsFragment"/>
+    <fragment
         android:id="@+id/offerDetailsFragment"
         android:name="com.example.carchive.OfferDetailsFragment"
         android:label="OfferDetailsFragment">
@@ -218,5 +260,14 @@
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addContractFragment"
+        android:name="com.example.carchive.fragments.AddContractFragment"
+        android:label="AddContractFragment"
+        tools:layout="fragment_offers">
+        <action
+            android:id="@+id/action_addContractFragment_to_contractsFragment"
+            app:destination="@id/contractsFragment" />
     </fragment>
 </navigation>

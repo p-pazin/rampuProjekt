@@ -117,4 +117,9 @@ dependencies {
 
     // DataBinding
     kapt(libs.databinding.compiler)
+
+    // ImageLoading
+    implementation (libs.github.glide)
+    annotationProcessor (libs.compiler)
+
 }
