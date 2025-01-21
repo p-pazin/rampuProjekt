@@ -1,5 +1,7 @@
 package com.example.carchive.data.dto
 
+import java.io.Serializable
+
 data class ContractDetailedRentDto (
     val id: Int,
     val title: String,
@@ -25,10 +27,11 @@ data class ContractDetailedRentDto (
     val engine: String,
     val registration: String,
     val mileage: Int,
+    val reservationId: Int,
     val price: Int,
     val startDate: String,
     val endDate: String,
     val maxMileage: Int,
     val nameInsurance: String,
     val costInsurance: Int
-)
+) : Serializable

@@ -195,7 +195,14 @@
     <fragment
         android:id="@+id/contractDetailsFragment"
         android:name="com.example.carchive.fragments.ContractDetailsFragment"
-        tools:label="ContractDetailsFragment"/>
+        tools:label="ContractDetailsFragment">
+        <action
+            android:id="@+id/action_contractDetailsFragment_to_editContractSaleFragment"
+            app:destination="@id/editContractSaleFragment" />
+        <action
+            android:id="@+id/action_contractDetailsFragment_to_editContractRentFragment"
+            app:destination="@id/editContractRentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/offerDetailsFragment"
         android:name="com.example.carchive.OfferDetailsFragment"
@@ -215,6 +222,24 @@
         tools:layout="fragment_offers">
         <action
             android:id="@+id/action_addContractFragment_to_contractsFragment"
+            app:destination="@id/contractsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editContractSaleFragment"
+        android:name="com.example.carchive.fragments.EditSaleContractFragment"
+        android:label="EditContractSaleFragment"
+        tools:layout="fragment_offers">
+        <action
+            android:id="@+id/action_editContractSaleFragment_to_contractsFragment"
+            app:destination="@id/contractsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editContractRentFragment"
+        android:name="com.example.carchive.fragments.EditRentContractFragment"
+        android:label="EditContractRentFragment"
+        tools:layout="fragment_offers">
+        <action
+            android:id="@+id/action_editContractRentFragment_to_contractsFragment"
             app:destination="@id/contractsFragment" />
     </fragment>
 </navigation>

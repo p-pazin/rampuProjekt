@@ -795,4 +795,9 @@
     <string name="odaberiteOsiguranje">Odaberite osiguranje</string>
     <string name="ugovorDodan">Ugovor je uspješno dodan!</string>
     <string name="greskaKodDodavanjaUgovora">Dogodila se greška kod dodavanja ugovora!</string>
+    <string name="azurirajUgovor">Ažurirajte ugovor</string>
+    <string name="AzuriranjeUgovora">Ažuriranje ugovora</string>
+    <string name="ugovorAzuriran">Ugovor uspješno ažuriran!</string>
+    <string name="greskaKodAzuriranjaUgovora">Greška kod ažuriranja ugovora!</string>
+    <string name="potpis">Potpis</string>
 </resources>

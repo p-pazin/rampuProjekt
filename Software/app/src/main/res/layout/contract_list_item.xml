@@ -58,13 +58,13 @@
                     android:textColor="?attr/colorOnBackground"
                     android:text="Kupoprodajni" />
                 <TextView
-                    android:id="@+id/tv_contract_place"
+                    android:id="@+id/tv_contract_contact_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textSize="13sp"
                     android:textColor="?attr/colorOnBackground"
-                    android:text="Varaždin" />
+                    android:text="Pero Perić" />
                 <TextView
                     android:id="@+id/tv_contract_date_created"
                     android:layout_width="wrap_content"

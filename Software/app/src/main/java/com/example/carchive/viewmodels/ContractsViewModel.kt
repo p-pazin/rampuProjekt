@@ -13,14 +13,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InsuranceDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.ReservationDto
-import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.ContactRepository
 import com.example.carchive.data.repositories.ContractRepository
@@ -72,6 +70,8 @@ class ContractsViewModel : ViewModel() {
     val validationResult: LiveData<Boolean> get() = _validationResult
     private val _postResult = MutableLiveData<Result<Response<Unit>>>()
     val postResult: LiveData<Result<Response<Unit>>> = _postResult
+    private val _putResult = MutableLiveData<Result<Response<Unit>>>()
+    val putResult: LiveData<Result<Response<Unit>>> = _putResult
 
     fun validateContractInputs(contractType: Int, offerId: Int?, vehicleId: Int?, contactId: Int?,
                                reservationId: Int?, insuranceId: Int?, title: String,
@@ -105,7 +105,8 @@ class ContractsViewModel : ViewModel() {
                 content = content,
                 dateOfCreation = simpleDateFormat.format(Date()),
                 type = contractType,
-                signed = 0
+                signed = 0,
+                contactName = null
             )
 
             try {
@@ -130,13 +131,13 @@ class ContractsViewModel : ViewModel() {
                 content = content,
                 dateOfCreation = simpleDateFormat.format(Date()),
                 type = contractType,
-                signed = 0
+                signed = 0,
+                contactName = null
             )
 
             viewModelScope.launch {
                 try {
-                    when (val result = contractRepository.postContractRent(contactId,
-                        vehicleId, reservationId, insuranceId, contract)) {
+                    when (val result = contractRepository.postContractRent(reservationId, insuranceId, contract)) {
                         is Result.Success -> {
                             _postResult.postValue(Result.Success(result.data))
                         }
@@ -146,6 +147,65 @@ class ContractsViewModel : ViewModel() {
                     }
                 } catch (e: Exception) {
                     _postResult.postValue(Result.Error(e))
+                }
+            }
+        }
+    }
+
+    suspend fun putContract(contractType: Int, offerId: Int?, vehicleId: Int?, contactId: Int?,
+                             reservationId: Int?, insuranceId: Int?, title: String,
+                             content: String, place: String, contractId: Int?, signed: Int?) {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        if(contractType == 1) {
+            val contract = ContractDto(
+                id = contractId ?: -1,
+                title = title,
+                place = place,
+                content = content,
+                dateOfCreation = simpleDateFormat.format(Date()),
+                type = 1,
+                signed = signed ?: 0,
+                contactName = null
+            )
+
+            try {
+                when (val result = contractRepository.putContractSale(contactId, vehicleId,
+                    offerId, contract)) {
+                    is Result.Success -> {
+                        _putResult.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _putResult.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _putResult.postValue(Result.Error(e))
+            }
+        }
+        else {
+            val contract = ContractDto(
+                id = contractId ?: -1,
+                title = title,
+                place = place,
+                content = content,
+                dateOfCreation = simpleDateFormat.format(Date()),
+                type = 2,
+                signed = signed ?: 0,
+                contactName = null
+            )
+
+            viewModelScope.launch {
+                try {
+                    when (val result = contractRepository.putContractRent(reservationId, insuranceId, contract)) {
+                        is Result.Success -> {
+                            _putResult.postValue(Result.Success(result.data))
+                        }
+                        is Result.Error -> {
+                            _putResult.postValue(Result.Error(result.error))
+                        }
+                    }
+                } catch (e: Exception) {
+                    _putResult.postValue(Result.Error(e))
                 }
             }
         }
@@ -330,7 +390,7 @@ class ContractsViewModel : ViewModel() {
         yPosition += lineSpacing * 2
 
         val introduction = """
-        “Iznajmi i vrati auto” d.o.o. iz ${contract.city}, ${contract.address}, OIB: ${contract.pin}
+        “${contract.name} iz ${contract.city}, ${contract.address}, OIB: ${contract.pin}
         zastupano po direktoru ${contract.firstNameDirector} ${contract.lastNameDirector}
         i
         ${contract.firstNameContact} ${contract.lastNameContact}, OIB: ${contract.pinContact}, iz ${contract.cityContact}, ${contract.addressContact},

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddContractFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/navBackButton"
+            layout="@layout/toolbar_back_button" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="28dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_contract_edit_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/AzuriranjeUgovora"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:id="@+id/contract_rent_edit_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_contract_rent_edit_reservation_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/spn_contract_rent_edit_reservation"
+                        android:text="@string/rezervacija" />
+
+                    <Spinner
+                        android:id="@+id/spn_contract_rent_edit_reservation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/spinner_item" />
+
+                    <TextView
+                        android:id="@+id/tv_contract_rent_edit_insurance_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/spn_contract_rent_edit_insurance"
+                        android:text="@string/osiguranje" />
+
+                    <Spinner
+                        android:id="@+id/spn_contract_rent_edit_insurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/spinner_item" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contract_rent_edit_title"
+                    android:text="@string/naziv" />
+
+                <EditText
+                    android:id="@+id/et_contract_rent_edit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/textColorLight" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contract_rent_edit_content"
+                    android:text="@string/Opis" />
+
+                <EditText
+                    android:id="@+id/et_contract_rent_edit_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:minHeight="150dp"
+                    android:padding="15dp" />
+
+                <TextView
+                    android:layout_width="219dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/et_contract_rent_edit_place"
+                    android:text="@string/mjesto" />
+
+                <EditText
+                    android:id="@+id/et_contract_rent_edit_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/textColorLight" />
+
+                <TextView
+                    android:id="@+id/tv_contract_rent_edit_signed_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_marginTop="15dp"
+                    android:labelFor="@id/spn_contract_rent_edit_signed"
+                    android:text="@string/potpis" />
+
+                <Spinner
+                    android:id="@+id/spn_contract_rent_edit_signed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
+
+                <Button
+                    android:id="@+id/btn_contract_rent_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/textColorDark"
+                    android:maxWidth="10dp"
+                    android:rotation="0"
+                    android:rotationX="0"
+                    android:rotationY="0"
+                    android:text="@string/azurirajUgovor" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

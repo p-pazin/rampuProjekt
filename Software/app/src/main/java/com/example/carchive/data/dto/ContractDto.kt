@@ -7,5 +7,6 @@ data class ContractDto (
     val dateOfCreation: String,
     val type: Int,
     val content: String,
-    val signed: Int
+    val signed: Int,
+    val contactName: String?
 )

@@ -323,6 +323,8 @@ class AddContractFragment : Fragment() {
             selectedVehicleId = null
             contactSpinner.setSelection(0)
             selectedContactId = null
+            offerSpinner.setSelection(0)
+            selectedOfferId = null
             offerLabel.visibility = if (isChecked) View.VISIBLE else View.GONE
             offerSpinner.visibility = if (isChecked) View.VISIBLE else View.GONE
             vehicleLabel.visibility = if (isChecked) View.GONE else View.VISIBLE

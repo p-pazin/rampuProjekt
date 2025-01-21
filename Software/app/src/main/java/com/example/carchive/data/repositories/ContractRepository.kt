@@ -37,10 +37,24 @@ class ContractRepository {
         }
     }
 
-    suspend fun postContractRent(contactId: Int?, vehicleId: Int?, reservationId: Int?,
+    suspend fun postContractRent(reservationId: Int?,
                                  insuranceId: Int?, contractDto: ContractDto): Result<Response<Unit>> {
         return safeResponse {
-            networkClient.postContractRent(contactId, vehicleId, reservationId, insuranceId, contractDto)
+            networkClient.postContractRent(reservationId, insuranceId, contractDto)
+        }
+    }
+
+    suspend fun putContractSale(contactId: Int?, vehicleId: Int?, offerId: Int?,
+                                 contractDto: ContractDto): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.putContractSale(contactId, vehicleId, offerId, contractDto)
+        }
+    }
+
+    suspend fun putContractRent(reservationId: Int?,
+                                 insuranceId: Int?, contractDto: ContractDto): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.putContractRent(reservationId, insuranceId, contractDto)
         }
     }
 }

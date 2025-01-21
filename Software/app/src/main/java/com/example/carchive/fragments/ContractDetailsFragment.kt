@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carchive.R
 import com.example.carchive.adapters.ExpandableAdapter
 import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
@@ -30,6 +32,7 @@ class ContractDetailsFragment : Fragment() {
     private lateinit var tvModel : TextView
     private lateinit var tvContactName : TextView
     private lateinit var btnOpenPdf : Button
+    private lateinit var btnEdit: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ExpandableAdapter
     private var _binding: FragmentContractDetailsBinding? = null
@@ -71,6 +74,7 @@ class ContractDetailsFragment : Fragment() {
         tvModel = binding.tvContractDetailsVehicleModel
         tvContactName = binding.tvContractDetailsContactName
         btnOpenPdf = binding.btnContractDetailsDownload
+        btnEdit = binding.btnContractDetailsEdit
 
         adapter = ExpandableAdapter(itemList)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -82,6 +86,12 @@ class ContractDetailsFragment : Fragment() {
                 tvDate.text = "Datum kreiranja: ${contract?.dateOfCreation}"
                 tvPrice.text = "Cijena: ${contract?.price}"
                 tvContactName.text = "Kupac: ${contract?.contactName}"
+
+                if(contract?.signed == 1) {
+                    btnEdit.visibility = View.GONE
+                } else if(contract?.signed == 0) {
+                    btnEdit.visibility = View.VISIBLE
+                }
 
                 if(contract?.vehicles != null && contract.vehicles.isNotEmpty()) {
                     tvRegistration.visibility = View.GONE
@@ -109,11 +119,20 @@ class ContractDetailsFragment : Fragment() {
                         viewModel.createPdfAndOpen(requireContext(), contract)
                     }
                 }
+
+                btnEdit.setOnClickListener {
+                    if(contract != null) {
+                        val bundle = Bundle().apply {
+                            putSerializable("contract_sale_key", contract)
+                        }
+                        findNavController().navigate(R.id.action_contractDetailsFragment_to_editContractSaleFragment, bundle)
+                    }
+                }
         })
 
         viewModel.contractRent.observe(viewLifecycleOwner, { contract ->
                 tvTitle.text = "Naslov: ${contract?.title}"
-                tvPlace.text = "Mjesto: ${contract?.city}"
+                tvPlace.text = "Mjesto: ${contract?.place}"
                 tvDate.text = "Datum kreiranja: ${contract?.dateOfCreation}"
                 tvPrice.text = "Cijena: ${contract?.price}"
                 tvRegistration.text = "Registracija vozila: ${contract?.registration}"
@@ -121,13 +140,29 @@ class ContractDetailsFragment : Fragment() {
                 tvModel.text = "Model vozila: ${contract?.model}"
                 tvContactName.text = "Kupac: ${contract?.firstNameContact + " " + contract?.lastNameContact}"
 
+                if(contract?.signed == 1) {
+                    btnEdit.visibility = View.GONE
+                } else if(contract?.signed == 0) {
+                    btnEdit.visibility = View.VISIBLE
+                }
+
                 btnOpenPdf.setOnClickListener {
                     if(contract != null) {
                         viewModel.createPdfAndOpen(requireContext(), contract)
+                    }
+                }
+
+                btnEdit.setOnClickListener {
+                    if(contract != null) {
+                        val bundle = Bundle().apply {
+                            putSerializable("contract_rent_key", contract)
+                        }
+                        findNavController().navigate(R.id.action_contractDetailsFragment_to_editContractRentFragment, bundle)
                     }
                 }
         })
 
         return binding.root
     }
+
 }

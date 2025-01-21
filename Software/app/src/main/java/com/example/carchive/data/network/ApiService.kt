@@ -118,9 +118,18 @@ interface ApiService {
                                  @Body body: ContractDto): Response<Unit>
 
     @POST("Contract/rent")
-    suspend fun postContractRent(@Query("contactId") contactId: Int?,
+    suspend fun postContractRent(@Query("reservationId") reservationId: Int?,
+                                 @Query("insuranceId") insuranceId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
+
+    @PUT("Contract/sell")
+    suspend fun putContractSale(@Query("contactId") contactId: Int?,
                                  @Query("vehicleId") vehicleId: Int?,
-                                 @Query("reservationId") reservationId: Int?,
+                                 @Query("offerId") offerId: Int?,
+                                 @Body body: ContractDto): Response<Unit>
+
+    @PUT("Contract/rent")
+    suspend fun putContractRent(@Query("reservationId") reservationId: Int?,
                                  @Query("insuranceId") insuranceId: Int?,
                                  @Body body: ContractDto): Response<Unit>
 }

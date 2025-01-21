@@ -17,7 +17,7 @@ class ContractsAdapter(
         private val contractName: TextView
         private val ID: TextView
         private val contractType: TextView
-        private val contractPlace: TextView
+        private val contractContact: TextView
         private val contractDateOfCreation: TextView
         private val contractSigned: TextView
         private val contractSignedIcon: ImageView
@@ -26,7 +26,7 @@ class ContractsAdapter(
             contractName = view.findViewById(R.id.tv_contract_name)
             ID = view.findViewById(R.id.tv_contract_id)
             contractType = view.findViewById(R.id.tv_contract_type)
-            contractPlace = view.findViewById(R.id.tv_contract_place)
+            contractContact = view.findViewById(R.id.tv_contract_contact_name)
             contractDateOfCreation = view.findViewById(R.id.tv_contract_date_created)
             contractSigned = view.findViewById(R.id.tv_contract_signed)
             contractSignedIcon = view.findViewById(R.id.iv_contract_signed)
@@ -40,7 +40,7 @@ class ContractsAdapter(
             if(contract.type == 2) {
                 contractType.text = "Najmodavni"
             }
-            contractPlace.text = contract.place
+            contractContact.text = contract.contactName
             contractDateOfCreation.text = contract.dateOfCreation
             if(contract.signed == 1) {
                 contractSignedIcon.setImageResource(R.drawable.ic_aktivan_kontakt)

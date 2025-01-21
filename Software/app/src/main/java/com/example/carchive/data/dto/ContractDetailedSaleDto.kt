@@ -1,5 +1,7 @@
 package com.example.carchive.data.dto
 
+import java.io.Serializable
+
 data class ContractDetailedSaleDto (
     val id: Int,
     val title: String,
@@ -17,5 +19,6 @@ data class ContractDetailedSaleDto (
     val vehicle: VehicleDto?,
     val price: Int,
     val userName: String,
+    val offerId: Int,
     val vehicles: List<VehicleDto>?
-)
+) : Serializable
