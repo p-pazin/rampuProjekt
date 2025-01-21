@@ -2,6 +2,7 @@ package com.example.carchive.data.repositories
 
 import android.content.Context
 import android.util.Log
+import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
 import com.example.carchive.data.dto.toDto
@@ -10,8 +11,12 @@ import com.example.carchive.data.network.Network
 import com.example.carchive.data.network.Result
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.util.safeResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
 import retrofit2.http.HTTP
+import java.io.File
 
 class VehicleRepository {
     private val networkClient = Network().getInstance()
@@ -40,6 +45,15 @@ class VehicleRepository {
     suspend fun deleteVehicle(id: Int): Result<Response<Unit>>{
         return safeResponse {
             networkClient.deleteVehicle(id)
+        }
+    }
+
+    suspend fun uploadPhoto(file: File): Result<Response<UploadResponse>> {
+        return safeResponse {
+            val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val part = MultipartBody.Part.createFormData("file", file.name, requestBody)
+
+            networkClient.uploadPhoto(part)
         }
     }
 }

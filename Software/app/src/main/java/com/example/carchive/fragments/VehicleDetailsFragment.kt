@@ -39,6 +39,15 @@ class VehicleDetailsFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.btnVehicleDetailsCreateOffer.setOnClickListener {
+            arguments?.let{ bundle ->
+                binding.tvRegistration.text = "Registracija: ${bundle.getString("registration", "Unknown")}"
+                bundle.putInt("id", vehicleId)
+
+                findNavController().navigate(R.id.action_vehicleDetailsFragment_to_addOfferFragment, bundle)
+            }
+        }
+
         binding.btnVehicleDetailsEdit.setOnClickListener{
             arguments?.let{ bundle ->
 

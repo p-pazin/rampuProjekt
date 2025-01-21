@@ -2,6 +2,7 @@
 # Updated Versions
 arcgisMapsKotlin = "200.6.0"
 agp = "8.7.1"
+glideVersion = "4.15.1"
 cardview = "1.0.0"
 converterGson = "2.9.0"
 kotlin = "2.0.0"
@@ -30,12 +31,15 @@ legacySupportV4 = "1.0.0"
 navigationUiKtxVersion = "2.6.0"
 playServicesMaps = "19.0.0"
 retrofit = "2.9.0"
+uiTestAndroid = "1.7.6"
 
 
 [libraries]
 # Core Libraries
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glideVersion" }
+github-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
 androidx-navigation-fragment-ktx-v260 = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
 androidx-navigation-ui-ktx-v260 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
@@ -79,6 +83,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-ui-test-android = { group = "androidx.compose.ui", name = "ui-test-android", version.ref = "uiTestAndroid" }
 
 
 [plugins]

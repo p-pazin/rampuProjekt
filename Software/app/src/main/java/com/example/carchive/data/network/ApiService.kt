@@ -1,6 +1,7 @@
 package com.example.carchive.data.network
 
-import com.example.carchive.adapters.OfferAdapter
+import com.example.carchive.data.dto.AdDto
+import com.example.carchive.data.dto.AdDtoPost
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
@@ -14,17 +15,21 @@ import com.example.carchive.data.dto.NewCompanyDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.OfferPostDto
 import com.example.carchive.data.dto.ReservationDto
+import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
 import retrofit2.Response
 import com.example.carchive.data.dto.YearlyInfoDto
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.HTTP
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -50,6 +55,18 @@ interface ApiService {
     @DELETE("Vehicle/{id}")
     suspend fun deleteVehicle(@Path("id") id: Int): Response<Unit>
 
+    @POST("upload")
+    @Multipart
+    suspend fun uploadPhoto(
+        @Part file: MultipartBody.Part
+    ): Response<UploadResponse>
+
+    @POST("connect/{vehicleId}")
+    suspend fun connectVehicleToPhoto(
+        @Path("vehicleId") vehicleId: Int,
+        @Body photoUrl: String
+    ): Response<String>
+
     @GET("Vehicle/offer/{offerId}")
     suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
 
@@ -61,6 +78,13 @@ interface ApiService {
         @Query("contactId") contactId: Int,
         @Query("vehiclesId") vehiclesId: List<Int>,
         @Body body: OfferPostDto
+    ): Response<Unit>
+
+    @PUT("Offer")
+    suspend fun putOffer(
+        @Query("contactId") contactId: Int,
+        @Query("vehiclesId") vehiclesId: List<Int>,
+        @Body body: OfferDto
     ): Response<Unit>
 
     @DELETE("Offer/{id}")
@@ -95,6 +119,22 @@ interface ApiService {
 
     @GET("Location")
     suspend fun getLocations(): List<LocationDto>
+
+    @GET("Ad")
+    suspend fun getAds(): List<AdDto>
+
+    @GET("Ad/{adId}")
+    suspend fun getAd(@Path("adId") adId: Int): AdDto
+
+    @PUT("Ad")
+    suspend fun putAd(@Body body: AdDto): Response<Unit>
+
+    @DELETE("Ad")
+    suspend fun deleteAd(@Query("id") id: Int): Response<Unit>
+
+    @POST("Ad")
+    suspend fun postAd(@Body body: AdDto, @Query("id") id: Int): Response<Unit>
+
 
     @GET("Contract")
     suspend fun getContracts(): List<ContractDto>

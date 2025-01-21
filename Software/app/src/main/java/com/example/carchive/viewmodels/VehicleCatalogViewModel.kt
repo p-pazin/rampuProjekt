@@ -30,6 +30,12 @@ class VehicleCatalogViewModel : ViewModel() {
     private val _deleteResult = MutableLiveData<Result<Response<Unit>>>()
     val deleteResult: LiveData<Result<Response<Unit>>> = _deleteResult
 
+    val isBasicInfoComplete = MutableLiveData(false)
+
+    fun setBasicInfoComplete(isComplete: Boolean) {
+        isBasicInfoComplete.value = isComplete
+    }
+
     fun fetchVehicles() {
         viewModelScope.launch {
             val vehiclesFromRepository = when (val result = vehicleRepository.getVehicles()) {
@@ -43,7 +49,6 @@ class VehicleCatalogViewModel : ViewModel() {
             _vehicles.update { vehiclesFromRepository }
         }
     }
-
 
     fun postVehicle(vehicle: VehicleDtoPost) {
         viewModelScope.launch {

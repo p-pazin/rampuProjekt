@@ -1,7 +1,6 @@
 package com.example.carchive.data.dto
 
 import com.example.carchive.entities.Vehicle
-import kotlin.random.Random
 
 
 data class VehicleDto(

@@ -15,6 +15,9 @@ import com.example.carchive.data.dto.VehicleDtoPost
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentBasicInfoBinding
 import com.example.carchive.viewmodels.VehicleCatalogViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class BasicInfoFragment : Fragment() {
 
@@ -120,7 +123,16 @@ class BasicInfoFragment : Fragment() {
         val rbProdaja = binding.rbSells
         val rbNajam = binding.rbRents
         val etCubCap = binding.etCubicCapacity
-        val etRegTo = binding.etRegisteredTo
+
+        val year = binding.datePicker.year
+        val month = binding.datePicker.month
+        val dayOfMonth = binding.datePicker.dayOfMonth
+
+        val selectedCalendar = Calendar.getInstance()
+        selectedCalendar.set(year, month, dayOfMonth)
+
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedDate = outputFormat.format(selectedCalendar.time)
         val etColor = binding.etColor
         val etDriveType = binding.etDriveType
         val etEngPow = binding.etEnginePower
@@ -142,7 +154,7 @@ class BasicInfoFragment : Fragment() {
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
             val cubCapacity = etCubCap.text.toString()
-            val registeredTo = etRegTo.text.toString()
+            val registeredTo = formattedDate
             val color = etColor.text.toString()
             val driveType = etDriveType.text.toString()
             val engPower = etEngPow.text.toString()
@@ -186,6 +198,7 @@ class BasicInfoFragment : Fragment() {
                 )
 
                 vmVehicle.postVehicle(vehicle)
+                vmVehicle.setBasicInfoComplete(true)
             } else {
                 Toast.makeText(requireContext(), getString(R.string.info_missing), Toast.LENGTH_SHORT).show()
             }

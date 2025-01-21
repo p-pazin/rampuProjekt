@@ -138,7 +138,14 @@
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_vehicleDetailsFragment_to_addOfferFragment"
+            app:destination="@+id/addOffersFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment
         android:id="@+id/offersFragment"
@@ -182,6 +189,33 @@
         android:name="com.example.carchive.fragments.VehicleLocationFragment"
         tools:label="LocationFragment"/>
     <fragment
+        android:id="@+id/adFragment"
+        android:name="com.example.carchive.fragments.AdFragment"
+        tools:label="AdFragment">
+        <action
+            android:id="@+id/action_adFragment_to_addAdFragment"
+            app:destination="@id/addAdFragment" />
+        <action
+            android:id="@+id/action_adFragment_to_adInfoFragment"
+            app:destination="@id/adInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAdFragment"
+        android:name="com.example.carchive.fragments.AddAdFragment"
+        tools:label="AddAdFragment"/>
+    <fragment
+        android:id="@+id/adInfoFragment"
+        android:name="com.example.carchive.fragments.AdInfoFragment"
+        tools:label="AdInfoFragment">
+        <action
+            android:id="@+id/action_adInfoFragment_to_adEditFragment"
+            app:destination="@id/adEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adEditFragment"
+        android:name="com.example.carchive.fragments.EditAdFragment"
+        tools:label="AdEditFragment"/>
+    <fragment
         android:id="@+id/contractsFragment"
         android:name="com.example.carchive.fragments.ContractsFragment"
         tools:label="ContractsFragment">
@@ -210,6 +244,25 @@
         <action
             android:id="@+id/action_offerDetailsFragment_to_vehicleDetailsFragment"
             app:destination="@id/vehicleDetailsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_offerDetailsFragment_to_editOfferFragment"
+            app:destination="@id/editOfferFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/editOfferFragment"
+        android:name="com.example.carchive.fragments.EditOfferFragment"
+        android:label="EditOfferFragment">
+        <action
+            android:id="@+id/action_editOfferFragment_to_offerFragment"
+            app:destination="@id/offersFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

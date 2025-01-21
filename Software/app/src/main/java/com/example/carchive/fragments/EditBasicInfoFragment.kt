@@ -17,6 +17,9 @@ import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentEditBasicInfoBinding
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.viewmodels.VehicleCatalogViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 class EditBasicInfoFragment : Fragment() {
@@ -53,6 +56,11 @@ class EditBasicInfoFragment : Fragment() {
         val driveType = args?.getString("driveType") ?: ""
         val condition = args?.getString("condition") ?: ""
 
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val date = dateFormat.parse(registeredTo)
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
         populateSpinners(marka, model, location, gearbox)
 
         binding.editSpMarka.setSelection(getIndex(binding.editSpMarka, marka))
@@ -67,7 +75,11 @@ class EditBasicInfoFragment : Fragment() {
         binding.editRbSells.isChecked = rentSell
         binding.editRbRents.isChecked = !rentSell
         binding.editEtCijena.setText(price.toString())
-        binding.editEtRegisteredTo.setText(registeredTo)
+        binding.editDatePicker.updateDate(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
         binding.editEtColor.setText(color)
         binding.editEtDriveType.setText(driveType)
         binding.editEtCubicCapacity.setText(cubCapacity.toString())
@@ -86,7 +98,7 @@ class EditBasicInfoFragment : Fragment() {
         val etCijena = binding.editEtCijena
         val rbProdaja = binding.editRbSells
         val rbNajam = binding.editRbRents
-        val etRegTo = binding.editEtRegisteredTo
+
         val etColor = binding.editEtColor
         val etDriveType = binding.editEtDriveType
         val etCubCap = binding.editEtCubicCapacity
@@ -106,7 +118,17 @@ class EditBasicInfoFragment : Fragment() {
             val cijena = etCijena.text.toString()
             val prodaja = rbProdaja.isChecked
             val najam = rbNajam.isChecked
-            val regTo = etRegTo.text.toString()
+
+            val year = binding.editDatePicker.year
+            val month = binding.editDatePicker.month
+            val dayOfMonth = binding.editDatePicker.dayOfMonth
+
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, dayOfMonth)
+
+            val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDate = outputFormat.format(selectedCalendar.time)
+            val regTo = formattedDate
             val color = etColor.text.toString()
             val driveType = etDriveType.text.toString()
             val cubicCapacity = etCubCap.text.toString()
