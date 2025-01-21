@@ -18,6 +18,10 @@ import com.example.carchive.entities.Vehicle
 import com.example.carchive.viewmodels.ContactsViewModel
 import com.example.carchive.viewmodels.OfferViewModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class OfferDetailsFragment : Fragment() {
     private var _binding: OfferDetailsBinding? = null
@@ -60,6 +64,50 @@ class OfferDetailsFragment : Fragment() {
 
         binding.btnDeleteOffer.setOnClickListener {
             offerViewModel.deleteOffer(offerId)
+        }
+
+        binding.btnEditOffer.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                val contact = contactViewModel.contact.value
+                val vehicles = offerViewModel.vehicles.value
+
+                if (contact != null) {
+                    val bundle = Bundle().apply {
+                        putInt("offerId", offerId)
+                        putString("title", binding.offerTitle.text.toString())
+                        putDouble(
+                            "price",
+                            binding.offerPrice.text.toString()
+                                .removePrefix("Cijena: ")
+                                .removeSuffix(" €")
+                                .toDouble()
+                        )
+                        putString(
+                            "dateOfCreation",
+                            binding.offerDate.text.toString()
+                                .removePrefix("Stvoreno datuma: ")
+                        )
+
+                        putInt("contactId", contact.id)
+                        putString("contactFirstName", contact.firstName)
+                        putString("contactLastName", contact.lastName)
+
+                        val vehiclesBundleList = ArrayList<Bundle>()
+                        vehicles.forEach { vehicle ->
+                            val vehicleBundle = Bundle().apply {
+                                putInt("vehicleId", vehicle.id)
+                                putString("registration", vehicle.registration)
+                            }
+                            vehiclesBundleList.add(vehicleBundle)
+                        }
+                        putParcelableArrayList("vehicles", vehiclesBundleList)
+                    }
+
+                    findNavController().navigate(R.id.action_offerDetailsFragment_to_editOfferFragment, bundle)
+                } else {
+                    Toast.makeText(requireContext(), "Podaci nisu dostupni!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -122,10 +170,12 @@ class OfferDetailsFragment : Fragment() {
                     findNavController().popBackStack()
                 }
                 is Result.Error -> {
-                    Toast.makeText(requireContext(), "Greška prilikom brisanja ponude: ${offerId}", Toast.LENGTH_LONG).show()
+                    val errorMessage = result.error.message ?: "Unknown error occurred"
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }
+
     }
 
 

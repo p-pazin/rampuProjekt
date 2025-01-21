@@ -102,6 +102,7 @@ dependencies {
     implementation(platform(libs.arcgis.maps.kotlin.toolkit.bom))
     implementation(libs.arcgis.maps.kotlin.toolkit.geoview.compose)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.ui.test.android)
 
     // Testing
     testImplementation(libs.junit)

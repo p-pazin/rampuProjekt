@@ -28,6 +28,9 @@ class OfferViewModel : ViewModel() {
     private val _postResult = MutableLiveData<Result<Response<Unit>>>()
     val postResult: MutableLiveData<Result<Response<Unit>>> = _postResult
 
+    private val _putResult = MutableLiveData<Result<Response<Unit>>>()
+    val putResult: MutableLiveData<Result<Response<Unit>>> = _putResult
+
     private val _deleteResult = MutableLiveData<Result<Response<Unit>>>()
     val deleteResult: LiveData<Result<Response<Unit>>> = _deleteResult
 
@@ -72,6 +75,23 @@ class OfferViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _postResult.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    fun putOffer(offer: OfferDto, contactId: Int, vehicles: List<Int>){
+        viewModelScope.launch {
+            try {
+                when (val result = offerRepository.putOffer(offer, contactId, vehicles)) {
+                    is Result.Success -> {
+                        _putResult.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _putResult.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _putResult.postValue(Result.Error(e))
             }
         }
     }

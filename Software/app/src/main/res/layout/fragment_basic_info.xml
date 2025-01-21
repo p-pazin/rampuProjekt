@@ -35,8 +35,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:textColor="?attr/colorOnBackground"
                     android:background="@drawable/edit_textbox"
+                    android:textColor="@color/textColorLight"
+                    android:popupBackground="@color/primaryColorLight"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_marka" />
 
@@ -56,8 +57,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:textColor="?attr/colorOnBackground"
                     android:background="@drawable/edit_textbox"
+                    android:popupBackground="@color/primaryColorLight"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_model" />
 
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:background="@drawable/edit_textbox"
-                    android:textColor="?attr/colorOnBackground"
+                    android:popupBackground="@color/primaryColorLight"
                     app:layout_constraintTop_toBottomOf="@+id/tv_lokacija" />
 
                 <EditText
@@ -339,19 +340,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_cubic_capacity" />
 
-                <EditText
-                    android:id="@+id/et_registered_to"
-                    android:layout_width="300dp"
+                <DatePicker
+                    android:id="@+id/datePicker"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_textbox"
-                    android:ems="10"
-                    android:hint="2025-12-31"
-                    android:inputType="date"
-                    android:minHeight="48dp"
-                    android:paddingLeft="7dp"
-                    android:textColor="@color/textColorLight"
+                    android:datePickerMode="spinner"
+
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_registered_to" />
+
 
                 <TextView
                     android:id="@+id/tv_color"
@@ -362,7 +360,7 @@
                     android:text="Boja"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_registered_to" />
+                    app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
                 <EditText
                     android:id="@+id/et_color"
@@ -418,9 +416,9 @@
                     android:id="@+id/sp_gearbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:popupBackground="@color/primaryColorLight"
                     android:minHeight="48dp"
                     android:background="@drawable/edit_textbox"
-                    android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gearbox" />
 
