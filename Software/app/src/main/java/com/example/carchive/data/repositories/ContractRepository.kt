@@ -57,4 +57,10 @@ class ContractRepository {
             networkClient.putContractRent(reservationId, insuranceId, contractDto)
         }
     }
+
+    suspend fun deleteContract(contractId: Int): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.deleteContract(contractId)
+        }
+    }
 }

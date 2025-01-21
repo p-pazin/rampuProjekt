@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,7 @@ import com.example.carchive.R
 import com.example.carchive.adapters.ExpandableAdapter
 import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
+import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentContractDetailsBinding
 import com.example.carchive.entities.ExpandableItem
 import com.example.carchive.viewmodels.ContractsViewModel
@@ -33,6 +35,7 @@ class ContractDetailsFragment : Fragment() {
     private lateinit var tvContactName : TextView
     private lateinit var btnOpenPdf : Button
     private lateinit var btnEdit: Button
+    private lateinit var btnDelete: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ExpandableAdapter
     private var _binding: FragmentContractDetailsBinding? = null
@@ -75,6 +78,7 @@ class ContractDetailsFragment : Fragment() {
         tvContactName = binding.tvContractDetailsContactName
         btnOpenPdf = binding.btnContractDetailsDownload
         btnEdit = binding.btnContractDetailsEdit
+        btnDelete = binding.btnContractDetailsDelete
 
         adapter = ExpandableAdapter(itemList)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -128,6 +132,24 @@ class ContractDetailsFragment : Fragment() {
                         findNavController().navigate(R.id.action_contractDetailsFragment_to_editContractSaleFragment, bundle)
                     }
                 }
+
+                btnDelete.setOnClickListener {
+                    if(contract != null) {
+                        viewModel.deleteContract(contract.id)
+
+                        viewModel.deleteResult.observe(viewLifecycleOwner) { result ->
+                            when(result) {
+                                is Result.Success -> {
+                                    Toast.makeText(requireContext(), getString(R.string.ugovorObrisan), Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(R.id.action_contractDetailsFragment_to_contractsFragment)
+                                }
+                                is Result.Error -> {
+                                    Toast.makeText(requireContext(), getString(R.string.greskaKodBrisanjaUgovora), Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                }
         })
 
         viewModel.contractRent.observe(viewLifecycleOwner, { contract ->
@@ -158,6 +180,24 @@ class ContractDetailsFragment : Fragment() {
                             putSerializable("contract_rent_key", contract)
                         }
                         findNavController().navigate(R.id.action_contractDetailsFragment_to_editContractRentFragment, bundle)
+                    }
+                }
+
+                btnDelete.setOnClickListener {
+                    if(contract != null) {
+                        viewModel.deleteContract(contract.id)
+
+                        viewModel.deleteResult.observe(viewLifecycleOwner) { result ->
+                            when(result) {
+                                is Result.Success -> {
+                                    Toast.makeText(requireContext(), getString(R.string.ugovorObrisan), Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(R.id.action_contractDetailsFragment_to_contractsFragment)
+                                }
+                                is Result.Error -> {
+                                    Toast.makeText(requireContext(), getString(R.string.greskaKodBrisanjaUgovora), Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
                     }
                 }
         })

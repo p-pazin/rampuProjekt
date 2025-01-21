@@ -72,6 +72,8 @@ class ContractsViewModel : ViewModel() {
     val postResult: LiveData<Result<Response<Unit>>> = _postResult
     private val _putResult = MutableLiveData<Result<Response<Unit>>>()
     val putResult: LiveData<Result<Response<Unit>>> = _putResult
+    private val _deleteResult = MutableLiveData<Result<Response<Unit>>>()
+    val deleteResult: LiveData<Result<Response<Unit>>> = _deleteResult
 
     fun validateContractInputs(contractType: Int, offerId: Int?, vehicleId: Int?, contactId: Int?,
                                reservationId: Int?, insuranceId: Int?, title: String,
@@ -207,6 +209,23 @@ class ContractsViewModel : ViewModel() {
                 } catch (e: Exception) {
                     _putResult.postValue(Result.Error(e))
                 }
+            }
+        }
+    }
+
+    fun deleteContract(contractId: Int) {
+        viewModelScope.launch {
+            try {
+                when (val result = contractRepository.deleteContract(contractId)) {
+                    is Result.Success -> {
+                        _deleteResult.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _deleteResult.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _deleteResult.postValue(Result.Error(e))
             }
         }
     }

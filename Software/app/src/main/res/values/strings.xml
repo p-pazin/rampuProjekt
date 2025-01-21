@@ -3,7 +3,7 @@
     <string name="nadzornaPloca">Nadzorna ploča</string>
     <string name="katalogVozila">Katalog vozila</string>
     <string name="mapaVozila">Mapa vozila</string>
-    <string name="dokumenti">Dokumenti</string>
+    <string name="ponude">Ponude</string>
     <string name="racuni">Računi</string>
     <string name="ugovori">Ugovori</string>
     <string name="statistika">Statistika</string>
@@ -815,4 +815,6 @@
     <string name="ugovorAzuriran">Ugovor uspješno ažuriran!</string>
     <string name="greskaKodAzuriranjaUgovora">Greška kod ažuriranja ugovora!</string>
     <string name="potpis">Potpis</string>
+    <string name="ugovorObrisan">Ugovor uspješno obrisan!</string>
+    <string name="greskaKodBrisanjaUgovora">Dogodila se greška kod brisanja ugovora!</string>
 </resources>

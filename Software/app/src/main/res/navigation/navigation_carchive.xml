@@ -236,6 +236,9 @@
         <action
             android:id="@+id/action_contractDetailsFragment_to_editContractRentFragment"
             app:destination="@id/editContractRentFragment" />
+        <action
+            android:id="@+id/action_contractDetailsFragment_to_contractsFragment"
+            app:destination="@id/contractsFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerDetailsFragment"

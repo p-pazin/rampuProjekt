@@ -172,4 +172,7 @@ interface ApiService {
     suspend fun putContractRent(@Query("reservationId") reservationId: Int?,
                                  @Query("insuranceId") insuranceId: Int?,
                                  @Body body: ContractDto): Response<Unit>
+
+    @DELETE("Contract/{id}")
+    suspend fun deleteContract(@Path("id") id: Int): Response<Unit>
 }
