@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/rounded_car_items"
+    android:outlineAmbientShadowColor="@color/primaryColorDark"
+    android:layout_height="wrap_content"
+    style="@style/PopUpBackGround">
+
+    <LinearLayout
+        android:layout_width="186dp"
+        android:layout_height="111dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/imgUredi"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnUredi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_uredi" />
+
+            <Button
+                android:id="@+id/btnUredi"
+                android:layout_width="178dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_regular"
+                android:text="Uredi podatke zaposlenika"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/imgUredi"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imgObrisi"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnObrisi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_obrisi" />
+
+            <Button
+                android:id="@+id/btnObrisi"
+                android:layout_width="159dp"
+                android:layout_height="47dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_regular"
+                android:text="Obriši zaposlenika"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/imgObrisi"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

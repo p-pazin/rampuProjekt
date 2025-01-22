@@ -24,6 +24,8 @@
     <string name="email">E-mail</string>
     <string name="brojTelefona">Broj telefona</string>
     <string name="dodajKontakt">Dodajte kontakt</string>
+    <string name="dodajZaposlenika">Dodajte zaposlenika</string>
+    <string name="azurirajZaposlenika">Ažuriraj zaposlenika</string>
     <string name="dodajVozilo">Dodajte vozilo</string>
     <string name="opceInformacije">Opće informacije</string>
     <string name="marka">Marka</string>
@@ -791,8 +793,10 @@
     <string name="Aktivan">Aktivan</string>
     <string name="Neaktivan">Neaktivan</string>
     <string name="DodavanjeKontakta">Dodavanje kontakta</string>
+    <string name="DodavanjeZaposlenika">Dodavanje zaposlenika</string>
     <string name="DodavanjeOglasa">Dodavanje oglasa</string>
     <string name="AzuriranjeOglasa">Ažuriranje oglasa</string>
+    <string name="AzuriranjeZaposlenika">Ažuriranje zaposlenika</string>
     <string name="skiniPdf">Skini PDF</string>
     <string name="urediUgovor">Uredi ugovor</string>
     <string name="izbrisiUgovor">Izbriši ugovor</string>
