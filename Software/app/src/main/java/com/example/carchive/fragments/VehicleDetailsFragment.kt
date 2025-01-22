@@ -1,5 +1,6 @@
 package com.example.carchive.fragments
 
+import VehiclePhotosAdapter
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
+import com.example.carchive.data.dto.VehiclePhotoDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentVehicleDetailsBinding
 import com.example.carchive.viewmodels.VehicleCatalogViewModel
@@ -85,17 +87,9 @@ class VehicleDetailsFragment : Fragment() {
             binding.tvRentSell.text = "Status: ${if (bundle.getBoolean("rentSell", false)) "U prodaji" else "U najmu"}"
             binding.tvPrice.text = "Cijena: €${bundle.getDouble("price", 0.0)}"
 
-            val imageCar = bundle.getString("imageCar")
-            if (!imageCar.isNullOrEmpty()) {
-                val resourceId = resources.getIdentifier(imageCar, "drawable", requireContext().packageName)
-                if (resourceId != 0) {
-                    binding.ivCarImage.setImageResource(resourceId)
-                } else {
-                    binding.ivCarImage.setImageResource(R.drawable.ic_katalog_vozila)
-                }
-            } else {
-                binding.ivCarImage.setImageResource(R.drawable.ic_katalog_vozila)
-            }
+            vmVehicle.getVehiclePhotos(vehicleId)
+
+            observeVehiclePhotos()
         }
     }
 
@@ -114,7 +108,6 @@ class VehicleDetailsFragment : Fragment() {
             vmVehicle.deleteVehicle(carId)
 
 
-            val error: String = "Pogreška kod brisanja vozila"
             vmVehicle.deleteResult.observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Success -> {
@@ -122,7 +115,7 @@ class VehicleDetailsFragment : Fragment() {
                         findNavController().navigate(R.id.action_vehicleDetailsFragment_to_vehicleCatalogFragment)
                     }
                     is Result.Error -> {
-                        Toast.makeText(requireContext(), getString(R.string.car_deleted), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.delete_error_car), Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_vehicleDetailsFragment_to_vehicleCatalogFragment)
                     }
                 }
@@ -139,6 +132,24 @@ class VehicleDetailsFragment : Fragment() {
         }
 
         alertDialog.show()
+    }
+
+    private fun observeVehiclePhotos() {
+        vmVehicle.photosResponse.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    setupImageRecyclerView(result.data)
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), "Error loading images: ${result.error}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun setupImageRecyclerView(imageList: List<VehiclePhotoDto>) {
+        val adapter = VehiclePhotosAdapter(imageList)
+        binding.rvVehicleImages.adapter = adapter
     }
 
     override fun onDestroyView() {

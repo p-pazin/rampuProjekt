@@ -12,12 +12,11 @@ import com.example.carchive.R
 
 class PicturesAdapter(
     private val pictures: MutableList<Uri>,
-    private val onDeleteClick: (Uri) -> Unit
+    private val longClickListener: (Uri) -> Unit
 ) : RecyclerView.Adapter<PicturesAdapter.PictureViewHolder>() {
 
     class PictureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView2)
-        val deleteButton: ImageButton = itemView.findViewById(R.id.btnDeletePicture)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureViewHolder {
@@ -27,14 +26,17 @@ class PicturesAdapter(
 
     override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
         val imageUri = pictures[position]
+
         Glide.with(holder.itemView.context)
             .load(imageUri)
             .into(holder.imageView)
 
-        holder.deleteButton.setOnClickListener {
-            onDeleteClick(imageUri)
+        holder.imageView.setOnLongClickListener {
+            longClickListener(imageUri)
+            true
         }
     }
 
     override fun getItemCount(): Int = pictures.size
 }
+

@@ -12,12 +12,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
 import com.example.carchive.adapters.CarAdapter
+import com.example.carchive.data.dto.VehiclePhotoDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.FragmentCarCatalogBinding
 import com.example.carchive.entities.Vehicle
@@ -30,6 +34,7 @@ class VehicleCatalogFragment : Fragment() {
     private var _binding: FragmentCarCatalogBinding? = null
     private val binding get() = _binding!!
     private val vmVehicle: VehicleCatalogViewModel by activityViewModels()
+
 
 
     override fun onCreateView(
@@ -78,6 +83,18 @@ class VehicleCatalogFragment : Fragment() {
                 bundle.putString("condition", vehicle.condition)
                 bundle.putString("registeredTo", vehicle.registeredTo)
                 findNavController().navigate(R.id.action_katalogVozilaFragment_to_vehicleDetailsFragment, bundle)
+            },{ vehicleId, callback ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    when (val result = viewModel.getVehiclePhotosCatalog(vehicleId)) {
+                        is Result.Success -> {
+                            val firstPhotoUrl = result.data.firstOrNull()?.link
+                            callback(firstPhotoUrl)
+                        }
+                        is Result.Error -> {
+                            callback(null)
+                        }
+                    }
+                }
             }
         )
         binding.recyclerViewCars.adapter = adapter

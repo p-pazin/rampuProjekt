@@ -214,8 +214,6 @@ class BasicInfoFragment : Fragment() {
                 is Result.Error -> {
                     Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
                 }
-
-                null -> TODO()
             }
         }
 

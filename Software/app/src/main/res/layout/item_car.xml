@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    android:background="@drawable/rounded_car_items"
+    app:cardCornerRadius="8dp"
     android:elevation="4dp">
 
-    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/carCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
         <ImageView
             android:id="@+id/imageCar"
             android:layout_width="155dp"
+            android:padding="1dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_katalog_vozila" />
@@ -46,14 +48,6 @@
                     android:textColor="?attr/colorOnBackground"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/vehicleId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:width="0dp"
-                    android:text="TextView"
-                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -128,6 +122,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0"
                                 app:srcCompat="@drawable/ic_najam_prodaja" />
 
                             <TextView
@@ -210,29 +205,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
-                            <ImageView
-                                android:id="@+id/imageLocation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_location" />
 
-                            <TextView
-                                android:id="@+id/textLocation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_marginLeft="5dp"
-                                android:layout_weight="1"
-                                android:text="Lokacija"
-                                android:textColor="?attr/colorOnBackground"
-                                android:textSize="12sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/imageLocation"
-                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>

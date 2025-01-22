@@ -6,6 +6,7 @@ import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
 import com.example.carchive.data.dto.VehicleIdResponse
+import com.example.carchive.data.dto.VehiclePhotoDto
 import com.example.carchive.data.dto.toDto
 import com.example.carchive.data.dto.toEntity
 import com.example.carchive.data.network.Network
@@ -69,6 +70,26 @@ class VehicleRepository {
     suspend fun connectVehicleToPhoto(vehicleId: Int, filePath: String): Result<Response<Unit>> {
         return safeResponse {
             networkClient.connectVehicleToPhoto(vehicleId, filePath)
+        }
+    }
+
+    suspend fun getVehiclePhotos(vehicleId: Int): Result<List<VehiclePhotoDto>> {
+        return try {
+            val response = networkClient.getPhotosForVehicle(vehicleId)
+
+            if (response.isSuccessful && response.body() != null) {
+                Result.Success(response.body()!!)
+            } else {
+                Result.Error(Exception("Failed to fetch photos: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
+
+    suspend fun deleteVehiclePhoto(id: Int): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.deleteVehiclePhoto(id)
         }
     }
 }

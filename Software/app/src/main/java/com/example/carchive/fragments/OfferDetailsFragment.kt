@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.carchive.adapters.CarAdapter
 import com.example.carchive.data.network.Result
 import com.example.carchive.databinding.OfferDetailsBinding
@@ -17,6 +18,7 @@ import com.example.carchive.entities.Contact
 import com.example.carchive.entities.Vehicle
 import com.example.carchive.viewmodels.ContactsViewModel
 import com.example.carchive.viewmodels.OfferViewModel
+import com.example.carchive.viewmodels.VehicleCatalogViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -28,6 +30,7 @@ class OfferDetailsFragment : Fragment() {
     private val binding get() = _binding!!
     private val offerViewModel: OfferViewModel by viewModels()
     private val contactViewModel: ContactsViewModel by viewModels()
+    private val vehicleCatalogViewModel: VehicleCatalogViewModel by viewModels()
     private lateinit var carAdapter: CarAdapter
     private var offerId: Int = 0
 
@@ -139,7 +142,18 @@ class OfferDetailsFragment : Fragment() {
                 bundle.putString("condition", vehicle.condition)
                 bundle.putString("registeredTo", vehicle.registeredTo)
                 findNavController().navigate(R.id.action_offerDetailsFragment_to_vehicleDetailsFragment, bundle)
-
+            },  { vehicleId, callback ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    when (val result = vehicleCatalogViewModel.getVehiclePhotosCatalog(vehicleId)) {
+                        is Result.Success -> {
+                            val firstPhotoUrl = result.data.firstOrNull()?.link
+                            callback(firstPhotoUrl)
+                        }
+                        is Result.Error -> {
+                            callback(null)
+                        }
+                    }
+                }
             }
         )
         binding.recyclerVehicles.apply {

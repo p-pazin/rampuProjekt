@@ -20,6 +20,7 @@ import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
 import com.example.carchive.data.dto.VehicleIdResponse
+import com.example.carchive.data.dto.VehiclePhotoDto
 import retrofit2.Response
 import com.example.carchive.data.dto.YearlyInfoDto
 import okhttp3.MultipartBody
@@ -71,8 +72,14 @@ interface ApiService {
         @Body photoUrl: String
     ): Response<Unit>
 
+    @GET("Vehicle/photos/{vehicleId}")
+    suspend fun getPhotosForVehicle(@Path("vehicleId") vehicleId: Int): Response<List<VehiclePhotoDto>>
+
     @GET("Vehicle/offer/{offerId}")
     suspend fun getVehiclesForOffer(@Path("offerId") id: Int): List<VehicleDto>
+
+    @DELETE("Vehicle/photo/{photoId}")
+    suspend fun deleteVehiclePhoto(@Path("photoId") id: Int): Response<Unit>
 
     @GET("Offer")
     suspend fun getOffers(): List<OfferDto>

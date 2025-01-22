@@ -1,6 +1,7 @@
 package com.example.carchive.fragments
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -8,26 +9,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.R
 import com.example.carchive.adapters.PicturesAdapter
 import com.example.carchive.data.network.Result
 import com.example.carchive.viewmodels.VehicleCatalogViewModel
-import com.google.android.material.button.MaterialButton
+import com.example.carchive.databinding.FragmentAddPicturesBinding
 import java.io.File
 
 class AddPicturesFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var addPictureButton: MaterialButton
-    private lateinit var saveVehiclePhotos: MaterialButton
+    private var _binding: FragmentAddPicturesBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: PicturesAdapter
     private val pictures = mutableListOf<Uri>()
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
@@ -37,17 +38,15 @@ class AddPicturesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_pictures, container, false)
+        _binding = FragmentAddPicturesBinding.inflate(inflater, container, false)
 
         vmVehicle = ViewModelProvider(requireActivity()).get(VehicleCatalogViewModel::class.java)
 
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(context, 3)
-        adapter = PicturesAdapter(pictures) { imageUri -> deletePicture(imageUri) }
-        recyclerView.adapter = adapter
-
-        addPictureButton = view.findViewById(R.id.btnDodajSliku)
-        saveVehiclePhotos = view.findViewById(R.id.btnSpremiSlike)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 3)
+        adapter = PicturesAdapter(pictures) { imageUri ->
+            showDeleteWarningDialog(imageUri)
+        }
+        binding.recyclerView.adapter = adapter
 
         pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -56,23 +55,74 @@ class AddPicturesFragment : Fragment() {
                 if (imageUri != null) {
                     uploadPicture(imageUri)
                 } else {
-                    Toast.makeText(requireContext(), "Failed to select image", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Pogreška kod odabiranja fotografije", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
-        addPictureButton.setOnClickListener {
+        binding.btnDodajSliku.setOnClickListener {
             openGallery()
         }
 
-        saveVehiclePhotos.setOnClickListener {
+        binding.btnSpremiSlike.setOnClickListener {
             savePhotos()
         }
 
+        observePhotosResponse()
         observeUploadResponse()
 
-        return view
+        vmVehicle.newPictures.observe(viewLifecycleOwner) { newPics ->
+            pictures.clear()
+            pictures.addAll(newPics)
+            adapter.notifyDataSetChanged()
+        }
+
+        val vehicleId = vmVehicle.getVehicleId()
+        if (vehicleId != null) {
+            vmVehicle.getVehiclePhotos(vehicleId)
+        }
+
+        return binding.root
     }
+
+    private fun uploadPicture(imageUri: Uri) {
+        vmVehicle.addNewPicture(imageUri)
+
+        if (!pictures.contains(imageUri)) {
+            pictures.add(imageUri)
+            adapter.notifyItemInserted(pictures.size - 1)
+
+            val file = getFileFromUri(imageUri)
+            if (file != null) {
+                vmVehicle.uploadPhoto(file)
+            } else {
+                Toast.makeText(requireContext(), "Pogreška kod pretvaranja datoteke", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun savePhotos() {
+        val newPictures = vmVehicle.newPictures.value ?: return
+
+        if (newPictures.isNotEmpty()) {
+            val vehicleId = vmVehicle.getVehicleId()
+            if (vehicleId == null) {
+                Toast.makeText(requireContext(), "Vozilo nije spremljeno", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            newPictures.forEach { uri ->
+                val filePath = uri.toString()
+                vmVehicle.connectVehicleToPhoto(vehicleId, filePath)
+            }
+
+            vmVehicle.clearNewPictures()
+            Toast.makeText(requireContext(), "Slika spremljena", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Niste dodali nove fotografije", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -80,19 +130,38 @@ class AddPicturesFragment : Fragment() {
         pickImageLauncher.launch(intent)
     }
 
-    private fun uploadPicture(imageUri: Uri) {
-        if (imageUri.scheme == "content") {
-            try {
-                val file = getFileFromUri(imageUri)
-                if (file != null) {
-                    pictures.add(imageUri)
-                    adapter.notifyItemInserted(pictures.size - 1)
-                } else {
-                    Toast.makeText(requireContext(), "Failed to convert Uri to File", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
+    private fun showDeleteWarningDialog(imageUri: Uri) {
+        val deletionWarning = LayoutInflater.from(context).inflate(R.layout.deleting_warning_photos, null)
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setView(deletionWarning)
+            .create()
+
+        val btnPotvrdi = deletionWarning.findViewById<Button>(R.id.btnPotvrdi)
+        val btnOtkazi = deletionWarning.findViewById<ImageButton>(R.id.btnOtkazi)
+        val btnOdustani = deletionWarning.findViewById<Button>(R.id.btnOdustani)
+
+        btnPotvrdi.setOnClickListener {
+            deletePicture(imageUri)
+            alertDialog.dismiss()
+        }
+
+        btnOtkazi.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        btnOdustani.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun deletePicture(imageUri: Uri) {
+        val position = pictures.indexOf(imageUri)
+        if (position != -1) {
+            pictures.removeAt(position)
+            vmVehicle.newPictures.value?.remove(imageUri)
+            adapter.notifyItemRemoved(position)
         }
     }
 
@@ -120,12 +189,24 @@ class AddPicturesFragment : Fragment() {
         return tempFile
     }
 
-
-    private fun deletePicture(imageUri: Uri) {
-        val position = pictures.indexOf(imageUri)
-        if (position != -1) {
-            pictures.removeAt(position)
-            adapter.notifyItemRemoved(position)
+    private fun observePhotosResponse() {
+        vmVehicle.photosResponse.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    val photos = result.data
+                    if (photos != null) {
+                        val photoUris = photos.map { Uri.parse(it.link) }
+                        pictures.clear()
+                        pictures.addAll(photoUris)
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        Toast.makeText(requireContext(), "Neočekivan format datoteke", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), "Pogreška kod dohvaćanja fotografija: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -134,63 +215,17 @@ class AddPicturesFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     val message = result.data?.body()
-                    Toast.makeText(requireContext(), message ?: "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-
-                    val filePath = message
-                    val vehicleId = vmVehicle.getVehicleId()
-
-                    if (vehicleId != null && filePath != null) {
-                        vmVehicle.connectVehicleToPhoto(vehicleId, filePath)
-                    }
+                    Toast.makeText(requireContext(), message ?: "Fotografija uspješno poslana", Toast.LENGTH_SHORT).show()
                 }
                 is Result.Error -> {
-                    Toast.makeText(requireContext(), "Failed to upload image: ${result.error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Pogreška kod slanja fotografije: ${result.error.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         })
     }
 
-
-    private fun savePhotos() {
-        if (pictures.isNotEmpty()) {
-            val vehicleId = vmVehicle.getVehicleId()
-            if (vehicleId == null) {
-                Toast.makeText(requireContext(), "Vehicle ID not set", Toast.LENGTH_SHORT).show()
-                return
-            }
-
-            for (uri in pictures) {
-                val file = getFileFromUri(uri)
-                if (file != null) {
-                    vmVehicle.uploadPhoto(file)
-
-                    vmVehicle.uploadResponse.observe(viewLifecycleOwner, { result ->
-                        when (result) {
-                            is Result.Success -> {
-                                val filePath = result.data?.body()
-                                if (filePath != null) {
-                                    vmVehicle.connectVehicleToPhoto(vehicleId, filePath)
-                                } else {
-                                    Toast.makeText(requireContext(), "Failed to retrieve file path", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                            is Result.Error -> {
-
-                                Toast.makeText(requireContext(), "Failed to upload image: ${result.error.message}", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    })
-                } else {
-                    Toast.makeText(requireContext(), "Failed to convert Uri to File", Toast.LENGTH_SHORT).show()
-                }
-            }
-        } else {
-            Toast.makeText(requireContext(), "No photos to upload", Toast.LENGTH_SHORT).show()
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
-
 }
-
-
-

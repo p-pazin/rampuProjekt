@@ -38,6 +38,8 @@ class EditBasicInfoFragment : Fragment() {
 
         val args = arguments
         val vehicleId = args!!.getInt("id")
+        vmVehicle.setVehicleId(vehicleId)
+
         val marka = args?.getString("marka") ?: ""
         val model = args?.getString("model") ?: ""
         val tip = args?.getString("type") ?: 0.0

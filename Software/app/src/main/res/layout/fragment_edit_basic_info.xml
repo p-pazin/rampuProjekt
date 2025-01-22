@@ -347,6 +347,7 @@
                     android:datePickerMode="spinner"
                     android:layout_marginBottom="10dp"
                     android:paddingBottom="10dp"
+                    android:calendarViewShown="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edit_tv_registered_to" />

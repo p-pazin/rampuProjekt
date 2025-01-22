@@ -1,5 +1,6 @@
 package com.example.carchive.viewmodels
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
+import com.example.carchive.data.dto.VehiclePhotoDto
 import com.example.carchive.data.network.Result
 import com.example.carchive.data.repositories.VehicleRepository
 import com.example.carchive.entities.Vehicle
@@ -40,6 +42,15 @@ class VehicleCatalogViewModel : ViewModel() {
 
     private val _connectedResponse = MutableLiveData<Result<Response<Unit>>>()
     val connectedResponse: LiveData<Result<Response<Unit>>> = _connectedResponse
+
+    private val _photosResponse = MutableLiveData<Result<List<VehiclePhotoDto>>>()
+    val photosResponse: LiveData<Result<List<VehiclePhotoDto>>> get() = _photosResponse
+
+    private val _newPictures = MutableLiveData<MutableList<Uri>>(mutableListOf())
+    val newPictures: LiveData<MutableList<Uri>> = _newPictures
+
+    private val _deleteResultPhoto = MutableLiveData<Result<Response<Unit>>>()
+    val deleteResultPhoto: LiveData<Result<Response<Unit>>> = _deleteResultPhoto
 
 
     val isBasicInfoComplete = MutableLiveData(false)
@@ -166,7 +177,6 @@ class VehicleCatalogViewModel : ViewModel() {
         viewModelScope.launch {
             val vehicleId = when (val result = vehicleRepository.getVehicleIdByReg(reg)) {
                 is Result.Success -> {
-                    println(result.data.body())
                     val responseBody = result.data.body()
                     responseBody?.firstOrNull()?.id
                 }
@@ -176,6 +186,51 @@ class VehicleCatalogViewModel : ViewModel() {
                 }
             }
             vehicleId?.let { setVehicleId(it) }
+        }
+    }
+
+
+    fun getVehiclePhotos(vehicleId: Int) {
+        viewModelScope.launch {
+            try {
+                val result = vehicleRepository.getVehiclePhotos(vehicleId)
+                _photosResponse.postValue(result)
+            } catch (e: Exception) {
+                _photosResponse.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    suspend fun getVehiclePhotosCatalog(vehicleId: Int): Result<List<VehiclePhotoDto>> {
+        return vehicleRepository.getVehiclePhotos(vehicleId)
+    }
+
+    fun addNewPicture(uri: Uri) {
+        val updatedPictures = _newPictures.value ?: mutableListOf()
+        if (!updatedPictures.contains(uri)) {
+            updatedPictures.add(uri)
+            _newPictures.value = updatedPictures
+        }
+    }
+
+    fun clearNewPictures() {
+        _newPictures.value?.clear()
+    }
+
+    fun deleteVehiclePhoto(id: Int){
+        viewModelScope.launch {
+            try {
+                when (val result = vehicleRepository.deleteVehiclePhoto(id)) {
+                    is Result.Success -> {
+                        _deleteResultPhoto.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _deleteResultPhoto.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _deleteResultPhoto.postValue(Result.Error(e))
+            }
         }
     }
 }
