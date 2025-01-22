@@ -60,8 +60,9 @@
     <string name="odaberite_vozilo">Odaberite vozilo</string>
     <string name="dodaj_oglas">Dodaj oglas</string>
     <string name="promjeni_oglas">Ažuriraj oglas</string>
+    <string name="stvoriUgovor">Stvori ugovor</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lozinka">Lozinka</string>
     <string name="lozinkaPonovi">Ponovite lozinku</string>

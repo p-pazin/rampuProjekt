@@ -52,9 +52,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.12"
     }
-
-
-
 }
 
 dependencies {

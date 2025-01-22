@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.VehicleDto
 import com.example.carchive.data.dto.VehicleDtoPost
+import com.example.carchive.data.dto.VehicleIdResponse
 import com.example.carchive.data.dto.toDto
 import com.example.carchive.data.dto.toEntity
 import com.example.carchive.data.network.Network
@@ -48,12 +49,26 @@ class VehicleRepository {
         }
     }
 
+
+
+    suspend fun getVehicleIdByReg(reg: String): Result<Response<List<VehicleIdResponse>>> {
+        return safeResponse {
+            networkClient.getVehicleIdByReg(reg)
+        }
+    }
+
     suspend fun uploadPhoto(file: File): Result<Response<UploadResponse>> {
         return safeResponse {
             val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val part = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
             networkClient.uploadPhoto(part)
+        }
+    }
+
+    suspend fun connectVehicleToPhoto(vehicleId: Int, filePath: String): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.connectVehicleToPhoto(vehicleId, filePath)
         }
     }
 }

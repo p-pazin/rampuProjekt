@@ -144,11 +144,21 @@
                         android:textColor="?attr/colorOnBackground"/>
 
                     <Button
+                        android:id="@+id/btn_create_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="50dp"
+                        android:backgroundTint="@color/accentColorLight"
+                        android:text="@string/stvoriUgovor"
+                        android:textColor="@color/textColorDark" />
+
+                    <Button
                         android:id="@+id/btn_edit_offer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="50dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/textColorDark"
                         android:backgroundTint="#A2A0A0"
                         android:fontFamily="@font/inter_regular"
@@ -158,6 +168,7 @@
                         app:layout_constraintHorizontal_bias="0.494"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
 
                     <Button
                         android:id="@+id/btn_delete_offer"

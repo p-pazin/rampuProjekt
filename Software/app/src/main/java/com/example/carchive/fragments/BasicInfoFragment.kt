@@ -198,6 +198,7 @@ class BasicInfoFragment : Fragment() {
                 )
 
                 vmVehicle.postVehicle(vehicle)
+                vmVehicle.getVehicleIdByReg(reg)
                 vmVehicle.setBasicInfoComplete(true)
             } else {
                 Toast.makeText(requireContext(), getString(R.string.info_missing), Toast.LENGTH_SHORT).show()
