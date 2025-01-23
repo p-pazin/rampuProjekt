@@ -4,19 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.carchive.CarchiveActivity
-import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
-import com.example.carchive.data.network.Result
-import com.example.carchive.data.repositories.AuthRepository
+import com.example.carchive.data.repositories.UserRepository
 import com.example.carchive.databinding.FragmentRegisterBinding
-import com.example.carchive.entities.User
-import com.example.carchive.services.TokenManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -55,7 +49,7 @@ class RegisterFragment : Fragment() {
                 if(password == confirmPassword)
                 {
 
-                    val authRepository = AuthRepository()
+                    val authRepository = UserRepository()
 
                     viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                         try {

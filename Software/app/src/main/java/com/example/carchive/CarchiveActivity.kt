@@ -62,6 +62,10 @@ class CarchiveActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
 
             when (menuItem.itemId) {
+                R.id.nav_dashboard -> {
+                    navController.navigate(R.id.companyUserFragment)
+                }
+
                 R.id.nav_contact_catalog -> {
                     navController.navigate(R.id.contactsFragment)
                 }

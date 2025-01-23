@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_carchive"
-    app:startDestination="@id/katalogVozilaFragment">
+    app:startDestination="@id/companyUserFragment">
 
     <fragment
         android:id="@+id/katalogVozilaFragment"
@@ -297,5 +297,12 @@
         <action
             android:id="@+id/action_editContractRentFragment_to_contractsFragment"
             app:destination="@id/contractsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/companyUserFragment"
+        android:name="com.example.carchive.fragments.CompanyUserFragment"
+        android:label="CompanyUserFragment"
+        tools:layout="fragment_company_and_user_info">
     </fragment>
 </navigation>

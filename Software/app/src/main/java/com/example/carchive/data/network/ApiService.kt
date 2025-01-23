@@ -2,6 +2,7 @@ package com.example.carchive.data.network
 
 import com.example.carchive.data.dto.AdDto
 import com.example.carchive.data.dto.AdDtoPost
+import com.example.carchive.data.dto.CompanyDto
 import com.example.carchive.data.dto.ContactDto
 import com.example.carchive.data.dto.ContactStatusStatsDto
 import com.example.carchive.data.dto.ContractDetailedRentDto
@@ -12,6 +13,7 @@ import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
+import com.example.carchive.data.dto.NewUserDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.OfferPostDto
 import com.example.carchive.data.dto.ReservationDto
@@ -40,6 +42,24 @@ interface ApiService {
 
     @POST("Company")
     suspend fun register(@Body body: NewCompanyDto): Response<Unit>
+
+    @GET("User")
+    suspend fun getUser(): UserDto
+
+    @GET("Company")
+    suspend fun getCompany(): CompanyDto
+
+    @GET("Company/users")
+    suspend fun getCompanyUsers(): List<UserDto>
+
+    @POST("User/new")
+    suspend fun newUser(@Body body: NewUserDto): Response<Unit>
+
+    @PUT("User/update")
+    suspend fun updateUser(@Body body: UserDto): Response<Unit>
+
+    @DELETE("User/delete")
+    suspend fun deleteUser(@Body body: UserDto): Response<Unit>
 
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>
@@ -94,8 +114,7 @@ interface ApiService {
     @DELETE("Offer/{id}")
     suspend fun deleteOffer(@Path("id") id: Int): Response<Unit>
 
-    @GET("User")
-    suspend fun getUser(): UserDto
+
 
     @GET("Contact")
     suspend fun getContacts(): List<ContactDto>
@@ -179,4 +198,6 @@ interface ApiService {
 
     @DELETE("Contract/{id}")
     suspend fun deleteContract(@Path("id") id: Int): Response<Unit>
+
+
 }

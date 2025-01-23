@@ -11,9 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.carchive.CarchiveActivity
 import com.example.carchive.R
 import com.example.carchive.data.dto.LoginRequestDto
-import com.example.carchive.data.network.Network
 import com.example.carchive.data.network.Result
-import com.example.carchive.data.repositories.AuthRepository
+import com.example.carchive.data.repositories.UserRepository
 import com.example.carchive.databinding.FragmentLoginBinding
 import com.example.carchive.services.TokenManager
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +42,7 @@ class LoginFragment : Fragment() {
             val password = passwordEditText.text.toString()
 
 
-            val authRepository = AuthRepository()
+            val authRepository = UserRepository()
             val tokenManager = TokenManager()
 
 
