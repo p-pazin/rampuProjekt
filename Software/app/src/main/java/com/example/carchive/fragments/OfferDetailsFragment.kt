@@ -133,7 +133,7 @@ class OfferDetailsFragment : Fragment() {
                 bundle.putString("motor", vehicle.motor)
                 bundle.putDouble("enginePower", vehicle.enginePower)
                 bundle.putString("gearbox", vehicle.gearbox.externalName)
-                bundle.putBoolean("rentSell", vehicle.rentSell)
+                bundle.putInt("rentSell", vehicle.rentSell)
                 bundle.putDouble("price", vehicle.price)
                 bundle.putString("imageCar", vehicle.imageCar)
                 bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)

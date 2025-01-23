@@ -84,7 +84,16 @@ class VehicleDetailsFragment : Fragment() {
             binding.tvMotor.text = "Motor: ${bundle.getString("motor", "Unknown")}"
             binding.tvEnginePower.text = "Snaga motora: ${bundle.getDouble("enginePower", 0.0)} HP"
             binding.tvGearbox.text = "Mjenjač: ${bundle.getString("gearbox", "Unknown")}"
-            binding.tvRentSell.text = "Status: ${if (bundle.getBoolean("rentSell", false)) "U prodaji" else "U najmu"}"
+            val state = bundle.getInt("rentSell", 1)
+            if( state == 1){
+                binding.tvRentSell.text = "Status: Aktivno"
+            }
+            else if (state == 2){
+                binding.tvRentSell.text = "Status: Prodano"
+            }
+            else if (state == 3){
+                binding.tvRentSell.text = "Status: Iznajmljeno"
+            }
             binding.tvPrice.text = "Cijena: €${bundle.getDouble("price", 0.0)}"
 
             vmVehicle.getVehiclePhotos(vehicleId)

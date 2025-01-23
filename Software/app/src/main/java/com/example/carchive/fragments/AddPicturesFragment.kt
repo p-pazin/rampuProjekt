@@ -49,6 +49,7 @@ class AddPicturesFragment : Fragment() {
 
         observePhotosResponse()
         observeUploadResponse()
+        observeConnectedResponse()
 
         val vehicleId = vmVehicle.getVehicleId()
         vehicleId?.let { vmVehicle.getVehiclePhotos(it) }
@@ -150,7 +151,8 @@ class AddPicturesFragment : Fragment() {
         newPictures.forEach { uri ->
             val file = getFileFromUri(uri)
             if (file != null) {
-                vmVehicle.uploadPhoto(file)
+                vmVehicle.uploadAndConnectPhoto(vehicleId, file)
+                uploadedPictures.add(uri to -1)
             } else {
                 Toast.makeText(requireContext(), "Pogreška kod pretvaranja datoteke", Toast.LENGTH_SHORT).show()
             }
@@ -214,6 +216,21 @@ class AddPicturesFragment : Fragment() {
             }
         }
     }
+
+    private fun observeConnectedResponse(){
+        vmVehicle.connectedResponse.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is Result.Success -> {
+                    println("Slika povezana s vozilom.")
+                }
+                is Result.Error -> {
+                    println("Greška kod povezivanja vozila i slike ${result.error}.")
+                }
+            }
+        })
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

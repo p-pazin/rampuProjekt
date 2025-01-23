@@ -55,7 +55,7 @@ fun VehicleDto.toEntity() =
         motor = engine,
         enginePower = enginePower,
         gearbox = Vehicle.GearboxType.getByExternalName(transmissionType),
-        rentSell = state == 1,
+        rentSell = state,
         price = price,
         imageCar = "",
         cubicCapacity = cubicCapacity,
@@ -69,7 +69,7 @@ fun Vehicle.toDto() =
     VehicleDto(
         id = id,
         registration = registration,
-        state = if (rentSell) 1 else 0,
+        state = rentSell,
         brand = brand,
         mileage = kilometers,
         productionYear = productionYear.toIntOrNull() ?: 0,

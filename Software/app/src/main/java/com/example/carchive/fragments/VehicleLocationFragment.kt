@@ -17,12 +17,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.carchive.viewmodels.LocationViewModel
 import com.example.carchive.data.network.Result
-import java.util.Random
 
 class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
 
@@ -33,11 +31,25 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
 
     private val locationViewModel: LocationViewModel by activityViewModels()
 
-    private val vehicleMarkers = mutableListOf<Marker>()
-    private val random = Random()
-
+    private var vehicleMarker: Marker? = null
     private val handler = Handler(Looper.getMainLooper())
-    private val updateInterval: Long = 2000
+    private val updateInterval: Long = 3000
+
+    private val originalRoute = listOf(
+        LatLng(46.3042, 16.3378),
+        LatLng(46.2606, 16.3433),
+        LatLng(46.2213, 16.3913),
+        LatLng(46.1585, 16.3186),
+        LatLng(46.0805, 16.1804),
+        LatLng(45.9825, 16.0539),
+        LatLng(45.8669, 16.0832),
+        LatLng(45.8205, 16.0835),
+        LatLng(45.8150, 15.9819)
+    )
+
+    private val route = generateSmoothRoute(originalRoute)
+
+    private var currentStep = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,22 +72,14 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
         locationViewModel.locations.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
-                    val boundsBuilder = LatLngBounds.Builder()
-                    result.data.forEach { location ->
-                        val latLng = LatLng(location.latitude, location.longitude)
-                        val marker = googleMap?.addMarker(
-                            MarkerOptions().position(latLng).title("Vehicle Location")
-                        )
-                        marker?.let { vehicleMarkers.add(it) }
-                        boundsBuilder.include(latLng)
-                    }
-
                     if (result.data.isNotEmpty()) {
-                        val bounds = boundsBuilder.build()
-                        googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+                        val startLocation = LatLng(result.data[0].latitude, result.data[0].longitude)
+                        vehicleMarker = googleMap?.addMarker(
+                            MarkerOptions().position(startLocation).title("Vehicle Location")
+                        )
+                        googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 10f))
+                        simulateVehicleMovement()
                     }
-
-                    simulateVehicleMovement()
                 }
                 is Result.Error -> {
                     Toast.makeText(requireContext(), "Error fetching location", Toast.LENGTH_SHORT).show()
@@ -88,41 +92,56 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         this.googleMap = map
-
         googleMap?.uiSettings?.isZoomControlsEnabled = true
         googleMap?.uiSettings?.isCompassEnabled = true
         googleMap?.uiSettings?.isMyLocationButtonEnabled = true
-
-        val defaultLocation = LatLng(51.5074, -0.1278)
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
     }
 
     private fun simulateVehicleMovement() {
         handler.postDelayed(object : Runnable {
             override fun run() {
-                vehicleMarkers.forEach { marker ->
-                    val oldPosition = marker.position
-                    val newLat = oldPosition.latitude + (random.nextDouble() - 0.5) * 0.001
-                    val newLng = oldPosition.longitude + (random.nextDouble() - 0.5) * 0.001
-                    val newPosition = LatLng(newLat, newLng)
-
-                    animateMarker(marker, newPosition)
+                if (currentStep < route.size) {
+                    val endPosition = route[currentStep]
+                    vehicleMarker?.let { animateMarker(it, it.position, endPosition) }
+                    currentStep++
+                    handler.postDelayed(this, updateInterval)
                 }
-                handler.postDelayed(this, updateInterval)
             }
         }, updateInterval)
     }
 
-    private fun animateMarker(marker: Marker, toPosition: LatLng) {
-        val startPosition = marker.position
-        val latLngInterpolator = LatLngInterpolator.Linear()
 
+    private fun generateSmoothRoute(route: List<LatLng>): List<LatLng> {
+        val smoothRoute = mutableListOf<LatLng>()
+        for (i in 0 until route.size - 1) {
+            val start = route[i]
+            val end = route[i + 1]
+            smoothRoute.add(start)
+
+            for (j in 1..3) {
+                val fraction = j / 4.0f
+                val intermediatePoint = LatLng(
+                    (end.latitude - start.latitude) * fraction + start.latitude,
+                    (end.longitude - start.longitude) * fraction + start.longitude
+                )
+                smoothRoute.add(intermediatePoint)
+            }
+        }
+        smoothRoute.add(route.last())
+        return smoothRoute
+    }
+
+
+    private fun animateMarker(marker: Marker?, fromPosition: LatLng, toPosition: LatLng) {
+        marker ?: return
+        val latLngInterpolator = LatLngInterpolator.Linear()
         val animator = ValueAnimator.ofFloat(0f, 1f).apply {
             duration = updateInterval
             addUpdateListener { animation ->
                 val fraction = animation.animatedFraction
-                val newPosition = latLngInterpolator.interpolate(fraction, startPosition, toPosition)
+                val newPosition = latLngInterpolator.interpolate(fraction, fromPosition, toPosition)
                 marker.position = newPosition
+                googleMap?.animateCamera(CameraUpdateFactory.newLatLng(newPosition))
             }
         }
         animator.start()

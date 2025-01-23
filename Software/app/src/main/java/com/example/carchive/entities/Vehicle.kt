@@ -4,7 +4,7 @@ package com.example.carchive.entities
 data class Vehicle(
     val id: Int,
     val registration: String,
-    val rentSell: Boolean,
+    val rentSell: Int,
     val brand: String,
     val kilometers: Int,
     val productionYear: String,

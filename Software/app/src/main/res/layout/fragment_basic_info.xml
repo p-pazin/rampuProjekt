@@ -213,57 +213,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_motor" />
 
-                <RadioGroup
-                    android:id="@+id/radioGroupOptions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_lokacija">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                        <RadioButton
-                            android:id="@+id/rb_sells"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:focusedSearchResultHighlightColor="@color/accentColorLight"
-                            android:outlineAmbientShadowColor="@color/accentColorLight"
-                            android:text="Prodaja"
-                            android:textColor="?attr/colorOnBackground"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/space"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <Space
-                            android:id="@+id/space"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <RadioButton
-                            android:id="@+id/rb_rents"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:focusedSearchResultHighlightColor="@color/accentColorLight"
-                            android:outlineAmbientShadowColor="@color/accentColorLight"
-                            android:text="Najam"
-                            android:textColor="?attr/colorOnBackground"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/space"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </RadioGroup>
-
                 <TextView
                     android:id="@+id/tv_cijena"
                     android:layout_width="wrap_content"
@@ -274,7 +223,7 @@
                     android:text="Cijena"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroupOptions" />
+                    app:layout_constraintTop_toBottomOf="@+id/sp_lokacija" />
 
                 <EditText
                     android:id="@+id/et_cijena"

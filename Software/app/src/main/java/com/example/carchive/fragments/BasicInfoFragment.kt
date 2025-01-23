@@ -120,8 +120,6 @@ class BasicInfoFragment : Fragment() {
         val etMotor = binding.etMotor
         val etSnaga = binding.etEnginePower
         val etCijena = binding.etCijena
-        val rbProdaja = binding.rbSells
-        val rbNajam = binding.rbRents
         val etCubCap = binding.etCubicCapacity
 
         val year = binding.datePicker.year
@@ -151,8 +149,7 @@ class BasicInfoFragment : Fragment() {
             val motor = etMotor.text.toString()
             val snaga = etSnaga.text.toString()
             val cijena = etCijena.text.toString()
-            val prodaja = rbProdaja.isChecked
-            val najam = rbNajam.isChecked
+            val state = 1
             val cubCapacity = etCubCap.text.toString()
             val registeredTo = formattedDate
             val color = etColor.text.toString()
@@ -175,8 +172,7 @@ class BasicInfoFragment : Fragment() {
             color.isNotBlank() &&
             driveType.isNotBlank() &&
             engPower.isNotBlank() &&
-            condition.isNotBlank() &&
-            (prodaja || najam)
+            condition.isNotBlank()
         ) {
                 val vehicle = VehicleDtoPost(
                     brand = spinnerMarke.selectedItem.toString(),
@@ -188,7 +184,7 @@ class BasicInfoFragment : Fragment() {
                     engine = etMotor.text.toString(),
                     enginePower = engPower.toDouble(),
                     transmissionType = spinnerGearBox.selectedItem.toString(),
-                    state = rbProdaja.isChecked.toString().toIntOrNull() ?: 0,
+                    state = state,
                     price = cijena.toDouble(),
                     color = color,
                     cubicCapacity = cubCapacity.toDouble(),

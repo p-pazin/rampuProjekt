@@ -1,6 +1,7 @@
 package com.example.carchive.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,15 @@ class CarAdapter(
             textModel.text = "${vehicle.brand} ${vehicle.model}"
             textRegistration.text = vehicle.registration
             textKilometers.text = "${vehicle.kilometers} km"
-            textSellsRents.text = if (vehicle.rentSell) "U prodaji" else "U najmu"
+            if (vehicle.rentSell == 1){
+                textSellsRents.text = "Aktivno"
+            }
+            else if (vehicle.rentSell == 2){
+                textSellsRents.text = "Prodano"
+            }
+            else if (vehicle.rentSell == 3){
+                textSellsRents.text = "Iznajmljeno"
+            }
             textPrice.text = "$${vehicle.price}"
 
             if (imageCache.containsKey(vehicle.id)) {

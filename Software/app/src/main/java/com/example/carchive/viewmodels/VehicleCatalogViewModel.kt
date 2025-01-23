@@ -124,39 +124,27 @@ class VehicleCatalogViewModel : ViewModel() {
         }
     }
 
-    fun connectVehicleToPhoto(vehicleId: Int, filePath: String) {
+    fun uploadAndConnectPhoto(vehicleId: Int, file: File) {
         viewModelScope.launch {
             try {
-                when (val result = vehicleRepository.connectVehicleToPhoto(vehicleId, filePath)) {
+                when (val uploadResult = vehicleRepository.uploadPhoto(file)) {
                     is Result.Success -> {
-                        _connectedResponse.postValue(Result.Success(result.data))
-                    }
-                    is Result.Error -> {
-                        _connectedResponse.postValue(Result.Error(result.error))
-                    }
-                }
-            } catch (e: Exception) {
-                _connectedResponse.postValue(Result.Error(e))
-            }
-        }
-    }
-
-    fun uploadPhoto(file: File) {
-        viewModelScope.launch {
-            try {
-                when (val result = vehicleRepository.uploadPhoto(file)) {
-                    is Result.Success -> {
-                        val filePath = result.data.body()?.filePath
-                        if (filePath != null) {
-                            val response = Response.success(filePath)
-                            _uploadResponse.postValue(Result.Success(response))
+                        val filePath = uploadResult.data.body()?.filePath
+                        if (!filePath.isNullOrEmpty()) {
+                            when (val connectResult = vehicleRepository.connectVehicleToPhoto(vehicleId, filePath)) {
+                                is Result.Success -> {
+                                    _connectedResponse.postValue(Result.Success(connectResult.data))
+                                }
+                                is Result.Error -> {
+                                    _connectedResponse.postValue(Result.Error(connectResult.error))
+                                }
+                            }
                         } else {
                             _uploadResponse.postValue(Result.Error(Exception("File path is null")))
                         }
-
                     }
                     is Result.Error -> {
-                        _uploadResponse.postValue(Result.Error(result.error))
+                        _uploadResponse.postValue(Result.Error(uploadResult.error))
                     }
                 }
             } catch (e: Exception) {
@@ -164,6 +152,7 @@ class VehicleCatalogViewModel : ViewModel() {
             }
         }
     }
+
 
     fun setVehicleId(id: Int) {
         _vehicleId.value = id

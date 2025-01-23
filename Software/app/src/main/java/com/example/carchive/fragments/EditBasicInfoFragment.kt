@@ -50,7 +50,7 @@ class EditBasicInfoFragment : Fragment() {
         val motor = args?.getString("motor") ?: ""
         val enginePower = args?.getDouble("enginePower") ?: 0
         val gearbox = args?.getString("gearbox") ?: ""
-        val rentSell = args?.getBoolean("rentSell") ?: false
+        val rentSell = args?.getInt("rentSell") ?: 1
         val price = args?.getDouble("price") ?: 0.0
         val cubCapacity = args?.getDouble("cubicCapacity") ?: 0
         val registeredTo = args?.getString("registeredTo") ?: ""
@@ -74,8 +74,6 @@ class EditBasicInfoFragment : Fragment() {
         binding.editSpLokacija.setSelection(getIndex(binding.editSpLokacija, location))
         binding.editEtMotor.setText(motor)
         binding.editEtEnginePower.setText(enginePower.toString())
-        binding.editRbSells.isChecked = rentSell
-        binding.editRbRents.isChecked = !rentSell
         binding.editEtCijena.setText(price.toString())
         binding.editDatePicker.updateDate(
             calendar.get(Calendar.YEAR),
@@ -98,8 +96,7 @@ class EditBasicInfoFragment : Fragment() {
         val etMotor = binding.editEtMotor
         val etSnaga = binding.editEtEnginePower
         val etCijena = binding.editEtCijena
-        val rbProdaja = binding.editRbSells
-        val rbNajam = binding.editRbRents
+        val rbProdaja = rentSell
 
         val etColor = binding.editEtColor
         val etDriveType = binding.editEtDriveType
@@ -118,8 +115,7 @@ class EditBasicInfoFragment : Fragment() {
             val motor = etMotor.text.toString()
             val snaga = etSnaga.text.toString()
             val cijena = etCijena.text.toString()
-            val prodaja = rbProdaja.isChecked
-            val najam = rbNajam.isChecked
+            val prodaja = rentSell
 
             val year = binding.editDatePicker.year
             val month = binding.editDatePicker.month
@@ -145,8 +141,7 @@ class EditBasicInfoFragment : Fragment() {
                 km.isNotBlank() &&
                 motor.isNotBlank() &&
                 snaga.isNotBlank() &&
-                cijena.isNotBlank() &&
-                (prodaja || najam)
+                cijena.isNotBlank()
             ) {
                 val vehicle = VehicleDto(
                     id = vehicleId,
@@ -159,7 +154,7 @@ class EditBasicInfoFragment : Fragment() {
                     engine = etMotor.text.toString(),
                     enginePower = enginePower.toDouble(),
                     transmissionType = Vehicle.GearboxType.MANUAL.toString(),
-                    state = rbProdaja.isChecked.toString().toIntOrNull() ?: 0,
+                    state = prodaja,
                     price = etCijena.text.toString().toDoubleOrNull() ?: 0.0,
                     color = color,
                     cubicCapacity = cubicCapacity.toDouble(),
