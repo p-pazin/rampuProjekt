@@ -37,7 +37,7 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
     private val random = Random()
 
     private val handler = Handler(Looper.getMainLooper())
-    private val updateInterval: Long = 2000 // 2 seconds
+    private val updateInterval: Long = 2000
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,9 +93,8 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
         googleMap?.uiSettings?.isCompassEnabled = true
         googleMap?.uiSettings?.isMyLocationButtonEnabled = true
 
-        // Set a less zoomed-in initial position
-        val defaultLocation = LatLng(51.5074, -0.1278) // Example: London
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f)) // Zoom level 10
+        val defaultLocation = LatLng(51.5074, -0.1278)
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
     }
 
     private fun simulateVehicleMovement() {

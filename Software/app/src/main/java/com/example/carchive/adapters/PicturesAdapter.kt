@@ -4,7 +4,6 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,5 +37,10 @@ class PicturesAdapter(
     }
 
     override fun getItemCount(): Int = pictures.size
-}
 
+    fun updateData(newPictures: List<Uri>) {
+        pictures.clear()
+        pictures.addAll(newPictures)
+        notifyDataSetChanged()
+    }
+}
