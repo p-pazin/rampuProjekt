@@ -45,7 +45,6 @@ class CarchiveActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
-        // Set up the Carchive navigation controller
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -96,6 +95,10 @@ class CarchiveActivity : AppCompatActivity() {
 
                 R.id.nav_reservation -> {
                     navController.navigate(R.id.reservationFragment)
+                }
+
+                R.id.nav_invoices -> {
+                    navController.navigate(R.id.invoicesFragment)
                 }
 
                 R.id.nav_logout -> {

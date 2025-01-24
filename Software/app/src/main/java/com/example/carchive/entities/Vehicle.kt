@@ -20,7 +20,8 @@ data class Vehicle(
     val type: String,
     val condition: String,
     val location: String,
-    val imageCar: String
+    val imageCar: String,
+    val usage: Int
 ){
     enum class GearboxType(val externalName : String){
         MANUAL("Manual"),
@@ -37,7 +38,6 @@ data class Vehicle(
                     UNKNOWN
                 }
         }
-
     }
 }
 

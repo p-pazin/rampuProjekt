@@ -9,6 +9,7 @@ import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InsuranceDto
+import com.example.carchive.data.dto.InvoiceDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
@@ -71,6 +72,15 @@ interface ApiService {
 
     @GET("Vehicle/{vehicleId}")
     suspend fun getVehicleById(@Path("vehicleId") vehicleId: Int): VehicleDto
+
+    @GET("Vehicle/sale")
+    suspend fun getVehiclesSale(): List<VehicleDto>
+
+    @GET("Vehicle/rent")
+    suspend fun getVehiclesRent(): List<VehicleDto>
+
+    @GET("Vehicle/catalog")
+    suspend fun getVehiclesCatalog(): List<VehicleDto>
 
     @POST("Vehicle")
     suspend fun postVehicle(@Body body: VehicleDtoPost): Response<Unit>
@@ -213,6 +223,8 @@ interface ApiService {
     @DELETE("Contract/{id}")
     suspend fun deleteContract(@Path("id") id: Int): Response<Unit>
 
+    @GET("Invoice")
+    suspend fun getInvoices(): List<InvoiceDto>
     @GET("Reservation")
     suspend fun getReservations(): List<ReservationDto>
 

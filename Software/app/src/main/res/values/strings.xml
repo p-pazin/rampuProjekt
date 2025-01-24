@@ -103,6 +103,11 @@
         <item>Automatic</item>
     </string-array>
 
+    <string-array name="Upotreba">
+        <item>Iznajmljivanje</item>
+        <item>Prodaja</item>
+    </string-array>
+
     <string-array name="Marke">
         <item>BMW</item>
         <item>Audi</item>

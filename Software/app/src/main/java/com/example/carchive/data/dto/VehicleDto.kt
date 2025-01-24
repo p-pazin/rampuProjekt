@@ -20,7 +20,8 @@ data class VehicleDto(
     val transmissionType: String,
     val type: String,
     val condition: String,
-    val registeredTo: String
+    val registeredTo: String,
+    val usage: Int
 )
 
 data class VehicleDtoPost(
@@ -39,7 +40,8 @@ data class VehicleDtoPost(
     val price: Double,
     val transmissionType: String,
     val type: String,
-    val condition: String
+    val condition: String,
+    val usage: Int
 )
 
 fun VehicleDto.toEntity() =
@@ -62,7 +64,8 @@ fun VehicleDto.toEntity() =
         registeredTo = registeredTo,
         driveType = driveType,
         condition = condition,
-        location = ""
+        location = "",
+        usage = usage
     )
 
 fun Vehicle.toDto() =
@@ -83,6 +86,7 @@ fun Vehicle.toDto() =
         transmissionType = gearbox.externalName,
         type = type.toString(),
         condition = condition,
-        registeredTo = registeredTo
+        registeredTo = registeredTo,
+        usage = usage
     )
 

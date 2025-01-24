@@ -18,6 +18,7 @@ import com.example.carchive.viewmodels.VehicleCatalogViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 class BasicInfoFragment : Fragment() {
 
@@ -51,6 +52,13 @@ class BasicInfoFragment : Fragment() {
         val gearBoxAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, gearboxOptions)
         gearBoxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerGearBox.adapter = gearBoxAdapter
+
+        val spinnerUsage = binding.spUsage
+        val usageOptions = resources.getStringArray(R.array.Upotreba)
+
+        val usageAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, usageOptions)
+        usageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerUsage.adapter = usageAdapter
 
         val spinnerModeli = binding.spModel
         var modelsArray = emptyArray<String>()
@@ -135,6 +143,7 @@ class BasicInfoFragment : Fragment() {
         val etDriveType = binding.etDriveType
         val etEngPow = binding.etEnginePower
         val etCond = binding.etCondition
+        val spUsage = binding.spUsage
 
 
 
@@ -156,8 +165,14 @@ class BasicInfoFragment : Fragment() {
             val driveType = etDriveType.text.toString()
             val engPower = etEngPow.text.toString()
             val condition = etCond.text.toString()
+            val usage = if (spinnerUsage.selectedItem.toString() == "Prodaja") {
+                1
+            } else {
+                2
+            }
 
-        if (marka.isNotBlank() &&
+
+            if (marka.isNotBlank() &&
             model.isNotBlank() &&
             lokacija.isNotBlank() &&
             tip.isNotBlank() &&
@@ -172,7 +187,7 @@ class BasicInfoFragment : Fragment() {
             color.isNotBlank() &&
             driveType.isNotBlank() &&
             engPower.isNotBlank() &&
-            condition.isNotBlank()
+            condition.isNotBlank()  && (usage == 1 || usage == 2)
         ) {
                 val vehicle = VehicleDtoPost(
                     brand = spinnerMarke.selectedItem.toString(),
@@ -190,7 +205,8 @@ class BasicInfoFragment : Fragment() {
                     cubicCapacity = cubCapacity.toDouble(),
                     registeredTo = registeredTo,
                     driveType = driveType,
-                    condition = condition
+                    condition = condition,
+                    usage = usage
                 )
 
                 vmVehicle.postVehicle(vehicle)

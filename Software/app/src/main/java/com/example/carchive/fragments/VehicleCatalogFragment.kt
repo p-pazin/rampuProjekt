@@ -75,6 +75,14 @@ class VehicleCatalogFragment : Fragment() {
                 bundle.putDouble("enginePower", vehicle.enginePower)
                 bundle.putString("gearbox", vehicle.gearbox.externalName)
                 bundle.putInt("rentSell", vehicle.rentSell)
+                var usageString = ""
+                if(vehicle.usage == 1){
+                    usageString = "Prodaja"
+                }
+                else {
+                    usageString = "Iznajmljivanje"
+                }
+                bundle.putString("usage", usageString)
                 bundle.putDouble("price", vehicle.price)
                 bundle.putString("imageCar", vehicle.imageCar)
                 bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)
@@ -105,7 +113,7 @@ class VehicleCatalogFragment : Fragment() {
             }
         }
 
-        viewModel.fetchVehicles()
+        viewModel.fetchVehiclesCatalog()
 
 
         btnDodaj.setOnClickListener {
@@ -148,6 +156,14 @@ class VehicleCatalogFragment : Fragment() {
             bundle.putDouble("enginePower", vehicle.enginePower)
             bundle.putString("gearbox", vehicle.gearbox.externalName)
             bundle.putInt("rentSell", vehicle.rentSell)
+            var usageString = ""
+            if(vehicle.usage == 1){
+                usageString = "Prodaja"
+            }
+            else {
+                usageString = "Iznajmljivanje"
+            }
+            bundle.putString("usage", usageString)
             bundle.putDouble("price", vehicle.price)
             bundle.putString("imageCar", vehicle.imageCar)
             bundle.putDouble("cubicCapacity", vehicle.cubicCapacity)
@@ -201,6 +217,14 @@ class VehicleCatalogFragment : Fragment() {
             bundle.putString("driveType", vehicle.driveType)
             bundle.putString("condition", vehicle.condition)
             bundle.putString("registeredTo", vehicle.registeredTo)
+            var usageString = ""
+            if(vehicle.usage == 1){
+                usageString = "Prodaja"
+            }
+            else {
+                usageString = "Iznajmljivanje"
+            }
+            bundle.putString("usage", usageString)
 
             fragment.arguments = bundle
 

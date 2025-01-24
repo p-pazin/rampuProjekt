@@ -270,7 +270,7 @@ class ContractsViewModel : ViewModel() {
 
     fun fetchVehicles() {
         viewModelScope.launch {
-            val vehiclesFromRepository = when (val result = vehicleRepository.getVehicles()) {
+            val vehiclesFromRepository = when (val result = vehicleRepository.getVehiclesSale()) {
                 is Result.Success -> result.data
                 is Result.Error -> listOf()
             }

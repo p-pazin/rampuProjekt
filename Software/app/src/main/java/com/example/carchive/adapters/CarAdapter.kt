@@ -32,6 +32,7 @@ class CarAdapter(
         private val textSellsRents: TextView = itemView.findViewById(R.id.textSellsRents)
         private val textPrice: TextView = itemView.findViewById(R.id.textPrice)
         private val imgBtnDetails: ImageView = itemView.findViewById(R.id.imgBtnDetails)
+        private val state: TextView = itemView.findViewById(R.id.textState)
 
         @SuppressLint("SetTextI18n")
         fun bind(vehicle: Vehicle) {
@@ -40,13 +41,25 @@ class CarAdapter(
             textRegistration.text = vehicle.registration
             textKilometers.text = "${vehicle.kilometers} km"
             if (vehicle.rentSell == 1){
-                textSellsRents.text = "Aktivno"
+                state.text = "Aktivno"
+                state.setTextColor(Color.parseColor("#CCFFCC"))
             }
             else if (vehicle.rentSell == 2){
-                textSellsRents.text = "Prodano"
+                state.text = "Prodano"
             }
             else if (vehicle.rentSell == 3){
-                textSellsRents.text = "Iznajmljeno"
+                state.text = "Iznajmljeno"
+            }
+            else if (vehicle.rentSell == 4){
+                state.text = "Neaktivno"
+                state.setTextColor(Color.parseColor("#FF5C5C"))
+            }
+
+            if(vehicle.usage == 1){
+                textSellsRents.text = "U prodaji"
+            }
+            else {
+                textSellsRents.text = "U najmu"
             }
             textPrice.text = "$${vehicle.price}"
 

@@ -366,4 +366,10 @@
         android:label="AddReservationFragment"
         tools:layout="@layout/fragment_add_reservation">
     </fragment>
+    <fragment
+        android:id="@+id/invoicesFragment"
+        android:name="com.example.carchive.fragments.InvoiceCatalogFragment"
+        android:label="InvoiceCatalogFragment"
+        tools:layout="@layout/fragment_invoice_catalog">
+    </fragment>
 </navigation>

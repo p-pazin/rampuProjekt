@@ -36,6 +36,11 @@
         android:title="@string/ugovori" />
 
     <item
+        android:id="@+id/nav_invoices"
+        android:icon="@drawable/ic_invoice"
+        android:title="@string/racuni" />
+
+    <item
         android:id="@+id/nav_ads"
         android:icon="@drawable/ic_ad"
         android:title="@string/oglasi" />

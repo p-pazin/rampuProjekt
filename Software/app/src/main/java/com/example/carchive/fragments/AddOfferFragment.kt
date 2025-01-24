@@ -55,7 +55,7 @@ class AddOfferFragment : Fragment() {
         }
 
         viewModelContact.fetchContacts()
-        viewModelVehicle.fetchVehicles()
+        viewModelVehicle.fetchVehiclesSale()
 
         val args = arguments
         if (args != null) {

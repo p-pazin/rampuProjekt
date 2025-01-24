@@ -1,10 +1,13 @@
 package com.example.carchive.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -58,19 +61,7 @@ class ContactDetailsFragment : Fragment() {
 
 
         binding.btnContactDetailsDelete.setOnClickListener() {
-            viewModel.deleteContact(contact!!.id)
-
-            viewModel.deleteResult.observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Success -> {
-                        Toast.makeText(requireContext(), getString(R.string.kontaktObrisan), Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_contactsDetailsFragment_to_contactsFragment)
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(requireContext(), getString(R.string.greskaKodBrisanjaKontakta), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            showDeleteWarningDialog(contact!!.id)
         }
 
         tvName = binding.tvContactDetailsName
@@ -126,5 +117,46 @@ class ContactDetailsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun showDeleteWarningDialog(contactId: Int) {
+        val deletionWarning = LayoutInflater.from(context).inflate(R.layout.deleting_warning, null)
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setView(deletionWarning)
+            .create()
+
+        val btnPotvrdi = deletionWarning.findViewById<Button>(R.id.btnPotvrdi)
+        val btnOtkazi = deletionWarning.findViewById<ImageButton>(R.id.btnOtkazi)
+        val btnOdustani = deletionWarning.findViewById<Button>(R.id.btnOdustani)
+        val tvWarning = deletionWarning.findViewById<TextView>(R.id.tvWarning)
+
+        tvWarning.text = "Jeste li sugurni da želite obrisati kontakt?"
+
+        btnPotvrdi.setOnClickListener {
+            viewModel.deleteContact(contactId)
+
+            viewModel.deleteResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        Toast.makeText(requireContext(), getString(R.string.kontaktObrisan), Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_contactsDetailsFragment_to_contactsFragment)
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(requireContext(), getString(R.string.greskaKodBrisanjaKontakta), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            alertDialog.dismiss()
+        }
+
+        btnOtkazi.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        btnOdustani.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 }

@@ -2,6 +2,7 @@ package com.example.carchive.fragments
 
 import com.example.carchive.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,7 @@ class EditBasicInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEditBasicInfoBinding.inflate(inflater, container, false)
-
+        Log.d("EditBasicInfoFragment", "onCreate")
 
         val args = arguments
         val vehicleId = args!!.getInt("id")
@@ -57,6 +58,7 @@ class EditBasicInfoFragment : Fragment() {
         val color = args?.getString("color") ?: ""
         val driveType = args?.getString("driveType") ?: ""
         val condition = args?.getString("condition") ?: ""
+        val usage = args?.getString("usage") ?: ""
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = dateFormat.parse(registeredTo)
@@ -84,6 +86,7 @@ class EditBasicInfoFragment : Fragment() {
         binding.editEtDriveType.setText(driveType)
         binding.editEtCubicCapacity.setText(cubCapacity.toString())
         binding.editEtCondition.setText(condition)
+        binding.editSpUsage.setSelection(getIndex(binding.editSpUsage, usage))
 
         val btnSpremi = binding.editBtnSpremi
         val spinnerModeli = binding.editSpModel
@@ -102,6 +105,7 @@ class EditBasicInfoFragment : Fragment() {
         val etDriveType = binding.editEtDriveType
         val etCubCap = binding.editEtCubicCapacity
         val etCondition = binding.editEtCondition
+        val spUsage = binding.editSpUsage
 
 
         btnSpremi.setOnClickListener {
@@ -132,6 +136,12 @@ class EditBasicInfoFragment : Fragment() {
             val cubicCapacity = etCubCap.text.toString()
             val condition = etCondition.text.toString()
 
+            val usage = if (spUsage.selectedItem.toString() == "Prodaja") {
+                1
+            } else {
+                2
+            }
+
             if (marka.isNotBlank() &&
                 model.isNotBlank() &&
                 lokacija.isNotBlank() &&
@@ -141,7 +151,7 @@ class EditBasicInfoFragment : Fragment() {
                 km.isNotBlank() &&
                 motor.isNotBlank() &&
                 snaga.isNotBlank() &&
-                cijena.isNotBlank()
+                cijena.isNotBlank() && (usage == 1 || usage == 2)
             ) {
                 val vehicle = VehicleDto(
                     id = vehicleId,
@@ -160,7 +170,8 @@ class EditBasicInfoFragment : Fragment() {
                     cubicCapacity = cubicCapacity.toDouble(),
                     driveType = driveType,
                     condition = condition,
-                    registeredTo = regTo
+                    registeredTo = regTo,
+                    usage = usage
                 )
 
                 vmVehicle.putVehicle(vehicleId, vehicle)
@@ -201,8 +212,14 @@ class EditBasicInfoFragment : Fragment() {
         binding.editSpGearbox.adapter = gearBoxAdapter
         binding.editSpGearbox.setSelection(getIndex(binding.editSpGearbox, gearBox))
 
+        val spinnerUsage = binding.editSpUsage
+        val usageOptions = resources.getStringArray(R.array.Upotreba)
+
+        val usageAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, usageOptions)
+        usageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerUsage.adapter = usageAdapter
+
         updateModelSpinner(marka, model)
-        
 
         binding.editSpMarka.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -267,8 +284,10 @@ class EditBasicInfoFragment : Fragment() {
         return (0 until spinner.count).firstOrNull { spinner.getItemAtPosition(it) == value } ?: 0
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d("EditBasicInfoFragment", "onDestroyView")
         _binding = null
     }
 }

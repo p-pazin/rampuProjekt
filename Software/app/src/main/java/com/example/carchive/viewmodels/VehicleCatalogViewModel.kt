@@ -73,6 +73,34 @@ class VehicleCatalogViewModel : ViewModel() {
         }
     }
 
+    fun fetchVehiclesSale() {
+        viewModelScope.launch {
+            val vehiclesFromRepository = when (val result = vehicleRepository.getVehiclesSale()) {
+                is Result.Success -> result.data
+                is Result.Error -> {
+                    Log.e("VehicleCatalogViewModel", "Greška prilikom dohvaćanja vozila: ${result.error}")
+                    listOf()
+                }
+            }
+            Log.d("VehicleCatalogViewModel", "Dohvaćena vozila: $vehiclesFromRepository")
+            _vehicles.update { vehiclesFromRepository }
+        }
+    }
+
+    fun fetchVehiclesCatalog() {
+        viewModelScope.launch {
+            val vehiclesFromRepository = when (val result = vehicleRepository.getVehiclesCatalog()) {
+                is Result.Success -> result.data
+                is Result.Error -> {
+                    Log.e("VehicleCatalogViewModel", "Greška prilikom dohvaćanja vozila: ${result.error}")
+                    listOf()
+                }
+            }
+            Log.d("VehicleCatalogViewModel", "Dohvaćena vozila: $vehiclesFromRepository")
+            _vehicles.update { vehiclesFromRepository }
+        }
+    }
+
     fun postVehicle(vehicle: VehicleDtoPost) {
         viewModelScope.launch {
             try {
