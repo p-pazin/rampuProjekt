@@ -50,6 +50,10 @@ class CarAdapter(
             else if (vehicle.rentSell == 3){
                 state.text = "Iznajmljeno"
             }
+            else if (vehicle.rentSell == 4){
+                state.text = "Neaktivno"
+                state.setTextColor(Color.parseColor("#FF5C5C"))
+            }
 
             if(vehicle.usage == 1){
                 textSellsRents.text = "U prodaji"

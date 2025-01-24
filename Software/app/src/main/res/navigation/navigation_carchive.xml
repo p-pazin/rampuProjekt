@@ -342,4 +342,10 @@
         android:label="EditUserPasswordFragment"
         tools:layout="@layout/fragment_edit_user_password">
     </fragment>
+    <fragment
+        android:id="@+id/invoicesFragment"
+        android:name="com.example.carchive.fragments.InvoiceCatalogFragment"
+        android:label="InvoiceCatalogFragment"
+        tools:layout="@layout/fragment_invoice_catalog">
+    </fragment>
 </navigation>

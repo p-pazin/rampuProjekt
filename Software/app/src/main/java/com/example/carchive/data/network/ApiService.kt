@@ -9,6 +9,7 @@ import com.example.carchive.data.dto.ContractDetailedRentDto
 import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InsuranceDto
+import com.example.carchive.data.dto.InvoiceDto
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
@@ -213,5 +214,6 @@ interface ApiService {
     @DELETE("Contract/{id}")
     suspend fun deleteContract(@Path("id") id: Int): Response<Unit>
 
-
+    @GET("Invoice")
+    suspend fun getInvoices(): List<InvoiceDto>
 }
