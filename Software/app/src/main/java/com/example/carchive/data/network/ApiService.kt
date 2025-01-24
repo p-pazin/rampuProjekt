@@ -69,6 +69,9 @@ interface ApiService {
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>
 
+    @GET("Vehicle/catalog")
+    suspend fun getVehiclesCatalog(): List<VehicleDto>
+
     @POST("Vehicle")
     suspend fun postVehicle(@Body body: VehicleDtoPost): Response<Unit>
 

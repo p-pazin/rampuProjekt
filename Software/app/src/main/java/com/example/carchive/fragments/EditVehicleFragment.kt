@@ -10,6 +10,7 @@ import com.example.carchive.R
 import com.example.carchive.adapters.EditInfoPagerAdapter
 import com.example.carchive.databinding.FragmentAddCarBinding
 import com.example.carchive.databinding.FragmentEditCarBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class EditVehicleFragment : Fragment() {
@@ -23,26 +24,23 @@ class EditVehicleFragment : Fragment() {
     ): View {
         _binding = FragmentEditCarBinding.inflate(inflater, container, false)
 
-        binding.navBackButton.backButton.setOnClickListener(){
+        binding.navBackButton.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_editVehicleFragment_to_vehicleCatalogFragment)
         }
 
-        val viewPager = binding.editViewPager
-        val tabLayout = binding.editTabLayout
         val adapter = EditInfoPagerAdapter(this, arguments ?: Bundle())
-        viewPager.adapter = adapter
+        binding.editViewPager.adapter = adapter
 
-        val args = arguments
-        val urediOpceInformacijeFragment = EditBasicInfoFragment()
-        urediOpceInformacijeFragment.arguments = args
+        binding.editViewPager.offscreenPageLimit = 1
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        TabLayoutMediator(binding.editTabLayout, binding.editViewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Opće Informacije"
                 1 -> "Dodaj Slike"
                 else -> null
             }
         }.attach()
+
 
         return binding.root
     }
@@ -52,4 +50,5 @@ class EditVehicleFragment : Fragment() {
         _binding = null
     }
 }
+
 

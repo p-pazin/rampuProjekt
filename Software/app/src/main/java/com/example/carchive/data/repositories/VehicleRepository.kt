@@ -31,6 +31,14 @@ class VehicleRepository {
         }
     }
 
+    suspend fun getVehiclesCatalog(): Result<List<Vehicle>> {
+        return safeResponse {
+            val response = networkClient.getVehiclesCatalog()
+            Log.d("VehicleRepository", "Dohvaćeni DTO: $response")
+            response.map { it.toEntity() }
+        }
+    }
+
 
     suspend fun postVehicle(vehicleDto: VehicleDtoPost): Result<Response<Unit>> {
         return safeResponse {

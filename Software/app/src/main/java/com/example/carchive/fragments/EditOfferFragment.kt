@@ -52,7 +52,7 @@ class EditOfferFragment: Fragment() {
         }
 
         viewModelContact.fetchContacts()
-        viewModelVehicle.fetchVehicles()
+        viewModelVehicle.fetchVehiclesCatalog()
 
         val args = arguments
         if (args != null) {

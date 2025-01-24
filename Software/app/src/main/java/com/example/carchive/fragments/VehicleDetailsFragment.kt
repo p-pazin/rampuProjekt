@@ -58,14 +58,16 @@ class VehicleDetailsFragment : Fragment() {
                 binding.tvProductionYear.text = "Godina proizvodnje: ${bundle.getString("productionYear", "Unknown")}"
                 binding.tvRegistration.text = "Registracija: ${bundle.getString("registration", "Unknown")}"
                 binding.tvKilometers.text = "Kilometraža: ${bundle.getInt("kilometers", 0)}"
-                binding.tvLocation.text = "Lokacija: ${bundle.getString("location", "Unknown")}"
                 binding.tvMotor.text = "Motor: ${bundle.getString("motor", "Unknown")}"
                 binding.tvEnginePower.text = "Snaga motora: ${bundle.getDouble("enginePower", 0.0)} HP"
                 binding.tvGearbox.text = "Mjenjač: ${bundle.getString("gearbox", "Unknown")}"
-                binding.tvRentSell.text = "Status: ${if (bundle.getBoolean("rentSell", false)) "U prodaji" else "U najmu"}"
+                binding.tvRentSell.text = "Upotreba: ${(bundle.getString("usage", "Prodaja"))}"
                 binding.tvPrice.text = "Cijena: €${bundle.getDouble("price", 0.0)}"
 
-                findNavController().navigate(R.id.action_vehicleDetailsFragment_to_editVehicleFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_vehicleDetailsFragment_to_editVehicleFragment,
+                    bundle
+                )
             }
         }
 
@@ -80,20 +82,10 @@ class VehicleDetailsFragment : Fragment() {
             binding.tvProductionYear.text = "Godina proizvodnje: ${bundle.getString("productionYear", "Unknown")}"
             binding.tvRegistration.text = "Registracija: ${bundle.getString("registration", "Unknown")}"
             binding.tvKilometers.text = "Kilometraža: ${bundle.getInt("kilometers", 0)}"
-            binding.tvLocation.text = "Lokacija: ${bundle.getString("location", "Unknown")}"
             binding.tvMotor.text = "Motor: ${bundle.getString("motor", "Unknown")}"
             binding.tvEnginePower.text = "Snaga motora: ${bundle.getDouble("enginePower", 0.0)} HP"
             binding.tvGearbox.text = "Mjenjač: ${bundle.getString("gearbox", "Unknown")}"
-            val state = bundle.getInt("rentSell", 1)
-            if( state == 1){
-                binding.tvRentSell.text = "Status: Aktivno"
-            }
-            else if (state == 2){
-                binding.tvRentSell.text = "Status: Prodano"
-            }
-            else if (state == 3){
-                binding.tvRentSell.text = "Status: Iznajmljeno"
-            }
+            binding.tvRentSell.text = "Upotreba: ${(bundle.getString("usage", "Prodaja"))}"
             binding.tvPrice.text = "Cijena: €${bundle.getDouble("price", 0.0)}"
 
             vmVehicle.getVehiclePhotos(vehicleId)
