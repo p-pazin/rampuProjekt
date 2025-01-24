@@ -4,6 +4,7 @@ import com.example.carchive.data.dto.CompanyDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
+import com.example.carchive.data.dto.NewPasswordDto
 import com.example.carchive.data.dto.NewUserDto
 import com.example.carchive.data.dto.UserDto
 import com.example.carchive.data.dto.toEntity
@@ -58,9 +59,15 @@ class UserRepository {
         }
     }
 
-    suspend fun deleteUser(user: UserDto): Result<Response<Unit>> {
+    suspend fun newpasswordUser(newPass: NewPasswordDto): Result<Response<Unit>> {
         return safeResponse {
-            networkClient.deleteUser(user)
+            networkClient.newpasswordUser(newPass)
+        }
+    }
+
+    suspend fun deleteUser(id: Int): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.deleteUser(id)
         }
     }
 }

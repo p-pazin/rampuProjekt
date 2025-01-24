@@ -13,6 +13,7 @@ import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
 import com.example.carchive.data.dto.NewCompanyDto
+import com.example.carchive.data.dto.NewPasswordDto
 import com.example.carchive.data.dto.NewUserDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.OfferPostDto
@@ -58,8 +59,11 @@ interface ApiService {
     @PUT("User/update")
     suspend fun updateUser(@Body body: UserDto): Response<Unit>
 
-    @DELETE("User/delete")
-    suspend fun deleteUser(@Body body: UserDto): Response<Unit>
+    @PUT("User/newpassword")
+    suspend fun newpasswordUser(@Body newPassword: NewPasswordDto): Response<Unit>
+
+    @DELETE("User/delete/{id}")
+    suspend fun deleteUser(@Path("id") id: Int): Response<Unit>
 
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>

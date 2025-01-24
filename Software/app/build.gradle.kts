@@ -94,6 +94,9 @@ dependencies {
     // Charts
     implementation(libs.mpandroidchart)
 
+    //JWT
+    implementation (libs.java.jwt)
+
     // ArcGIS Maps
     implementation(libs.arcgis.maps.kotlin)
     implementation(platform(libs.arcgis.maps.kotlin.toolkit.bom))

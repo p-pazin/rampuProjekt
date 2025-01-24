@@ -11,8 +11,8 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/sidebarLogo"
-            layout="@layout/toolbar_sidebar_no_filter" />
+            android:id="@+id/toolbarButtons"
+            layout="@layout/toolbar_back_and_buttons" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
