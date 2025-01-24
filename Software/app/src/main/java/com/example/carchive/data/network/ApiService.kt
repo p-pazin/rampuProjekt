@@ -70,6 +70,12 @@ interface ApiService {
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>
 
+    @GET("Vehicle/sale")
+    suspend fun getVehiclesSale(): List<VehicleDto>
+
+    @GET("Vehicle/rent")
+    suspend fun getVehiclesRent(): List<VehicleDto>
+
     @GET("Vehicle/catalog")
     suspend fun getVehiclesCatalog(): List<VehicleDto>
 

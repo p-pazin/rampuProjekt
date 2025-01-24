@@ -31,6 +31,20 @@ class VehicleRepository {
         }
     }
 
+    suspend fun getVehiclesSale(): Result<List<Vehicle>> {
+        return safeResponse {
+            val response = networkClient.getVehiclesSale()
+            response.map { it.toEntity() }
+        }
+    }
+
+    suspend fun getVehiclesRent(): Result<List<Vehicle>> {
+        return safeResponse {
+            val response = networkClient.getVehiclesRent()
+            response.map { it.toEntity() }
+        }
+    }
+
     suspend fun getVehiclesCatalog(): Result<List<Vehicle>> {
         return safeResponse {
             val response = networkClient.getVehiclesCatalog()
