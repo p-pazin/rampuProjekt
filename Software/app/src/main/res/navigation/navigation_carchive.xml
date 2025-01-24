@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_carchive"
-    app:startDestination="@id/katalogVozilaFragment">
+    app:startDestination="@id/companyUserFragment">
 
     <fragment
         android:id="@+id/katalogVozilaFragment"
@@ -297,5 +297,49 @@
         <action
             android:id="@+id/action_editContractRentFragment_to_contractsFragment"
             app:destination="@id/contractsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/companyUserFragment"
+        android:name="com.example.carchive.fragments.CompanyUserFragment"
+        android:label="CompanyUserFragment"
+        tools:layout="fragment_company_and_user_info">
+        <action
+            android:id="@+id/action_companyUserFragment_to_usersFromCompanyFragment"
+            app:destination="@id/usersFromCompanyFragment" />
+        <action
+            android:id="@+id/action_companyUserFragment_to_editUserPasswordFragment"
+            app:destination="@id/editUserPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usersFromCompanyFragment"
+        android:name="com.example.carchive.fragments.UsersFromCompanyFragment"
+        android:label="CompanyUserFragment"
+        tools:layout="@layout/fragment_compny_users">
+        <action
+            android:id="@+id/action_usersFromCompanyFragment_to_newComapnyUserFragment"
+            app:destination="@id/newComapnyUserFragment" />
+        <action
+            android:id="@+id/action_usersFromCompanyFragment_to_editUserInfoFragment"
+            app:destination="@id/editUserInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newComapnyUserFragment"
+        android:name="com.example.carchive.fragments.AddUserFragment"
+        android:label="AddUserFragment"
+        tools:layout="@layout/fragment_add_user">
+    </fragment>
+
+    <fragment
+        android:id="@+id/editUserInfoFragment"
+        android:name="com.example.carchive.fragments.EditUserInfoFragment"
+        android:label="EditUserInfoFragment"
+        tools:layout="@layout/fragment_edit_user">
+    </fragment>
+    <fragment
+        android:id="@+id/editUserPasswordFragment"
+        android:name="com.example.carchive.fragments.EditUserPasswordFragment"
+        android:label="EditUserPasswordFragment"
+        tools:layout="@layout/fragment_edit_user_password">
     </fragment>
 </navigation>
