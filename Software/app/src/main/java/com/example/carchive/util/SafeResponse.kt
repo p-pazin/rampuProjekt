@@ -9,11 +9,13 @@ suspend fun <T> safeResponse(func: suspend () -> T): Result<T> {
     return try {
         val result = func.invoke()
         if (result is Response<*> && result.isSuccessful.not()) {
+            println("AAAAA, $result")
             Result.Error(HttpException(result))
         } else {
             Result.Success(result)
         }
     } catch (e: Throwable) {
+        println("AAAAA, $e")
         Result.Error(e)
     }
 }

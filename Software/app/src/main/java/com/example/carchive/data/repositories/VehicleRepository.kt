@@ -50,7 +50,11 @@ class VehicleRepository {
         }
     }
 
-
+    suspend fun getVehicleById(id: Int): Result<VehicleDto>{
+        return safeResponse {
+            networkClient.getVehicleById(id)
+        }
+    }
 
     suspend fun getVehicleIdByReg(reg: String): Result<Response<List<VehicleIdResponse>>> {
         return safeResponse {

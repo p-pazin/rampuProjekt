@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddContractFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/navBackButton"
+            layout="@layout/toolbar_back_button" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/tv_contract_add_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Dodavanje rezervacije"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp" />
+
+                <!-- Vehicle -->
+                <TextView
+                    android:id="@+id/tv_contract_add_vehicle_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/vozilo"
+                    android:textColor="?attr/colorOnBackground" />
+                <Spinner
+                    android:id="@+id/spn_contract_add_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
+
+                <!-- Contact -->
+                <TextView
+                    android:id="@+id/tv_contract_add_contact_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/kontakt"
+                    android:textColor="?attr/colorOnBackground" />
+                <Spinner
+                    android:id="@+id/spn_contract_add_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_item" />
+
+                <!-- Price -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Cijena (€)"
+                    android:textColor="?attr/colorOnBackground" />
+                <EditText
+                    android:id="@+id/et_contract_add_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/textColorLight" />
+
+                <!-- Start Date -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Datum početka"
+                    android:textColor="?attr/colorOnBackground" />
+                <Button
+                    android:id="@+id/btn_contract_add_start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:paddingStart="15dp"
+                    android:text="Odaberite datum početka"
+                    android:textColor="@color/textColorLight" />
+
+                <!-- End Date -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Datum završetka"
+                    android:textColor="?attr/colorOnBackground" />
+                <Button
+                    android:id="@+id/btn_contract_add_end_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:paddingStart="15dp"
+                    android:text="Odaberite datum završetka"
+                    android:textColor="@color/textColorLight" />
+
+                <!-- Max Mileage -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Maksimalna kilometraža"
+                    android:textColor="?attr/colorOnBackground" />
+                <EditText
+                    android:id="@+id/et_contract_add_max_mileage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/textColorLight" />
+
+                <!-- Date of Creation -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Datum kreiranja"
+                    android:textColor="?attr/colorOnBackground" />
+                <EditText
+                    android:id="@+id/et_contract_add_date_of_creation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_textbox"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/textColorLight"
+                    android:enabled="false" />
+
+                <!-- Create Button -->
+                <Button
+                    android:id="@+id/btn_contract_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Napravi rezervaciju"
+                    android:textColor="@color/textColorDark" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

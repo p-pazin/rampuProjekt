@@ -41,6 +41,11 @@
         android:title="@string/oglasi" />
 
     <item
+        android:id="@+id/nav_reservation"
+        android:icon="@drawable/ic_pomoc"
+        android:title="@string/rezervacije" />
+
+    <item
         android:id="@+id/nav_help"
         android:icon="@drawable/ic_pomoc"
         android:title="@string/pomoc" />

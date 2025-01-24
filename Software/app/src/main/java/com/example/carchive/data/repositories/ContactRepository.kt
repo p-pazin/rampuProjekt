@@ -21,6 +21,12 @@ class ContactRepository {
         }
     }
 
+    suspend fun getContactById(contactId: Int): Result<ContactDto> {
+        return safeResponse {
+            networkClient.getContactById(contactId)
+        }
+    }
+
     suspend fun postContact(contactDto: ContactDto): Result<Response<Unit>> {
         return safeResponse {
             networkClient.postContact(contactDto)

@@ -342,4 +342,28 @@
         android:label="EditUserPasswordFragment"
         tools:layout="@layout/fragment_edit_user_password">
     </fragment>
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.carchive.fragments.ReservationFragment"
+        android:label="ReservationFragment"
+        tools:layout="@layout/fragment_reservations">
+        <action
+            android:id="@+id/action_reservationFragment_to_reservationInfoFragment"
+            app:destination="@id/reservationInfoFragment" />
+        <action
+            android:id="@+id/action_reservationFragment_to_addReservationFragment"
+            app:destination="@id/addReservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationInfoFragment"
+        android:name="com.example.carchive.fragments.ReservationInfoFragment"
+        android:label="ReservationInfoFragment"
+        tools:layout="@layout/fragment_reservation_info">
+    </fragment>
+    <fragment
+        android:id="@+id/addReservationFragment"
+        android:name="com.example.carchive.fragments.AddReservationFragment"
+        android:label="AddReservationFragment"
+        tools:layout="@layout/fragment_add_reservation">
+    </fragment>
 </navigation>

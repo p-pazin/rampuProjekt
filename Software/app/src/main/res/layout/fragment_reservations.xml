@@ -17,10 +17,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/tv_no_ads"
+        android:id="@+id/tv_no_reservations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nema oglasa"
+        android:text="Nema rezervacija"
         android:visibility="gone"
         android:textSize="18sp"
         android:textColor="@android:color/black"
@@ -33,7 +33,7 @@
         android:padding="10dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/ad_list_item" />
+        tools:listitem="@layout/reservation_list_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

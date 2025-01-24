@@ -69,6 +69,9 @@ interface ApiService {
     @GET("Vehicle")
     suspend fun getVehicles(): List<VehicleDto>
 
+    @GET("Vehicle/{vehicleId}")
+    suspend fun getVehicleById(@Path("vehicleId") vehicleId: Int): VehicleDto
+
     @POST("Vehicle")
     suspend fun postVehicle(@Body body: VehicleDtoPost): Response<Unit>
 
@@ -130,6 +133,9 @@ interface ApiService {
     @GET("Contact")
     suspend fun getContacts(): List<ContactDto>
 
+    @GET("Contact/{contactId}")
+    suspend fun getContactById(@Path("contactId") id: Int): ContactDto
+
     @GET("Contact/contacts/{offerId}")
     suspend fun getContactByOfferId(@Path("offerId") offerId: Int): ContactDto
 
@@ -179,9 +185,6 @@ interface ApiService {
     @GET("Contract/rent/{id}")
     suspend fun getContractRentById(@Path("id") id: Int): ContractDetailedRentDto
 
-    @GET("Reservation")
-    suspend fun getReservations(): List<ReservationDto>
-
     @GET("Insurance")
     suspend fun getInsurances(): List<InsuranceDto>
 
@@ -210,5 +213,16 @@ interface ApiService {
     @DELETE("Contract/{id}")
     suspend fun deleteContract(@Path("id") id: Int): Response<Unit>
 
+    @GET("Reservation")
+    suspend fun getReservations(): List<ReservationDto>
+
+    @GET("Reservation/{id}")
+    suspend fun getReservation(@Path("id") id: Int): ReservationDto
+
+    @POST("Reservation")
+    suspend fun postReservation(
+        @Query("contactid") contactid: Int?,
+        @Query("vehicleid") vehicleid: Int?,
+        @Body body: ReservationDto,): Response<Unit>
 
 }
