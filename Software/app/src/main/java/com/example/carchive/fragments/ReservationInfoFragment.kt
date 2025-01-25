@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.carchive.CarchiveActivity
-import com.example.carchive.data.dto.ReservationDetails
+import com.example.carchive.R
 import com.example.carchive.databinding.FragmentReservationInfoBinding
 import com.example.carchive.viewmodels.ReservationViewModel
 
@@ -56,6 +54,29 @@ class ReservationInfoFragment : Fragment() {
         binding.navBackButton.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.btnReservationEdit.setOnClickListener {
+            reservationViewModel.reservationDetails.value?.let { reservationDetails ->
+                val bundle = Bundle().apply {
+                    putInt("reservationId", reservationDetails.reservation.id)
+                    putInt("vehicleId", reservationDetails.vehicle.id)
+                    putInt("contactId", reservationDetails.contact.id)
+                }
+                findNavController().navigate(
+                    R.id.action_reservationInfoFragment_to_editReservationFragment,
+                    bundle
+                )
+            }
+        }
+        binding.btnReservationDelete.setOnClickListener {
+            reservationViewModel.reservationDetails.value?.let { reservationDetails ->
+                reservationViewModel.deleteReservation(reservationDetails.reservation.id)
+                findNavController().previousBackStackEntry?.savedStateHandle?.set("refreshList", true)
+                findNavController().popBackStack()
+            }
+        }
+
+
     }
 
 

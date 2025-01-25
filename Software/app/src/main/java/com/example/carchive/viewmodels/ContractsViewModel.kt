@@ -278,6 +278,16 @@ class ContractsViewModel : ViewModel() {
         }
     }
 
+    fun fetchVehiclesRent() {
+        viewModelScope.launch {
+            val vehiclesFromRepository = when (val result = vehicleRepository.getVehiclesRent()) {
+                is Result.Success -> result.data
+                is Result.Error -> listOf()
+            }
+            _vehicles.update { vehiclesFromRepository }
+        }
+    }
+
     fun fetchContacts() {
         viewModelScope.launch {
             val contactsFromRepository = when (val result = contactRepository.getContacts()) {

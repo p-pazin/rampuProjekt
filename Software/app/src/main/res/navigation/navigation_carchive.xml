@@ -359,12 +359,21 @@
         android:name="com.example.carchive.fragments.ReservationInfoFragment"
         android:label="ReservationInfoFragment"
         tools:layout="@layout/fragment_reservation_info">
+        <action
+            android:id="@+id/action_reservationInfoFragment_to_editReservationFragment"
+            app:destination="@id/editReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/addReservationFragment"
         android:name="com.example.carchive.fragments.AddReservationFragment"
         android:label="AddReservationFragment"
         tools:layout="@layout/fragment_add_reservation">
+    </fragment>
+    <fragment
+        android:id="@+id/editReservationFragment"
+        android:name="com.example.carchive.fragments.EditReservationFragment"
+        android:label="EditReservationFragment"
+        tools:layout="@layout/fragment_edit_reservation">
     </fragment>
     <fragment
         android:id="@+id/invoicesFragment"

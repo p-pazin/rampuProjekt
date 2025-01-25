@@ -60,6 +60,14 @@ class ReservationFragment : Fragment() {
         binding.sidebarLogo.btnDodaj.setOnClickListener {
             findNavController().navigate(R.id.action_reservationFragment_to_addReservationFragment)
         }
+
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("refreshList")
+            ?.observe(viewLifecycleOwner) { shouldRefresh ->
+                if (shouldRefresh == true) {
+                    reservationViewModel.fetchReservations()
+                }
+            }
+
     }
 
     override fun onDestroyView() {

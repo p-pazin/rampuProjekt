@@ -234,7 +234,16 @@ interface ApiService {
     @POST("Reservation")
     suspend fun postReservation(
         @Query("contactid") contactid: Int?,
-        @Query("vehicleid") vehicleid: Int?,
+        @Query("vehicleId") vehicleId: Int?,
         @Body body: ReservationDto,): Response<Unit>
+
+    @PUT("Reservation/{id}")
+    suspend fun putReservation(
+        @Path("id") id: Int,
+        @Query("vehicleId") vehicleId: Int?,
+        @Body body: ReservationDto): Response<Unit>
+
+    @DELETE("Reservation/{id}")
+    suspend fun deleteReservation(@Path("id") id: Int): Response<Unit>
 
 }

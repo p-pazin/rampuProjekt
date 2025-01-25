@@ -35,8 +35,8 @@ class AddReservationFragment : Fragment() {
     private val contractsViewModel : ContractsViewModel by viewModels()
     private lateinit var vehicleSpinner: Spinner
     private lateinit var contactSpinner: Spinner
-    var selectedContactId: Int? = null
-    var selectedVehicleId: Int? = null
+    var selectedContactId: Int = 0
+    var selectedVehicleId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,7 +82,7 @@ class AddReservationFragment : Fragment() {
             }
         }
 
-        contractsViewModel.fetchVehicles()
+        contractsViewModel.fetchVehiclesRent()
         contractsViewModel.fetchContacts()
 
         lifecycleScope.launch {
@@ -154,8 +154,8 @@ class AddReservationFragment : Fragment() {
             val startDate = binding.btnContractAddStartDate.text.toString()
             val endDate = binding.btnContractAddEndDate.text.toString()
             val dateOfCreation = binding.etContractAddDateOfCreation.text.toString()
-            val selectedVehicleId = binding.spnContractAddVehicle.selectedItemId.toInt()
-            val selectedContactId = binding.spnContractAddContact.selectedItemId.toInt()
+            val selectedVehicleId = selectedVehicleId
+            val selectedContactId = selectedContactId
 
             if (price != null && maxMileage != null && startDate.isNotEmpty() && endDate.isNotEmpty()) {
                 val newReservation = ReservationDto(

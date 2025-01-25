@@ -33,6 +33,12 @@ class ReservationViewModel : ViewModel() {
     private val _newReservation = MutableLiveData<Result<Response<Unit>>>()
     val newReservation: LiveData<Result<Response<Unit>>> = _newReservation
 
+    private val _deletedReservation = MutableLiveData<Result<Response<Unit>>>()
+    val deletedReservation: LiveData<Result<Response<Unit>>> = _deletedReservation
+
+    private val _changeReservation = MutableLiveData<Result<Response<Unit>>>()
+    val changeReservation: LiveData<Result<Response<Unit>>> = _changeReservation
+
     fun fetchReservations() {
         viewModelScope.launch {
             when (val result = reservationRepository.getReservations()) {
@@ -129,6 +135,38 @@ class ReservationViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _newReservation.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    fun changeReservation(reservation: ReservationDto) {
+        viewModelScope.launch {
+            try {
+                val result = reservationRepository.putReservation(reservation)
+                if (result is Result.Success) {
+                    _newReservation.postValue(Result.Success(result.data))
+                }
+                if (result is Result.Error) {
+                    _newReservation.postValue(Result.Error(result.error))
+                }
+            } catch (e: Exception) {
+                _newReservation.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    fun deleteReservation(id: Int) {
+        viewModelScope.launch {
+            try {
+                val result = reservationRepository.deleteReservation(id)
+                if (result is Result.Success) {
+                    _deletedReservation.postValue(Result.Success(result.data))
+                }
+                if (result is Result.Error) {
+                    _deletedReservation.postValue(Result.Error(result.error))
+                }
+            } catch (e: Exception) {
+                _deletedReservation.postValue(Result.Error(e))
             }
         }
     }

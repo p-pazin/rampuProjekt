@@ -35,3 +35,20 @@ fun ContactDto.toEntity() =
         email = email,
         description = description
     )
+
+fun Contact.toDto() =
+    ContactDto(
+        id = id,
+        firstName = firstName,
+        lastName = lastName,
+        pin = pin,
+        dateOfCreation = dateOfCreation,
+        state = state,
+        country = country,
+        city = city,
+        address = address,
+        telephoneNumber = telephoneNumber,
+        mobileNumber = mobileNumber,
+        email = email,
+        description = description
+    )

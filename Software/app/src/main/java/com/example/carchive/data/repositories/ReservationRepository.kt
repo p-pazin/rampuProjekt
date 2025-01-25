@@ -26,4 +26,16 @@ class ReservationRepository {
             networkClient.postReservation(reservation.contactId, reservation.vehicleId, reservation)
         }
     }
+
+    suspend fun putReservation(reservation: ReservationDto): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.putReservation(reservation.id, reservation.vehicleId, reservation)
+        }
+    }
+
+    suspend fun deleteReservation(id: Int): Result<Response<Unit>> {
+        return safeResponse {
+            networkClient.deleteReservation(id)
+        }
+    }
 }
