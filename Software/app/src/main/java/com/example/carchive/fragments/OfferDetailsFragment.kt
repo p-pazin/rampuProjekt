@@ -55,9 +55,10 @@ class OfferDetailsFragment : Fragment() {
         arguments?.let { bundle ->
             offerId = bundle.getInt("id", 0)
 
+            binding.tvOfferId.text = "ID: $offerId"
             binding.offerTitle.text = "${bundle.getString("title", "Naslov")}"
             binding.offerPrice.text = "Cijena: ${bundle.getDouble("price", 0.0).toString()} €"
-            binding.offerDate.text = "Stvoreno datuma: ${bundle.getString("dateOfCreation", "2025-12-12")}"
+            binding.offerDate.text = "${bundle.getString("dateOfCreation", "2025-12-12")}"
         }
 
         setupRecyclerView()
@@ -88,7 +89,6 @@ class OfferDetailsFragment : Fragment() {
                         putString(
                             "dateOfCreation",
                             binding.offerDate.text.toString()
-                                .removePrefix("Stvoreno datuma: ")
                         )
 
                         putInt("contactId", contact.id)

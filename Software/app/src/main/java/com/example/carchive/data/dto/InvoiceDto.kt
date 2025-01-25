@@ -6,5 +6,13 @@ data class InvoiceDto(
     val vat: Double,
     val paymentMethod: String,
     val totalCost: Double,
-    val mileage: Int
+    val mileage: Int?
+)
+
+data class InvoiceDtoPost(
+    val dateOfCreation: String,
+    val vat: Double,
+    val paymentMethod: String,
+    val totalCost: Double,
+    val mileage: Int?
 )

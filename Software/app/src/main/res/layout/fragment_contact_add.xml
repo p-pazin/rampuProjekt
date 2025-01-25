@@ -119,6 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <TextView
@@ -136,6 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <TextView
@@ -253,6 +255,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <Button

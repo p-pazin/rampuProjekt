@@ -57,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <!-- Contact -->
@@ -72,6 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <!-- Price -->
@@ -104,10 +106,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/edit_textbox"
                     android:paddingStart="15dp"
                     android:text="Odaberite datum početka"
-                    android:textColor="@color/textColorLight" />
+                    android:backgroundTint="@color/accentColorLight"
+                    android:textColor="@color/textColorDark" />
 
                 <!-- End Date -->
                 <TextView
@@ -121,10 +123,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/edit_textbox"
                     android:paddingStart="15dp"
                     android:text="Odaberite datum završetka"
-                    android:textColor="@color/textColorLight" />
+                    android:backgroundTint="@color/accentColorLight"
+                    android:textColor="@color/textColorDark" />
 
                 <!-- Max Mileage -->
                 <TextView

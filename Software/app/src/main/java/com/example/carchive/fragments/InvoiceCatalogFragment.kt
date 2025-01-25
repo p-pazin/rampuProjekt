@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carchive.CarchiveActivity
+import com.example.carchive.R
 import com.example.carchive.adapters.InvoiceAdapter
 import com.example.carchive.adapters.OfferAdapter
 import com.example.carchive.databinding.FragmentContactsBinding
@@ -50,6 +52,10 @@ class InvoiceCatalogFragment: Fragment() {
 
         binding.sidebarLogo.drawerToggleButton.setOnClickListener {
             (activity as? CarchiveActivity)?.toggleDrawer()
+        }
+
+        binding.sidebarLogo.btnDodaj.setOnClickListener{
+            findNavController().navigate(R.id.action_invoicesFragment_to_addInvoiceFragment)
         }
 
         setupRecyclerView()

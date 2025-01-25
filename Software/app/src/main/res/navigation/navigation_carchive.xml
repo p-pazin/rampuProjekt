@@ -380,5 +380,18 @@
         android:name="com.example.carchive.fragments.InvoiceCatalogFragment"
         android:label="InvoiceCatalogFragment"
         tools:layout="@layout/fragment_invoice_catalog">
+        <action
+            android:id="@+id/action_invoicesFragment_to_addInvoiceFragment"
+            app:destination="@id/addInvoicesFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addInvoicesFragment"
+        android:name="com.example.carchive.fragments.AddInvoiceFragment"
+        android:label="AddInvoiceFragment"
+        tools:layout="@layout/fragment_add_invoice">
     </fragment>
 </navigation>

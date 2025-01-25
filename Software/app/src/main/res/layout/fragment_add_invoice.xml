@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddContractFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/navBackButton"
+            layout="@layout/toolbar_back_button" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="28dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_invoice_add_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/IzradiRacun"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_add_invoice_sell"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/prodaja"
+                        android:textColor="@color/primaryColorLight"
+                        android:backgroundTint="@color/accentColorLight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_add_invoice_rent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/najam"
+                        android:textColor="@color/primaryColorLight"
+                        android:backgroundTint="@color/accentColorLight"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/invoice_sell_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_contract_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/spn_invoice_add_contract"
+                        android:text="@string/ugovor" />
+
+                    <Spinner
+                        android:id="@+id/spn_invoice_add_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:popupBackground="@color/primaryColorLight"
+                        android:background="@drawable/spinner_item" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_payment_method"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_payment_method"
+                        android:text="@string/nacinPlacanja" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_payment_method"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="text"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_vat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_vat"
+                        android:text="@string/vat" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_vat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="text"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_total_cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_total_cost"
+                        android:text="@string/ukupnaCijena" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_total_cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="text"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/invoice_rent_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/spn_invoice_add_contract_rent"
+                        android:text="@string/ugovor" />
+                    <Spinner
+                        android:id="@+id/spn_invoice_add_contract_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:popupBackground="@color/primaryColorLight"
+                        android:background="@drawable/spinner_item" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_payment_method_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_payment_method_rent"
+                        android:text="@string/nacinPlacanja" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_payment_method_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="text"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_mileage_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_mileage_rent"
+                        android:text="@string/kilometraza" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_mileage_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="number"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_vat_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_vat_rent"
+                        android:text="@string/vat" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_vat_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="numberDecimal"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_total_cost_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_add_total_cost_rent"
+                        android:text="@string/ukupnaCijena" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_add_total_cost_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="numberDecimal"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_invoice_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/accentColorDark"
+                    android:textColor="@color/textColorDark"
+                    android:maxWidth="10dp"
+                    android:rotation="0"
+                    android:rotationX="0"
+                    android:rotationY="0"
+                    android:text="@string/dodajRacun" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,109 +40,146 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvOfferId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="ID"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:textColor="?attr/colorOnBackground" />
+
+                    <TextView
+                        android:id="@+id/offerDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Created on: YYYY-MM-DD"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:textAlignment="viewEnd"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                     <TextView
                         android:id="@+id/offerTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Offer Title"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:layout_marginTop="12dp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnBackground" />
 
-                    <TextView
-                        android:id="@+id/offerPrice"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="16sp"
-                        android:textColor="@color/accentColorLight"
-                        android:layout_marginTop="4dp" />
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
 
-                    <TextView
-                        android:id="@+id/offerDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textColor="@android:color/darker_gray"
-                        android:layout_marginTop="4dp" />
+                        <TextView
+                            android:id="@+id/offerPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price: $0.00"
+                            android:textSize="14sp"
+                            android:textColor="@color/accentColorLight"
+                            android:layout_weight="1" />
 
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="?android:attr/listDivider"
+                        android:backgroundTint="@color/accentColorLight" />
+
+
+                    <!-- Contact Details Section -->
                     <TextView
                         android:id="@+id/contactDetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Povezan kontakt"
                         android:textSize="18sp"
-                        android:layout_marginTop="18dp"
                         android:textStyle="bold"
+                        android:layout_marginTop="6dp"
                         android:textColor="?attr/colorOnBackground" />
 
+                    <!-- Contact Name -->
                     <TextView
                         android:id="@+id/contactName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Name"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="10dp" />
 
+                    <!-- Contact Details (PIN, Address, Phone, etc.) -->
                     <TextView
                         android:id="@+id/contactPin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact PIN"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/contactAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Address"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/contactTelephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Telephone"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/contactMobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Mobile"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/contactEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Email"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/contactDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Contact Description"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="?attr/colorOnBackground"/>
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="8dp" />
 
+                    <!-- Buttons -->
                     <Button
                         android:id="@+id/btn_create_contract"
                         android:layout_width="match_parent"
@@ -159,16 +196,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="50dp"
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/textColorDark"
-                        android:backgroundTint="#A2A0A0"
-                        android:fontFamily="@font/inter_regular"
-                        android:maxWidth="10dp"
                         android:text="Uredi ponudu"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
+                        android:backgroundTint="#A2A0A0"
+                        android:textColor="@color/textColorDark" />
 
                     <Button
                         android:id="@+id/btn_delete_offer"
@@ -176,17 +206,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="50dp"
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/textColorDark"
-                        android:backgroundTint="#E81717"
-                        android:fontFamily="@font/inter_regular"
-                        android:maxWidth="10dp"
                         android:text="Obriši ponudu"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
+                        android:backgroundTint="#E81717"
+                        android:textColor="@color/textColorDark" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -194,11 +216,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerVehicles"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:scrollbars="vertical" />
         </LinearLayout>
     </ScrollView>

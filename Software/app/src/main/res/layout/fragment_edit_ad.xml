@@ -104,6 +104,7 @@
                     android:id="@+id/spn_payment_method"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:popupBackground="@color/primaryColorLight"
                     android:background="@drawable/spinner_item" />
 
                 <TextView
@@ -121,6 +122,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_textbox"
                     android:padding="12dp"
+                    android:popupBackground="@color/primaryColorLight"
+                    android:textColor="@color/textColorLight"
                     android:hint="@string/odaberite_vozilo" />
 
                 <Button

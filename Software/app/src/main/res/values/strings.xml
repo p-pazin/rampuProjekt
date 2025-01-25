@@ -6,6 +6,7 @@
     <string name="ponude">Ponude</string>
     <string name="racuni">Računi</string>
     <string name="ugovori">Ugovori</string>
+    <string name="ugovor">Ugovor</string>
     <string name="statistika">Statistika</string>
     <string name="oglasi">Oglasi</string>
     <string name="pomoc">Pomoć</string>
@@ -810,13 +811,19 @@
     <string name="urediUgovor">Uredi ugovor</string>
     <string name="izbrisiUgovor">Izbriši ugovor</string>
     <string name="DodavanjeUgovora">Dodavanje ugovora</string>
+    <string name="IzradiRacun">Dodavanje računa</string>
     <string name="ponuda">Ponuda</string>
+    <string name="nacinPlacanja">Način plaćanja</string>
+    <string name="kilometraza">Kilometraža</string>
+    <string name="vat">PDV</string>
+    <string name="ukupnaCijena">Ukupna cijena</string>
     <string name="rezervacija">Rezervacija</string>
     <string name="osiguranje">Osiguranje</string>
     <string name="naziv">Naziv</string>
     <string name="mjesto">Mjesto</string>
     <string name="prodaja">Prodaja</string>
     <string name="dodajUgovor">Dodajte ugovor</string>
+    <string name="dodajRacun">Dodajte račun</string>
     <string name="odaberitePonudu">Odaberite ponudu</string>
     <string name="odaberiteVozilo">Odaberite vozilo</string>
     <string name="odaberiteKontakt">Odaberite kontakt</string>

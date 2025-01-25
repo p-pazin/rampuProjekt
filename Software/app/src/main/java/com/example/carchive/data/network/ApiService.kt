@@ -10,6 +10,7 @@ import com.example.carchive.data.dto.ContractDetailedSaleDto
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InsuranceDto
 import com.example.carchive.data.dto.InvoiceDto
+import com.example.carchive.data.dto.InvoiceDtoPost
 import com.example.carchive.data.dto.LocationDto
 import com.example.carchive.data.dto.LoginDto
 import com.example.carchive.data.dto.LoginRequestDto
@@ -225,6 +226,16 @@ interface ApiService {
 
     @GET("Invoice")
     suspend fun getInvoices(): List<InvoiceDto>
+
+    @POST("Invoice/sell")
+    suspend fun postInvoiceSell(@Query("contractId")contractId: Int,
+                                @Body body: InvoiceDtoPost
+    ): Response<Unit>
+
+    @POST("Invoice/rent/start")
+    suspend fun postInvoiceRentStart(@Query("contractId")contractId: Int,
+                                     @Body body: InvoiceDtoPost): Response<Unit>
+
     @GET("Reservation")
     suspend fun getReservations(): List<ReservationDto>
 

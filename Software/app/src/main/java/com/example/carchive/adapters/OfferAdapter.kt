@@ -17,15 +17,17 @@ class OfferAdapter(
 ) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
 
     inner class OfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvIdOffer: TextView = itemView.findViewById(R.id.tvOfferId)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         private val tvDateOfCreation: TextView = itemView.findViewById(R.id.tvDateOfCreation)
         private val cardOffer: CardView = itemView.findViewById(R.id.cardOffer)
 
         fun bind(offer: OfferDto) {
+            tvIdOffer.text = "ID: ${offer.id.toString()}"
             tvTitle.text = offer.title
             tvPrice.text = "Cijena: ${offer.price} €"
-            tvDateOfCreation.text = "Stvoreno datuma: ${offer.dateOfCreation}"
+            tvDateOfCreation.text = "${offer.dateOfCreation}"
 
             cardOffer.setOnClickListener {
                 onOfferClick(offer)
