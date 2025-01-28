@@ -106,13 +106,14 @@
                         android:layout_marginLeft="5dp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="15dp"
-                        android:labelFor="@id/et_invoice_add_payment_method"
+                        android:labelFor="@id/sp_invoice_add_payment_method"
                         android:text="@string/nacinPlacanja" />
 
-                    <EditText
-                        android:id="@+id/et_invoice_add_payment_method"
+                    <Spinner
+                        android:id="@+id/sp_invoice_add_payment_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:popupBackground="@color/primaryColorLight"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_textbox"
                         android:inputType="text"
@@ -195,15 +196,16 @@
                         android:layout_marginLeft="5dp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="15dp"
-                        android:labelFor="@id/et_invoice_add_payment_method_rent"
+                        android:labelFor="@id/sp_invoice_add_payment_method_rent"
                         android:text="@string/nacinPlacanja" />
 
-                    <EditText
-                        android:id="@+id/et_invoice_add_payment_method_rent"
+                    <Spinner
+                        android:id="@+id/sp_invoice_add_payment_method_rent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_textbox"
+                        android:popupBackground="@color/primaryColorLight"
                         android:inputType="text"
                         android:minHeight="45dp"
                         android:paddingStart="15dp"

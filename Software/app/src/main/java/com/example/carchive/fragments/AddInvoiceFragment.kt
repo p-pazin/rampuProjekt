@@ -52,6 +52,7 @@ class AddInvoiceFragment : Fragment() {
 
         viewModelContract.fetchContracts()
         setupSpinners()
+        setupPaymentMethodSpinner()
         setupListeners()
         updateInvoiceType(1)
     }
@@ -84,6 +85,14 @@ class AddInvoiceFragment : Fragment() {
         }
     }
 
+    private fun setupPaymentMethodSpinner() {
+        val paymentMethods = listOf("Gotovina", "Kartica", "Uplata na račun")
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, paymentMethods)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spInvoiceAddPaymentMethod.adapter = spinnerAdapter
+        binding.spInvoiceAddPaymentMethodRent.adapter = spinnerAdapter
+    }
+
     private fun setupListeners() {
         binding.btnAddInvoiceSell.setOnClickListener {
             updateInvoiceType(1)
@@ -110,13 +119,13 @@ class AddInvoiceFragment : Fragment() {
         val selectedContractIndex = binding.spnInvoiceAddContract.selectedItemPosition
         selectedContractSell = viewModelContract.contracts.value.getOrNull(selectedContractIndex)?.id
 
-        val paymentMethodSell = binding.etInvoiceAddPaymentMethod.text.toString()
+        val paymentMethodSell = binding.spInvoiceAddPaymentMethod.selectedItem.toString()
         val vatSell = binding.etInvoiceAddVat.text.toString()
         val totalSell = binding.etInvoiceAddTotalCost.text.toString()
 
         val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
         selectedContractRent = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
-   val paymentMethodRent = binding.etInvoiceAddPaymentMethodRent.text.toString()
+   val paymentMethodRent = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString()
         val vatRent = binding.etInvoiceAddVatRent.text.toString()
         val totalRent = binding.etInvoiceAddTotalCostRent.text.toString()
         val mileage = binding.etInvoiceAddMileageRent.text.toString()
@@ -157,7 +166,7 @@ class AddInvoiceFragment : Fragment() {
             selectedContractSell = viewModelContract.contracts.value.getOrNull(selectedContractIndex)?.id
             val invoiceSell = InvoiceDtoPost(
                 dateOfCreation = currentDate.toString(),
-                paymentMethod = binding.etInvoiceAddPaymentMethod.text.toString(),
+                paymentMethod = binding.spInvoiceAddPaymentMethod.selectedItem.toString(),
                 vat = binding.etInvoiceAddVat.text.toString().toDouble(),
                 totalCost = binding.etInvoiceAddTotalCost.text.toString().toDouble(),
                 mileage = 0
@@ -174,7 +183,7 @@ class AddInvoiceFragment : Fragment() {
             selectedContractRent = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
             val invoiceRent = InvoiceDtoPost(
                 dateOfCreation = currentDate.toString(),
-                paymentMethod = binding.etInvoiceAddPaymentMethodRent.text.toString(),
+                paymentMethod = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString(),
                 vat = binding.etInvoiceAddVatRent.text.toString().toDouble(),
                 totalCost = binding.etInvoiceAddTotalCostRent.text.toString().toDouble(),
                 mileage = binding.etInvoiceAddMileageRent.text.toString().toInt()
