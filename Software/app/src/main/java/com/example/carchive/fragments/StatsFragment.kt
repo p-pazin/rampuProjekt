@@ -84,7 +84,7 @@ class StatsFragment : Fragment() {
             viewModel.fetchInvoiceCreationStats()
         }
 
-        binding.sidebarLogo.drawerToggleButton.setOnClickListener {
+        binding.sidebarLogo.toolbarNavsidebar.setOnClickListener {
             (activity as? CarchiveActivity)?.toggleDrawer()
         }
 
