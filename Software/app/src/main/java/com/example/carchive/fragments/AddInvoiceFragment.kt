@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
+import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InvoiceDtoPost
 import com.example.carchive.databinding.FragmentAddInvoiceBinding
 import com.example.carchive.viewmodels.ContractsViewModel
@@ -62,9 +64,9 @@ class AddInvoiceFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModelContract.contracts.collect { contracts ->
                     val filteredContracts = if (invoiceType == 1) {
-                        contracts.filter { it.type == 1 }
+                        contracts.filter { it.type == 1 && it.signed == 0 }
                     } else {
-                        contracts.filter { it.type == 2 }
+                        contracts.filter { it.type == 2}
                     }
 
                     val contractNames = filteredContracts.map { "${it.title} - ${it.contactName}" }
@@ -79,11 +81,81 @@ class AddInvoiceFragment : Fragment() {
                         binding.spnInvoiceAddContract.adapter = adapter
                     } else {
                         binding.spnInvoiceAddContractRent.adapter = adapter
+                        binding.spnInvoiceFinalAddContractRent.adapter = adapter
                     }
+
+                    binding.spnInvoiceAddContract.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>?,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedContract = filteredContracts.getOrNull(position)
+                                selectedContract?.let {
+                                    updateLayoutBasedOnContract(it)
+                                }
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>?) {}
+                        }
+
+                    binding.spnInvoiceAddContractRent.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>?,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedContract = filteredContracts.getOrNull(position)
+                                selectedContract?.let {
+                                    updateLayoutBasedOnContract(it)
+                                }
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>?) {}
+                        }
+                    binding.spnInvoiceFinalAddContractRent.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>?,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                val selectedContract = filteredContracts.getOrNull(position)
+                                selectedContract?.let {
+                                    updateLayoutBasedOnContract(it)
+                                }
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>?) {}
+                        }
                 }
             }
         }
     }
+
+    private fun updateLayoutBasedOnContract(contract: ContractDto) {
+        if (contract.signed == 1) {
+            binding.invoiceSellLayout.visibility = View.GONE
+            binding.invoiceRentLayout.visibility = View.GONE
+            binding.invoiceRentLayoutFinal.visibility = View.VISIBLE
+        } else {
+            if (invoiceType == 1) {
+                binding.invoiceSellLayout.visibility = View.VISIBLE
+                binding.invoiceRentLayout.visibility = View.GONE
+                binding.invoiceRentLayoutFinal.visibility = View.GONE
+            } else {
+                binding.invoiceSellLayout.visibility = View.GONE
+                binding.invoiceRentLayout.visibility = View.VISIBLE
+                binding.invoiceRentLayoutFinal.visibility = View.GONE
+            }
+        }
+    }
+
 
     private fun setupPaymentMethodSpinner() {
         val paymentMethods = listOf("Gotovina", "Kartica", "Uplata na račun")
@@ -125,10 +197,9 @@ class AddInvoiceFragment : Fragment() {
 
         val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
         selectedContractRent = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
-   val paymentMethodRent = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString()
+        val paymentMethodRent = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString()
         val vatRent = binding.etInvoiceAddVatRent.text.toString()
-        val totalRent = binding.etInvoiceAddTotalCostRent.text.toString()
-        val mileage = binding.etInvoiceAddMileageRent.text.toString()
+        val mileage = binding.etInvoiceFinalAddMileageRent.text.toString()
 
         if (invoiceType == 1) {
             viewModelInvoice.validateInvoiceInputs(
@@ -150,8 +221,8 @@ class AddInvoiceFragment : Fragment() {
                 null,
                 paymentMethodRent,
                 vatRent,
-                totalRent,
                 mileage,
+                null,
                 null,
                 null,
                 null
@@ -168,7 +239,6 @@ class AddInvoiceFragment : Fragment() {
                 dateOfCreation = currentDate.toString(),
                 paymentMethod = binding.spInvoiceAddPaymentMethod.selectedItem.toString(),
                 vat = binding.etInvoiceAddVat.text.toString().toDouble(),
-                totalCost = binding.etInvoiceAddTotalCost.text.toString().toDouble(),
                 mileage = 0
             )
             lifecycleScope.launch {
@@ -185,8 +255,7 @@ class AddInvoiceFragment : Fragment() {
                 dateOfCreation = currentDate.toString(),
                 paymentMethod = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString(),
                 vat = binding.etInvoiceAddVatRent.text.toString().toDouble(),
-                totalCost = binding.etInvoiceAddTotalCostRent.text.toString().toDouble(),
-                mileage = binding.etInvoiceAddMileageRent.text.toString().toInt()
+                mileage = binding.etInvoiceFinalAddMileageRent.text.toString().toInt()
             )
             lifecycleScope.launch {
                 viewModelInvoice.postInvoice(
@@ -231,8 +300,12 @@ class AddInvoiceFragment : Fragment() {
             binding.btnAddInvoiceSell.setTextColor(
                 ContextCompat.getColor(requireContext(), R.color.accentColorLight)
             )
+
         }
 
         setupSpinners()
+        val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
+        val a = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
+        println("AAA, $a")
     }
 }

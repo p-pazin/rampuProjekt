@@ -79,7 +79,8 @@
                     android:id="@+id/invoice_sell_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/tv_invoice_add_contract_label"
@@ -211,29 +212,6 @@
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
 
-
-
-                    <TextView
-                        android:id="@+id/tv_invoice_add_mileage_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="?attr/colorOnBackground"
-                        android:layout_marginTop="15dp"
-                        android:labelFor="@id/et_invoice_add_mileage_rent"
-                        android:text="@string/kilometraza" />
-
-                    <EditText
-                        android:id="@+id/et_invoice_add_mileage_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_textbox"
-                        android:inputType="number"
-                        android:minHeight="45dp"
-                        android:paddingStart="15dp"
-                        android:textColor="@color/textColorLight" />
-
                     <TextView
                         android:id="@+id/tv_invoice_add_vat_rent"
                         android:layout_width="match_parent"
@@ -255,18 +233,90 @@
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
 
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/invoice_rent_layout_final"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
                     <TextView
-                        android:id="@+id/tv_invoice_add_total_cost_rent"
+                        android:id="@+id/tv_invoice_final_add_contract"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="15dp"
-                        android:labelFor="@id/et_invoice_add_total_cost_rent"
-                        android:text="@string/ukupnaCijena" />
+                        android:labelFor="@id/spn_invoice_final_add_contract_rent"
+                        android:text="@string/ugovor" />
+                    <Spinner
+                        android:id="@+id/spn_invoice_final_add_contract_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:popupBackground="@color/primaryColorLight"
+                        android:background="@drawable/spinner_item" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_final_add_payment_method_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/sp_invoice_final_add_payment_method_rent"
+                        android:text="@string/nacinPlacanja" />
+
+                    <Spinner
+                        android:id="@+id/sp_invoice_final_add_payment_method_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:popupBackground="@color/primaryColorLight"
+                        android:inputType="text"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+
+
+                    <TextView
+                        android:id="@+id/tv_invoice_final_add_mileage_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_final_add_mileage_rent"
+                        android:text="@string/kilometraza" />
 
                     <EditText
-                        android:id="@+id/et_invoice_add_total_cost_rent"
+                        android:id="@+id/et_invoice_final_add_mileage_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_textbox"
+                        android:inputType="number"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_final_add_vat_rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/colorOnBackground"
+                        android:layout_marginTop="15dp"
+                        android:labelFor="@id/et_invoice_final_add_vat_rent"
+                        android:text="@string/vat" />
+
+                    <EditText
+                        android:id="@+id/et_invoice_final_add_vat_rent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -275,6 +325,7 @@
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
+
 
                 </LinearLayout>
 

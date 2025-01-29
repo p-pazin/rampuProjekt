@@ -236,6 +236,10 @@ interface ApiService {
     suspend fun postInvoiceRentStart(@Query("contractId")contractId: Int,
                                      @Body body: InvoiceDtoPost): Response<Unit>
 
+    @POST("Invoice/rent/final")
+    suspend fun postInvoiceRentFinal(@Query("contractId")contractId: Int,
+                                     @Body body: InvoiceDtoPost): Response<Unit>
+
     @GET("Reservation")
     suspend fun getReservations(): List<ReservationDto>
 

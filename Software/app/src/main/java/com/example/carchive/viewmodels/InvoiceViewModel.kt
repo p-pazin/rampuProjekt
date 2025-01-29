@@ -30,6 +30,8 @@ class InvoiceViewModel: ViewModel() {
     val invoiceSale: LiveData<Result<Response<Unit>>> = _invoiceSale
     private val _invoiceRentStart = MutableLiveData<Result<Response<Unit>>>()
     val invoiceRentStart: LiveData<Result<Response<Unit>>> = _invoiceRentStart
+    private val _invoiceRentEnd = MutableLiveData<Result<Response<Unit>>>()
+    val invoiceRentEnd: LiveData<Result<Response<Unit>>> = _invoiceRentEnd
 
     private val _validationResult = MutableLiveData<Boolean>()
     val validationResult: LiveData<Boolean> get() = _validationResult
@@ -61,6 +63,40 @@ class InvoiceViewModel: ViewModel() {
                 }
             } catch (e: Exception) {
                 _invoiceSale.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    suspend fun postInvoiceRentStart(invoiceType: Int, contractId: Int, invoice: InvoiceDtoPost) {
+        if(invoiceType == 2) {
+            try {
+                when (val result = invoiceRepository.postInvoiceRentStart(contractId, invoice)) {
+                    is Result.Success -> {
+                        _invoiceRentStart.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _invoiceRentStart.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _invoiceRentStart.postValue(Result.Error(e))
+            }
+        }
+    }
+
+    suspend fun postInvoiceRentEnd(invoiceType: Int, contractId: Int, invoice: InvoiceDtoPost) {
+        if(invoiceType == 2) {
+            try {
+                when (val result = invoiceRepository.postInvoiceRentEnd(contractId, invoice)) {
+                    is Result.Success -> {
+                        _invoiceRentEnd.postValue(Result.Success(result.data))
+                    }
+                    is Result.Error -> {
+                        _invoiceRentEnd.postValue(Result.Error(result.error))
+                    }
+                }
+            } catch (e: Exception) {
+                _invoiceRentEnd.postValue(Result.Error(e))
             }
         }
     }
