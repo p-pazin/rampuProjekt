@@ -45,6 +45,7 @@
                     android:text="Naslov:"
                     android:textSize="22sp"
                     android:textStyle="bold"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -53,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="Mjesto:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -61,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:text="Datum kreiranja:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -69,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="Cijena:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -77,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="Kupac:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -89,6 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Registracija vozila:"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="20sp"
                     android:layout_marginBottom="12dp" />
 
@@ -98,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="Marka vozila:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -106,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="Model vozila:"
                     android:textSize="20sp"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_marginBottom="12dp" />
 
                 <Button
