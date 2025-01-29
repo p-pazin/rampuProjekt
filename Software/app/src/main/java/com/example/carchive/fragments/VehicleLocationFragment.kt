@@ -77,7 +77,7 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
                         vehicleMarker = googleMap?.addMarker(
                             MarkerOptions().position(startLocation).title("Vehicle Location")
                         )
-                        googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 10f))
+                        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 10f))
                         simulateVehicleMovement()
                     }
                 }
@@ -141,11 +141,11 @@ class VehicleLocationFragment : Fragment(), OnMapReadyCallback {
                 val fraction = animation.animatedFraction
                 val newPosition = latLngInterpolator.interpolate(fraction, fromPosition, toPosition)
                 marker.position = newPosition
-                googleMap?.animateCamera(CameraUpdateFactory.newLatLng(newPosition))
             }
         }
         animator.start()
     }
+
 
     interface LatLngInterpolator {
         fun interpolate(fraction: Float, a: LatLng, b: LatLng): LatLng

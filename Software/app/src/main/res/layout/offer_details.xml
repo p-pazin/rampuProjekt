@@ -102,7 +102,7 @@
                         android:backgroundTint="@color/accentColorLight" />
 
 
-                    <!-- Contact Details Section -->
+
                     <TextView
                         android:id="@+id/contactDetails"
                         android:layout_width="wrap_content"
@@ -113,23 +113,21 @@
                         android:layout_marginTop="6dp"
                         android:textColor="?attr/colorOnBackground" />
 
-                    <!-- Contact Name -->
                     <TextView
                         android:id="@+id/contactName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Name"
+                        android:text=""
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="10dp" />
 
-                    <!-- Contact Details (PIN, Address, Phone, etc.) -->
                     <TextView
                         android:id="@+id/contactPin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact PIN"
+                        android:text="OIB:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
@@ -138,7 +136,7 @@
                         android:id="@+id/contactAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Address"
+                        android:text="Adresa:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
@@ -147,7 +145,7 @@
                         android:id="@+id/contactTelephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Telephone"
+                        android:text="Telefon:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
@@ -156,7 +154,7 @@
                         android:id="@+id/contactMobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Mobile"
+                        android:text="Mobitel:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
@@ -165,7 +163,7 @@
                         android:id="@+id/contactEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Email"
+                        android:text="Email:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
@@ -174,21 +172,10 @@
                         android:id="@+id/contactDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Description"
+                        android:text="Opis:"
                         android:textSize="14sp"
                         android:textColor="?attr/colorOnBackground"
                         android:layout_marginTop="8dp" />
-
-                    <!-- Buttons -->
-                    <Button
-                        android:id="@+id/btn_create_contract"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginHorizontal="50dp"
-                        android:backgroundTint="@color/accentColorLight"
-                        android:text="@string/stvoriUgovor"
-                        android:textColor="@color/textColorDark" />
 
                     <Button
                         android:id="@+id/btn_edit_offer"
