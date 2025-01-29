@@ -233,6 +233,14 @@
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
 
+                    <LinearLayout
+                        android:id="@+id/invoice_rent_start_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -242,47 +250,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/tv_invoice_final_add_contract"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="?attr/colorOnBackground"
-                        android:layout_marginTop="15dp"
-                        android:labelFor="@id/spn_invoice_final_add_contract_rent"
-                        android:text="@string/ugovor" />
-                    <Spinner
-                        android:id="@+id/spn_invoice_final_add_contract_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:popupBackground="@color/primaryColorLight"
-                        android:background="@drawable/spinner_item" />
-
-                    <TextView
-                        android:id="@+id/tv_invoice_final_add_payment_method_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="?attr/colorOnBackground"
-                        android:layout_marginTop="15dp"
-                        android:labelFor="@id/sp_invoice_final_add_payment_method_rent"
-                        android:text="@string/nacinPlacanja" />
-
-                    <Spinner
-                        android:id="@+id/sp_invoice_final_add_payment_method_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_textbox"
-                        android:popupBackground="@color/primaryColorLight"
-                        android:inputType="text"
-                        android:minHeight="45dp"
-                        android:paddingStart="15dp"
-                        android:textColor="@color/textColorLight" />
-
-
 
                     <TextView
                         android:id="@+id/tv_invoice_final_add_mileage_rent"
@@ -304,29 +271,6 @@
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
-
-                    <TextView
-                        android:id="@+id/tv_invoice_final_add_vat_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="?attr/colorOnBackground"
-                        android:layout_marginTop="15dp"
-                        android:labelFor="@id/et_invoice_final_add_vat_rent"
-                        android:text="@string/vat" />
-
-                    <EditText
-                        android:id="@+id/et_invoice_final_add_vat_rent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_textbox"
-                        android:inputType="numberDecimal"
-                        android:minHeight="45dp"
-                        android:paddingStart="15dp"
-                        android:textColor="@color/textColorLight" />
-
-
                 </LinearLayout>
 
                 <Button

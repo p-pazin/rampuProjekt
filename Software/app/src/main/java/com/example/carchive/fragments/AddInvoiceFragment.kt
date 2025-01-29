@@ -70,19 +70,22 @@ class AddInvoiceFragment : Fragment() {
                     }
 
                     val contractNames = filteredContracts.map { "${it.title} - ${it.contactName}" }
-                    val adapter = ArrayAdapter(
+
+                    val saleAdapter = ArrayAdapter(
                         requireContext(),
                         android.R.layout.simple_spinner_item,
                         contractNames
                     )
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    saleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spnInvoiceAddContract.adapter = saleAdapter
 
-                    if (invoiceType == 1) {
-                        binding.spnInvoiceAddContract.adapter = adapter
-                    } else {
-                        binding.spnInvoiceAddContractRent.adapter = adapter
-                        binding.spnInvoiceFinalAddContractRent.adapter = adapter
-                    }
+                    val rentAdapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        contractNames
+                    )
+                    rentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spnInvoiceAddContractRent.adapter = rentAdapter
 
                     binding.spnInvoiceAddContract.onItemSelectedListener =
                         object : AdapterView.OnItemSelectedListener {
@@ -117,40 +120,23 @@ class AddInvoiceFragment : Fragment() {
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {}
                         }
-                    binding.spnInvoiceFinalAddContractRent.onItemSelectedListener =
-                        object : AdapterView.OnItemSelectedListener {
-                            override fun onItemSelected(
-                                parent: AdapterView<*>?,
-                                view: View?,
-                                position: Int,
-                                id: Long
-                            ) {
-                                val selectedContract = filteredContracts.getOrNull(position)
-                                selectedContract?.let {
-                                    updateLayoutBasedOnContract(it)
-                                }
-                            }
-
-                            override fun onNothingSelected(parent: AdapterView<*>?) {}
-                        }
                 }
             }
         }
     }
 
     private fun updateLayoutBasedOnContract(contract: ContractDto) {
-        if (contract.signed == 1) {
-            binding.invoiceSellLayout.visibility = View.GONE
+        if (invoiceType == 1) {
+            binding.invoiceSellLayout.visibility = View.VISIBLE
             binding.invoiceRentLayout.visibility = View.GONE
-            binding.invoiceRentLayoutFinal.visibility = View.VISIBLE
         } else {
-            if (invoiceType == 1) {
-                binding.invoiceSellLayout.visibility = View.VISIBLE
-                binding.invoiceRentLayout.visibility = View.GONE
-                binding.invoiceRentLayoutFinal.visibility = View.GONE
-            } else {
-                binding.invoiceSellLayout.visibility = View.GONE
-                binding.invoiceRentLayout.visibility = View.VISIBLE
+            binding.invoiceSellLayout.visibility = View.GONE
+            binding.invoiceRentLayout.visibility = View.VISIBLE
+
+            if(contract.signed == 1) {
+                binding.invoiceRentLayoutFinal.visibility = View.VISIBLE
+            }
+            else {
                 binding.invoiceRentLayoutFinal.visibility = View.GONE
             }
         }
@@ -306,6 +292,5 @@ class AddInvoiceFragment : Fragment() {
         setupSpinners()
         val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
         val a = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
-        println("AAA, $a")
     }
 }
