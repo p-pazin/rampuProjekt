@@ -271,6 +271,45 @@
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
                         android:textColor="@color/textColorLight" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Penali"
+                        android:layout_marginTop="15dp"
+                        android:textColor="?attr/colorOnBackground" />
+
+                    <Spinner
+                        android:id="@+id/spinner_penalties"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:popupBackground="@color/primaryColorLight"
+                        android:background="@drawable/spinner_item" />
+
+                    <Button
+                        android:id="@+id/btn_add_penalty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Dodaj penal"
+                        android:backgroundTint="@color/accentColorDark"
+                        android:textColor="@color/textColorDark" />
+
+                    <TextView
+                        android:id="@+id/tv_selected_penalties"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Izabrani penali"
+                        android:textColor="?attr/colorOnBackground" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_selected_penalties"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <Button

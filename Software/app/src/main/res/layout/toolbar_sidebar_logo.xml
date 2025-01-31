@@ -20,6 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:id="@+id/toolscl"
         >
 
         <ImageButton
@@ -29,35 +30,10 @@
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="Dodaj"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnFilter"
+            app:layout_constraintEnd_toEndOf="@+id/toolscl"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_dodaj" />
 
-        <ImageButton
-            android:id="@+id/btnFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:backgroundTint="#00FFFFFF"
-            android:contentDescription="Filter"
-            android:minHeight="50dp"
-            android:src="@drawable/ic_filter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btTrazi"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/btTrazi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:backgroundTint="#00FFFFFF"
-            android:contentDescription="Traži"
-            android:minHeight="50dp"
-            android:src="@drawable/ic_pretrazi"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </Toolbar>

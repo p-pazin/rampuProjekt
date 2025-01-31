@@ -18,8 +18,10 @@ import com.example.carchive.R
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InvoiceDtoPost
 import com.example.carchive.databinding.FragmentAddInvoiceBinding
+import com.example.carchive.databinding.ItemSelectedVehicleBinding
 import com.example.carchive.viewmodels.ContractsViewModel
 import com.example.carchive.viewmodels.InvoiceViewModel
+import com.example.carchive.viewmodels.PenaltyViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -27,12 +29,16 @@ class AddInvoiceFragment : Fragment() {
 
     private val viewModelInvoice: InvoiceViewModel by viewModels()
     private val viewModelContract: ContractsViewModel by viewModels()
+    private val viewModelPenalty: PenaltyViewModel by viewModels()
 
     private var _binding: FragmentAddInvoiceBinding? = null
     private val binding get() = _binding!!
 
     private var selectedContractRent: Int? = null
     private var selectedContractSell: Int? = null
+    private var selectedContractSigned: Int? = null
+    private val selectedPenalties = mutableListOf<String>()
+    private var filteredContracts = listOf<ContractDto>()
 
     private var invoiceType: Int = 1
 
@@ -53,20 +59,31 @@ class AddInvoiceFragment : Fragment() {
         }
 
         viewModelContract.fetchContracts()
+        viewModelPenalty.fetchPenalties()
         setupSpinners()
         setupPaymentMethodSpinner()
         setupListeners()
         updateInvoiceType(1)
+
+        binding.btnAddPenalty.setOnClickListener {
+            val selectedPenalty = binding.spinnerPenalties.selectedItem?.toString()
+            if (selectedPenalty != null && !selectedPenalties.contains(selectedPenalty)) {
+                selectedPenalties.add(selectedPenalty)
+                addVehicleToLayout(selectedPenalty)
+            } else {
+                Toast.makeText(requireContext(), "Penal već dodan!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupSpinners() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModelContract.contracts.collect { contracts ->
-                    val filteredContracts = if (invoiceType == 1) {
+                    filteredContracts = if (invoiceType == 1) {
                         contracts.filter { it.type == 1 && it.signed == 0 }
                     } else {
-                        contracts.filter { it.type == 2}
+                        contracts.filter { it.type == 2 }
                     }
 
                     val contractNames = filteredContracts.map { "${it.title} - ${it.contactName}" }
@@ -123,12 +140,40 @@ class AddInvoiceFragment : Fragment() {
                 }
             }
         }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModelPenalty.penalties.collect { penalties ->
+                    val penaltyNames = penalties.map { it.name }
+                    val penaltyAdapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        penaltyNames
+                    )
+                    penaltyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerPenalties.adapter = penaltyAdapter
+                }
+            }
+        }
+    }
+
+    private fun addVehicleToLayout(vehicle: String) {
+        val vehicleBinding = ItemSelectedVehicleBinding.inflate(LayoutInflater.from(requireContext()), binding.llSelectedPenalties, false)
+
+        vehicleBinding.tvVehicleName.text = vehicle
+
+        vehicleBinding.btnRemoveVehicle.setOnClickListener {
+            binding.llSelectedPenalties.removeView(vehicleBinding.root)
+            selectedPenalties.remove(vehicle)
+        }
+
+        binding.llSelectedPenalties.addView(vehicleBinding.root)
     }
 
     private fun updateLayoutBasedOnContract(contract: ContractDto) {
         if (invoiceType == 1) {
             binding.invoiceSellLayout.visibility = View.VISIBLE
             binding.invoiceRentLayout.visibility = View.GONE
+            binding.invoiceRentLayoutFinal.visibility = View.GONE
         } else {
             binding.invoiceSellLayout.visibility = View.GONE
             binding.invoiceRentLayout.visibility = View.VISIBLE
@@ -175,14 +220,16 @@ class AddInvoiceFragment : Fragment() {
 
     private fun validateAndSubmitInvoice() {
         val selectedContractIndex = binding.spnInvoiceAddContract.selectedItemPosition
-        selectedContractSell = viewModelContract.contracts.value.getOrNull(selectedContractIndex)?.id
+        selectedContractSell = filteredContracts.getOrNull(selectedContractIndex)?.id
 
         val paymentMethodSell = binding.spInvoiceAddPaymentMethod.selectedItem.toString()
         val vatSell = binding.etInvoiceAddVat.text.toString()
         val totalSell = binding.etInvoiceAddTotalCost.text.toString()
 
         val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
-        selectedContractRent = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
+        selectedContractRent = filteredContracts.getOrNull(selectedContractIndexRent)?.id
+        selectedContractSigned = filteredContracts.getOrNull(selectedContractIndexRent)?.signed
+
         val paymentMethodRent = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString()
         val vatRent = binding.etInvoiceAddVatRent.text.toString()
         val mileage = binding.etInvoiceFinalAddMileageRent.text.toString()
@@ -195,38 +242,55 @@ class AddInvoiceFragment : Fragment() {
                 null,
                 null,
                 null,
-                null,
                 paymentMethodSell,
                 vatSell,
                 totalSell
             )
         } else {
-            viewModelInvoice.validateInvoiceInputs(
-                invoiceType,
-                selectedContractRent,
-                null,
-                paymentMethodRent,
-                vatRent,
-                mileage,
-                null,
-                null,
-                null,
-                null
-            )
+            if (selectedContractSigned == 0) {
+                viewModelInvoice.validateInvoiceInputs(
+                    invoiceType,
+                    selectedContractRent,
+                    null,
+                    paymentMethodRent,
+                    vatRent,
+                    mileage,
+                    null,
+                    null,
+                    null,
+                    isRentEnd = true
+                )
+            } else {
+                viewModelInvoice.validateInvoiceInputs(
+                    invoiceType,
+                    selectedContractRent,
+                    null,
+                    paymentMethodRent,
+                    vatRent,
+                    null,
+                    null,
+                    null,
+                    null,
+                    isRentEnd = false
+                )
+            }
         }
     }
 
     private fun submitInvoice() {
         val currentDate = LocalDate.now()
+
         if (invoiceType == 1) {
             val selectedContractIndex = binding.spnInvoiceAddContract.selectedItemPosition
             selectedContractSell = viewModelContract.contracts.value.getOrNull(selectedContractIndex)?.id
+
             val invoiceSell = InvoiceDtoPost(
                 dateOfCreation = currentDate.toString(),
                 paymentMethod = binding.spInvoiceAddPaymentMethod.selectedItem.toString(),
                 vat = binding.etInvoiceAddVat.text.toString().toDouble(),
                 mileage = 0
             )
+
             lifecycleScope.launch {
                 viewModelInvoice.postInvoice(
                     invoiceType,
@@ -236,22 +300,43 @@ class AddInvoiceFragment : Fragment() {
             }
         } else {
             val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
-            selectedContractRent = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
+            selectedContractRent = filteredContracts.getOrNull(selectedContractIndexRent)?.id
+
+            val penaltiesIds = getSelectedPenaltiesIds()
+
             val invoiceRent = InvoiceDtoPost(
                 dateOfCreation = currentDate.toString(),
                 paymentMethod = binding.spInvoiceAddPaymentMethodRent.selectedItem.toString(),
                 vat = binding.etInvoiceAddVatRent.text.toString().toDouble(),
-                mileage = binding.etInvoiceFinalAddMileageRent.text.toString().toInt()
+                mileage = binding.etInvoiceFinalAddMileageRent.text.toString().toIntOrNull() ?: 0
             )
+
             lifecycleScope.launch {
-                viewModelInvoice.postInvoice(
-                    invoiceType,
-                    selectedContractRent ?: selectedContractSell!!,
-                    invoiceRent
-                )
+                if (penaltiesIds.isNotEmpty()) {
+                    viewModelInvoice.postInvoiceRentEnd(
+                        invoiceType,
+                        selectedContractRent ?: selectedContractSell!!,
+                        invoiceRent,
+                        penaltiesIds
+                    )
+                } else {
+                    viewModelInvoice.postInvoiceRentStart(
+                        invoiceType,
+                        selectedContractRent ?: selectedContractSell!!,
+                        invoiceRent
+                    )
+                }
             }
         }
     }
+
+    private fun getSelectedPenaltiesIds(): List<Int> {
+        val penaltiesList = viewModelPenalty.penalties.value
+        return selectedPenalties.mapNotNull { penaltyName ->
+            penaltiesList.find { it.name == penaltyName }?.id
+        }
+    }
+
 
     private fun updateInvoiceType(type: Int) {
         invoiceType = type
@@ -290,7 +375,5 @@ class AddInvoiceFragment : Fragment() {
         }
 
         setupSpinners()
-        val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
-        val a = viewModelContract.contracts.value.getOrNull(selectedContractIndexRent)?.id
     }
 }

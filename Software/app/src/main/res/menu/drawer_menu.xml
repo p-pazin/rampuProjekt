@@ -51,16 +51,6 @@
         android:title="@string/rezervacije" />
 
     <item
-        android:id="@+id/nav_help"
-        android:icon="@drawable/ic_pomoc"
-        android:title="@string/pomoc" />
-
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_postavke"
-        android:title="@string/postavke" />
-
-    <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_odjava"
         android:title="@string/odjava" />

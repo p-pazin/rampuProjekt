@@ -19,6 +19,7 @@ import com.example.carchive.data.dto.NewPasswordDto
 import com.example.carchive.data.dto.NewUserDto
 import com.example.carchive.data.dto.OfferDto
 import com.example.carchive.data.dto.OfferPostDto
+import com.example.carchive.data.dto.PenaltyDto
 import com.example.carchive.data.dto.ReservationDto
 import com.example.carchive.data.dto.UploadResponse
 import com.example.carchive.data.dto.UserDto
@@ -238,6 +239,7 @@ interface ApiService {
 
     @POST("Invoice/rent/final")
     suspend fun postInvoiceRentFinal(@Query("contractId")contractId: Int,
+                                     @Query("penaltyIds")penaltyIds: List<Int>,
                                      @Body body: InvoiceDtoPost): Response<Unit>
 
     @GET("Reservation")
@@ -260,5 +262,8 @@ interface ApiService {
 
     @DELETE("Reservation/{id}")
     suspend fun deleteReservation(@Path("id") id: Int): Response<Unit>
+
+    @GET("Penalty")
+    suspend fun getPenalties(): List<PenaltyDto>
 
 }

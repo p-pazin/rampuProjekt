@@ -32,9 +32,9 @@ class InvoiceRepository {
         }
     }
 
-    suspend fun postInvoiceRentEnd(contractId: Int, invoiceDto: InvoiceDtoPost): Result<Response<Unit>> {
+    suspend fun postInvoiceRentEnd(contractId: Int, invoiceDto: InvoiceDtoPost, penalties: List<Int>): Result<Response<Unit>> {
         return safeResponse {
-            networkClient.postInvoiceRentFinal(contractId, invoiceDto)
+            networkClient.postInvoiceRentFinal(contractId, penalties, invoiceDto)
         }
     }
 }

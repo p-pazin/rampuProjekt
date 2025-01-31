@@ -84,10 +84,10 @@ class InvoiceViewModel: ViewModel() {
         }
     }
 
-    suspend fun postInvoiceRentEnd(invoiceType: Int, contractId: Int, invoice: InvoiceDtoPost) {
+    suspend fun postInvoiceRentEnd(invoiceType: Int, contractId: Int, invoice: InvoiceDtoPost, penalties : List<Int>) {
         if(invoiceType == 2) {
             try {
-                when (val result = invoiceRepository.postInvoiceRentEnd(contractId, invoice)) {
+                when (val result = invoiceRepository.postInvoiceRentEnd(contractId, invoice,penalties)) {
                     is Result.Success -> {
                         _invoiceRentEnd.postValue(Result.Success(result.data))
                     }
@@ -107,11 +107,11 @@ class InvoiceViewModel: ViewModel() {
         contractIdSell: Int?,
         paymentMethodRent: String?,
         vatRent: String?,
-        totalRent: String?,
         mileage: String?,
         paymentMethodSell: String?,
         vatSell: String?,
-        totalSell: String?
+        totalSell: String?,
+        isRentEnd: Boolean = false
     ) {
         val isValid = when (contractType) {
             1 -> { // Sell
@@ -123,12 +123,12 @@ class InvoiceViewModel: ViewModel() {
             2 -> { // Rent
                 !paymentMethodRent.isNullOrEmpty() &&
                         !vatRent.isNullOrEmpty() &&
-                        !totalRent.isNullOrEmpty() &&
-                        !mileage.isNullOrEmpty() &&
-                        contractIdRent != null
+                        contractIdRent != null &&
+                        (!isRentEnd || !mileage.isNullOrEmpty())
             }
             else -> false
         }
         _validationResult.postValue(isValid)
     }
+
 }
