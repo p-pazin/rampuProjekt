@@ -17,6 +17,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.carchive.R
 import com.example.carchive.data.dto.ContractDto
 import com.example.carchive.data.dto.InvoiceDtoPost
+import com.example.carchive.data.network.Result.Error
+import com.example.carchive.data.network.Result.Success
 import com.example.carchive.databinding.FragmentAddInvoiceBinding
 import com.example.carchive.databinding.ItemSelectedVehicleBinding
 import com.example.carchive.viewmodels.ContractsViewModel
@@ -298,6 +300,20 @@ class AddInvoiceFragment : Fragment() {
                     invoiceSell
                 )
             }
+            lifecycleScope.launch {
+                viewModelInvoice.invoiceSale.observe(viewLifecycleOwner) { result ->
+                    when(result) {
+                        is Success -> {
+                            Toast.makeText(requireContext(), "Uspješno dodan racun", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                        is Error -> {
+                            Toast.makeText(requireContext(), "Greška kod dodavanja racuna", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
         } else {
             val selectedContractIndexRent = binding.spnInvoiceAddContractRent.selectedItemPosition
             selectedContractRent = filteredContracts.getOrNull(selectedContractIndexRent)?.id
@@ -325,6 +341,32 @@ class AddInvoiceFragment : Fragment() {
                         selectedContractRent ?: selectedContractSell!!,
                         invoiceRent
                     )
+                }
+            }
+            lifecycleScope.launch {
+                viewModelInvoice.invoiceRentStart.observe(viewLifecycleOwner) { result ->
+                    when(result) {
+                        is Success -> {
+                            Toast.makeText(requireContext(), "Uspješno dodan racun", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                        is Error -> {
+                            Toast.makeText(requireContext(), "Greška kod dodavanja racuna", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+            lifecycleScope.launch {
+                viewModelInvoice.invoiceRentEnd.observe(viewLifecycleOwner) { result ->
+                    when(result) {
+                        is Success -> {
+                            Toast.makeText(requireContext(), "Uspješno dodan racun", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                        is Error -> {
+                            Toast.makeText(requireContext(), "Greška kod dodavanja racuna", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
