@@ -32,12 +32,10 @@ class BasicInfoFragment : Fragment() {
     ): View? {
         _binding = FragmentBasicInfoBinding.inflate(inflater, container, false)
 
-        val spinnerLokacija = binding.spLokacija
         val lokacije = resources.getStringArray(R.array.gradovi)
 
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
         lokacijeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerLokacija.adapter = lokacijeAdapter
 
         val spinnerMarke = binding.spMarka
         val marke = resources.getStringArray(R.array.Marke)
@@ -150,7 +148,6 @@ class BasicInfoFragment : Fragment() {
         btnSpremi.setOnClickListener{
             val marka = spinnerMarke.selectedItem.toString()
             val model = spinnerModeli.selectedItem.toString()
-            val lokacija = spinnerLokacija.selectedItem.toString()
             val tip = etTip.text.toString()
             val godProizv = etGodProizv.text.toString()
             val reg = etReg.text.toString()
@@ -174,7 +171,6 @@ class BasicInfoFragment : Fragment() {
 
             if (marka.isNotBlank() &&
             model.isNotBlank() &&
-            lokacija.isNotBlank() &&
             tip.isNotBlank() &&
             godProizv.isNotBlank() &&
             reg.isNotBlank() &&

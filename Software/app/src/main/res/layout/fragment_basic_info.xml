@@ -16,8 +16,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Simplified inner layout -->
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -77,14 +75,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sp_model" />
 
-                <Spinner
-                    android:id="@+id/sp_lokacija"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:background="@drawable/edit_textbox"
-                    android:popupBackground="@color/primaryColorLight"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_lokacija" />
 
                 <EditText
                     android:id="@+id/et_tip"
@@ -226,7 +216,7 @@
                     android:text="Upotreba"
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sp_lokacija" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_condition" />
 
                 <Spinner
                     android:id="@+id/sp_usage"
@@ -422,17 +412,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
 
-                <TextView
-                    android:id="@+id/tv_lokacija"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="?attr/colorOnBackground"
-                    android:text="Lokacija"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_condition" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

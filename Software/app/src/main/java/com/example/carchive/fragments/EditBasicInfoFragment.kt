@@ -73,7 +73,6 @@ class EditBasicInfoFragment : Fragment() {
         binding.editEtGodProizv.setText(productionYear)
         binding.editEtRegistracija.setText(registration)
         binding.editEtKilometri.setText(kilometers.toString())
-        binding.editSpLokacija.setSelection(getIndex(binding.editSpLokacija, location))
         binding.editEtMotor.setText(motor)
         binding.editEtEnginePower.setText(enginePower.toString())
         binding.editEtCijena.setText(price.toString())
@@ -91,7 +90,6 @@ class EditBasicInfoFragment : Fragment() {
         val btnSpremi = binding.editBtnSpremi
         val spinnerModeli = binding.editSpModel
         val spinnerMarke = binding.editSpMarka
-        val spinnerLokacija = binding.editSpLokacija
         val etTip = binding.editEtTip
         val etGodProizv = binding.editEtGodProizv
         val etReg = binding.editEtRegistracija
@@ -111,7 +109,6 @@ class EditBasicInfoFragment : Fragment() {
         btnSpremi.setOnClickListener {
             val marka = spinnerMarke.selectedItem.toString()
             val model = spinnerModeli.selectedItem.toString()
-            val lokacija = spinnerLokacija.selectedItem.toString()
             val tip = etTip.text.toString()
             val godProizv = etGodProizv.text.toString()
             val reg = etReg.text.toString()
@@ -144,7 +141,6 @@ class EditBasicInfoFragment : Fragment() {
 
             if (marka.isNotBlank() &&
                 model.isNotBlank() &&
-                lokacija.isNotBlank() &&
                 tip.isNotBlank() &&
                 godProizv.isNotBlank() &&
                 reg.isNotBlank() &&
@@ -199,9 +195,6 @@ class EditBasicInfoFragment : Fragment() {
     private fun populateSpinners(marka: String, model: String, location: String, gearBox: String) {
         val lokacije = resources.getStringArray(R.array.gradovi)
         val lokacijeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, lokacije)
-        binding.editSpLokacija.adapter = lokacijeAdapter
-        binding.editSpLokacija.setSelection(getIndex(binding.editSpLokacija, location))
-
         val marke = resources.getStringArray(R.array.Marke)
         val markaAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, marke)
         binding.editSpMarka.adapter = markaAdapter
